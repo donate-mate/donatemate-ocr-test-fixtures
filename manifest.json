@@ -1,0 +1,1083 @@
+{
+  "version": "1.0.0",
+  "generatedBy": "claude-synthetic",
+  "generatedAt": "2026-01-29T17:35:31.674Z",
+  "totalDocuments": 65,
+  "documentCounts": {
+    "receipts": 30,
+    "acknowledgment_letters": 20,
+    "bank_statements": 15
+  },
+  "documents": [
+    {
+      "filename": "receipts/receipt_goodwill_high_001.png",
+      "documentType": "receipt",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Goodwill Industries",
+        "ein": "53-0196517",
+        "amount": 3144.77,
+        "date": "2025-03-18",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-47978"
+      }
+    },
+    {
+      "filename": "receipts/receipt_salvation-army_high_002.png",
+      "documentType": "receipt",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "amount": 2976.33,
+        "date": "2026-01-07",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2026-88179"
+      }
+    },
+    {
+      "filename": "receipts/receipt_redcross_high_003.png",
+      "documentType": "receipt",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 3621.27,
+        "date": "2025-03-05",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-71266"
+      }
+    },
+    {
+      "filename": "receipts/receipt_habitat_high_004.png",
+      "documentType": "receipt",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Habitat for Humanity",
+        "ein": "91-1914868",
+        "amount": 141.3,
+        "date": "2025-10-16",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-82405"
+      }
+    },
+    {
+      "filename": "receipts/receipt_unitedway_high_005.png",
+      "documentType": "receipt",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 1995.96,
+        "date": "2025-03-27",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-94070"
+      }
+    },
+    {
+      "filename": "receipts/receipt_foodbank_high_006.png",
+      "documentType": "receipt",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Community Food Bank",
+        "ein": "12-3456789",
+        "amount": 3719.35,
+        "date": "2025-09-08",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-68220"
+      }
+    },
+    {
+      "filename": "receipts/receipt_church_high_007.png",
+      "documentType": "receipt",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "First Community Church",
+        "ein": "23-4567890",
+        "amount": 2783.74,
+        "date": "2025-03-04",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-71710"
+      }
+    },
+    {
+      "filename": "receipts/receipt_university_high_008.png",
+      "documentType": "receipt",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "State University Foundation",
+        "ein": "34-5678901",
+        "amount": 1267.39,
+        "date": "2025-05-05",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-72459"
+      }
+    },
+    {
+      "filename": "receipts/receipt_goodwill_high_009.png",
+      "documentType": "receipt",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Goodwill Industries",
+        "ein": "53-0196517",
+        "amount": 4785.92,
+        "date": "2025-08-17",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-43931"
+      }
+    },
+    {
+      "filename": "receipts/receipt_salvation-army_high_010.png",
+      "documentType": "receipt",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "amount": 4452.26,
+        "date": "2025-09-15",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-50954"
+      }
+    },
+    {
+      "filename": "receipts/receipt_redcross_high_011.png",
+      "documentType": "receipt",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 3213.27,
+        "date": "2025-02-21",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-33080"
+      }
+    },
+    {
+      "filename": "receipts/receipt_habitat_high_012.png",
+      "documentType": "receipt",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Habitat for Humanity",
+        "ein": "91-1914868",
+        "amount": 4923.88,
+        "date": "2025-05-23",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-58843"
+      }
+    },
+    {
+      "filename": "receipts/receipt_unitedway_medium_013.png",
+      "documentType": "receipt",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 672.35,
+        "date": "2025-01-04",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-97853"
+      }
+    },
+    {
+      "filename": "receipts/receipt_foodbank_medium_014.png",
+      "documentType": "receipt",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Community Food Bank",
+        "ein": "12-3456789",
+        "amount": 1290.98,
+        "date": "2025-02-26",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-60275"
+      }
+    },
+    {
+      "filename": "receipts/receipt_church_medium_015.png",
+      "documentType": "receipt",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "First Community Church",
+        "ein": "23-4567890",
+        "amount": 1110.36,
+        "date": "2025-11-13",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-50488"
+      }
+    },
+    {
+      "filename": "receipts/receipt_university_medium_016.png",
+      "documentType": "receipt",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "State University Foundation",
+        "ein": "34-5678901",
+        "amount": 1496.44,
+        "date": "2025-12-10",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-27299"
+      }
+    },
+    {
+      "filename": "receipts/receipt_goodwill_medium_017.png",
+      "documentType": "receipt",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Goodwill Industries",
+        "ein": "53-0196517",
+        "amount": 549.45,
+        "date": "2025-04-04",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-76205"
+      }
+    },
+    {
+      "filename": "receipts/receipt_salvation-army_medium_018.png",
+      "documentType": "receipt",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "amount": 3185.58,
+        "date": "2025-06-06",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-60623"
+      }
+    },
+    {
+      "filename": "receipts/receipt_redcross_medium_019.png",
+      "documentType": "receipt",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 656.8,
+        "date": "2025-04-16",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-31510"
+      }
+    },
+    {
+      "filename": "receipts/receipt_habitat_medium_020.png",
+      "documentType": "receipt",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Habitat for Humanity",
+        "ein": "91-1914868",
+        "amount": 2551.11,
+        "date": "2025-09-14",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-84884"
+      }
+    },
+    {
+      "filename": "receipts/receipt_unitedway_medium_021.png",
+      "documentType": "receipt",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 2669.78,
+        "date": "2025-09-13",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-30163"
+      }
+    },
+    {
+      "filename": "receipts/receipt_foodbank_low_022.png",
+      "documentType": "receipt",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Community Food Bank",
+        "ein": "12-3456789",
+        "amount": 4513.09,
+        "date": "2025-07-11",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-99750"
+      }
+    },
+    {
+      "filename": "receipts/receipt_church_low_023.png",
+      "documentType": "receipt",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "First Community Church",
+        "ein": "23-4567890",
+        "amount": 1059.98,
+        "date": "2025-07-18",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-69123"
+      }
+    },
+    {
+      "filename": "receipts/receipt_university_low_024.png",
+      "documentType": "receipt",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "State University Foundation",
+        "ein": "34-5678901",
+        "amount": 4744.83,
+        "date": "2025-10-14",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-84124"
+      }
+    },
+    {
+      "filename": "receipts/receipt_goodwill_low_025.png",
+      "documentType": "receipt",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Goodwill Industries",
+        "ein": "53-0196517",
+        "amount": 1657.47,
+        "date": "2025-03-01",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-73730"
+      }
+    },
+    {
+      "filename": "receipts/receipt_salvation-army_low_026.png",
+      "documentType": "receipt",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "amount": 2111.79,
+        "date": "2025-10-02",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-73457"
+      }
+    },
+    {
+      "filename": "receipts/receipt_redcross_low_027.png",
+      "documentType": "receipt",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 2964.15,
+        "date": "2025-07-02",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-95055"
+      }
+    },
+    {
+      "filename": "receipts/receipt_habitat_edge_028.png",
+      "documentType": "receipt",
+      "quality": "edge",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Habitat for Humanity",
+        "ein": "91-1914868",
+        "amount": 444.78,
+        "date": "2025-01-21",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-88534"
+      }
+    },
+    {
+      "filename": "receipts/receipt_unitedway_edge_029.png",
+      "documentType": "receipt",
+      "quality": "edge",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 881.35,
+        "date": "2025-12-07",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-18977"
+      }
+    },
+    {
+      "filename": "receipts/receipt_foodbank_edge_030.png",
+      "documentType": "receipt",
+      "quality": "edge",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Community Food Bank",
+        "ein": "12-3456789",
+        "amount": 4005.76,
+        "date": "2025-08-08",
+        "donor_name": "Test Donor",
+        "receipt_number": "RCP-2025-78919"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_goodwill_high_001.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Goodwill Industries",
+        "ein": "53-0196517",
+        "amount": 2174.68,
+        "date": "2025-01-13",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_salvation-army_high_002.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "amount": 2192.49,
+        "date": "2025-09-09",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_redcross_high_003.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 942.35,
+        "date": "2025-11-14",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_habitat_high_004.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Habitat for Humanity",
+        "ein": "91-1914868",
+        "amount": 4509.34,
+        "date": "2025-10-13",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_unitedway_high_005.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 2971.73,
+        "date": "2025-04-07",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_foodbank_high_006.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Community Food Bank",
+        "ein": "12-3456789",
+        "amount": 1011.44,
+        "date": "2025-08-15",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_church_high_007.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "First Community Church",
+        "ein": "23-4567890",
+        "amount": 1347.75,
+        "date": "2025-03-23",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_university_high_008.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "State University Foundation",
+        "ein": "34-5678901",
+        "amount": 2891.61,
+        "date": "2025-05-04",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_goodwill_high_009.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Goodwill Industries",
+        "ein": "53-0196517",
+        "amount": 1402.81,
+        "date": "2026-01-09",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_salvation-army_high_010.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "amount": 1865.51,
+        "date": "2024-12-27",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_redcross_medium_011.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 4799.66,
+        "date": "2025-11-17",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_habitat_medium_012.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Habitat for Humanity",
+        "ein": "91-1914868",
+        "amount": 2051.79,
+        "date": "2025-07-17",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_unitedway_medium_013.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 1796.37,
+        "date": "2025-04-06",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_foodbank_medium_014.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Community Food Bank",
+        "ein": "12-3456789",
+        "amount": 452.49,
+        "date": "2025-09-09",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_church_medium_015.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "First Community Church",
+        "ein": "23-4567890",
+        "amount": 362.07,
+        "date": "2025-11-28",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_university_medium_016.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "State University Foundation",
+        "ein": "34-5678901",
+        "amount": 44.6,
+        "date": "2025-09-14",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_goodwill_low_017.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Goodwill Industries",
+        "ein": "53-0196517",
+        "amount": 641.5,
+        "date": "2025-09-21",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_salvation-army_low_018.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "amount": 4525.6,
+        "date": "2025-02-07",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_redcross_low_019.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 1470.29,
+        "date": "2025-03-16",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/acknowledgment_habitat_low_020.png",
+      "documentType": "acknowledgment_letter",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "organization_name": "Habitat for Humanity",
+        "ein": "91-1914868",
+        "amount": 861,
+        "date": "2025-05-06",
+        "donor_name": "Test Donor"
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_chase_high_001.png",
+      "documentType": "bank_statement",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Chase Bank",
+        "account_number": "***6934",
+        "statement_period_start": "2025-11-09",
+        "statement_period_end": "2025-12-09",
+        "charitable_transactions": [
+          {
+            "organization": "United Way Worldwide",
+            "amount": 120.63,
+            "date": "2025-11-22"
+          },
+          {
+            "organization": "The Salvation Army",
+            "amount": 432.41,
+            "date": "2025-11-23"
+          },
+          {
+            "organization": "Goodwill Industries",
+            "amount": 261.12,
+            "date": "2025-11-28"
+          }
+        ]
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_bofa_high_002.png",
+      "documentType": "bank_statement",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Bank of America",
+        "account_number": "***8091",
+        "statement_period_start": "2025-06-15",
+        "statement_period_end": "2025-07-15",
+        "charitable_transactions": [
+          {
+            "organization": "First Community Church",
+            "amount": 125.85,
+            "date": "2025-06-25"
+          },
+          {
+            "organization": "United Way Worldwide",
+            "amount": 499.61,
+            "date": "2025-06-29"
+          },
+          {
+            "organization": "United Way Worldwide",
+            "amount": 369.98,
+            "date": "2025-07-02"
+          }
+        ]
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_wellsfargo_high_003.png",
+      "documentType": "bank_statement",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Wells Fargo",
+        "account_number": "***3722",
+        "statement_period_start": "2025-05-19",
+        "statement_period_end": "2025-06-18",
+        "charitable_transactions": [
+          {
+            "organization": "United Way Worldwide",
+            "amount": 336.65,
+            "date": "2025-05-25"
+          },
+          {
+            "organization": "Habitat for Humanity",
+            "amount": 264.82,
+            "date": "2025-05-26"
+          },
+          {
+            "organization": "State University Foundation",
+            "amount": 468.09,
+            "date": "2025-05-27"
+          }
+        ]
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_citi_high_004.png",
+      "documentType": "bank_statement",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Citibank",
+        "account_number": "***4935",
+        "statement_period_start": "2025-03-16",
+        "statement_period_end": "2025-04-15",
+        "charitable_transactions": [
+          {
+            "organization": "Goodwill Industries",
+            "amount": 349.93,
+            "date": "2025-03-28"
+          },
+          {
+            "organization": "The Salvation Army",
+            "amount": 98.05,
+            "date": "2025-04-01"
+          }
+        ]
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_creditunion_high_005.png",
+      "documentType": "bank_statement",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Local Credit Union",
+        "account_number": "***3172",
+        "statement_period_start": "2025-11-21",
+        "statement_period_end": "2025-12-21",
+        "charitable_transactions": [
+          {
+            "organization": "American Red Cross",
+            "amount": 219.73,
+            "date": "2025-12-07"
+          },
+          {
+            "organization": "Habitat for Humanity",
+            "amount": 383.7,
+            "date": "2025-12-10"
+          }
+        ]
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_chase_high_006.png",
+      "documentType": "bank_statement",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Chase Bank",
+        "account_number": "***4230",
+        "statement_period_start": "2025-11-11",
+        "statement_period_end": "2025-12-11",
+        "charitable_transactions": [
+          {
+            "organization": "Goodwill Industries",
+            "amount": 235.12,
+            "date": "2025-11-18"
+          },
+          {
+            "organization": "Goodwill Industries",
+            "amount": 299.87,
+            "date": "2025-11-19"
+          }
+        ]
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_bofa_high_007.png",
+      "documentType": "bank_statement",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Bank of America",
+        "account_number": "***2887",
+        "statement_period_start": "2025-03-24",
+        "statement_period_end": "2025-04-23",
+        "charitable_transactions": [
+          {
+            "organization": "The Salvation Army",
+            "amount": 85.63,
+            "date": "2025-04-05"
+          },
+          {
+            "organization": "State University Foundation",
+            "amount": 273.08,
+            "date": "2025-04-06"
+          }
+        ]
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_wellsfargo_high_008.png",
+      "documentType": "bank_statement",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Wells Fargo",
+        "account_number": "***9715",
+        "statement_period_start": "2025-12-22",
+        "statement_period_end": "2026-01-21",
+        "charitable_transactions": [
+          {
+            "organization": "The Salvation Army",
+            "amount": 57.94,
+            "date": "2025-12-31"
+          },
+          {
+            "organization": "Habitat for Humanity",
+            "amount": 148.01,
+            "date": "2026-01-01"
+          }
+        ]
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_citi_medium_009.png",
+      "documentType": "bank_statement",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Citibank",
+        "account_number": "***3440",
+        "statement_period_start": "2025-04-12",
+        "statement_period_end": "2025-05-12",
+        "charitable_transactions": [
+          {
+            "organization": "Goodwill Industries",
+            "amount": 432.08,
+            "date": "2025-04-25"
+          },
+          {
+            "organization": "American Red Cross",
+            "amount": 158.51,
+            "date": "2025-04-27"
+          },
+          {
+            "organization": "State University Foundation",
+            "amount": 174.14,
+            "date": "2025-04-29"
+          }
+        ]
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_creditunion_medium_010.png",
+      "documentType": "bank_statement",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Local Credit Union",
+        "account_number": "***5741",
+        "statement_period_start": "2025-08-05",
+        "statement_period_end": "2025-09-04",
+        "charitable_transactions": [
+          {
+            "organization": "State University Foundation",
+            "amount": 488.45,
+            "date": "2025-08-14"
+          },
+          {
+            "organization": "The Salvation Army",
+            "amount": 332.62,
+            "date": "2025-08-16"
+          },
+          {
+            "organization": "Community Food Bank",
+            "amount": 441.86,
+            "date": "2025-08-18"
+          }
+        ]
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_chase_medium_011.png",
+      "documentType": "bank_statement",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Chase Bank",
+        "account_number": "***5423",
+        "statement_period_start": "2025-01-19",
+        "statement_period_end": "2025-02-18",
+        "charitable_transactions": [
+          {
+            "organization": "State University Foundation",
+            "amount": 105.02,
+            "date": "2025-01-25"
+          },
+          {
+            "organization": "American Red Cross",
+            "amount": 153.44,
+            "date": "2025-01-29"
+          }
+        ]
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_bofa_medium_012.png",
+      "documentType": "bank_statement",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Bank of America",
+        "account_number": "***1457",
+        "statement_period_start": "2025-03-07",
+        "statement_period_end": "2025-04-06",
+        "charitable_transactions": [
+          {
+            "organization": "United Way Worldwide",
+            "amount": 453.24,
+            "date": "2025-03-15"
+          },
+          {
+            "organization": "United Way Worldwide",
+            "amount": 329.44,
+            "date": "2025-03-19"
+          }
+        ]
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_wellsfargo_medium_013.png",
+      "documentType": "bank_statement",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Wells Fargo",
+        "account_number": "***6143",
+        "statement_period_start": "2025-12-30",
+        "statement_period_end": "2026-01-29",
+        "charitable_transactions": [
+          {
+            "organization": "Goodwill Industries",
+            "amount": 347.77,
+            "date": "2026-01-17"
+          },
+          {
+            "organization": "United Way Worldwide",
+            "amount": 473.76,
+            "date": "2026-01-18"
+          }
+        ]
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_citi_low_014.png",
+      "documentType": "bank_statement",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Citibank",
+        "account_number": "***1786",
+        "statement_period_start": "2025-07-09",
+        "statement_period_end": "2025-08-08",
+        "charitable_transactions": [
+          {
+            "organization": "First Community Church",
+            "amount": 457.75,
+            "date": "2025-07-19"
+          },
+          {
+            "organization": "Community Food Bank",
+            "amount": 103.56,
+            "date": "2025-07-22"
+          }
+        ]
+      }
+    },
+    {
+      "filename": "bank_statements/bank_statement_creditunion_low_015.png",
+      "documentType": "bank_statement",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "bank_name": "Local Credit Union",
+        "account_number": "***5820",
+        "statement_period_start": "2025-07-23",
+        "statement_period_end": "2025-08-22",
+        "charitable_transactions": [
+          {
+            "organization": "United Way Worldwide",
+            "amount": 322.8,
+            "date": "2025-08-03"
+          },
+          {
+            "organization": "United Way Worldwide",
+            "amount": 193.83,
+            "date": "2025-08-04"
+          },
+          {
+            "organization": "United Way Worldwide",
+            "amount": 337.64,
+            "date": "2025-08-05"
+          }
+        ]
+      }
+    }
+  ]
+}

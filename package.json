@@ -1,0 +1,24 @@
+{
+  "name": "donatemate-ocr-test-fixtures",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donate-mate/donatemate-ocr-test-fixtures.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/donate-mate/donatemate-ocr-test-fixtures/issues"
+  },
+  "homepage": "https://github.com/donate-mate/donatemate-ocr-test-fixtures#readme",
+  "dependencies": {
+    "canvas": "^3.2.1"
+  }
+}
