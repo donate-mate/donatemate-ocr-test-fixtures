@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "generatedBy": "claude-synthetic",
-  "generatedAt": "2026-01-29T17:35:31.674Z",
+  "generatedAt": "2026-01-29T17:40:17.590Z",
   "totalDocuments": 65,
   "documentCounts": {
     "receipts": 30,
@@ -17,10 +17,10 @@
       "expectedFields": {
         "organization_name": "Goodwill Industries",
         "ein": "53-0196517",
-        "amount": 3144.77,
-        "date": "2025-03-18",
+        "amount": 3566.42,
+        "date": "2025-01-10",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-47978"
+        "receipt_number": "RCP-2025-21769"
       }
     },
     {
@@ -31,10 +31,10 @@
       "expectedFields": {
         "organization_name": "The Salvation Army",
         "ein": "13-5562351",
-        "amount": 2976.33,
-        "date": "2026-01-07",
+        "amount": 4614.93,
+        "date": "2025-07-14",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2026-88179"
+        "receipt_number": "RCP-2025-19935"
       }
     },
     {
@@ -45,10 +45,10 @@
       "expectedFields": {
         "organization_name": "American Red Cross",
         "ein": "53-0196605",
-        "amount": 3621.27,
-        "date": "2025-03-05",
+        "amount": 1011.04,
+        "date": "2025-08-10",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-71266"
+        "receipt_number": "RCP-2025-76431"
       }
     },
     {
@@ -59,10 +59,10 @@
       "expectedFields": {
         "organization_name": "Habitat for Humanity",
         "ein": "91-1914868",
-        "amount": 141.3,
-        "date": "2025-10-16",
+        "amount": 2627.06,
+        "date": "2025-01-20",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-82405"
+        "receipt_number": "RCP-2025-90550"
       }
     },
     {
@@ -73,10 +73,10 @@
       "expectedFields": {
         "organization_name": "United Way Worldwide",
         "ein": "13-1635294",
-        "amount": 1995.96,
-        "date": "2025-03-27",
+        "amount": 4497.04,
+        "date": "2025-06-05",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-94070"
+        "receipt_number": "RCP-2025-76952"
       }
     },
     {
@@ -87,10 +87,10 @@
       "expectedFields": {
         "organization_name": "Community Food Bank",
         "ein": "12-3456789",
-        "amount": 3719.35,
-        "date": "2025-09-08",
+        "amount": 2837.81,
+        "date": "2025-10-17",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-68220"
+        "receipt_number": "RCP-2025-66759"
       }
     },
     {
@@ -101,10 +101,10 @@
       "expectedFields": {
         "organization_name": "First Community Church",
         "ein": "23-4567890",
-        "amount": 2783.74,
-        "date": "2025-03-04",
+        "amount": 35.4,
+        "date": "2025-11-22",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-71710"
+        "receipt_number": "RCP-2025-41950"
       }
     },
     {
@@ -115,10 +115,10 @@
       "expectedFields": {
         "organization_name": "State University Foundation",
         "ein": "34-5678901",
-        "amount": 1267.39,
-        "date": "2025-05-05",
+        "amount": 1625.94,
+        "date": "2026-01-21",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-72459"
+        "receipt_number": "RCP-2026-92209"
       }
     },
     {
@@ -129,10 +129,10 @@
       "expectedFields": {
         "organization_name": "Goodwill Industries",
         "ein": "53-0196517",
-        "amount": 4785.92,
-        "date": "2025-08-17",
+        "amount": 4851.79,
+        "date": "2025-09-17",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-43931"
+        "receipt_number": "RCP-2025-81651"
       }
     },
     {
@@ -143,10 +143,10 @@
       "expectedFields": {
         "organization_name": "The Salvation Army",
         "ein": "13-5562351",
-        "amount": 4452.26,
-        "date": "2025-09-15",
+        "amount": 4857.4,
+        "date": "2025-10-14",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-50954"
+        "receipt_number": "RCP-2025-21781"
       }
     },
     {
@@ -157,10 +157,10 @@
       "expectedFields": {
         "organization_name": "American Red Cross",
         "ein": "53-0196605",
-        "amount": 3213.27,
-        "date": "2025-02-21",
+        "amount": 3468.79,
+        "date": "2025-05-30",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-33080"
+        "receipt_number": "RCP-2025-85984"
       }
     },
     {
@@ -171,10 +171,10 @@
       "expectedFields": {
         "organization_name": "Habitat for Humanity",
         "ein": "91-1914868",
-        "amount": 4923.88,
-        "date": "2025-05-23",
+        "amount": 1407.79,
+        "date": "2025-11-09",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-58843"
+        "receipt_number": "RCP-2025-44839"
       }
     },
     {
@@ -185,10 +185,10 @@
       "expectedFields": {
         "organization_name": "United Way Worldwide",
         "ein": "13-1635294",
-        "amount": 672.35,
-        "date": "2025-01-04",
+        "amount": 4759.48,
+        "date": "2025-01-25",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-97853"
+        "receipt_number": "RCP-2025-74899"
       }
     },
     {
@@ -199,10 +199,10 @@
       "expectedFields": {
         "organization_name": "Community Food Bank",
         "ein": "12-3456789",
-        "amount": 1290.98,
-        "date": "2025-02-26",
+        "amount": 1684.83,
+        "date": "2025-10-10",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-60275"
+        "receipt_number": "RCP-2025-86002"
       }
     },
     {
@@ -213,10 +213,10 @@
       "expectedFields": {
         "organization_name": "First Community Church",
         "ein": "23-4567890",
-        "amount": 1110.36,
-        "date": "2025-11-13",
+        "amount": 3654.35,
+        "date": "2025-08-15",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-50488"
+        "receipt_number": "RCP-2025-34221"
       }
     },
     {
@@ -227,10 +227,10 @@
       "expectedFields": {
         "organization_name": "State University Foundation",
         "ein": "34-5678901",
-        "amount": 1496.44,
-        "date": "2025-12-10",
+        "amount": 3191.69,
+        "date": "2025-09-20",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-27299"
+        "receipt_number": "RCP-2025-93724"
       }
     },
     {
@@ -241,10 +241,10 @@
       "expectedFields": {
         "organization_name": "Goodwill Industries",
         "ein": "53-0196517",
-        "amount": 549.45,
-        "date": "2025-04-04",
+        "amount": 1276.26,
+        "date": "2025-05-11",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-76205"
+        "receipt_number": "RCP-2025-96185"
       }
     },
     {
@@ -255,10 +255,10 @@
       "expectedFields": {
         "organization_name": "The Salvation Army",
         "ein": "13-5562351",
-        "amount": 3185.58,
-        "date": "2025-06-06",
+        "amount": 3087.32,
+        "date": "2025-05-23",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-60623"
+        "receipt_number": "RCP-2025-74944"
       }
     },
     {
@@ -269,10 +269,10 @@
       "expectedFields": {
         "organization_name": "American Red Cross",
         "ein": "53-0196605",
-        "amount": 656.8,
-        "date": "2025-04-16",
+        "amount": 2014.72,
+        "date": "2025-10-25",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-31510"
+        "receipt_number": "RCP-2025-11900"
       }
     },
     {
@@ -283,10 +283,10 @@
       "expectedFields": {
         "organization_name": "Habitat for Humanity",
         "ein": "91-1914868",
-        "amount": 2551.11,
-        "date": "2025-09-14",
+        "amount": 3033.49,
+        "date": "2026-01-04",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-84884"
+        "receipt_number": "RCP-2026-95707"
       }
     },
     {
@@ -297,10 +297,10 @@
       "expectedFields": {
         "organization_name": "United Way Worldwide",
         "ein": "13-1635294",
-        "amount": 2669.78,
-        "date": "2025-09-13",
+        "amount": 1286.68,
+        "date": "2025-02-22",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-30163"
+        "receipt_number": "RCP-2025-95665"
       }
     },
     {
@@ -311,10 +311,10 @@
       "expectedFields": {
         "organization_name": "Community Food Bank",
         "ein": "12-3456789",
-        "amount": 4513.09,
-        "date": "2025-07-11",
+        "amount": 3553.3,
+        "date": "2025-06-09",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-99750"
+        "receipt_number": "RCP-2025-51716"
       }
     },
     {
@@ -325,10 +325,10 @@
       "expectedFields": {
         "organization_name": "First Community Church",
         "ein": "23-4567890",
-        "amount": 1059.98,
-        "date": "2025-07-18",
+        "amount": 1761.17,
+        "date": "2025-11-16",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-69123"
+        "receipt_number": "RCP-2025-91135"
       }
     },
     {
@@ -339,10 +339,10 @@
       "expectedFields": {
         "organization_name": "State University Foundation",
         "ein": "34-5678901",
-        "amount": 4744.83,
-        "date": "2025-10-14",
+        "amount": 157.21,
+        "date": "2025-04-26",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-84124"
+        "receipt_number": "RCP-2025-18004"
       }
     },
     {
@@ -353,10 +353,10 @@
       "expectedFields": {
         "organization_name": "Goodwill Industries",
         "ein": "53-0196517",
-        "amount": 1657.47,
-        "date": "2025-03-01",
+        "amount": 529.93,
+        "date": "2025-03-10",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-73730"
+        "receipt_number": "RCP-2025-36867"
       }
     },
     {
@@ -367,10 +367,10 @@
       "expectedFields": {
         "organization_name": "The Salvation Army",
         "ein": "13-5562351",
-        "amount": 2111.79,
-        "date": "2025-10-02",
+        "amount": 836.07,
+        "date": "2026-01-14",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-73457"
+        "receipt_number": "RCP-2026-95076"
       }
     },
     {
@@ -381,10 +381,10 @@
       "expectedFields": {
         "organization_name": "American Red Cross",
         "ein": "53-0196605",
-        "amount": 2964.15,
-        "date": "2025-07-02",
+        "amount": 1528.98,
+        "date": "2025-01-10",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-95055"
+        "receipt_number": "RCP-2025-78172"
       }
     },
     {
@@ -395,10 +395,10 @@
       "expectedFields": {
         "organization_name": "Habitat for Humanity",
         "ein": "91-1914868",
-        "amount": 444.78,
-        "date": "2025-01-21",
+        "amount": 342.54,
+        "date": "2025-09-24",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-88534"
+        "receipt_number": "RCP-2025-98270"
       }
     },
     {
@@ -409,10 +409,10 @@
       "expectedFields": {
         "organization_name": "United Way Worldwide",
         "ein": "13-1635294",
-        "amount": 881.35,
-        "date": "2025-12-07",
+        "amount": 2693.76,
+        "date": "2025-10-31",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-18977"
+        "receipt_number": "RCP-2025-46436"
       }
     },
     {
@@ -423,10 +423,10 @@
       "expectedFields": {
         "organization_name": "Community Food Bank",
         "ein": "12-3456789",
-        "amount": 4005.76,
-        "date": "2025-08-08",
+        "amount": 1910.02,
+        "date": "2025-04-16",
         "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-78919"
+        "receipt_number": "RCP-2025-72584"
       }
     },
     {
@@ -437,8 +437,8 @@
       "expectedFields": {
         "organization_name": "Goodwill Industries",
         "ein": "53-0196517",
-        "amount": 2174.68,
-        "date": "2025-01-13",
+        "amount": 2939.7,
+        "date": "2025-10-03",
         "donor_name": "Test Donor"
       }
     },
@@ -450,8 +450,8 @@
       "expectedFields": {
         "organization_name": "The Salvation Army",
         "ein": "13-5562351",
-        "amount": 2192.49,
-        "date": "2025-09-09",
+        "amount": 2651.78,
+        "date": "2025-10-05",
         "donor_name": "Test Donor"
       }
     },
@@ -463,8 +463,8 @@
       "expectedFields": {
         "organization_name": "American Red Cross",
         "ein": "53-0196605",
-        "amount": 942.35,
-        "date": "2025-11-14",
+        "amount": 3695.2,
+        "date": "2025-04-08",
         "donor_name": "Test Donor"
       }
     },
@@ -476,8 +476,8 @@
       "expectedFields": {
         "organization_name": "Habitat for Humanity",
         "ein": "91-1914868",
-        "amount": 4509.34,
-        "date": "2025-10-13",
+        "amount": 2527.63,
+        "date": "2025-06-26",
         "donor_name": "Test Donor"
       }
     },
@@ -489,8 +489,8 @@
       "expectedFields": {
         "organization_name": "United Way Worldwide",
         "ein": "13-1635294",
-        "amount": 2971.73,
-        "date": "2025-04-07",
+        "amount": 1262.02,
+        "date": "2025-09-24",
         "donor_name": "Test Donor"
       }
     },
@@ -502,8 +502,8 @@
       "expectedFields": {
         "organization_name": "Community Food Bank",
         "ein": "12-3456789",
-        "amount": 1011.44,
-        "date": "2025-08-15",
+        "amount": 483.83,
+        "date": "2025-07-05",
         "donor_name": "Test Donor"
       }
     },
@@ -515,8 +515,8 @@
       "expectedFields": {
         "organization_name": "First Community Church",
         "ein": "23-4567890",
-        "amount": 1347.75,
-        "date": "2025-03-23",
+        "amount": 591.16,
+        "date": "2025-03-13",
         "donor_name": "Test Donor"
       }
     },
@@ -528,8 +528,8 @@
       "expectedFields": {
         "organization_name": "State University Foundation",
         "ein": "34-5678901",
-        "amount": 2891.61,
-        "date": "2025-05-04",
+        "amount": 1567.86,
+        "date": "2025-06-26",
         "donor_name": "Test Donor"
       }
     },
@@ -541,8 +541,8 @@
       "expectedFields": {
         "organization_name": "Goodwill Industries",
         "ein": "53-0196517",
-        "amount": 1402.81,
-        "date": "2026-01-09",
+        "amount": 3127.08,
+        "date": "2025-04-05",
         "donor_name": "Test Donor"
       }
     },
@@ -554,8 +554,8 @@
       "expectedFields": {
         "organization_name": "The Salvation Army",
         "ein": "13-5562351",
-        "amount": 1865.51,
-        "date": "2024-12-27",
+        "amount": 4415.72,
+        "date": "2025-12-14",
         "donor_name": "Test Donor"
       }
     },
@@ -567,8 +567,8 @@
       "expectedFields": {
         "organization_name": "American Red Cross",
         "ein": "53-0196605",
-        "amount": 4799.66,
-        "date": "2025-11-17",
+        "amount": 1039.59,
+        "date": "2025-12-19",
         "donor_name": "Test Donor"
       }
     },
@@ -580,8 +580,8 @@
       "expectedFields": {
         "organization_name": "Habitat for Humanity",
         "ein": "91-1914868",
-        "amount": 2051.79,
-        "date": "2025-07-17",
+        "amount": 2484.42,
+        "date": "2025-05-13",
         "donor_name": "Test Donor"
       }
     },
@@ -593,8 +593,8 @@
       "expectedFields": {
         "organization_name": "United Way Worldwide",
         "ein": "13-1635294",
-        "amount": 1796.37,
-        "date": "2025-04-06",
+        "amount": 37.33,
+        "date": "2025-08-24",
         "donor_name": "Test Donor"
       }
     },
@@ -606,8 +606,8 @@
       "expectedFields": {
         "organization_name": "Community Food Bank",
         "ein": "12-3456789",
-        "amount": 452.49,
-        "date": "2025-09-09",
+        "amount": 2844.9,
+        "date": "2025-12-19",
         "donor_name": "Test Donor"
       }
     },
@@ -619,8 +619,8 @@
       "expectedFields": {
         "organization_name": "First Community Church",
         "ein": "23-4567890",
-        "amount": 362.07,
-        "date": "2025-11-28",
+        "amount": 329.18,
+        "date": "2025-05-22",
         "donor_name": "Test Donor"
       }
     },
@@ -632,8 +632,8 @@
       "expectedFields": {
         "organization_name": "State University Foundation",
         "ein": "34-5678901",
-        "amount": 44.6,
-        "date": "2025-09-14",
+        "amount": 3249.1,
+        "date": "2025-12-24",
         "donor_name": "Test Donor"
       }
     },
@@ -645,8 +645,8 @@
       "expectedFields": {
         "organization_name": "Goodwill Industries",
         "ein": "53-0196517",
-        "amount": 641.5,
-        "date": "2025-09-21",
+        "amount": 4099.95,
+        "date": "2024-12-25",
         "donor_name": "Test Donor"
       }
     },
@@ -658,8 +658,8 @@
       "expectedFields": {
         "organization_name": "The Salvation Army",
         "ein": "13-5562351",
-        "amount": 4525.6,
-        "date": "2025-02-07",
+        "amount": 2758.43,
+        "date": "2025-02-16",
         "donor_name": "Test Donor"
       }
     },
@@ -671,8 +671,8 @@
       "expectedFields": {
         "organization_name": "American Red Cross",
         "ein": "53-0196605",
-        "amount": 1470.29,
-        "date": "2025-03-16",
+        "amount": 3360.8,
+        "date": "2025-10-24",
         "donor_name": "Test Donor"
       }
     },
@@ -684,8 +684,8 @@
       "expectedFields": {
         "organization_name": "Habitat for Humanity",
         "ein": "91-1914868",
-        "amount": 861,
-        "date": "2025-05-06",
+        "amount": 4451.37,
+        "date": "2025-03-12",
         "donor_name": "Test Donor"
       }
     },
@@ -696,24 +696,24 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Chase Bank",
-        "account_number": "***6934",
-        "statement_period_start": "2025-11-09",
-        "statement_period_end": "2025-12-09",
+        "account_number": "***2570",
+        "statement_period_start": "2025-06-01",
+        "statement_period_end": "2025-07-01",
         "charitable_transactions": [
           {
-            "organization": "United Way Worldwide",
-            "amount": 120.63,
-            "date": "2025-11-22"
+            "organization": "State University Foundation",
+            "amount": 310.84,
+            "date": "2025-06-14"
           },
           {
             "organization": "The Salvation Army",
-            "amount": 432.41,
-            "date": "2025-11-23"
+            "amount": 422.54,
+            "date": "2025-06-19"
           },
           {
-            "organization": "Goodwill Industries",
-            "amount": 261.12,
-            "date": "2025-11-28"
+            "organization": "State University Foundation",
+            "amount": 270.44,
+            "date": "2025-06-23"
           }
         ]
       }
@@ -725,24 +725,19 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Bank of America",
-        "account_number": "***8091",
-        "statement_period_start": "2025-06-15",
-        "statement_period_end": "2025-07-15",
+        "account_number": "***3557",
+        "statement_period_start": "2025-12-11",
+        "statement_period_end": "2026-01-10",
         "charitable_transactions": [
           {
-            "organization": "First Community Church",
-            "amount": 125.85,
-            "date": "2025-06-25"
+            "organization": "State University Foundation",
+            "amount": 111.7,
+            "date": "2025-12-27"
           },
           {
-            "organization": "United Way Worldwide",
-            "amount": 499.61,
-            "date": "2025-06-29"
-          },
-          {
-            "organization": "United Way Worldwide",
-            "amount": 369.98,
-            "date": "2025-07-02"
+            "organization": "Habitat for Humanity",
+            "amount": 462.27,
+            "date": "2025-12-30"
           }
         ]
       }
@@ -754,24 +749,24 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Wells Fargo",
-        "account_number": "***3722",
-        "statement_period_start": "2025-05-19",
-        "statement_period_end": "2025-06-18",
+        "account_number": "***1984",
+        "statement_period_start": "2025-09-13",
+        "statement_period_end": "2025-10-13",
         "charitable_transactions": [
           {
-            "organization": "United Way Worldwide",
-            "amount": 336.65,
-            "date": "2025-05-25"
-          },
-          {
-            "organization": "Habitat for Humanity",
-            "amount": 264.82,
-            "date": "2025-05-26"
-          },
-          {
             "organization": "State University Foundation",
-            "amount": 468.09,
-            "date": "2025-05-27"
+            "amount": 85.11,
+            "date": "2025-09-20"
+          },
+          {
+            "organization": "Goodwill Industries",
+            "amount": 241.97,
+            "date": "2025-09-24"
+          },
+          {
+            "organization": "Community Food Bank",
+            "amount": 171.91,
+            "date": "2025-09-28"
           }
         ]
       }
@@ -783,19 +778,19 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Citibank",
-        "account_number": "***4935",
-        "statement_period_start": "2025-03-16",
-        "statement_period_end": "2025-04-15",
+        "account_number": "***7946",
+        "statement_period_start": "2025-04-01",
+        "statement_period_end": "2025-05-01",
         "charitable_transactions": [
           {
             "organization": "Goodwill Industries",
-            "amount": 349.93,
-            "date": "2025-03-28"
+            "amount": 367.64,
+            "date": "2025-04-15"
           },
           {
             "organization": "The Salvation Army",
-            "amount": 98.05,
-            "date": "2025-04-01"
+            "amount": 224.21,
+            "date": "2025-04-16"
           }
         ]
       }
@@ -807,19 +802,19 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Local Credit Union",
-        "account_number": "***3172",
-        "statement_period_start": "2025-11-21",
-        "statement_period_end": "2025-12-21",
+        "account_number": "***3751",
+        "statement_period_start": "2025-05-07",
+        "statement_period_end": "2025-06-06",
         "charitable_transactions": [
           {
-            "organization": "American Red Cross",
-            "amount": 219.73,
-            "date": "2025-12-07"
+            "organization": "Community Food Bank",
+            "amount": 228.96,
+            "date": "2025-05-24"
           },
           {
-            "organization": "Habitat for Humanity",
-            "amount": 383.7,
-            "date": "2025-12-10"
+            "organization": "United Way Worldwide",
+            "amount": 164.96,
+            "date": "2025-05-27"
           }
         ]
       }
@@ -831,19 +826,24 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Chase Bank",
-        "account_number": "***4230",
-        "statement_period_start": "2025-11-11",
-        "statement_period_end": "2025-12-11",
+        "account_number": "***2841",
+        "statement_period_start": "2025-06-26",
+        "statement_period_end": "2025-07-26",
         "charitable_transactions": [
           {
-            "organization": "Goodwill Industries",
-            "amount": 235.12,
-            "date": "2025-11-18"
+            "organization": "Community Food Bank",
+            "amount": 129.09,
+            "date": "2025-07-10"
           },
           {
-            "organization": "Goodwill Industries",
-            "amount": 299.87,
-            "date": "2025-11-19"
+            "organization": "First Community Church",
+            "amount": 399.71,
+            "date": "2025-07-15"
+          },
+          {
+            "organization": "First Community Church",
+            "amount": 61.08,
+            "date": "2025-07-17"
           }
         ]
       }
@@ -855,19 +855,19 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Bank of America",
-        "account_number": "***2887",
-        "statement_period_start": "2025-03-24",
-        "statement_period_end": "2025-04-23",
+        "account_number": "***8550",
+        "statement_period_start": "2025-07-07",
+        "statement_period_end": "2025-08-06",
         "charitable_transactions": [
           {
-            "organization": "The Salvation Army",
-            "amount": 85.63,
-            "date": "2025-04-05"
+            "organization": "American Red Cross",
+            "amount": 100.59,
+            "date": "2025-07-25"
           },
           {
-            "organization": "State University Foundation",
-            "amount": 273.08,
-            "date": "2025-04-06"
+            "organization": "United Way Worldwide",
+            "amount": 141.98,
+            "date": "2025-07-29"
           }
         ]
       }
@@ -879,19 +879,19 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Wells Fargo",
-        "account_number": "***9715",
-        "statement_period_start": "2025-12-22",
-        "statement_period_end": "2026-01-21",
+        "account_number": "***2059",
+        "statement_period_start": "2025-01-12",
+        "statement_period_end": "2025-02-11",
         "charitable_transactions": [
           {
-            "organization": "The Salvation Army",
-            "amount": 57.94,
-            "date": "2025-12-31"
+            "organization": "Habitat for Humanity",
+            "amount": 270.42,
+            "date": "2025-01-21"
           },
           {
-            "organization": "Habitat for Humanity",
-            "amount": 148.01,
-            "date": "2026-01-01"
+            "organization": "First Community Church",
+            "amount": 238.43,
+            "date": "2025-01-24"
           }
         ]
       }
@@ -903,24 +903,24 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Citibank",
-        "account_number": "***3440",
-        "statement_period_start": "2025-04-12",
-        "statement_period_end": "2025-05-12",
+        "account_number": "***1679",
+        "statement_period_start": "2025-08-23",
+        "statement_period_end": "2025-09-22",
         "charitable_transactions": [
           {
-            "organization": "Goodwill Industries",
-            "amount": 432.08,
-            "date": "2025-04-25"
+            "organization": "American Red Cross",
+            "amount": 366.61,
+            "date": "2025-09-04"
           },
           {
             "organization": "American Red Cross",
-            "amount": 158.51,
-            "date": "2025-04-27"
+            "amount": 316.87,
+            "date": "2025-09-07"
           },
           {
-            "organization": "State University Foundation",
-            "amount": 174.14,
-            "date": "2025-04-29"
+            "organization": "The Salvation Army",
+            "amount": 210.04,
+            "date": "2025-09-11"
           }
         ]
       }
@@ -932,24 +932,19 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Local Credit Union",
-        "account_number": "***5741",
-        "statement_period_start": "2025-08-05",
-        "statement_period_end": "2025-09-04",
+        "account_number": "***4890",
+        "statement_period_start": "2025-01-06",
+        "statement_period_end": "2025-02-05",
         "charitable_transactions": [
           {
-            "organization": "State University Foundation",
-            "amount": 488.45,
-            "date": "2025-08-14"
-          },
-          {
             "organization": "The Salvation Army",
-            "amount": 332.62,
-            "date": "2025-08-16"
+            "amount": 180.56,
+            "date": "2025-01-25"
           },
           {
-            "organization": "Community Food Bank",
-            "amount": 441.86,
-            "date": "2025-08-18"
+            "organization": "United Way Worldwide",
+            "amount": 52.94,
+            "date": "2025-01-29"
           }
         ]
       }
@@ -961,19 +956,24 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Chase Bank",
-        "account_number": "***5423",
-        "statement_period_start": "2025-01-19",
-        "statement_period_end": "2025-02-18",
+        "account_number": "***7722",
+        "statement_period_start": "2025-05-17",
+        "statement_period_end": "2025-06-16",
         "charitable_transactions": [
           {
-            "organization": "State University Foundation",
-            "amount": 105.02,
-            "date": "2025-01-25"
+            "organization": "Goodwill Industries",
+            "amount": 194.66,
+            "date": "2025-05-26"
           },
           {
-            "organization": "American Red Cross",
-            "amount": 153.44,
-            "date": "2025-01-29"
+            "organization": "State University Foundation",
+            "amount": 480.89,
+            "date": "2025-05-29"
+          },
+          {
+            "organization": "Community Food Bank",
+            "amount": 396.18,
+            "date": "2025-05-30"
           }
         ]
       }
@@ -985,19 +985,24 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Bank of America",
-        "account_number": "***1457",
-        "statement_period_start": "2025-03-07",
-        "statement_period_end": "2025-04-06",
+        "account_number": "***6733",
+        "statement_period_start": "2025-01-24",
+        "statement_period_end": "2025-02-23",
         "charitable_transactions": [
           {
-            "organization": "United Way Worldwide",
-            "amount": 453.24,
-            "date": "2025-03-15"
+            "organization": "Community Food Bank",
+            "amount": 175.58,
+            "date": "2025-02-13"
           },
           {
-            "organization": "United Way Worldwide",
-            "amount": 329.44,
-            "date": "2025-03-19"
+            "organization": "American Red Cross",
+            "amount": 223.37,
+            "date": "2025-02-16"
+          },
+          {
+            "organization": "The Salvation Army",
+            "amount": 202.2,
+            "date": "2025-02-19"
           }
         ]
       }
@@ -1009,19 +1014,24 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Wells Fargo",
-        "account_number": "***6143",
-        "statement_period_start": "2025-12-30",
-        "statement_period_end": "2026-01-29",
+        "account_number": "***7473",
+        "statement_period_start": "2025-01-30",
+        "statement_period_end": "2025-03-01",
         "charitable_transactions": [
           {
-            "organization": "Goodwill Industries",
-            "amount": 347.77,
-            "date": "2026-01-17"
+            "organization": "State University Foundation",
+            "amount": 173.63,
+            "date": "2025-02-07"
+          },
+          {
+            "organization": "American Red Cross",
+            "amount": 494.3,
+            "date": "2025-02-12"
           },
           {
             "organization": "United Way Worldwide",
-            "amount": 473.76,
-            "date": "2026-01-18"
+            "amount": 238.69,
+            "date": "2025-02-13"
           }
         ]
       }
@@ -1033,19 +1043,19 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Citibank",
-        "account_number": "***1786",
-        "statement_period_start": "2025-07-09",
-        "statement_period_end": "2025-08-08",
+        "account_number": "***7276",
+        "statement_period_start": "2026-01-17",
+        "statement_period_end": "2026-02-16",
         "charitable_transactions": [
           {
-            "organization": "First Community Church",
-            "amount": 457.75,
-            "date": "2025-07-19"
+            "organization": "Community Food Bank",
+            "amount": 392.17,
+            "date": "2026-02-01"
           },
           {
             "organization": "Community Food Bank",
-            "amount": 103.56,
-            "date": "2025-07-22"
+            "amount": 74.51,
+            "date": "2026-02-06"
           }
         ]
       }
@@ -1057,24 +1067,19 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Local Credit Union",
-        "account_number": "***5820",
-        "statement_period_start": "2025-07-23",
-        "statement_period_end": "2025-08-22",
+        "account_number": "***1957",
+        "statement_period_start": "2026-01-03",
+        "statement_period_end": "2026-02-02",
         "charitable_transactions": [
           {
-            "organization": "United Way Worldwide",
-            "amount": 322.8,
-            "date": "2025-08-03"
+            "organization": "State University Foundation",
+            "amount": 394.36,
+            "date": "2026-01-16"
           },
           {
-            "organization": "United Way Worldwide",
-            "amount": 193.83,
-            "date": "2025-08-04"
-          },
-          {
-            "organization": "United Way Worldwide",
-            "amount": 337.64,
-            "date": "2025-08-05"
+            "organization": "Habitat for Humanity",
+            "amount": 332.51,
+            "date": "2026-01-19"
           }
         ]
       }
