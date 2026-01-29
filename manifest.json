@@ -1,12 +1,19 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "generatedBy": "claude-synthetic",
-  "generatedAt": "2026-01-29T17:40:17.590Z",
+  "generatedAt": "2026-01-29T17:42:55.230Z",
+  "compliance": "IRS Publication 1771",
   "totalDocuments": 65,
   "documentCounts": {
     "receipts": 30,
     "acknowledgment_letters": 20,
     "bank_statements": 15
+  },
+  "qualityDistribution": {
+    "high": 30,
+    "medium": 20,
+    "low": 12,
+    "edge": 3
   },
   "documents": [
     {
@@ -14,13 +21,18 @@
       "documentType": "receipt",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Goodwill Industries",
+        "organization_name": "Goodwill Industries International, Inc.",
+        "organization_address": "15810 Indianola Drive, Rockville, MD 20855",
         "ein": "53-0196517",
-        "amount": 3566.42,
-        "date": "2025-01-10",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-21769"
+        "tax_status": "501(c)(3)",
+        "amount": 4357.46,
+        "contribution_date": "2025-03-30",
+        "donor_name": "John Smith",
+        "donor_address": "987 Cedar Court, Boston, MA 02101",
+        "receipt_number": "GOO-2025-801701",
+        "goods_services_provided": false
       }
     },
     {
@@ -28,13 +40,18 @@
       "documentType": "receipt",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "The Salvation Army",
+        "organization_name": "The Salvation Army National Corporation",
+        "organization_address": "615 Slaters Lane, Alexandria, VA 22314",
         "ein": "13-5562351",
-        "amount": 4614.93,
-        "date": "2025-07-14",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-19935"
+        "tax_status": "501(c)(3)",
+        "amount": 4759.1,
+        "contribution_date": "2025-12-09",
+        "donor_name": "Lisa Anderson",
+        "donor_address": "123 Main Street, Springfield, IL 62701",
+        "receipt_number": "SAL-2025-217127",
+        "goods_services_provided": false
       }
     },
     {
@@ -42,13 +59,18 @@
       "documentType": "receipt",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "American Red Cross",
+        "organization_name": "American National Red Cross",
+        "organization_address": "431 18th Street NW, Washington, DC 20006",
         "ein": "53-0196605",
-        "amount": 1011.04,
-        "date": "2025-08-10",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-76431"
+        "tax_status": "501(c)(3)",
+        "amount": 2519.28,
+        "contribution_date": "2025-04-16",
+        "donor_name": "Lisa Anderson",
+        "donor_address": "123 Main Street, Springfield, IL 62701",
+        "receipt_number": "RED-2025-271970",
+        "goods_services_provided": false
       }
     },
     {
@@ -56,13 +78,18 @@
       "documentType": "receipt",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Habitat for Humanity",
+        "organization_name": "Habitat for Humanity International, Inc.",
+        "organization_address": "322 W. Lamar Street, Americus, GA 31709",
         "ein": "91-1914868",
-        "amount": 2627.06,
-        "date": "2025-01-20",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-90550"
+        "tax_status": "501(c)(3)",
+        "amount": 1209.03,
+        "contribution_date": "2025-02-09",
+        "donor_name": "Sarah Johnson",
+        "donor_address": "654 Maple Lane, Seattle, WA 98101",
+        "receipt_number": "HAB-2025-392193",
+        "goods_services_provided": false
       }
     },
     {
@@ -70,13 +97,18 @@
       "documentType": "receipt",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "United Way Worldwide",
+        "organization_address": "701 N. Fairfax Street, Alexandria, VA 22314",
         "ein": "13-1635294",
-        "amount": 4497.04,
-        "date": "2025-06-05",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-76952"
+        "tax_status": "501(c)(3)",
+        "amount": 3307.42,
+        "contribution_date": "2025-10-02",
+        "donor_name": "John Smith",
+        "donor_address": "456 Oak Avenue, Portland, OR 97201",
+        "receipt_number": "UNI-2025-339851",
+        "goods_services_provided": false
       }
     },
     {
@@ -84,13 +116,18 @@
       "documentType": "receipt",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Community Food Bank",
+        "organization_name": "Sample Community Food Bank",
+        "organization_address": "456 Charity Lane, Anytown, ST 12345",
         "ein": "12-3456789",
-        "amount": 2837.81,
-        "date": "2025-10-17",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-66759"
+        "tax_status": "501(c)(3)",
+        "amount": 3691.3,
+        "contribution_date": "2025-01-20",
+        "donor_name": "Sarah Johnson",
+        "donor_address": "147 Birch Way, Phoenix, AZ 85001",
+        "receipt_number": "FOO-2025-237717",
+        "goods_services_provided": false
       }
     },
     {
@@ -98,13 +135,18 @@
       "documentType": "receipt",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "First Community Church",
+        "organization_address": "789 Faith Avenue, Hometown, ST 23456",
         "ein": "23-4567890",
-        "amount": 35.4,
-        "date": "2025-11-22",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-41950"
+        "tax_status": "501(c)(3)",
+        "amount": 2154.24,
+        "contribution_date": "2025-06-20",
+        "donor_name": "Michael Williams",
+        "donor_address": "123 Main Street, Springfield, IL 62701",
+        "receipt_number": "CHU-2025-401813",
+        "goods_services_provided": false
       }
     },
     {
@@ -112,13 +154,18 @@
       "documentType": "receipt",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "State University Foundation",
+        "organization_address": "100 College Drive, University City, ST 34567",
         "ein": "34-5678901",
-        "amount": 1625.94,
-        "date": "2026-01-21",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2026-92209"
+        "tax_status": "501(c)(3)",
+        "amount": 4048.68,
+        "contribution_date": "2025-05-23",
+        "donor_name": "Jennifer Miller",
+        "donor_address": "789 Elm Drive, Austin, TX 78701",
+        "receipt_number": "UNI-2025-966688",
+        "goods_services_provided": false
       }
     },
     {
@@ -126,13 +173,18 @@
       "documentType": "receipt",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Goodwill Industries",
+        "organization_name": "Goodwill Industries International, Inc.",
+        "organization_address": "15810 Indianola Drive, Rockville, MD 20855",
         "ein": "53-0196517",
-        "amount": 4851.79,
-        "date": "2025-09-17",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-81651"
+        "tax_status": "501(c)(3)",
+        "amount": 1041.4,
+        "contribution_date": "2025-01-07",
+        "donor_name": "Emily Brown",
+        "donor_address": "987 Cedar Court, Boston, MA 02101",
+        "receipt_number": "GOO-2025-175624",
+        "goods_services_provided": false
       }
     },
     {
@@ -140,13 +192,18 @@
       "documentType": "receipt",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "The Salvation Army",
+        "organization_name": "The Salvation Army National Corporation",
+        "organization_address": "615 Slaters Lane, Alexandria, VA 22314",
         "ein": "13-5562351",
-        "amount": 4857.4,
-        "date": "2025-10-14",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-21781"
+        "tax_status": "501(c)(3)",
+        "amount": 3980.28,
+        "contribution_date": "2025-03-12",
+        "donor_name": "Michael Williams",
+        "donor_address": "654 Maple Lane, Seattle, WA 98101",
+        "receipt_number": "SAL-2025-419464",
+        "goods_services_provided": false
       }
     },
     {
@@ -154,13 +211,18 @@
       "documentType": "receipt",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "American Red Cross",
+        "organization_name": "American National Red Cross",
+        "organization_address": "431 18th Street NW, Washington, DC 20006",
         "ein": "53-0196605",
-        "amount": 3468.79,
-        "date": "2025-05-30",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-85984"
+        "tax_status": "501(c)(3)",
+        "amount": 2169.67,
+        "contribution_date": "2025-06-26",
+        "donor_name": "Michael Williams",
+        "donor_address": "147 Birch Way, Phoenix, AZ 85001",
+        "receipt_number": "RED-2025-642066",
+        "goods_services_provided": false
       }
     },
     {
@@ -168,13 +230,18 @@
       "documentType": "receipt",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Habitat for Humanity",
+        "organization_name": "Habitat for Humanity International, Inc.",
+        "organization_address": "322 W. Lamar Street, Americus, GA 31709",
         "ein": "91-1914868",
-        "amount": 1407.79,
-        "date": "2025-11-09",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-44839"
+        "tax_status": "501(c)(3)",
+        "amount": 4118.93,
+        "contribution_date": "2025-11-18",
+        "donor_name": "Sarah Johnson",
+        "donor_address": "147 Birch Way, Phoenix, AZ 85001",
+        "receipt_number": "HAB-2025-816107",
+        "goods_services_provided": false
       }
     },
     {
@@ -182,13 +249,18 @@
       "documentType": "receipt",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "United Way Worldwide",
+        "organization_address": "701 N. Fairfax Street, Alexandria, VA 22314",
         "ein": "13-1635294",
-        "amount": 4759.48,
-        "date": "2025-01-25",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-74899"
+        "tax_status": "501(c)(3)",
+        "amount": 990.95,
+        "contribution_date": "2025-07-04",
+        "donor_name": "John Smith",
+        "donor_address": "987 Cedar Court, Boston, MA 02101",
+        "receipt_number": "UNI-2025-135232",
+        "goods_services_provided": false
       }
     },
     {
@@ -196,13 +268,18 @@
       "documentType": "receipt",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Community Food Bank",
+        "organization_name": "Sample Community Food Bank",
+        "organization_address": "456 Charity Lane, Anytown, ST 12345",
         "ein": "12-3456789",
-        "amount": 1684.83,
-        "date": "2025-10-10",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-86002"
+        "tax_status": "501(c)(3)",
+        "amount": 4808.27,
+        "contribution_date": "2025-01-20",
+        "donor_name": "David Wilson",
+        "donor_address": "789 Elm Drive, Austin, TX 78701",
+        "receipt_number": "FOO-2025-657378",
+        "goods_services_provided": false
       }
     },
     {
@@ -210,13 +287,18 @@
       "documentType": "receipt",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "First Community Church",
+        "organization_address": "789 Faith Avenue, Hometown, ST 23456",
         "ein": "23-4567890",
-        "amount": 3654.35,
-        "date": "2025-08-15",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-34221"
+        "tax_status": "501(c)(3)",
+        "amount": 4547.4,
+        "contribution_date": "2025-06-13",
+        "donor_name": "Lisa Anderson",
+        "donor_address": "321 Pine Road, Denver, CO 80202",
+        "receipt_number": "CHU-2025-192121",
+        "goods_services_provided": false
       }
     },
     {
@@ -224,13 +306,18 @@
       "documentType": "receipt",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "State University Foundation",
+        "organization_address": "100 College Drive, University City, ST 34567",
         "ein": "34-5678901",
-        "amount": 3191.69,
-        "date": "2025-09-20",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-93724"
+        "tax_status": "501(c)(3)",
+        "amount": 3943.28,
+        "contribution_date": "2025-02-10",
+        "donor_name": "Emily Brown",
+        "donor_address": "987 Cedar Court, Boston, MA 02101",
+        "receipt_number": "UNI-2025-155450",
+        "goods_services_provided": false
       }
     },
     {
@@ -238,13 +325,18 @@
       "documentType": "receipt",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Goodwill Industries",
+        "organization_name": "Goodwill Industries International, Inc.",
+        "organization_address": "15810 Indianola Drive, Rockville, MD 20855",
         "ein": "53-0196517",
-        "amount": 1276.26,
-        "date": "2025-05-11",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-96185"
+        "tax_status": "501(c)(3)",
+        "amount": 3681.7,
+        "contribution_date": "2025-03-29",
+        "donor_name": "Robert Davis",
+        "donor_address": "147 Birch Way, Phoenix, AZ 85001",
+        "receipt_number": "GOO-2025-374471",
+        "goods_services_provided": false
       }
     },
     {
@@ -252,13 +344,18 @@
       "documentType": "receipt",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "The Salvation Army",
+        "organization_name": "The Salvation Army National Corporation",
+        "organization_address": "615 Slaters Lane, Alexandria, VA 22314",
         "ein": "13-5562351",
-        "amount": 3087.32,
-        "date": "2025-05-23",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-74944"
+        "tax_status": "501(c)(3)",
+        "amount": 1561.44,
+        "contribution_date": "2025-11-05",
+        "donor_name": "Emily Brown",
+        "donor_address": "789 Elm Drive, Austin, TX 78701",
+        "receipt_number": "SAL-2025-287401",
+        "goods_services_provided": false
       }
     },
     {
@@ -266,13 +363,18 @@
       "documentType": "receipt",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "American Red Cross",
+        "organization_name": "American National Red Cross",
+        "organization_address": "431 18th Street NW, Washington, DC 20006",
         "ein": "53-0196605",
-        "amount": 2014.72,
-        "date": "2025-10-25",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-11900"
+        "tax_status": "501(c)(3)",
+        "amount": 508.23,
+        "contribution_date": "2025-11-10",
+        "donor_name": "Robert Davis",
+        "donor_address": "654 Maple Lane, Seattle, WA 98101",
+        "receipt_number": "RED-2025-887539",
+        "goods_services_provided": false
       }
     },
     {
@@ -280,13 +382,18 @@
       "documentType": "receipt",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Habitat for Humanity",
+        "organization_name": "Habitat for Humanity International, Inc.",
+        "organization_address": "322 W. Lamar Street, Americus, GA 31709",
         "ein": "91-1914868",
-        "amount": 3033.49,
-        "date": "2026-01-04",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2026-95707"
+        "tax_status": "501(c)(3)",
+        "amount": 760.14,
+        "contribution_date": "2025-10-19",
+        "donor_name": "John Smith",
+        "donor_address": "987 Cedar Court, Boston, MA 02101",
+        "receipt_number": "HAB-2025-277450",
+        "goods_services_provided": false
       }
     },
     {
@@ -294,13 +401,18 @@
       "documentType": "receipt",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "United Way Worldwide",
+        "organization_address": "701 N. Fairfax Street, Alexandria, VA 22314",
         "ein": "13-1635294",
-        "amount": 1286.68,
-        "date": "2025-02-22",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-95665"
+        "tax_status": "501(c)(3)",
+        "amount": 237.98,
+        "contribution_date": "2025-10-31",
+        "donor_name": "John Smith",
+        "donor_address": "789 Elm Drive, Austin, TX 78701",
+        "receipt_number": "UNI-2025-902343",
+        "goods_services_provided": false
       }
     },
     {
@@ -308,13 +420,18 @@
       "documentType": "receipt",
       "quality": "low",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Community Food Bank",
+        "organization_name": "Sample Community Food Bank",
+        "organization_address": "456 Charity Lane, Anytown, ST 12345",
         "ein": "12-3456789",
-        "amount": 3553.3,
-        "date": "2025-06-09",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-51716"
+        "tax_status": "501(c)(3)",
+        "amount": 979.52,
+        "contribution_date": "2025-06-15",
+        "donor_name": "Emily Brown",
+        "donor_address": "321 Pine Road, Denver, CO 80202",
+        "receipt_number": "FOO-2025-426491",
+        "goods_services_provided": false
       }
     },
     {
@@ -322,13 +439,18 @@
       "documentType": "receipt",
       "quality": "low",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "First Community Church",
+        "organization_address": "789 Faith Avenue, Hometown, ST 23456",
         "ein": "23-4567890",
-        "amount": 1761.17,
-        "date": "2025-11-16",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-91135"
+        "tax_status": "501(c)(3)",
+        "amount": 4799.38,
+        "contribution_date": "2025-11-26",
+        "donor_name": "Robert Davis",
+        "donor_address": "258 Willow Street, Atlanta, GA 30301",
+        "receipt_number": "CHU-2025-620414",
+        "goods_services_provided": false
       }
     },
     {
@@ -336,13 +458,18 @@
       "documentType": "receipt",
       "quality": "low",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "State University Foundation",
+        "organization_address": "100 College Drive, University City, ST 34567",
         "ein": "34-5678901",
-        "amount": 157.21,
-        "date": "2025-04-26",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-18004"
+        "tax_status": "501(c)(3)",
+        "amount": 3210.9,
+        "contribution_date": "2025-11-08",
+        "donor_name": "Sarah Johnson",
+        "donor_address": "987 Cedar Court, Boston, MA 02101",
+        "receipt_number": "UNI-2025-348293",
+        "goods_services_provided": false
       }
     },
     {
@@ -350,13 +477,18 @@
       "documentType": "receipt",
       "quality": "low",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Goodwill Industries",
+        "organization_name": "Goodwill Industries International, Inc.",
+        "organization_address": "15810 Indianola Drive, Rockville, MD 20855",
         "ein": "53-0196517",
-        "amount": 529.93,
-        "date": "2025-03-10",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-36867"
+        "tax_status": "501(c)(3)",
+        "amount": 1094.77,
+        "contribution_date": "2025-05-03",
+        "donor_name": "Jennifer Miller",
+        "donor_address": "123 Main Street, Springfield, IL 62701",
+        "receipt_number": "GOO-2025-535653",
+        "goods_services_provided": false
       }
     },
     {
@@ -364,13 +496,18 @@
       "documentType": "receipt",
       "quality": "low",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "The Salvation Army",
+        "organization_name": "The Salvation Army National Corporation",
+        "organization_address": "615 Slaters Lane, Alexandria, VA 22314",
         "ein": "13-5562351",
-        "amount": 836.07,
-        "date": "2026-01-14",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2026-95076"
+        "tax_status": "501(c)(3)",
+        "amount": 1349.49,
+        "contribution_date": "2025-05-23",
+        "donor_name": "Jennifer Miller",
+        "donor_address": "147 Birch Way, Phoenix, AZ 85001",
+        "receipt_number": "SAL-2025-441639",
+        "goods_services_provided": false
       }
     },
     {
@@ -378,13 +515,18 @@
       "documentType": "receipt",
       "quality": "low",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "American Red Cross",
+        "organization_name": "American National Red Cross",
+        "organization_address": "431 18th Street NW, Washington, DC 20006",
         "ein": "53-0196605",
-        "amount": 1528.98,
-        "date": "2025-01-10",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-78172"
+        "tax_status": "501(c)(3)",
+        "amount": 4508.45,
+        "contribution_date": "2025-09-12",
+        "donor_name": "Jennifer Miller",
+        "donor_address": "147 Birch Way, Phoenix, AZ 85001",
+        "receipt_number": "RED-2025-821372",
+        "goods_services_provided": false
       }
     },
     {
@@ -392,13 +534,18 @@
       "documentType": "receipt",
       "quality": "edge",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Habitat for Humanity",
+        "organization_name": "Habitat for Humanity International, Inc.",
+        "organization_address": "322 W. Lamar Street, Americus, GA 31709",
         "ein": "91-1914868",
-        "amount": 342.54,
-        "date": "2025-09-24",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-98270"
+        "tax_status": "501(c)(3)",
+        "amount": 4575.85,
+        "contribution_date": "2025-08-27",
+        "donor_name": "Jennifer Miller",
+        "donor_address": "789 Elm Drive, Austin, TX 78701",
+        "receipt_number": "HAB-2025-777615",
+        "goods_services_provided": false
       }
     },
     {
@@ -406,13 +553,18 @@
       "documentType": "receipt",
       "quality": "edge",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "United Way Worldwide",
+        "organization_address": "701 N. Fairfax Street, Alexandria, VA 22314",
         "ein": "13-1635294",
-        "amount": 2693.76,
-        "date": "2025-10-31",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-46436"
+        "tax_status": "501(c)(3)",
+        "amount": 2980.21,
+        "contribution_date": "2025-04-08",
+        "donor_name": "David Wilson",
+        "donor_address": "654 Maple Lane, Seattle, WA 98101",
+        "receipt_number": "UNI-2025-906102",
+        "goods_services_provided": false
       }
     },
     {
@@ -420,13 +572,18 @@
       "documentType": "receipt",
       "quality": "edge",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Community Food Bank",
+        "organization_name": "Sample Community Food Bank",
+        "organization_address": "456 Charity Lane, Anytown, ST 12345",
         "ein": "12-3456789",
-        "amount": 1910.02,
-        "date": "2025-04-16",
-        "donor_name": "Test Donor",
-        "receipt_number": "RCP-2025-72584"
+        "tax_status": "501(c)(3)",
+        "amount": 4884.78,
+        "contribution_date": "2025-04-12",
+        "donor_name": "Michael Williams",
+        "donor_address": "258 Willow Street, Atlanta, GA 30301",
+        "receipt_number": "FOO-2025-706928",
+        "goods_services_provided": false
       }
     },
     {
@@ -434,12 +591,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Goodwill Industries",
+        "organization_name": "Goodwill Industries International, Inc.",
         "ein": "53-0196517",
-        "amount": 2939.7,
-        "date": "2025-10-03",
-        "donor_name": "Test Donor"
+        "amount": 926.2,
+        "contribution_date": "2025-03-16",
+        "letter_date": "2025-03-28",
+        "donor_name": "Michael Williams",
+        "goods_services_provided": false
       }
     },
     {
@@ -447,12 +607,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "The Salvation Army",
+        "organization_name": "The Salvation Army National Corporation",
         "ein": "13-5562351",
-        "amount": 2651.78,
-        "date": "2025-10-05",
-        "donor_name": "Test Donor"
+        "amount": 3171.7,
+        "contribution_date": "2025-07-08",
+        "letter_date": "2025-07-09",
+        "donor_name": "Michael Williams",
+        "goods_services_provided": false
       }
     },
     {
@@ -460,12 +623,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "American Red Cross",
+        "organization_name": "American National Red Cross",
         "ein": "53-0196605",
-        "amount": 3695.2,
-        "date": "2025-04-08",
-        "donor_name": "Test Donor"
+        "amount": 1842.85,
+        "contribution_date": "2025-10-12",
+        "letter_date": "2025-10-29",
+        "donor_name": "John Smith",
+        "goods_services_provided": false
       }
     },
     {
@@ -473,12 +639,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Habitat for Humanity",
+        "organization_name": "Habitat for Humanity International, Inc.",
         "ein": "91-1914868",
-        "amount": 2527.63,
-        "date": "2025-06-26",
-        "donor_name": "Test Donor"
+        "amount": 1250.53,
+        "contribution_date": "2025-02-28",
+        "letter_date": "2025-03-18",
+        "donor_name": "Michael Williams",
+        "goods_services_provided": false
       }
     },
     {
@@ -486,12 +655,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "United Way Worldwide",
         "ein": "13-1635294",
-        "amount": 1262.02,
-        "date": "2025-09-24",
-        "donor_name": "Test Donor"
+        "amount": 383.1,
+        "contribution_date": "2025-05-15",
+        "letter_date": "2025-05-24",
+        "donor_name": "John Smith",
+        "goods_services_provided": false
       }
     },
     {
@@ -499,12 +671,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Community Food Bank",
+        "organization_name": "Sample Community Food Bank",
         "ein": "12-3456789",
-        "amount": 483.83,
-        "date": "2025-07-05",
-        "donor_name": "Test Donor"
+        "amount": 1732.08,
+        "contribution_date": "2025-12-04",
+        "letter_date": "2025-12-20",
+        "donor_name": "Lisa Anderson",
+        "goods_services_provided": false
       }
     },
     {
@@ -512,12 +687,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "First Community Church",
         "ein": "23-4567890",
-        "amount": 591.16,
-        "date": "2025-03-13",
-        "donor_name": "Test Donor"
+        "amount": 4628.42,
+        "contribution_date": "2025-10-13",
+        "letter_date": "2025-10-20",
+        "donor_name": "John Smith",
+        "goods_services_provided": false
       }
     },
     {
@@ -525,12 +703,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "State University Foundation",
         "ein": "34-5678901",
-        "amount": 1567.86,
-        "date": "2025-06-26",
-        "donor_name": "Test Donor"
+        "amount": 3865.57,
+        "contribution_date": "2025-12-23",
+        "letter_date": "2025-12-26",
+        "donor_name": "David Wilson",
+        "goods_services_provided": false
       }
     },
     {
@@ -538,12 +719,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Goodwill Industries",
+        "organization_name": "Goodwill Industries International, Inc.",
         "ein": "53-0196517",
-        "amount": 3127.08,
-        "date": "2025-04-05",
-        "donor_name": "Test Donor"
+        "amount": 2001.61,
+        "contribution_date": "2025-04-20",
+        "letter_date": "2025-05-06",
+        "donor_name": "Lisa Anderson",
+        "goods_services_provided": false
       }
     },
     {
@@ -551,12 +735,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "high",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "The Salvation Army",
+        "organization_name": "The Salvation Army National Corporation",
         "ein": "13-5562351",
-        "amount": 4415.72,
-        "date": "2025-12-14",
-        "donor_name": "Test Donor"
+        "amount": 447.07,
+        "contribution_date": "2025-01-09",
+        "letter_date": "2025-01-28",
+        "donor_name": "David Wilson",
+        "goods_services_provided": false
       }
     },
     {
@@ -564,12 +751,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "American Red Cross",
+        "organization_name": "American National Red Cross",
         "ein": "53-0196605",
-        "amount": 1039.59,
-        "date": "2025-12-19",
-        "donor_name": "Test Donor"
+        "amount": 3718.78,
+        "contribution_date": "2025-08-21",
+        "letter_date": "2025-08-31",
+        "donor_name": "Sarah Johnson",
+        "goods_services_provided": false
       }
     },
     {
@@ -577,12 +767,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Habitat for Humanity",
+        "organization_name": "Habitat for Humanity International, Inc.",
         "ein": "91-1914868",
-        "amount": 2484.42,
-        "date": "2025-05-13",
-        "donor_name": "Test Donor"
+        "amount": 2328.26,
+        "contribution_date": "2025-06-01",
+        "letter_date": "2025-06-03",
+        "donor_name": "Jennifer Miller",
+        "goods_services_provided": false
       }
     },
     {
@@ -590,12 +783,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "United Way Worldwide",
         "ein": "13-1635294",
-        "amount": 37.33,
-        "date": "2025-08-24",
-        "donor_name": "Test Donor"
+        "amount": 1373.63,
+        "contribution_date": "2025-02-12",
+        "letter_date": "2025-02-20",
+        "donor_name": "Robert Davis",
+        "goods_services_provided": false
       }
     },
     {
@@ -603,12 +799,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Community Food Bank",
+        "organization_name": "Sample Community Food Bank",
         "ein": "12-3456789",
-        "amount": 2844.9,
-        "date": "2025-12-19",
-        "donor_name": "Test Donor"
+        "amount": 1689.58,
+        "contribution_date": "2025-09-26",
+        "letter_date": "2025-09-29",
+        "donor_name": "Emily Brown",
+        "goods_services_provided": false
       }
     },
     {
@@ -616,12 +815,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "First Community Church",
         "ein": "23-4567890",
-        "amount": 329.18,
-        "date": "2025-05-22",
-        "donor_name": "Test Donor"
+        "amount": 3177.61,
+        "contribution_date": "2025-12-14",
+        "letter_date": "2026-01-02",
+        "donor_name": "Jennifer Miller",
+        "goods_services_provided": false
       }
     },
     {
@@ -629,12 +831,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "medium",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
         "organization_name": "State University Foundation",
         "ein": "34-5678901",
-        "amount": 3249.1,
-        "date": "2025-12-24",
-        "donor_name": "Test Donor"
+        "amount": 4184.15,
+        "contribution_date": "2025-07-26",
+        "letter_date": "2025-08-10",
+        "donor_name": "Michael Williams",
+        "goods_services_provided": false
       }
     },
     {
@@ -642,12 +847,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "low",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Goodwill Industries",
+        "organization_name": "Goodwill Industries International, Inc.",
         "ein": "53-0196517",
-        "amount": 4099.95,
-        "date": "2024-12-25",
-        "donor_name": "Test Donor"
+        "amount": 4604.64,
+        "contribution_date": "2025-10-30",
+        "letter_date": "2025-11-01",
+        "donor_name": "Emily Brown",
+        "goods_services_provided": false
       }
     },
     {
@@ -655,12 +863,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "low",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "The Salvation Army",
+        "organization_name": "The Salvation Army National Corporation",
         "ein": "13-5562351",
-        "amount": 2758.43,
-        "date": "2025-02-16",
-        "donor_name": "Test Donor"
+        "amount": 2886.64,
+        "contribution_date": "2025-01-08",
+        "letter_date": "2025-01-29",
+        "donor_name": "John Smith",
+        "goods_services_provided": false
       }
     },
     {
@@ -668,12 +879,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "low",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "American Red Cross",
+        "organization_name": "American National Red Cross",
         "ein": "53-0196605",
-        "amount": 3360.8,
-        "date": "2025-10-24",
-        "donor_name": "Test Donor"
+        "amount": 2965.31,
+        "contribution_date": "2025-10-10",
+        "letter_date": "2025-10-31",
+        "donor_name": "Lisa Anderson",
+        "goods_services_provided": false
       }
     },
     {
@@ -681,12 +895,15 @@
       "documentType": "acknowledgment_letter",
       "quality": "low",
       "synthetic": true,
+      "irsCompliant": true,
       "expectedFields": {
-        "organization_name": "Habitat for Humanity",
+        "organization_name": "Habitat for Humanity International, Inc.",
         "ein": "91-1914868",
-        "amount": 4451.37,
-        "date": "2025-03-12",
-        "donor_name": "Test Donor"
+        "amount": 741.66,
+        "contribution_date": "2025-06-17",
+        "letter_date": "2025-06-22",
+        "donor_name": "David Wilson",
+        "goods_services_provided": false
       }
     },
     {
@@ -696,26 +913,31 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Chase Bank",
-        "account_number": "***2570",
-        "statement_period_start": "2025-06-01",
-        "statement_period_end": "2025-07-01",
+        "account_holder": "Michael Williams",
+        "account_number_last4": "3709",
+        "statement_period_start": "2025-10-28",
+        "statement_period_end": "2025-11-27",
         "charitable_transactions": [
           {
             "organization": "State University Foundation",
-            "amount": 310.84,
-            "date": "2025-06-14"
+            "ein": "34-5678901",
+            "amount": 67.38,
+            "date": "2025-11-10"
           },
           {
-            "organization": "The Salvation Army",
-            "amount": 422.54,
-            "date": "2025-06-19"
+            "organization": "Sample Community Food Bank",
+            "ein": "12-3456789",
+            "amount": 717.87,
+            "date": "2025-11-13"
           },
           {
             "organization": "State University Foundation",
-            "amount": 270.44,
-            "date": "2025-06-23"
+            "ein": "34-5678901",
+            "amount": 583.77,
+            "date": "2025-11-17"
           }
-        ]
+        ],
+        "total_charitable": 1369.02
       }
     },
     {
@@ -725,21 +947,31 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Bank of America",
-        "account_number": "***3557",
-        "statement_period_start": "2025-12-11",
-        "statement_period_end": "2026-01-10",
+        "account_holder": "Sarah Johnson",
+        "account_number_last4": "9316",
+        "statement_period_start": "2025-02-04",
+        "statement_period_end": "2025-03-06",
         "charitable_transactions": [
           {
-            "organization": "State University Foundation",
-            "amount": 111.7,
-            "date": "2025-12-27"
+            "organization": "First Community Church",
+            "ein": "23-4567890",
+            "amount": 574,
+            "date": "2025-02-18"
           },
           {
-            "organization": "Habitat for Humanity",
-            "amount": 462.27,
-            "date": "2025-12-30"
+            "organization": "The Salvation Army National Corporation",
+            "ein": "13-5562351",
+            "amount": 724.13,
+            "date": "2025-02-22"
+          },
+          {
+            "organization": "Sample Community Food Bank",
+            "ein": "12-3456789",
+            "amount": 241.82,
+            "date": "2025-02-24"
           }
-        ]
+        ],
+        "total_charitable": 1539.95
       }
     },
     {
@@ -748,27 +980,38 @@
       "quality": "high",
       "synthetic": true,
       "expectedFields": {
-        "bank_name": "Wells Fargo",
-        "account_number": "***1984",
-        "statement_period_start": "2025-09-13",
-        "statement_period_end": "2025-10-13",
+        "bank_name": "Wells Fargo Bank",
+        "account_holder": "Emily Brown",
+        "account_number_last4": "5322",
+        "statement_period_start": "2025-12-19",
+        "statement_period_end": "2026-01-18",
         "charitable_transactions": [
           {
-            "organization": "State University Foundation",
-            "amount": 85.11,
-            "date": "2025-09-20"
+            "organization": "First Community Church",
+            "ein": "23-4567890",
+            "amount": 54.11,
+            "date": "2025-12-30"
           },
           {
-            "organization": "Goodwill Industries",
-            "amount": 241.97,
-            "date": "2025-09-24"
+            "organization": "First Community Church",
+            "ein": "23-4567890",
+            "amount": 403.72,
+            "date": "2026-01-02"
           },
           {
-            "organization": "Community Food Bank",
-            "amount": 171.91,
-            "date": "2025-09-28"
+            "organization": "United Way Worldwide",
+            "ein": "13-1635294",
+            "amount": 601.22,
+            "date": "2026-01-04"
+          },
+          {
+            "organization": "American National Red Cross",
+            "ein": "53-0196605",
+            "amount": 407.12,
+            "date": "2026-01-09"
           }
-        ]
+        ],
+        "total_charitable": 1466.17
       }
     },
     {
@@ -777,22 +1020,26 @@
       "quality": "high",
       "synthetic": true,
       "expectedFields": {
-        "bank_name": "Citibank",
-        "account_number": "***7946",
-        "statement_period_start": "2025-04-01",
-        "statement_period_end": "2025-05-01",
+        "bank_name": "Citibank, N.A.",
+        "account_holder": "Robert Davis",
+        "account_number_last4": "9464",
+        "statement_period_start": "2025-12-06",
+        "statement_period_end": "2026-01-05",
         "charitable_transactions": [
           {
-            "organization": "Goodwill Industries",
-            "amount": 367.64,
-            "date": "2025-04-15"
+            "organization": "American National Red Cross",
+            "ein": "53-0196605",
+            "amount": 333.15,
+            "date": "2025-12-17"
           },
           {
-            "organization": "The Salvation Army",
-            "amount": 224.21,
-            "date": "2025-04-16"
+            "organization": "Sample Community Food Bank",
+            "ein": "12-3456789",
+            "amount": 480.06,
+            "date": "2025-12-22"
           }
-        ]
+        ],
+        "total_charitable": 813.21
       }
     },
     {
@@ -801,22 +1048,38 @@
       "quality": "high",
       "synthetic": true,
       "expectedFields": {
-        "bank_name": "Local Credit Union",
-        "account_number": "***3751",
-        "statement_period_start": "2025-05-07",
-        "statement_period_end": "2025-06-06",
+        "bank_name": "Community Credit Union",
+        "account_holder": "Emily Brown",
+        "account_number_last4": "3197",
+        "statement_period_start": "2025-09-08",
+        "statement_period_end": "2025-10-08",
         "charitable_transactions": [
           {
-            "organization": "Community Food Bank",
-            "amount": 228.96,
-            "date": "2025-05-24"
+            "organization": "The Salvation Army National Corporation",
+            "ein": "13-5562351",
+            "amount": 567.15,
+            "date": "2025-09-17"
           },
           {
-            "organization": "United Way Worldwide",
-            "amount": 164.96,
-            "date": "2025-05-27"
+            "organization": "First Community Church",
+            "ein": "23-4567890",
+            "amount": 660.09,
+            "date": "2025-09-22"
+          },
+          {
+            "organization": "Habitat for Humanity International, Inc.",
+            "ein": "91-1914868",
+            "amount": 669.92,
+            "date": "2025-09-26"
+          },
+          {
+            "organization": "Habitat for Humanity International, Inc.",
+            "ein": "91-1914868",
+            "amount": 355.35,
+            "date": "2025-09-30"
           }
-        ]
+        ],
+        "total_charitable": 2252.5099999999998
       }
     },
     {
@@ -826,26 +1089,31 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Chase Bank",
-        "account_number": "***2841",
-        "statement_period_start": "2025-06-26",
-        "statement_period_end": "2025-07-26",
+        "account_holder": "Emily Brown",
+        "account_number_last4": "1386",
+        "statement_period_start": "2025-03-21",
+        "statement_period_end": "2025-04-20",
         "charitable_transactions": [
           {
-            "organization": "Community Food Bank",
-            "amount": 129.09,
-            "date": "2025-07-10"
+            "organization": "Goodwill Industries International, Inc.",
+            "ein": "53-0196517",
+            "amount": 62.38,
+            "date": "2025-04-10"
           },
           {
             "organization": "First Community Church",
-            "amount": 399.71,
-            "date": "2025-07-15"
+            "ein": "23-4567890",
+            "amount": 51.56,
+            "date": "2025-04-13"
           },
           {
-            "organization": "First Community Church",
-            "amount": 61.08,
-            "date": "2025-07-17"
+            "organization": "United Way Worldwide",
+            "ein": "13-1635294",
+            "amount": 681.5,
+            "date": "2025-04-17"
           }
-        ]
+        ],
+        "total_charitable": 795.44
       }
     },
     {
@@ -855,21 +1123,25 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Bank of America",
-        "account_number": "***8550",
-        "statement_period_start": "2025-07-07",
-        "statement_period_end": "2025-08-06",
+        "account_holder": "Jennifer Miller",
+        "account_number_last4": "2660",
+        "statement_period_start": "2025-07-21",
+        "statement_period_end": "2025-08-20",
         "charitable_transactions": [
           {
-            "organization": "American Red Cross",
-            "amount": 100.59,
-            "date": "2025-07-25"
+            "organization": "The Salvation Army National Corporation",
+            "ein": "13-5562351",
+            "amount": 294.81,
+            "date": "2025-08-08"
           },
           {
-            "organization": "United Way Worldwide",
-            "amount": 141.98,
-            "date": "2025-07-29"
+            "organization": "Sample Community Food Bank",
+            "ein": "12-3456789",
+            "amount": 64.06,
+            "date": "2025-08-10"
           }
-        ]
+        ],
+        "total_charitable": 358.87
       }
     },
     {
@@ -878,22 +1150,38 @@
       "quality": "high",
       "synthetic": true,
       "expectedFields": {
-        "bank_name": "Wells Fargo",
-        "account_number": "***2059",
-        "statement_period_start": "2025-01-12",
-        "statement_period_end": "2025-02-11",
+        "bank_name": "Wells Fargo Bank",
+        "account_holder": "David Wilson",
+        "account_number_last4": "7273",
+        "statement_period_start": "2025-07-17",
+        "statement_period_end": "2025-08-16",
         "charitable_transactions": [
           {
-            "organization": "Habitat for Humanity",
-            "amount": 270.42,
-            "date": "2025-01-21"
+            "organization": "First Community Church",
+            "ein": "23-4567890",
+            "amount": 316.76,
+            "date": "2025-08-02"
           },
           {
             "organization": "First Community Church",
-            "amount": 238.43,
-            "date": "2025-01-24"
+            "ein": "23-4567890",
+            "amount": 323.56,
+            "date": "2025-08-04"
+          },
+          {
+            "organization": "First Community Church",
+            "ein": "23-4567890",
+            "amount": 671.23,
+            "date": "2025-08-07"
+          },
+          {
+            "organization": "American National Red Cross",
+            "ein": "53-0196605",
+            "amount": 534.34,
+            "date": "2025-08-09"
           }
-        ]
+        ],
+        "total_charitable": 1845.8899999999999
       }
     },
     {
@@ -902,27 +1190,26 @@
       "quality": "medium",
       "synthetic": true,
       "expectedFields": {
-        "bank_name": "Citibank",
-        "account_number": "***1679",
-        "statement_period_start": "2025-08-23",
-        "statement_period_end": "2025-09-22",
+        "bank_name": "Citibank, N.A.",
+        "account_holder": "John Smith",
+        "account_number_last4": "6372",
+        "statement_period_start": "2025-08-21",
+        "statement_period_end": "2025-09-20",
         "charitable_transactions": [
           {
-            "organization": "American Red Cross",
-            "amount": 366.61,
-            "date": "2025-09-04"
+            "organization": "State University Foundation",
+            "ein": "34-5678901",
+            "amount": 69.53,
+            "date": "2025-09-06"
           },
           {
-            "organization": "American Red Cross",
-            "amount": 316.87,
-            "date": "2025-09-07"
-          },
-          {
-            "organization": "The Salvation Army",
-            "amount": 210.04,
+            "organization": "The Salvation Army National Corporation",
+            "ein": "13-5562351",
+            "amount": 526.34,
             "date": "2025-09-11"
           }
-        ]
+        ],
+        "total_charitable": 595.87
       }
     },
     {
@@ -931,22 +1218,38 @@
       "quality": "medium",
       "synthetic": true,
       "expectedFields": {
-        "bank_name": "Local Credit Union",
-        "account_number": "***4890",
-        "statement_period_start": "2025-01-06",
-        "statement_period_end": "2025-02-05",
+        "bank_name": "Community Credit Union",
+        "account_holder": "Emily Brown",
+        "account_number_last4": "5583",
+        "statement_period_start": "2025-09-03",
+        "statement_period_end": "2025-10-03",
         "charitable_transactions": [
           {
-            "organization": "The Salvation Army",
-            "amount": 180.56,
-            "date": "2025-01-25"
+            "organization": "First Community Church",
+            "ein": "23-4567890",
+            "amount": 360.64,
+            "date": "2025-09-12"
+          },
+          {
+            "organization": "Habitat for Humanity International, Inc.",
+            "ein": "91-1914868",
+            "amount": 596.17,
+            "date": "2025-09-14"
           },
           {
             "organization": "United Way Worldwide",
-            "amount": 52.94,
-            "date": "2025-01-29"
+            "ein": "13-1635294",
+            "amount": 206.02,
+            "date": "2025-09-17"
+          },
+          {
+            "organization": "State University Foundation",
+            "ein": "34-5678901",
+            "amount": 325.26,
+            "date": "2025-09-19"
           }
-        ]
+        ],
+        "total_charitable": 1488.09
       }
     },
     {
@@ -956,26 +1259,31 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Chase Bank",
-        "account_number": "***7722",
-        "statement_period_start": "2025-05-17",
-        "statement_period_end": "2025-06-16",
+        "account_holder": "Lisa Anderson",
+        "account_number_last4": "3208",
+        "statement_period_start": "2025-03-18",
+        "statement_period_end": "2025-04-17",
         "charitable_transactions": [
           {
-            "organization": "Goodwill Industries",
-            "amount": 194.66,
-            "date": "2025-05-26"
+            "organization": "Sample Community Food Bank",
+            "ein": "12-3456789",
+            "amount": 202,
+            "date": "2025-03-31"
           },
           {
-            "organization": "State University Foundation",
-            "amount": 480.89,
-            "date": "2025-05-29"
+            "organization": "United Way Worldwide",
+            "ein": "13-1635294",
+            "amount": 399.38,
+            "date": "2025-04-05"
           },
           {
-            "organization": "Community Food Bank",
-            "amount": 396.18,
-            "date": "2025-05-30"
+            "organization": "United Way Worldwide",
+            "ein": "13-1635294",
+            "amount": 161.85,
+            "date": "2025-04-10"
           }
-        ]
+        ],
+        "total_charitable": 763.23
       }
     },
     {
@@ -985,26 +1293,25 @@
       "synthetic": true,
       "expectedFields": {
         "bank_name": "Bank of America",
-        "account_number": "***6733",
-        "statement_period_start": "2025-01-24",
-        "statement_period_end": "2025-02-23",
+        "account_holder": "Sarah Johnson",
+        "account_number_last4": "5817",
+        "statement_period_start": "2025-07-25",
+        "statement_period_end": "2025-08-24",
         "charitable_transactions": [
           {
-            "organization": "Community Food Bank",
-            "amount": 175.58,
-            "date": "2025-02-13"
+            "organization": "Goodwill Industries International, Inc.",
+            "ein": "53-0196517",
+            "amount": 143.71,
+            "date": "2025-08-10"
           },
           {
-            "organization": "American Red Cross",
-            "amount": 223.37,
-            "date": "2025-02-16"
-          },
-          {
-            "organization": "The Salvation Army",
-            "amount": 202.2,
-            "date": "2025-02-19"
+            "organization": "Goodwill Industries International, Inc.",
+            "ein": "53-0196517",
+            "amount": 380.06,
+            "date": "2025-08-15"
           }
-        ]
+        ],
+        "total_charitable": 523.77
       }
     },
     {
@@ -1013,27 +1320,32 @@
       "quality": "medium",
       "synthetic": true,
       "expectedFields": {
-        "bank_name": "Wells Fargo",
-        "account_number": "***7473",
-        "statement_period_start": "2025-01-30",
-        "statement_period_end": "2025-03-01",
+        "bank_name": "Wells Fargo Bank",
+        "account_holder": "Jennifer Miller",
+        "account_number_last4": "2312",
+        "statement_period_start": "2025-04-28",
+        "statement_period_end": "2025-05-28",
         "charitable_transactions": [
           {
             "organization": "State University Foundation",
-            "amount": 173.63,
-            "date": "2025-02-07"
+            "ein": "34-5678901",
+            "amount": 56.43,
+            "date": "2025-05-14"
           },
           {
-            "organization": "American Red Cross",
-            "amount": 494.3,
-            "date": "2025-02-12"
+            "organization": "American National Red Cross",
+            "ein": "53-0196605",
+            "amount": 443.31,
+            "date": "2025-05-17"
           },
           {
             "organization": "United Way Worldwide",
-            "amount": 238.69,
-            "date": "2025-02-13"
+            "ein": "13-1635294",
+            "amount": 597.34,
+            "date": "2025-05-22"
           }
-        ]
+        ],
+        "total_charitable": 1097.08
       }
     },
     {
@@ -1042,22 +1354,26 @@
       "quality": "low",
       "synthetic": true,
       "expectedFields": {
-        "bank_name": "Citibank",
-        "account_number": "***7276",
-        "statement_period_start": "2026-01-17",
-        "statement_period_end": "2026-02-16",
+        "bank_name": "Citibank, N.A.",
+        "account_holder": "Robert Davis",
+        "account_number_last4": "3866",
+        "statement_period_start": "2025-10-02",
+        "statement_period_end": "2025-11-01",
         "charitable_transactions": [
           {
-            "organization": "Community Food Bank",
-            "amount": 392.17,
-            "date": "2026-02-01"
+            "organization": "American National Red Cross",
+            "ein": "53-0196605",
+            "amount": 660.01,
+            "date": "2025-10-14"
           },
           {
-            "organization": "Community Food Bank",
-            "amount": 74.51,
-            "date": "2026-02-06"
+            "organization": "Sample Community Food Bank",
+            "ein": "12-3456789",
+            "amount": 620.93,
+            "date": "2025-10-16"
           }
-        ]
+        ],
+        "total_charitable": 1280.94
       }
     },
     {
@@ -1066,22 +1382,38 @@
       "quality": "low",
       "synthetic": true,
       "expectedFields": {
-        "bank_name": "Local Credit Union",
-        "account_number": "***1957",
-        "statement_period_start": "2026-01-03",
-        "statement_period_end": "2026-02-02",
+        "bank_name": "Community Credit Union",
+        "account_holder": "Emily Brown",
+        "account_number_last4": "2368",
+        "statement_period_start": "2025-11-15",
+        "statement_period_end": "2025-12-15",
         "charitable_transactions": [
           {
-            "organization": "State University Foundation",
-            "amount": 394.36,
-            "date": "2026-01-16"
+            "organization": "The Salvation Army National Corporation",
+            "ein": "13-5562351",
+            "amount": 262.22,
+            "date": "2025-11-25"
           },
           {
-            "organization": "Habitat for Humanity",
-            "amount": 332.51,
-            "date": "2026-01-19"
+            "organization": "Sample Community Food Bank",
+            "ein": "12-3456789",
+            "amount": 94.63,
+            "date": "2025-11-30"
+          },
+          {
+            "organization": "Sample Community Food Bank",
+            "ein": "12-3456789",
+            "amount": 105.57,
+            "date": "2025-12-04"
+          },
+          {
+            "organization": "First Community Church",
+            "ein": "23-4567890",
+            "amount": 695.37,
+            "date": "2025-12-06"
           }
-        ]
+        ],
+        "total_charitable": 1157.79
       }
     }
   ]
