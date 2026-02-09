@@ -1,0 +1,1015 @@
+{
+  "documents": [
+    {
+      "filename": "form_8283/form_8283_section_a_low_001.png",
+      "documentType": "form_8283_section_a",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "A",
+        "donor_name": "John A. Smith",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 2354,
+        "description": "Grand piano - Steinway Model B"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_a_high_002.png",
+      "documentType": "form_8283_section_a",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "A",
+        "donor_name": "John A. Smith",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 4797,
+        "description": "Computer equipment (5 laptops, 3 desktops)"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_a_medium_003.png",
+      "documentType": "form_8283_section_a",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "A",
+        "donor_name": "Michael R. Williams",
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 2986,
+        "description": "Vintage jewelry collection (12 pieces)"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_a_medium_004.png",
+      "documentType": "form_8283_section_a",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "A",
+        "donor_name": "John A. Smith",
+        "organization_name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "amount": 2559,
+        "description": "Computer equipment (5 laptops, 3 desktops)"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_a_medium_005.png",
+      "documentType": "form_8283_section_a",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "A",
+        "donor_name": "Emily K. Davis",
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "amount": 4035,
+        "description": "Vintage jewelry collection (12 pieces)"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_a_medium_006.png",
+      "documentType": "form_8283_section_a",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "A",
+        "donor_name": "Michael R. Williams",
+        "organization_name": "Habitat for Humanity International",
+        "ein": "91-1914868",
+        "amount": 3830,
+        "description": "Grand piano - Steinway Model B"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_a_high_007.png",
+      "documentType": "form_8283_section_a",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "A",
+        "donor_name": "John A. Smith",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 2202,
+        "description": "Oil painting - landscape scene, 36\"x48\""
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_a_medium_008.png",
+      "documentType": "form_8283_section_a",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "A",
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 3475,
+        "description": "Oil painting - landscape scene, 36\"x48\""
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_a_high_009.png",
+      "documentType": "form_8283_section_a",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "A",
+        "donor_name": "Robert T. Brown",
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 4486,
+        "description": "Vintage jewelry collection (12 pieces)"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_a_medium_010.png",
+      "documentType": "form_8283_section_a",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "A",
+        "donor_name": "Robert T. Brown",
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "amount": 777,
+        "description": "Oil painting - landscape scene, 36\"x48\""
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_b_high_001.png",
+      "documentType": "form_8283_section_b",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "B",
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "amount": 28808,
+        "description": "Grand piano - Steinway Model B",
+        "appraiser_name": "Patricia L. Martinez, AAA",
+        "appraiser_license": "AAA-2024-67890"
+      }
+    },
+    {
+      "filename": "appraisals/appraisal_high_001.png",
+      "documentType": "qualified_appraisal",
+      "quality": "high",
+      "synthetic": true,
+      "relatedForm": "form_8283/form_8283_section_b_high_001.png",
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "appraised_value": 28808,
+        "description": "Grand piano - Steinway Model B",
+        "appraiser_name": "Patricia L. Martinez, AAA",
+        "appraiser_license": "AAA-2024-67890"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_b_medium_002.png",
+      "documentType": "form_8283_section_b",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "B",
+        "donor_name": "John A. Smith",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 41029,
+        "description": "Vintage jewelry collection (12 pieces)",
+        "appraiser_name": "James R. Thompson, ASA",
+        "appraiser_license": "ASA-2024-12345"
+      }
+    },
+    {
+      "filename": "appraisals/appraisal_medium_002.png",
+      "documentType": "qualified_appraisal",
+      "quality": "medium",
+      "synthetic": true,
+      "relatedForm": "form_8283/form_8283_section_b_medium_002.png",
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "appraised_value": 41029,
+        "description": "Vintage jewelry collection (12 pieces)",
+        "appraiser_name": "James R. Thompson, ASA",
+        "appraiser_license": "ASA-2024-12345"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_b_high_003.png",
+      "documentType": "form_8283_section_b",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "B",
+        "donor_name": "Robert T. Brown",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 6331,
+        "description": "Antique oak dining table with 6 chairs",
+        "appraiser_name": "Patricia L. Martinez, AAA",
+        "appraiser_license": "AAA-2024-67890"
+      }
+    },
+    {
+      "filename": "appraisals/appraisal_high_003.png",
+      "documentType": "qualified_appraisal",
+      "quality": "high",
+      "synthetic": true,
+      "relatedForm": "form_8283/form_8283_section_b_high_003.png",
+      "expectedFields": {
+        "donor_name": "Robert T. Brown",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "appraised_value": 6331,
+        "description": "Antique oak dining table with 6 chairs",
+        "appraiser_name": "Patricia L. Martinez, AAA",
+        "appraiser_license": "AAA-2024-67890"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_b_medium_004.png",
+      "documentType": "form_8283_section_b",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "B",
+        "donor_name": "John A. Smith",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 32389,
+        "description": "Vintage jewelry collection (12 pieces)",
+        "appraiser_name": "Patricia L. Martinez, AAA",
+        "appraiser_license": "AAA-2024-67890"
+      }
+    },
+    {
+      "filename": "appraisals/appraisal_medium_004.png",
+      "documentType": "qualified_appraisal",
+      "quality": "medium",
+      "synthetic": true,
+      "relatedForm": "form_8283/form_8283_section_b_medium_004.png",
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "appraised_value": 32389,
+        "description": "Vintage jewelry collection (12 pieces)",
+        "appraiser_name": "Patricia L. Martinez, AAA",
+        "appraiser_license": "AAA-2024-67890"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_b_high_005.png",
+      "documentType": "form_8283_section_b",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "B",
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "amount": 11915,
+        "description": "Antique oak dining table with 6 chairs",
+        "appraiser_name": "James R. Thompson, ASA",
+        "appraiser_license": "ASA-2024-12345"
+      }
+    },
+    {
+      "filename": "appraisals/appraisal_high_005.png",
+      "documentType": "qualified_appraisal",
+      "quality": "high",
+      "synthetic": true,
+      "relatedForm": "form_8283/form_8283_section_b_high_005.png",
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "appraised_value": 11915,
+        "description": "Antique oak dining table with 6 chairs",
+        "appraiser_name": "James R. Thompson, ASA",
+        "appraiser_license": "ASA-2024-12345"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_b_high_006.png",
+      "documentType": "form_8283_section_b",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "B",
+        "donor_name": "John A. Smith",
+        "organization_name": "Habitat for Humanity International",
+        "ein": "91-1914868",
+        "amount": 29513,
+        "description": "Grand piano - Steinway Model B",
+        "appraiser_name": "James R. Thompson, ASA",
+        "appraiser_license": "ASA-2024-12345"
+      }
+    },
+    {
+      "filename": "appraisals/appraisal_high_006.png",
+      "documentType": "qualified_appraisal",
+      "quality": "high",
+      "synthetic": true,
+      "relatedForm": "form_8283/form_8283_section_b_high_006.png",
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "organization_name": "Habitat for Humanity International",
+        "ein": "91-1914868",
+        "appraised_value": 29513,
+        "description": "Grand piano - Steinway Model B",
+        "appraiser_name": "James R. Thompson, ASA",
+        "appraiser_license": "ASA-2024-12345"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_b_medium_007.png",
+      "documentType": "form_8283_section_b",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "B",
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 21468,
+        "description": "Oil painting - landscape scene, 36\"x48\"",
+        "appraiser_name": "James R. Thompson, ASA",
+        "appraiser_license": "ASA-2024-12345"
+      }
+    },
+    {
+      "filename": "appraisals/appraisal_medium_007.png",
+      "documentType": "qualified_appraisal",
+      "quality": "medium",
+      "synthetic": true,
+      "relatedForm": "form_8283/form_8283_section_b_medium_007.png",
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "appraised_value": 21468,
+        "description": "Oil painting - landscape scene, 36\"x48\"",
+        "appraiser_name": "James R. Thompson, ASA",
+        "appraiser_license": "ASA-2024-12345"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_b_low_008.png",
+      "documentType": "form_8283_section_b",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "B",
+        "donor_name": "Emily K. Davis",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 11850,
+        "description": "Vintage jewelry collection (12 pieces)",
+        "appraiser_name": "Patricia L. Martinez, AAA",
+        "appraiser_license": "AAA-2024-67890"
+      }
+    },
+    {
+      "filename": "appraisals/appraisal_low_008.png",
+      "documentType": "qualified_appraisal",
+      "quality": "low",
+      "synthetic": true,
+      "relatedForm": "form_8283/form_8283_section_b_low_008.png",
+      "expectedFields": {
+        "donor_name": "Emily K. Davis",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "appraised_value": 11850,
+        "description": "Vintage jewelry collection (12 pieces)",
+        "appraiser_name": "Patricia L. Martinez, AAA",
+        "appraiser_license": "AAA-2024-67890"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_b_low_009.png",
+      "documentType": "form_8283_section_b",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "B",
+        "donor_name": "Robert T. Brown",
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 29473,
+        "description": "Grand piano - Steinway Model B",
+        "appraiser_name": "James R. Thompson, ASA",
+        "appraiser_license": "ASA-2024-12345"
+      }
+    },
+    {
+      "filename": "appraisals/appraisal_low_009.png",
+      "documentType": "qualified_appraisal",
+      "quality": "low",
+      "synthetic": true,
+      "relatedForm": "form_8283/form_8283_section_b_low_009.png",
+      "expectedFields": {
+        "donor_name": "Robert T. Brown",
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "appraised_value": 29473,
+        "description": "Grand piano - Steinway Model B",
+        "appraiser_name": "James R. Thompson, ASA",
+        "appraiser_license": "ASA-2024-12345"
+      }
+    },
+    {
+      "filename": "form_8283/form_8283_section_b_high_010.png",
+      "documentType": "form_8283_section_b",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "8283",
+        "section": "B",
+        "donor_name": "Emily K. Davis",
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 47520,
+        "description": "Grand piano - Steinway Model B",
+        "appraiser_name": "Patricia L. Martinez, AAA",
+        "appraiser_license": "AAA-2024-67890"
+      }
+    },
+    {
+      "filename": "appraisals/appraisal_high_010.png",
+      "documentType": "qualified_appraisal",
+      "quality": "high",
+      "synthetic": true,
+      "relatedForm": "form_8283/form_8283_section_b_high_010.png",
+      "expectedFields": {
+        "donor_name": "Emily K. Davis",
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "appraised_value": 47520,
+        "description": "Grand piano - Steinway Model B",
+        "appraiser_name": "Patricia L. Martinez, AAA",
+        "appraiser_license": "AAA-2024-67890"
+      }
+    },
+    {
+      "filename": "form_1098c/form_1098c_high_001.png",
+      "documentType": "form_1098c",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "1098-C",
+        "donor_name": "Emily K. Davis",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "gross_proceeds": 3296,
+        "vehicle_year": "2018",
+        "vehicle_make": "Honda",
+        "vehicle_model": "Accord",
+        "vin": "1HGCV1F34JA987654"
+      }
+    },
+    {
+      "filename": "form_1098c/form_1098c_high_002.png",
+      "documentType": "form_1098c",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "1098-C",
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "gross_proceeds": 21627,
+        "vehicle_year": "2018",
+        "vehicle_make": "Honda",
+        "vehicle_model": "Accord",
+        "vin": "1HGCV1F34JA987654"
+      }
+    },
+    {
+      "filename": "form_1098c/form_1098c_medium_003.png",
+      "documentType": "form_1098c",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "1098-C",
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "gross_proceeds": 24055,
+        "vehicle_year": "2018",
+        "vehicle_make": "Honda",
+        "vehicle_model": "Accord",
+        "vin": "1HGCV1F34JA987654"
+      }
+    },
+    {
+      "filename": "form_1098c/form_1098c_medium_004.png",
+      "documentType": "form_1098c",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "1098-C",
+        "donor_name": "Michael R. Williams",
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "gross_proceeds": 5114,
+        "vehicle_year": "2018",
+        "vehicle_make": "Honda",
+        "vehicle_model": "Accord",
+        "vin": "1HGCV1F34JA987654"
+      }
+    },
+    {
+      "filename": "form_1098c/form_1098c_medium_005.png",
+      "documentType": "form_1098c",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "1098-C",
+        "donor_name": "Robert T. Brown",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "gross_proceeds": 1348,
+        "vehicle_year": "2017",
+        "vehicle_make": "Chevrolet",
+        "vehicle_model": "Silverado",
+        "vin": "3GCUKREC5HG654321"
+      }
+    },
+    {
+      "filename": "form_1098c/form_1098c_medium_006.png",
+      "documentType": "form_1098c",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "1098-C",
+        "donor_name": "John A. Smith",
+        "organization_name": "Habitat for Humanity International",
+        "ein": "91-1914868",
+        "gross_proceeds": 9627,
+        "vehicle_year": "2020",
+        "vehicle_make": "Ford",
+        "vehicle_model": "F-150",
+        "vin": "1FTEW1E85LFA12345"
+      }
+    },
+    {
+      "filename": "form_1098c/form_1098c_high_007.png",
+      "documentType": "form_1098c",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "1098-C",
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "gross_proceeds": 24706,
+        "vehicle_year": "2020",
+        "vehicle_make": "Ford",
+        "vehicle_model": "F-150",
+        "vin": "1FTEW1E85LFA12345"
+      }
+    },
+    {
+      "filename": "form_1098c/form_1098c_high_008.png",
+      "documentType": "form_1098c",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "1098-C",
+        "donor_name": "Emily K. Davis",
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "gross_proceeds": 13180,
+        "vehicle_year": "2020",
+        "vehicle_make": "Ford",
+        "vehicle_model": "F-150",
+        "vin": "1FTEW1E85LFA12345"
+      }
+    },
+    {
+      "filename": "form_1098c/form_1098c_high_009.png",
+      "documentType": "form_1098c",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "1098-C",
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "gross_proceeds": 13679,
+        "vehicle_year": "2017",
+        "vehicle_make": "Chevrolet",
+        "vehicle_model": "Silverado",
+        "vin": "3GCUKREC5HG654321"
+      }
+    },
+    {
+      "filename": "form_1098c/form_1098c_medium_010.png",
+      "documentType": "form_1098c",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "form_type": "1098-C",
+        "donor_name": "John A. Smith",
+        "organization_name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "gross_proceeds": 22195,
+        "vehicle_year": "2019",
+        "vehicle_make": "Toyota",
+        "vehicle_model": "Camry",
+        "vin": "4T1B11HK5KU123456"
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_medium_001.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "Habitat for Humanity International",
+        "ein": "91-1914868",
+        "amount": 1536,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_high_002.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Michael R. Williams",
+        "organization_name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "amount": 4738,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_low_003.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Michael R. Williams",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 8102,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_high_004.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Robert T. Brown",
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "amount": 7977,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_low_005.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 6799,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_medium_006.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Michael R. Williams",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 9292,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_high_007.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Emily K. Davis",
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "amount": 9146,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_low_008.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "organization_name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "amount": 9602,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_medium_009.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 9460,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_low_010.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 5209,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_high_011.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Robert T. Brown",
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 6931,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_medium_012.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Robert T. Brown",
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "amount": 8420,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_high_013.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Michael R. Williams",
+        "organization_name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "amount": 8774,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_low_014.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "amount": 9454,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_cash_high_015.png",
+      "documentType": "acknowledgment_letter_cash",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Emily K. Davis",
+        "organization_name": "Habitat for Humanity International",
+        "ein": "91-1914868",
+        "amount": 9064,
+        "donation_type": "cash",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_noncash_low_001.png",
+      "documentType": "acknowledgment_letter_noncash",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "estimated_value": 2759,
+        "donation_type": "property",
+        "description": "Grand piano - Steinway Model B",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_noncash_low_002.png",
+      "documentType": "acknowledgment_letter_noncash",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "estimated_value": 819,
+        "donation_type": "property",
+        "description": "Antique oak dining table with 6 chairs",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_noncash_medium_003.png",
+      "documentType": "acknowledgment_letter_noncash",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Robert T. Brown",
+        "organization_name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "estimated_value": 4529,
+        "donation_type": "property",
+        "description": "Vintage jewelry collection (12 pieces)",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_noncash_high_004.png",
+      "documentType": "acknowledgment_letter_noncash",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Michael R. Williams",
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "estimated_value": 974,
+        "donation_type": "property",
+        "description": "Grand piano - Steinway Model B",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_noncash_high_005.png",
+      "documentType": "acknowledgment_letter_noncash",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Emily K. Davis",
+        "organization_name": "American Red Cross",
+        "ein": "53-0196605",
+        "estimated_value": 2417,
+        "donation_type": "property",
+        "description": "Vintage jewelry collection (12 pieces)",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_noncash_medium_006.png",
+      "documentType": "acknowledgment_letter_noncash",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Robert T. Brown",
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "estimated_value": 4944,
+        "donation_type": "property",
+        "description": "Grand piano - Steinway Model B",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_noncash_low_007.png",
+      "documentType": "acknowledgment_letter_noncash",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "The Salvation Army",
+        "ein": "13-5562351",
+        "estimated_value": 2209,
+        "donation_type": "property",
+        "description": "Antique oak dining table with 6 chairs",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_noncash_high_008.png",
+      "documentType": "acknowledgment_letter_noncash",
+      "quality": "high",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Emily K. Davis",
+        "organization_name": "Habitat for Humanity International",
+        "ein": "91-1914868",
+        "estimated_value": 1532,
+        "donation_type": "property",
+        "description": "Antique oak dining table with 6 chairs",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_noncash_low_009.png",
+      "documentType": "acknowledgment_letter_noncash",
+      "quality": "low",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "organization_name": "Habitat for Humanity International",
+        "ein": "91-1914868",
+        "estimated_value": 1949,
+        "donation_type": "property",
+        "description": "Grand piano - Steinway Model B",
+        "goods_services_provided": false
+      }
+    },
+    {
+      "filename": "acknowledgment_letters/ack_noncash_medium_010.png",
+      "documentType": "acknowledgment_letter_noncash",
+      "quality": "medium",
+      "synthetic": true,
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "organization_name": "Habitat for Humanity International",
+        "ein": "91-1914868",
+        "estimated_value": 967,
+        "donation_type": "property",
+        "description": "Vintage jewelry collection (12 pieces)",
+        "goods_services_provided": false
+      }
+    }
+  ],
+  "generated": "2026-02-09T20:36:50.801Z"
+}
