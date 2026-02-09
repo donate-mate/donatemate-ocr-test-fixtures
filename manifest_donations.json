@@ -1,0 +1,605 @@
+{
+  "version": "1.0.0",
+  "description": "IRS-compliant donation test fixtures with linked forms",
+  "generatedAt": "2026-02-09T20:45:37.166Z",
+  "irsReference": "IRS Publication 1771 - Charitable Contributions Substantiation",
+  "donations": [
+    {
+      "donationId": "Donation_001",
+      "description": "Cash donation $1,536 - requires acknowledgment letter",
+      "assetType": "cash",
+      "amount": 1536,
+      "irsRequirements": [
+        "acknowledgment_letter"
+      ],
+      "linkedForms": [
+        {
+          "formType": "acknowledgment_letter_cash",
+          "filename": "donations/Donation_001_acknowledgment_letter_cash.png",
+          "sourceFile": "acknowledgment_letters/ack_cash_medium_001.png",
+          "expectedFields": {
+            "donor_name": "Sarah M. Johnson",
+            "organization_name": "Habitat for Humanity International",
+            "ein": "91-1914868",
+            "amount": 1536,
+            "donation_type": "cash",
+            "goods_services_provided": false
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_002",
+      "description": "Cash donation $4,738 - requires acknowledgment letter",
+      "assetType": "cash",
+      "amount": 4738,
+      "irsRequirements": [
+        "acknowledgment_letter"
+      ],
+      "linkedForms": [
+        {
+          "formType": "acknowledgment_letter_cash",
+          "filename": "donations/Donation_002_acknowledgment_letter_cash.png",
+          "sourceFile": "acknowledgment_letters/ack_cash_high_002.png",
+          "expectedFields": {
+            "donor_name": "Michael R. Williams",
+            "organization_name": "Goodwill Industries International",
+            "ein": "53-0196517",
+            "amount": 4738,
+            "donation_type": "cash",
+            "goods_services_provided": false
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_003",
+      "description": "Cash donation $8,102 - requires acknowledgment letter",
+      "assetType": "cash",
+      "amount": 8102,
+      "irsRequirements": [
+        "acknowledgment_letter"
+      ],
+      "linkedForms": [
+        {
+          "formType": "acknowledgment_letter_cash",
+          "filename": "donations/Donation_003_acknowledgment_letter_cash.png",
+          "sourceFile": "acknowledgment_letters/ack_cash_low_003.png",
+          "expectedFields": {
+            "donor_name": "Michael R. Williams",
+            "organization_name": "American Red Cross",
+            "ein": "53-0196605",
+            "amount": 8102,
+            "donation_type": "cash",
+            "goods_services_provided": false
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_004",
+      "description": "Cash donation $150 - requires bank statement",
+      "assetType": "cash",
+      "amount": 150,
+      "irsRequirements": [
+        "bank_statement"
+      ],
+      "linkedForms": [
+        {
+          "formType": "bank_statement",
+          "filename": "donations/Donation_004_bank_statement.png",
+          "sourceFile": "bank_statements/bank_statement_chase_high_001.png",
+          "expectedFields": {
+            "bank_name": "Chase Bank",
+            "account_holder": "Michael Williams",
+            "account_number_last4": "3709",
+            "statement_period_start": "2025-10-28",
+            "statement_period_end": "2025-11-27",
+            "charitable_transactions": [
+              {
+                "organization": "State University Foundation",
+                "ein": "34-5678901",
+                "amount": 67.38,
+                "date": "2025-11-10"
+              },
+              {
+                "organization": "Sample Community Food Bank",
+                "ein": "12-3456789",
+                "amount": 717.87,
+                "date": "2025-11-13"
+              },
+              {
+                "organization": "State University Foundation",
+                "ein": "34-5678901",
+                "amount": 583.77,
+                "date": "2025-11-17"
+              }
+            ],
+            "total_charitable": 1369.02
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_005",
+      "description": "Cash donation $200 - requires bank statement",
+      "assetType": "cash",
+      "amount": 200,
+      "irsRequirements": [
+        "bank_statement"
+      ],
+      "linkedForms": [
+        {
+          "formType": "bank_statement",
+          "filename": "donations/Donation_005_bank_statement.png",
+          "sourceFile": "bank_statements/bank_statement_bofa_high_002.png",
+          "expectedFields": {
+            "bank_name": "Bank of America",
+            "account_holder": "Sarah Johnson",
+            "account_number_last4": "9316",
+            "statement_period_start": "2025-02-04",
+            "statement_period_end": "2025-03-06",
+            "charitable_transactions": [
+              {
+                "organization": "First Community Church",
+                "ein": "23-4567890",
+                "amount": 574,
+                "date": "2025-02-18"
+              },
+              {
+                "organization": "The Salvation Army National Corporation",
+                "ein": "13-5562351",
+                "amount": 724.13,
+                "date": "2025-02-22"
+              },
+              {
+                "organization": "Sample Community Food Bank",
+                "ein": "12-3456789",
+                "amount": 241.82,
+                "date": "2025-02-24"
+              }
+            ],
+            "total_charitable": 1539.95
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_006",
+      "description": "Non-cash goods $350 - requires receipt",
+      "assetType": "goods",
+      "amount": 350,
+      "irsRequirements": [
+        "receipt"
+      ],
+      "linkedForms": [
+        {
+          "formType": "receipt",
+          "filename": "donations/Donation_006_receipt.png",
+          "sourceFile": "receipts/receipt_goodwill_high_001.png",
+          "expectedFields": {
+            "organization_name": "Goodwill Industries International, Inc.",
+            "organization_address": "15810 Indianola Drive, Rockville, MD 20855",
+            "ein": "53-0196517",
+            "tax_status": "501(c)(3)",
+            "amount": 4357.46,
+            "contribution_date": "2025-03-30",
+            "donor_name": "John Smith",
+            "donor_address": "987 Cedar Court, Boston, MA 02101",
+            "receipt_number": "GOO-2025-801701",
+            "goods_services_provided": false
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_007",
+      "description": "Non-cash goods $450 - requires receipt",
+      "assetType": "goods",
+      "amount": 450,
+      "irsRequirements": [
+        "receipt"
+      ],
+      "linkedForms": [
+        {
+          "formType": "receipt",
+          "filename": "donations/Donation_007_receipt.png",
+          "sourceFile": "receipts/receipt_salvation-army_high_002.png",
+          "expectedFields": {
+            "organization_name": "The Salvation Army National Corporation",
+            "organization_address": "615 Slaters Lane, Alexandria, VA 22314",
+            "ein": "13-5562351",
+            "tax_status": "501(c)(3)",
+            "amount": 4759.1,
+            "contribution_date": "2025-12-09",
+            "donor_name": "Lisa Anderson",
+            "donor_address": "123 Main Street, Springfield, IL 62701",
+            "receipt_number": "SAL-2025-217127",
+            "goods_services_provided": false
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_008",
+      "description": "Non-cash goods $2,354 - requires Form 8283 Section A",
+      "assetType": "goods",
+      "amount": 2354,
+      "irsRequirements": [
+        "form_8283_section_a"
+      ],
+      "linkedForms": [
+        {
+          "formType": "form_8283_section_a",
+          "filename": "donations/Donation_008_form_8283_section_a.png",
+          "sourceFile": "form_8283/form_8283_section_a_low_001.png",
+          "expectedFields": {
+            "form_type": "8283",
+            "section": "A",
+            "donor_name": "John A. Smith",
+            "organization_name": "American Red Cross",
+            "ein": "53-0196605",
+            "amount": 2354,
+            "description": "Grand piano - Steinway Model B"
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_009",
+      "description": "Non-cash goods $4,797 - requires Form 8283 Section A",
+      "assetType": "goods",
+      "amount": 4797,
+      "irsRequirements": [
+        "form_8283_section_a"
+      ],
+      "linkedForms": [
+        {
+          "formType": "form_8283_section_a",
+          "filename": "donations/Donation_009_form_8283_section_a.png",
+          "sourceFile": "form_8283/form_8283_section_a_high_002.png",
+          "expectedFields": {
+            "form_type": "8283",
+            "section": "A",
+            "donor_name": "John A. Smith",
+            "organization_name": "American Red Cross",
+            "ein": "53-0196605",
+            "amount": 4797,
+            "description": "Computer equipment (5 laptops, 3 desktops)"
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_010",
+      "description": "Non-cash goods $2,986 - requires Form 8283 Section A",
+      "assetType": "goods",
+      "amount": 2986,
+      "irsRequirements": [
+        "form_8283_section_a"
+      ],
+      "linkedForms": [
+        {
+          "formType": "form_8283_section_a",
+          "filename": "donations/Donation_010_form_8283_section_a.png",
+          "sourceFile": "form_8283/form_8283_section_a_medium_003.png",
+          "expectedFields": {
+            "form_type": "8283",
+            "section": "A",
+            "donor_name": "Michael R. Williams",
+            "organization_name": "United Way Worldwide",
+            "ein": "13-1635294",
+            "amount": 2986,
+            "description": "Vintage jewelry collection (12 pieces)"
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_011",
+      "description": "Non-cash goods $28,808 - requires Form 8283 Section B + Appraisal",
+      "assetType": "goods",
+      "amount": 28808,
+      "irsRequirements": [
+        "form_8283_section_b",
+        "qualified_appraisal"
+      ],
+      "linkedForms": [
+        {
+          "formType": "form_8283_section_b",
+          "filename": "donations/Donation_011_form_8283_section_b.png",
+          "sourceFile": "form_8283/form_8283_section_b_high_001.png",
+          "expectedFields": {
+            "form_type": "8283",
+            "section": "B",
+            "donor_name": "Sarah M. Johnson",
+            "organization_name": "The Salvation Army",
+            "ein": "13-5562351",
+            "amount": 28808,
+            "description": "Grand piano - Steinway Model B",
+            "appraiser_name": "Patricia L. Martinez, AAA",
+            "appraiser_license": "AAA-2024-67890"
+          }
+        },
+        {
+          "formType": "qualified_appraisal",
+          "filename": "donations/Donation_011_qualified_appraisal.png",
+          "sourceFile": "appraisals/appraisal_high_001.png",
+          "expectedFields": {
+            "donor_name": "Sarah M. Johnson",
+            "organization_name": "The Salvation Army",
+            "ein": "13-5562351",
+            "appraised_value": 28808,
+            "description": "Grand piano - Steinway Model B",
+            "appraiser_name": "Patricia L. Martinez, AAA",
+            "appraiser_license": "AAA-2024-67890"
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_012",
+      "description": "Non-cash goods $41,029 - requires Form 8283 Section B + Appraisal",
+      "assetType": "goods",
+      "amount": 41029,
+      "irsRequirements": [
+        "form_8283_section_b",
+        "qualified_appraisal"
+      ],
+      "linkedForms": [
+        {
+          "formType": "form_8283_section_b",
+          "filename": "donations/Donation_012_form_8283_section_b.png",
+          "sourceFile": "form_8283/form_8283_section_b_medium_002.png",
+          "expectedFields": {
+            "form_type": "8283",
+            "section": "B",
+            "donor_name": "John A. Smith",
+            "organization_name": "American Red Cross",
+            "ein": "53-0196605",
+            "amount": 41029,
+            "description": "Vintage jewelry collection (12 pieces)",
+            "appraiser_name": "James R. Thompson, ASA",
+            "appraiser_license": "ASA-2024-12345"
+          }
+        },
+        {
+          "formType": "qualified_appraisal",
+          "filename": "donations/Donation_012_qualified_appraisal.png",
+          "sourceFile": "appraisals/appraisal_medium_002.png",
+          "expectedFields": {
+            "donor_name": "John A. Smith",
+            "organization_name": "American Red Cross",
+            "ein": "53-0196605",
+            "appraised_value": 41029,
+            "description": "Vintage jewelry collection (12 pieces)",
+            "appraiser_name": "James R. Thompson, ASA",
+            "appraiser_license": "ASA-2024-12345"
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_013",
+      "description": "Non-cash goods $6,331 - requires Form 8283 Section B + Appraisal",
+      "assetType": "goods",
+      "amount": 6331,
+      "irsRequirements": [
+        "form_8283_section_b",
+        "qualified_appraisal"
+      ],
+      "linkedForms": [
+        {
+          "formType": "form_8283_section_b",
+          "filename": "donations/Donation_013_form_8283_section_b.png",
+          "sourceFile": "form_8283/form_8283_section_b_high_003.png",
+          "expectedFields": {
+            "form_type": "8283",
+            "section": "B",
+            "donor_name": "Robert T. Brown",
+            "organization_name": "American Red Cross",
+            "ein": "53-0196605",
+            "amount": 6331,
+            "description": "Antique oak dining table with 6 chairs",
+            "appraiser_name": "Patricia L. Martinez, AAA",
+            "appraiser_license": "AAA-2024-67890"
+          }
+        },
+        {
+          "formType": "qualified_appraisal",
+          "filename": "donations/Donation_013_qualified_appraisal.png",
+          "sourceFile": "appraisals/appraisal_high_003.png",
+          "expectedFields": {
+            "donor_name": "Robert T. Brown",
+            "organization_name": "American Red Cross",
+            "ein": "53-0196605",
+            "appraised_value": 6331,
+            "description": "Antique oak dining table with 6 chairs",
+            "appraiser_name": "Patricia L. Martinez, AAA",
+            "appraiser_license": "AAA-2024-67890"
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_014",
+      "description": "Vehicle donation $3,296 - requires Form 1098-C",
+      "assetType": "vehicle",
+      "amount": 3296,
+      "irsRequirements": [
+        "form_1098c"
+      ],
+      "linkedForms": [
+        {
+          "formType": "form_1098c",
+          "filename": "donations/Donation_014_form_1098c.png",
+          "sourceFile": "form_1098c/form_1098c_high_001.png",
+          "expectedFields": {
+            "form_type": "1098-C",
+            "donor_name": "Emily K. Davis",
+            "organization_name": "American Red Cross",
+            "ein": "53-0196605",
+            "gross_proceeds": 3296,
+            "vehicle_year": "2018",
+            "vehicle_make": "Honda",
+            "vehicle_model": "Accord",
+            "vin": "1HGCV1F34JA987654"
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_015",
+      "description": "Vehicle donation $21,627 - requires Form 1098-C",
+      "assetType": "vehicle",
+      "amount": 21627,
+      "irsRequirements": [
+        "form_1098c"
+      ],
+      "linkedForms": [
+        {
+          "formType": "form_1098c",
+          "filename": "donations/Donation_015_form_1098c.png",
+          "sourceFile": "form_1098c/form_1098c_high_002.png",
+          "expectedFields": {
+            "form_type": "1098-C",
+            "donor_name": "Sarah M. Johnson",
+            "organization_name": "American Red Cross",
+            "ein": "53-0196605",
+            "gross_proceeds": 21627,
+            "vehicle_year": "2018",
+            "vehicle_make": "Honda",
+            "vehicle_model": "Accord",
+            "vin": "1HGCV1F34JA987654"
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_016",
+      "description": "Vehicle donation $24,055 - requires Form 1098-C",
+      "assetType": "vehicle",
+      "amount": 24055,
+      "irsRequirements": [
+        "form_1098c"
+      ],
+      "linkedForms": [
+        {
+          "formType": "form_1098c",
+          "filename": "donations/Donation_016_form_1098c.png",
+          "sourceFile": "form_1098c/form_1098c_medium_003.png",
+          "expectedFields": {
+            "form_type": "1098-C",
+            "donor_name": "Sarah M. Johnson",
+            "organization_name": "Goodwill Industries International",
+            "ein": "53-0196517",
+            "gross_proceeds": 24055,
+            "vehicle_year": "2018",
+            "vehicle_make": "Honda",
+            "vehicle_model": "Accord",
+            "vin": "1HGCV1F34JA987654"
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_017",
+      "description": "Stock donation (AAPL) $5,000 - requires brokerage confirmation",
+      "assetType": "publicly_traded_securities",
+      "amount": 5000,
+      "irsRequirements": [
+        "stock_confirmation"
+      ],
+      "linkedForms": [
+        {
+          "formType": "stock_confirmation",
+          "filename": "donations/Donation_017_stock_confirmation.png",
+          "sourceFile": "stock_confirmation_high_001.png",
+          "expectedFields": {
+            "note": "See stock confirmation manifest"
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_018",
+      "description": "Stock donation (MSFT) $15,000 - requires brokerage confirmation",
+      "assetType": "publicly_traded_securities",
+      "amount": 15000,
+      "irsRequirements": [
+        "stock_confirmation"
+      ],
+      "linkedForms": [
+        {
+          "formType": "stock_confirmation",
+          "filename": "donations/Donation_018_stock_confirmation.png",
+          "sourceFile": "stock_confirmation_high_002.png",
+          "expectedFields": {
+            "note": "See stock confirmation manifest"
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_019",
+      "description": "Stock donation (VTI) $25,000 - requires brokerage confirmation",
+      "assetType": "publicly_traded_securities",
+      "amount": 25000,
+      "irsRequirements": [
+        "stock_confirmation"
+      ],
+      "linkedForms": [
+        {
+          "formType": "stock_confirmation",
+          "filename": "donations/Donation_019_stock_confirmation.png",
+          "sourceFile": "stock_confirmation_medium_003.png",
+          "expectedFields": {
+            "note": "See stock confirmation manifest"
+          }
+        }
+      ]
+    },
+    {
+      "donationId": "Donation_020",
+      "description": "Real estate donation $150,000 - requires Form 8283 Section B + Appraisal",
+      "assetType": "real_estate",
+      "amount": 150000,
+      "irsRequirements": [
+        "form_8283_section_b",
+        "qualified_appraisal"
+      ],
+      "linkedForms": [
+        {
+          "formType": "form_8283_section_b",
+          "filename": "donations/Donation_020_form_8283_section_b.png",
+          "sourceFile": "form_8283/form_8283_section_b_medium_004.png",
+          "expectedFields": {
+            "form_type": "8283",
+            "section": "B",
+            "donor_name": "John A. Smith",
+            "organization_name": "American Red Cross",
+            "ein": "53-0196605",
+            "amount": 32389,
+            "description": "Vintage jewelry collection (12 pieces)",
+            "appraiser_name": "Patricia L. Martinez, AAA",
+            "appraiser_license": "AAA-2024-67890"
+          }
+        },
+        {
+          "formType": "qualified_appraisal",
+          "filename": "donations/Donation_020_qualified_appraisal.png",
+          "sourceFile": "appraisals/appraisal_medium_004.png",
+          "expectedFields": {
+            "donor_name": "John A. Smith",
+            "organization_name": "American Red Cross",
+            "ein": "53-0196605",
+            "appraised_value": 32389,
+            "description": "Vintage jewelry collection (12 pieces)",
+            "appraiser_name": "Patricia L. Martinez, AAA",
+            "appraiser_license": "AAA-2024-67890"
+          }
+        }
+      ]
+    }
+  ]
+}
