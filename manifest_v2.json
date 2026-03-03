@@ -1,0 +1,694 @@
+{
+  "version": "2.0.0",
+  "description": "IRS-compliant OCR test fixtures with linked forms per donation",
+  "generatedAt": "2026-03-03T00:42:44.840Z",
+  "irsReference": "IRS Publication 526 (2025)",
+  "namingConvention": "<form_type>_<donation_id>.png",
+  "totalDonations": 28,
+  "totalForms": 42,
+  "formCounts": {
+    "bank_statement": 1,
+    "cancelled_check": 1,
+    "acknowledgment_letter": 13,
+    "receipt": 4,
+    "form_8283_section_a": 5,
+    "form_8283_section_b": 6,
+    "appraisal": 6,
+    "form_1098c": 3,
+    "stock_confirmation": 3
+  },
+  "documents": [
+    {
+      "filename": "bank_statement/bank_statement_D001.png",
+      "formType": "bank_statement",
+      "donationId": "D001",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "donor_address": "123 Main Street, Springfield, IL 62701",
+        "donee_name": "American Red Cross",
+        "donee_ein": "53-0196605",
+        "contribution_date": "2025-01-15",
+        "amount": 100,
+        "asset_type": "cash",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "cancelled_check/cancelled_check_D002.png",
+      "formType": "cancelled_check",
+      "donationId": "D002",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Emily R. Davis",
+        "donor_address": "789 Elm Drive, Austin, TX 78701",
+        "donee_name": "Habitat for Humanity International",
+        "donee_ein": "91-1914868",
+        "contribution_date": "2025-02-20",
+        "amount": 200,
+        "asset_type": "cash",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D003.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D003",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "Michael T. Williams",
+        "donor_address": "456 Oak Avenue, Portland, OR 97201",
+        "donee_name": "United Way Worldwide",
+        "donee_ein": "13-1635294",
+        "contribution_date": "2025-03-01",
+        "amount": 250,
+        "asset_type": "cash",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D004.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D004",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "donor_address": "654 Maple Lane, Seattle, WA 98101",
+        "donee_name": "The Salvation Army",
+        "donee_ein": "13-5562351",
+        "contribution_date": "2025-03-15",
+        "amount": 1500,
+        "asset_type": "cash",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D005.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D005",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Robert J. Anderson",
+        "donor_address": "321 Pine Road, Denver, CO 80202",
+        "donee_name": "Goodwill Industries International",
+        "donee_ein": "53-0196517",
+        "contribution_date": "2025-04-10",
+        "amount": 5000,
+        "asset_type": "cash",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "receipt/receipt_D006.png",
+      "formType": "receipt",
+      "donationId": "D006",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Jennifer L. Miller",
+        "donor_address": "147 Birch Way, Phoenix, AZ 85001",
+        "donee_name": "Goodwill Industries International",
+        "donee_ein": "53-0196517",
+        "contribution_date": "2025-01-20",
+        "amount": 150,
+        "asset_type": "noncash_goods",
+        "asset_description": "Men's winter coat and dress shoes"
+      }
+    },
+    {
+      "filename": "receipt/receipt_D007.png",
+      "formType": "receipt",
+      "donationId": "D007",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "David K. Wilson",
+        "donor_address": "258 Willow Street, Atlanta, GA 30301",
+        "donee_name": "The Salvation Army",
+        "donee_ein": "13-5562351",
+        "contribution_date": "2025-02-14",
+        "amount": 250,
+        "asset_type": "noncash_goods",
+        "asset_description": "Vintage leather briefcase"
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D007.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D007",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "David K. Wilson",
+        "donor_address": "258 Willow Street, Atlanta, GA 30301",
+        "donee_name": "The Salvation Army",
+        "donee_ein": "13-5562351",
+        "contribution_date": "2025-02-14",
+        "amount": 250,
+        "asset_type": "noncash_goods",
+        "asset_description": "Vintage leather briefcase"
+      }
+    },
+    {
+      "filename": "receipt/receipt_D008.png",
+      "formType": "receipt",
+      "donationId": "D008",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Lisa A. Brown",
+        "donor_address": "963 Cedar Court, Boston, MA 02101",
+        "donee_name": "Habitat for Humanity International",
+        "donee_ein": "91-1914868",
+        "contribution_date": "2025-03-05",
+        "amount": 400,
+        "asset_type": "noncash_goods",
+        "asset_description": "Antique oak side table"
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D008.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D008",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Lisa A. Brown",
+        "donor_address": "963 Cedar Court, Boston, MA 02101",
+        "donee_name": "Habitat for Humanity International",
+        "donee_ein": "91-1914868",
+        "contribution_date": "2025-03-05",
+        "amount": 400,
+        "asset_type": "noncash_goods",
+        "asset_description": "Antique oak side table"
+      }
+    },
+    {
+      "filename": "receipt/receipt_D009.png",
+      "formType": "receipt",
+      "donationId": "D009",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "donor_address": "123 Main Street, Springfield, IL 62701",
+        "donee_name": "American Red Cross",
+        "donee_ein": "53-0196605",
+        "contribution_date": "2025-04-01",
+        "amount": 500,
+        "asset_type": "noncash_goods",
+        "asset_description": "Complete dining set (table + 4 chairs)"
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D009.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D009",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "donor_address": "123 Main Street, Springfield, IL 62701",
+        "donee_name": "American Red Cross",
+        "donee_ein": "53-0196605",
+        "contribution_date": "2025-04-01",
+        "amount": 500,
+        "asset_type": "noncash_goods",
+        "asset_description": "Complete dining set (table + 4 chairs)"
+      }
+    },
+    {
+      "filename": "form_8283_section_a/form_8283_section_a_D010.png",
+      "formType": "form_8283_section_a",
+      "donationId": "D010",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "donor_address": "654 Maple Lane, Seattle, WA 98101",
+        "donee_name": "Goodwill Industries International",
+        "donee_ein": "53-0196517",
+        "contribution_date": "2025-03-15",
+        "amount": 501,
+        "asset_type": "noncash_goods",
+        "asset_description": "Antique wooden desk"
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D010.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D010",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "donor_address": "654 Maple Lane, Seattle, WA 98101",
+        "donee_name": "Goodwill Industries International",
+        "donee_ein": "53-0196517",
+        "contribution_date": "2025-03-15",
+        "amount": 501,
+        "asset_type": "noncash_goods",
+        "asset_description": "Antique wooden desk"
+      }
+    },
+    {
+      "filename": "form_8283_section_a/form_8283_section_a_D011.png",
+      "formType": "form_8283_section_a",
+      "donationId": "D011",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Emily R. Davis",
+        "donor_address": "789 Elm Drive, Austin, TX 78701",
+        "donee_name": "United Way Worldwide",
+        "donee_ein": "13-1635294",
+        "contribution_date": "2025-05-01",
+        "amount": 3500,
+        "asset_type": "noncash_goods",
+        "asset_description": "Vintage jewelry collection (8 pieces)"
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D011.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D011",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Emily R. Davis",
+        "donor_address": "789 Elm Drive, Austin, TX 78701",
+        "donee_name": "United Way Worldwide",
+        "donee_ein": "13-1635294",
+        "contribution_date": "2025-05-01",
+        "amount": 3500,
+        "asset_type": "noncash_goods",
+        "asset_description": "Vintage jewelry collection (8 pieces)"
+      }
+    },
+    {
+      "filename": "form_8283_section_a/form_8283_section_a_D012.png",
+      "formType": "form_8283_section_a",
+      "donationId": "D012",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "Michael T. Williams",
+        "donor_address": "456 Oak Avenue, Portland, OR 97201",
+        "donee_name": "State University Foundation",
+        "donee_ein": "34-5678901",
+        "contribution_date": "2025-06-15",
+        "amount": 5000,
+        "asset_type": "noncash_goods",
+        "asset_description": "Professional camera equipment (body + 3 lenses)"
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D012.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D012",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "Michael T. Williams",
+        "donor_address": "456 Oak Avenue, Portland, OR 97201",
+        "donee_name": "State University Foundation",
+        "donee_ein": "34-5678901",
+        "contribution_date": "2025-06-15",
+        "amount": 5000,
+        "asset_type": "noncash_goods",
+        "asset_description": "Professional camera equipment (body + 3 lenses)"
+      }
+    },
+    {
+      "filename": "form_8283_section_b/form_8283_section_b_D013.png",
+      "formType": "form_8283_section_b",
+      "donationId": "D013",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "Robert J. Anderson",
+        "donor_address": "321 Pine Road, Denver, CO 80202",
+        "donee_name": "First Community Church",
+        "donee_ein": "23-4567890",
+        "contribution_date": "2025-07-01",
+        "amount": 5001,
+        "asset_type": "noncash_goods",
+        "asset_description": "Grand piano - Baldwin Model R"
+      }
+    },
+    {
+      "filename": "appraisal/appraisal_D013.png",
+      "formType": "appraisal",
+      "donationId": "D013",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "Robert J. Anderson",
+        "donor_address": "321 Pine Road, Denver, CO 80202",
+        "donee_name": "First Community Church",
+        "donee_ein": "23-4567890",
+        "contribution_date": "2025-07-01",
+        "amount": 5001,
+        "asset_type": "noncash_goods",
+        "asset_description": "Grand piano - Baldwin Model R"
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D013.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D013",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "Robert J. Anderson",
+        "donor_address": "321 Pine Road, Denver, CO 80202",
+        "donee_name": "First Community Church",
+        "donee_ein": "23-4567890",
+        "contribution_date": "2025-07-01",
+        "amount": 5001,
+        "asset_type": "noncash_goods",
+        "asset_description": "Grand piano - Baldwin Model R"
+      }
+    },
+    {
+      "filename": "form_8283_section_b/form_8283_section_b_D014.png",
+      "formType": "form_8283_section_b",
+      "donationId": "D014",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Jennifer L. Miller",
+        "donor_address": "147 Birch Way, Phoenix, AZ 85001",
+        "donee_name": "Metropolitan Museum Foundation",
+        "donee_ein": "13-1624086",
+        "contribution_date": "2025-08-10",
+        "amount": 15000,
+        "asset_type": "noncash_goods",
+        "asset_description": "Antique Persian rug (9x12 Tabriz)"
+      }
+    },
+    {
+      "filename": "appraisal/appraisal_D014.png",
+      "formType": "appraisal",
+      "donationId": "D014",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Jennifer L. Miller",
+        "donor_address": "147 Birch Way, Phoenix, AZ 85001",
+        "donee_name": "Metropolitan Museum Foundation",
+        "donee_ein": "13-1624086",
+        "contribution_date": "2025-08-10",
+        "amount": 15000,
+        "asset_type": "noncash_goods",
+        "asset_description": "Antique Persian rug (9x12 Tabriz)"
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D014.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D014",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Jennifer L. Miller",
+        "donor_address": "147 Birch Way, Phoenix, AZ 85001",
+        "donee_name": "Metropolitan Museum Foundation",
+        "donee_ein": "13-1624086",
+        "contribution_date": "2025-08-10",
+        "amount": 15000,
+        "asset_type": "noncash_goods",
+        "asset_description": "Antique Persian rug (9x12 Tabriz)"
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D015.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D015",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "David K. Wilson",
+        "donor_address": "258 Willow Street, Atlanta, GA 30301",
+        "donee_name": "Vehicles for Veterans",
+        "donee_ein": "45-3827461",
+        "contribution_date": "2025-02-28",
+        "amount": 400,
+        "asset_type": "vehicle",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D016.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D016",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "Lisa A. Brown",
+        "donor_address": "963 Cedar Court, Boston, MA 02101",
+        "donee_name": "Cars for Causes",
+        "donee_ein": "52-1847362",
+        "contribution_date": "2025-03-20",
+        "amount": 500,
+        "asset_type": "vehicle",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "form_1098c/form_1098c_D017.png",
+      "formType": "form_1098c",
+      "donationId": "D017",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "donor_address": "123 Main Street, Springfield, IL 62701",
+        "donee_name": "Wheels for Wishes",
+        "donee_ein": "27-1583946",
+        "contribution_date": "2025-04-01",
+        "amount": 501,
+        "asset_type": "vehicle",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "form_1098c/form_1098c_D018.png",
+      "formType": "form_1098c",
+      "donationId": "D018",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "donor_address": "654 Maple Lane, Seattle, WA 98101",
+        "donee_name": "American Red Cross",
+        "donee_ein": "53-0196605",
+        "contribution_date": "2025-05-15",
+        "amount": 12000,
+        "asset_type": "vehicle",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "form_1098c/form_1098c_D019.png",
+      "formType": "form_1098c",
+      "donationId": "D019",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Robert J. Anderson",
+        "donor_address": "321 Pine Road, Denver, CO 80202",
+        "donee_name": "Working Cars for Working Families",
+        "donee_ein": "84-2957163",
+        "contribution_date": "2025-07-20",
+        "amount": 35000,
+        "asset_type": "vehicle",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "stock_confirmation/stock_confirmation_D020.png",
+      "formType": "stock_confirmation",
+      "donationId": "D020",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Emily R. Davis",
+        "donor_address": "789 Elm Drive, Austin, TX 78701",
+        "donee_name": "United Way Worldwide",
+        "donee_ein": "13-1635294",
+        "contribution_date": "2025-03-10",
+        "amount": 500,
+        "asset_type": "stock_public",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "stock_confirmation/stock_confirmation_D021.png",
+      "formType": "stock_confirmation",
+      "donationId": "D021",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Michael T. Williams",
+        "donor_address": "456 Oak Avenue, Portland, OR 97201",
+        "donee_name": "American Red Cross",
+        "donee_ein": "53-0196605",
+        "contribution_date": "2025-04-25",
+        "amount": 5000,
+        "asset_type": "stock_public",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "stock_confirmation/stock_confirmation_D022.png",
+      "formType": "stock_confirmation",
+      "donationId": "D022",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Jennifer L. Miller",
+        "donor_address": "147 Birch Way, Phoenix, AZ 85001",
+        "donee_name": "State University Foundation",
+        "donee_ein": "34-5678901",
+        "contribution_date": "2025-05-30",
+        "amount": 25000,
+        "asset_type": "stock_public",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "form_8283_section_a/form_8283_section_a_D023.png",
+      "formType": "form_8283_section_a",
+      "donationId": "D023",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Robert J. Anderson",
+        "donor_address": "321 Pine Road, Denver, CO 80202",
+        "donee_name": "Community Foundation of Colorado",
+        "donee_ein": "84-0404757",
+        "contribution_date": "2025-06-20",
+        "amount": 5000,
+        "asset_type": "stock_closelyheld",
+        "asset_description": "100 shares Anderson Family Holdings LLC"
+      }
+    },
+    {
+      "filename": "form_8283_section_a/form_8283_section_a_D024.png",
+      "formType": "form_8283_section_a",
+      "donationId": "D024",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "David K. Wilson",
+        "donor_address": "258 Willow Street, Atlanta, GA 30301",
+        "donee_name": "Community Foundation of Greater Atlanta",
+        "donee_ein": "58-1344646",
+        "contribution_date": "2025-07-15",
+        "amount": 10000,
+        "asset_type": "stock_closelyheld",
+        "asset_description": "200 shares Wilson Properties Inc."
+      }
+    },
+    {
+      "filename": "form_8283_section_b/form_8283_section_b_D025.png",
+      "formType": "form_8283_section_b",
+      "donationId": "D025",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "Jennifer L. Miller",
+        "donor_address": "147 Birch Way, Phoenix, AZ 85001",
+        "donee_name": "Arizona Community Foundation",
+        "donee_ein": "86-0348306",
+        "contribution_date": "2025-08-01",
+        "amount": 10001,
+        "asset_type": "stock_closelyheld",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "appraisal/appraisal_D025.png",
+      "formType": "appraisal",
+      "donationId": "D025",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "Jennifer L. Miller",
+        "donor_address": "147 Birch Way, Phoenix, AZ 85001",
+        "donee_name": "Arizona Community Foundation",
+        "donee_ein": "86-0348306",
+        "contribution_date": "2025-08-01",
+        "amount": 10001,
+        "asset_type": "stock_closelyheld",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "form_8283_section_b/form_8283_section_b_D026.png",
+      "formType": "form_8283_section_b",
+      "donationId": "D026",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "donor_address": "123 Main Street, Springfield, IL 62701",
+        "donee_name": "Illinois Community Foundation",
+        "donee_ein": "37-1349398",
+        "contribution_date": "2025-09-10",
+        "amount": 50000,
+        "asset_type": "stock_closelyheld",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "appraisal/appraisal_D026.png",
+      "formType": "appraisal",
+      "donationId": "D026",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "donor_address": "123 Main Street, Springfield, IL 62701",
+        "donee_name": "Illinois Community Foundation",
+        "donee_ein": "37-1349398",
+        "contribution_date": "2025-09-10",
+        "amount": 50000,
+        "asset_type": "stock_closelyheld",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "form_8283_section_b/form_8283_section_b_D027.png",
+      "formType": "form_8283_section_b",
+      "donationId": "D027",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Emily R. Davis",
+        "donor_address": "789 Elm Drive, Austin, TX 78701",
+        "donee_name": "Habitat for Humanity International",
+        "donee_ein": "91-1914868",
+        "contribution_date": "2025-10-01",
+        "amount": 100000,
+        "asset_type": "real_estate",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "appraisal/appraisal_D027.png",
+      "formType": "appraisal",
+      "donationId": "D027",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Emily R. Davis",
+        "donor_address": "789 Elm Drive, Austin, TX 78701",
+        "donee_name": "Habitat for Humanity International",
+        "donee_ein": "91-1914868",
+        "contribution_date": "2025-10-01",
+        "amount": 100000,
+        "asset_type": "real_estate",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "form_8283_section_b/form_8283_section_b_D028.png",
+      "formType": "form_8283_section_b",
+      "donationId": "D028",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "donor_address": "654 Maple Lane, Seattle, WA 98101",
+        "donee_name": "Seattle Foundation",
+        "donee_ein": "91-0596010",
+        "contribution_date": "2025-11-15",
+        "amount": 500000,
+        "asset_type": "real_estate",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "appraisal/appraisal_D028.png",
+      "formType": "appraisal",
+      "donationId": "D028",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "donor_address": "654 Maple Lane, Seattle, WA 98101",
+        "donee_name": "Seattle Foundation",
+        "donee_ein": "91-0596010",
+        "contribution_date": "2025-11-15",
+        "amount": 500000,
+        "asset_type": "real_estate",
+        "asset_description": null
+      }
+    }
+  ]
+}

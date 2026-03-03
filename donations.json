@@ -1,0 +1,788 @@
+{
+  "version": "2.0.0",
+  "description": "IRS-compliant donation test fixtures with linked forms per Publication 526",
+  "generatedAt": null,
+  "irsReference": "IRS Publication 526 (2025) - Charitable Contributions",
+  "namingConvention": "<form_type>_<donation_id>.png",
+  "donations": [
+    {
+      "id": "D001",
+      "description": "Cash donation $100 - requires bank record",
+      "assetType": "cash",
+      "amount": 100.00,
+      "donor": {
+        "name": "John A. Smith",
+        "address": "123 Main Street",
+        "city": "Springfield",
+        "state": "IL",
+        "zip": "62701"
+      },
+      "donee": {
+        "name": "American Red Cross",
+        "ein": "53-0196605",
+        "address": "431 18th Street NW, Washington, DC 20006"
+      },
+      "contributionDate": "2025-01-15",
+      "forms": ["bank_statement"]
+    },
+    {
+      "id": "D002",
+      "description": "Cash donation $200 - requires cancelled check",
+      "assetType": "cash",
+      "amount": 200.00,
+      "donor": {
+        "name": "Emily R. Davis",
+        "address": "789 Elm Drive",
+        "city": "Austin",
+        "state": "TX",
+        "zip": "78701"
+      },
+      "donee": {
+        "name": "Habitat for Humanity International",
+        "ein": "91-1914868",
+        "address": "322 W. Lamar Street, Americus, GA 31709"
+      },
+      "contributionDate": "2025-02-20",
+      "forms": ["cancelled_check"]
+    },
+    {
+      "id": "D003",
+      "description": "Cash donation $250 (boundary) - requires acknowledgment",
+      "assetType": "cash",
+      "amount": 250.00,
+      "boundary": true,
+      "donor": {
+        "name": "Michael T. Williams",
+        "address": "456 Oak Avenue",
+        "city": "Portland",
+        "state": "OR",
+        "zip": "97201"
+      },
+      "donee": {
+        "name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "address": "701 N. Fairfax Street, Alexandria, VA 22314"
+      },
+      "contributionDate": "2025-03-01",
+      "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D004",
+      "description": "Cash donation $1,500 - requires acknowledgment",
+      "assetType": "cash",
+      "amount": 1500.00,
+      "donor": {
+        "name": "Sarah M. Johnson",
+        "address": "654 Maple Lane",
+        "city": "Seattle",
+        "state": "WA",
+        "zip": "98101"
+      },
+      "donee": {
+        "name": "The Salvation Army",
+        "ein": "13-5562351",
+        "address": "615 Slaters Lane, Alexandria, VA 22314"
+      },
+      "contributionDate": "2025-03-15",
+      "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D005",
+      "description": "Cash donation $5,000 - requires acknowledgment",
+      "assetType": "cash",
+      "amount": 5000.00,
+      "donor": {
+        "name": "Robert J. Anderson",
+        "address": "321 Pine Road",
+        "city": "Denver",
+        "state": "CO",
+        "zip": "80202"
+      },
+      "donee": {
+        "name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "address": "15810 Indianola Drive, Rockville, MD 20855"
+      },
+      "contributionDate": "2025-04-10",
+      "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D006",
+      "description": "Non-cash goods $150 - requires receipt only",
+      "assetType": "noncash_goods",
+      "amount": 150.00,
+      "assetDescription": "Men's winter coat and dress shoes",
+      "assetCondition": "Good",
+      "donor": {
+        "name": "Jennifer L. Miller",
+        "address": "147 Birch Way",
+        "city": "Phoenix",
+        "state": "AZ",
+        "zip": "85001"
+      },
+      "donee": {
+        "name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "address": "15810 Indianola Drive, Rockville, MD 20855"
+      },
+      "contributionDate": "2025-01-20",
+      "forms": ["receipt"]
+    },
+    {
+      "id": "D007",
+      "description": "Non-cash goods $250 (boundary) - requires receipt + acknowledgment",
+      "assetType": "noncash_goods",
+      "amount": 250.00,
+      "boundary": true,
+      "assetDescription": "Vintage leather briefcase",
+      "assetCondition": "Excellent",
+      "donor": {
+        "name": "David K. Wilson",
+        "address": "258 Willow Street",
+        "city": "Atlanta",
+        "state": "GA",
+        "zip": "30301"
+      },
+      "donee": {
+        "name": "The Salvation Army",
+        "ein": "13-5562351",
+        "address": "615 Slaters Lane, Alexandria, VA 22314"
+      },
+      "contributionDate": "2025-02-14",
+      "forms": ["receipt", "acknowledgment_letter"]
+    },
+    {
+      "id": "D008",
+      "description": "Non-cash goods $400 - requires receipt + acknowledgment",
+      "assetType": "noncash_goods",
+      "amount": 400.00,
+      "assetDescription": "Antique oak side table",
+      "assetCondition": "Good",
+      "donor": {
+        "name": "Lisa A. Brown",
+        "address": "963 Cedar Court",
+        "city": "Boston",
+        "state": "MA",
+        "zip": "02101"
+      },
+      "donee": {
+        "name": "Habitat for Humanity International",
+        "ein": "91-1914868",
+        "address": "322 W. Lamar Street, Americus, GA 31709"
+      },
+      "contributionDate": "2025-03-05",
+      "forms": ["receipt", "acknowledgment_letter"]
+    },
+    {
+      "id": "D009",
+      "description": "Non-cash goods $500 (boundary) - requires receipt + acknowledgment",
+      "assetType": "noncash_goods",
+      "amount": 500.00,
+      "boundary": true,
+      "assetDescription": "Complete dining set (table + 4 chairs)",
+      "assetCondition": "Good",
+      "donor": {
+        "name": "John A. Smith",
+        "address": "123 Main Street",
+        "city": "Springfield",
+        "state": "IL",
+        "zip": "62701"
+      },
+      "donee": {
+        "name": "American Red Cross",
+        "ein": "53-0196605",
+        "address": "431 18th Street NW, Washington, DC 20006"
+      },
+      "contributionDate": "2025-04-01",
+      "forms": ["receipt", "acknowledgment_letter"]
+    },
+    {
+      "id": "D010",
+      "description": "Non-cash goods $501 (boundary) - requires Form 8283-A + acknowledgment",
+      "assetType": "noncash_goods",
+      "amount": 501.00,
+      "boundary": true,
+      "assetDescription": "Antique wooden desk",
+      "assetCondition": "Good",
+      "dateAcquired": "2018-06-15",
+      "howAcquired": "Purchase",
+      "costBasis": 200.00,
+      "donor": {
+        "name": "Sarah M. Johnson",
+        "address": "654 Maple Lane",
+        "city": "Seattle",
+        "state": "WA",
+        "zip": "98101"
+      },
+      "donee": {
+        "name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "address": "15810 Indianola Drive, Rockville, MD 20855"
+      },
+      "contributionDate": "2025-03-15",
+      "forms": ["form_8283_section_a", "acknowledgment_letter"]
+    },
+    {
+      "id": "D011",
+      "description": "Non-cash goods $3,500 - requires Form 8283-A + acknowledgment",
+      "assetType": "noncash_goods",
+      "amount": 3500.00,
+      "assetDescription": "Vintage jewelry collection (8 pieces)",
+      "assetCondition": "Excellent",
+      "dateAcquired": "2015-12-25",
+      "howAcquired": "Gift",
+      "costBasis": 1500.00,
+      "donor": {
+        "name": "Emily R. Davis",
+        "address": "789 Elm Drive",
+        "city": "Austin",
+        "state": "TX",
+        "zip": "78701"
+      },
+      "donee": {
+        "name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "address": "701 N. Fairfax Street, Alexandria, VA 22314"
+      },
+      "contributionDate": "2025-05-01",
+      "forms": ["form_8283_section_a", "acknowledgment_letter"]
+    },
+    {
+      "id": "D012",
+      "description": "Non-cash goods $5,000 (boundary) - requires Form 8283-A + acknowledgment",
+      "assetType": "noncash_goods",
+      "amount": 5000.00,
+      "boundary": true,
+      "assetDescription": "Professional camera equipment (body + 3 lenses)",
+      "assetCondition": "Excellent",
+      "dateAcquired": "2020-03-10",
+      "howAcquired": "Purchase",
+      "costBasis": 3200.00,
+      "donor": {
+        "name": "Michael T. Williams",
+        "address": "456 Oak Avenue",
+        "city": "Portland",
+        "state": "OR",
+        "zip": "97201"
+      },
+      "donee": {
+        "name": "State University Foundation",
+        "ein": "34-5678901",
+        "address": "100 College Drive, University City, ST 34567"
+      },
+      "contributionDate": "2025-06-15",
+      "forms": ["form_8283_section_a", "acknowledgment_letter"]
+    },
+    {
+      "id": "D013",
+      "description": "Non-cash goods $5,001 (boundary) - requires Form 8283-B + appraisal + acknowledgment",
+      "assetType": "noncash_goods",
+      "amount": 5001.00,
+      "boundary": true,
+      "assetDescription": "Grand piano - Baldwin Model R",
+      "assetCondition": "Excellent",
+      "dateAcquired": "2010-08-20",
+      "howAcquired": "Purchase",
+      "costBasis": 8000.00,
+      "donor": {
+        "name": "Robert J. Anderson",
+        "address": "321 Pine Road",
+        "city": "Denver",
+        "state": "CO",
+        "zip": "80202"
+      },
+      "donee": {
+        "name": "First Community Church",
+        "ein": "23-4567890",
+        "address": "789 Faith Avenue, Hometown, ST 23456"
+      },
+      "contributionDate": "2025-07-01",
+      "appraisal": {
+        "appraiserName": "Thomas E. Richardson",
+        "appraiserAddress": "500 Appraisal Lane, Denver, CO 80203",
+        "appraiserQualifications": "Certified Personal Property Appraiser, 15 years experience in musical instruments",
+        "appraisalDate": "2025-06-25",
+        "valuationMethod": "Comparable Sales"
+      },
+      "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
+    },
+    {
+      "id": "D014",
+      "description": "Non-cash goods $15,000 - requires Form 8283-B + appraisal + acknowledgment",
+      "assetType": "noncash_goods",
+      "amount": 15000.00,
+      "assetDescription": "Antique Persian rug (9x12 Tabriz)",
+      "assetCondition": "Excellent",
+      "dateAcquired": "2005-04-15",
+      "howAcquired": "Purchase",
+      "costBasis": 12000.00,
+      "donor": {
+        "name": "Jennifer L. Miller",
+        "address": "147 Birch Way",
+        "city": "Phoenix",
+        "state": "AZ",
+        "zip": "85001"
+      },
+      "donee": {
+        "name": "Metropolitan Museum Foundation",
+        "ein": "13-1624086",
+        "address": "1000 Fifth Avenue, New York, NY 10028"
+      },
+      "contributionDate": "2025-08-10",
+      "appraisal": {
+        "appraiserName": "Catherine M. Knowles",
+        "appraiserAddress": "200 Art District Blvd, Phoenix, AZ 85004",
+        "appraiserQualifications": "ASA Certified Appraiser, specializing in Oriental rugs and textiles",
+        "appraisalDate": "2025-08-01",
+        "valuationMethod": "Comparable Sales"
+      },
+      "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
+    },
+    {
+      "id": "D015",
+      "description": "Vehicle $400 - requires acknowledgment only",
+      "assetType": "vehicle",
+      "amount": 400.00,
+      "vehicle": {
+        "year": 2008,
+        "make": "Honda",
+        "model": "Civic",
+        "vin": "2HGFG12688H501234",
+        "mileage": 185000,
+        "condition": "Fair"
+      },
+      "donor": {
+        "name": "David K. Wilson",
+        "address": "258 Willow Street",
+        "city": "Atlanta",
+        "state": "GA",
+        "zip": "30301"
+      },
+      "donee": {
+        "name": "Vehicles for Veterans",
+        "ein": "45-3827461",
+        "address": "1500 Charity Drive, Atlanta, GA 30302"
+      },
+      "contributionDate": "2025-02-28",
+      "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D016",
+      "description": "Vehicle $500 (boundary) - requires acknowledgment only",
+      "assetType": "vehicle",
+      "amount": 500.00,
+      "boundary": true,
+      "vehicle": {
+        "year": 2006,
+        "make": "Toyota",
+        "model": "Corolla",
+        "vin": "1NXBR32E26Z789012",
+        "mileage": 195000,
+        "condition": "Fair"
+      },
+      "donor": {
+        "name": "Lisa A. Brown",
+        "address": "963 Cedar Court",
+        "city": "Boston",
+        "state": "MA",
+        "zip": "02101"
+      },
+      "donee": {
+        "name": "Cars for Causes",
+        "ein": "52-1847362",
+        "address": "750 Auto Row, Boston, MA 02102"
+      },
+      "contributionDate": "2025-03-20",
+      "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D017",
+      "description": "Vehicle $501 (boundary) - requires Form 1098-C",
+      "assetType": "vehicle",
+      "amount": 501.00,
+      "boundary": true,
+      "vehicle": {
+        "year": 2010,
+        "make": "Ford",
+        "model": "Focus",
+        "vin": "1FAHP3F29CL345678",
+        "mileage": 165000,
+        "condition": "Fair"
+      },
+      "saleInfo": {
+        "soldAtAuction": true,
+        "grossProceeds": 501.00,
+        "saleDate": "2025-04-15"
+      },
+      "donor": {
+        "name": "John A. Smith",
+        "address": "123 Main Street",
+        "city": "Springfield",
+        "state": "IL",
+        "zip": "62701"
+      },
+      "donee": {
+        "name": "Wheels for Wishes",
+        "ein": "27-1583946",
+        "address": "300 Donation Drive, Springfield, IL 62702"
+      },
+      "contributionDate": "2025-04-01",
+      "forms": ["form_1098c"]
+    },
+    {
+      "id": "D018",
+      "description": "Vehicle $12,000 - requires Form 1098-C",
+      "assetType": "vehicle",
+      "amount": 12000.00,
+      "vehicle": {
+        "year": 2018,
+        "make": "Honda",
+        "model": "CR-V",
+        "vin": "5J6RW2H85JL012345",
+        "mileage": 85000,
+        "condition": "Good"
+      },
+      "saleInfo": {
+        "soldAtAuction": true,
+        "grossProceeds": 12000.00,
+        "saleDate": "2025-06-01"
+      },
+      "donor": {
+        "name": "Sarah M. Johnson",
+        "address": "654 Maple Lane",
+        "city": "Seattle",
+        "state": "WA",
+        "zip": "98101"
+      },
+      "donee": {
+        "name": "American Red Cross",
+        "ein": "53-0196605",
+        "address": "431 18th Street NW, Washington, DC 20006"
+      },
+      "contributionDate": "2025-05-15",
+      "forms": ["form_1098c"]
+    },
+    {
+      "id": "D019",
+      "description": "Vehicle $35,000 - requires Form 1098-C",
+      "assetType": "vehicle",
+      "amount": 35000.00,
+      "vehicle": {
+        "year": 2022,
+        "make": "Tesla",
+        "model": "Model 3",
+        "vin": "5YJ3E1EA1NF567890",
+        "mileage": 25000,
+        "condition": "Excellent"
+      },
+      "saleInfo": {
+        "transferredToNeedy": true,
+        "recipientDescription": "Qualified low-income individual"
+      },
+      "donor": {
+        "name": "Robert J. Anderson",
+        "address": "321 Pine Road",
+        "city": "Denver",
+        "state": "CO",
+        "zip": "80202"
+      },
+      "donee": {
+        "name": "Working Cars for Working Families",
+        "ein": "84-2957163",
+        "address": "1200 Community Blvd, Denver, CO 80204"
+      },
+      "contributionDate": "2025-07-20",
+      "forms": ["form_1098c"]
+    },
+    {
+      "id": "D020",
+      "description": "Publicly traded stock $500",
+      "assetType": "stock_public",
+      "amount": 500.00,
+      "security": {
+        "name": "Apple Inc.",
+        "ticker": "AAPL",
+        "cusip": "037833100",
+        "shares": 2.5,
+        "pricePerShare": 200.00,
+        "broker": "Charles Schwab & Co."
+      },
+      "donor": {
+        "name": "Emily R. Davis",
+        "address": "789 Elm Drive",
+        "city": "Austin",
+        "state": "TX",
+        "zip": "78701"
+      },
+      "donee": {
+        "name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "address": "701 N. Fairfax Street, Alexandria, VA 22314"
+      },
+      "contributionDate": "2025-03-10",
+      "forms": ["stock_confirmation"]
+    },
+    {
+      "id": "D021",
+      "description": "Publicly traded stock $5,000",
+      "assetType": "stock_public",
+      "amount": 5000.00,
+      "security": {
+        "name": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "cusip": "594918104",
+        "shares": 12,
+        "pricePerShare": 416.67,
+        "broker": "Fidelity Investments"
+      },
+      "donor": {
+        "name": "Michael T. Williams",
+        "address": "456 Oak Avenue",
+        "city": "Portland",
+        "state": "OR",
+        "zip": "97201"
+      },
+      "donee": {
+        "name": "American Red Cross",
+        "ein": "53-0196605",
+        "address": "431 18th Street NW, Washington, DC 20006"
+      },
+      "contributionDate": "2025-04-25",
+      "forms": ["stock_confirmation"]
+    },
+    {
+      "id": "D022",
+      "description": "Publicly traded stock $25,000",
+      "assetType": "stock_public",
+      "amount": 25000.00,
+      "security": {
+        "name": "Amazon.com Inc.",
+        "ticker": "AMZN",
+        "cusip": "023135106",
+        "shares": 125,
+        "pricePerShare": 200.00,
+        "broker": "E*TRADE Securities"
+      },
+      "donor": {
+        "name": "Jennifer L. Miller",
+        "address": "147 Birch Way",
+        "city": "Phoenix",
+        "state": "AZ",
+        "zip": "85001"
+      },
+      "donee": {
+        "name": "State University Foundation",
+        "ein": "34-5678901",
+        "address": "100 College Drive, University City, ST 34567"
+      },
+      "contributionDate": "2025-05-30",
+      "forms": ["stock_confirmation"]
+    },
+    {
+      "id": "D023",
+      "description": "Closely-held stock $5,000 - requires Form 8283-A",
+      "assetType": "stock_closelyheld",
+      "amount": 5000.00,
+      "assetDescription": "100 shares Anderson Family Holdings LLC",
+      "security": {
+        "name": "Anderson Family Holdings LLC",
+        "shares": 100,
+        "pricePerShare": 50.00,
+        "companyDescription": "Private investment holding company"
+      },
+      "dateAcquired": "2015-01-01",
+      "howAcquired": "Founding member contribution",
+      "costBasis": 1000.00,
+      "donor": {
+        "name": "Robert J. Anderson",
+        "address": "321 Pine Road",
+        "city": "Denver",
+        "state": "CO",
+        "zip": "80202"
+      },
+      "donee": {
+        "name": "Community Foundation of Colorado",
+        "ein": "84-0404757",
+        "address": "1600 Grant Street, Denver, CO 80203"
+      },
+      "contributionDate": "2025-06-20",
+      "forms": ["form_8283_section_a"]
+    },
+    {
+      "id": "D024",
+      "description": "Closely-held stock $10,000 (boundary) - requires Form 8283-A",
+      "assetType": "stock_closelyheld",
+      "amount": 10000.00,
+      "boundary": true,
+      "assetDescription": "200 shares Wilson Properties Inc.",
+      "security": {
+        "name": "Wilson Properties Inc.",
+        "shares": 200,
+        "pricePerShare": 50.00,
+        "companyDescription": "Private real estate investment company"
+      },
+      "dateAcquired": "2012-06-15",
+      "howAcquired": "Purchase",
+      "costBasis": 4000.00,
+      "donor": {
+        "name": "David K. Wilson",
+        "address": "258 Willow Street",
+        "city": "Atlanta",
+        "state": "GA",
+        "zip": "30301"
+      },
+      "donee": {
+        "name": "Community Foundation of Greater Atlanta",
+        "ein": "58-1344646",
+        "address": "191 Peachtree Street NE, Atlanta, GA 30303"
+      },
+      "contributionDate": "2025-07-15",
+      "forms": ["form_8283_section_a"]
+    },
+    {
+      "id": "D025",
+      "description": "Closely-held stock $10,001 (boundary) - requires Form 8283-B + appraisal",
+      "assetType": "stock_closelyheld",
+      "amount": 10001.00,
+      "boundary": true,
+      "security": {
+        "name": "Miller Family Enterprises LLC",
+        "shares": 50,
+        "pricePerShare": 200.02,
+        "companyDescription": "Private manufacturing company"
+      },
+      "dateAcquired": "2010-03-01",
+      "howAcquired": "Gift from parent",
+      "costBasis": 2500.00,
+      "donor": {
+        "name": "Jennifer L. Miller",
+        "address": "147 Birch Way",
+        "city": "Phoenix",
+        "state": "AZ",
+        "zip": "85001"
+      },
+      "donee": {
+        "name": "Arizona Community Foundation",
+        "ein": "86-0348306",
+        "address": "2201 E. Camelback Road, Phoenix, AZ 85016"
+      },
+      "contributionDate": "2025-08-01",
+      "appraisal": {
+        "appraiserName": "James P. Thornton, CFA, ASA",
+        "appraiserAddress": "100 Financial Plaza, Phoenix, AZ 85012",
+        "appraiserQualifications": "Accredited Senior Appraiser, Business Valuation, CFA Charterholder",
+        "appraisalDate": "2025-07-25",
+        "valuationMethod": "Discounted Cash Flow / Market Approach"
+      },
+      "forms": ["form_8283_section_b", "appraisal"]
+    },
+    {
+      "id": "D026",
+      "description": "Closely-held stock $50,000 - requires Form 8283-B + appraisal",
+      "assetType": "stock_closelyheld",
+      "amount": 50000.00,
+      "security": {
+        "name": "Smith Tech Ventures Inc.",
+        "shares": 500,
+        "pricePerShare": 100.00,
+        "companyDescription": "Private technology investment company"
+      },
+      "dateAcquired": "2008-09-15",
+      "howAcquired": "Founding member",
+      "costBasis": 5000.00,
+      "donor": {
+        "name": "John A. Smith",
+        "address": "123 Main Street",
+        "city": "Springfield",
+        "state": "IL",
+        "zip": "62701"
+      },
+      "donee": {
+        "name": "Illinois Community Foundation",
+        "ein": "37-1349398",
+        "address": "505 S. Neil Street, Champaign, IL 61820"
+      },
+      "contributionDate": "2025-09-10",
+      "appraisal": {
+        "appraiserName": "Patricia A. Nelson, CPA/ABV, CVA",
+        "appraiserAddress": "200 Commerce Blvd, Springfield, IL 62703",
+        "appraiserQualifications": "Certified Public Accountant, Accredited in Business Valuation",
+        "appraisalDate": "2025-09-01",
+        "valuationMethod": "Asset-Based / Income Approach"
+      },
+      "forms": ["form_8283_section_b", "appraisal"]
+    },
+    {
+      "id": "D027",
+      "description": "Real estate $100,000 - requires Form 8283-B + appraisal",
+      "assetType": "real_estate",
+      "amount": 100000.00,
+      "property": {
+        "description": "Vacant residential lot, 0.5 acres",
+        "address": "1500 Development Road, Austin, TX 78702",
+        "legalDescription": "Lot 15, Block 3, Sunrise Estates Subdivision",
+        "parcelNumber": "02-4567-890"
+      },
+      "dateAcquired": "2015-05-20",
+      "howAcquired": "Purchase",
+      "costBasis": 45000.00,
+      "donor": {
+        "name": "Emily R. Davis",
+        "address": "789 Elm Drive",
+        "city": "Austin",
+        "state": "TX",
+        "zip": "78701"
+      },
+      "donee": {
+        "name": "Habitat for Humanity International",
+        "ein": "91-1914868",
+        "address": "322 W. Lamar Street, Americus, GA 31709"
+      },
+      "contributionDate": "2025-10-01",
+      "appraisal": {
+        "appraiserName": "William R. Foster, MAI",
+        "appraiserAddress": "400 Real Estate Row, Austin, TX 78701",
+        "appraiserQualifications": "MAI Designated Member, Appraisal Institute",
+        "appraisalDate": "2025-09-20",
+        "valuationMethod": "Sales Comparison Approach"
+      },
+      "forms": ["form_8283_section_b", "appraisal"]
+    },
+    {
+      "id": "D028",
+      "description": "Real estate $500,000 - requires Form 8283-B + appraisal",
+      "assetType": "real_estate",
+      "amount": 500000.00,
+      "property": {
+        "description": "Single-family rental property, 3BR/2BA, 1,850 sq ft",
+        "address": "742 Evergreen Terrace, Seattle, WA 98102",
+        "legalDescription": "Lot 12, Block 7, Evergreen Heights Addition",
+        "parcelNumber": "98-7654-321"
+      },
+      "dateAcquired": "2010-08-15",
+      "howAcquired": "Purchase",
+      "costBasis": 280000.00,
+      "donor": {
+        "name": "Sarah M. Johnson",
+        "address": "654 Maple Lane",
+        "city": "Seattle",
+        "state": "WA",
+        "zip": "98101"
+      },
+      "donee": {
+        "name": "Seattle Foundation",
+        "ein": "91-0596010",
+        "address": "1601 Fifth Avenue, Seattle, WA 98101"
+      },
+      "contributionDate": "2025-11-15",
+      "appraisal": {
+        "appraiserName": "Margaret C. Hayes, SRA, AI-RRS",
+        "appraiserAddress": "800 Valuation Way, Seattle, WA 98104",
+        "appraiserQualifications": "Senior Residential Appraiser, AI Residential Review Specialist",
+        "appraisalDate": "2025-11-01",
+        "valuationMethod": "Sales Comparison and Income Approach"
+      },
+      "forms": ["form_8283_section_b", "appraisal"]
+    }
+  ]
+}
