@@ -70,33 +70,36 @@ function generateForm8283A(donation) {
     ctx.fillRect(0, 0, width, height);
     
     const margin = 30;
-    let y = 25;
+    let y = 28;
     
     // === HEADER ===
+    // Left column - Form info (constrained width)
     ctx.font = 'bold 14px Inter';
     ctx.fillStyle = '#000000';
     ctx.fillText('Form 8283', margin, y);
     
     ctx.font = '7px Inter';
-    ctx.fillText('(Rev. December 2023)', margin, y + 10);
-    ctx.fillText('Department of the Treasury', margin, y + 18);
-    ctx.fillText('Internal Revenue Service', margin, y + 26);
+    ctx.fillText('(Rev. December 2023)', margin, y + 12);
+    ctx.fillText('Department of the Treasury', margin, y + 21);
+    ctx.fillText('Internal Revenue Service', margin, y + 30);
     
+    // Center column - Title (positioned to avoid overlap)
     ctx.font = 'bold 12px Inter';
     ctx.textAlign = 'center';
-    ctx.fillText('Noncash Charitable Contributions', width / 2, y + 5);
+    ctx.fillText('Noncash Charitable Contributions', width / 2, y + 2);
     
-    ctx.font = '8px Inter';
-    ctx.fillText('▶ Attach to your tax return if you claimed a total deduction', width / 2, y + 16);
-    ctx.fillText('of over $500 for all contributed property.', width / 2, y + 25);
+    ctx.font = '7px Inter';
+    ctx.fillText('▶ Attach to your tax return if you claimed a total deduction', width / 2, y + 14);
+    ctx.fillText('of over $500 for all contributed property.', width / 2, y + 24);
     
+    // Right column - OMB info
     ctx.textAlign = 'right';
     ctx.font = '7px Inter';
     ctx.fillText('OMB No. 1545-0908', width - margin, y);
-    ctx.fillText('Attachment', width - margin, y + 12);
-    ctx.fillText('Sequence No. 155', width - margin, y + 21);
+    ctx.fillText('Attachment', width - margin, y + 14);
+    ctx.fillText('Sequence No. 155', width - margin, y + 24);
     
-    y += 40;
+    y += 48;
     ctx.textAlign = 'left';
     
     // === NAME BOX ===
@@ -114,21 +117,21 @@ function generateForm8283A(donation) {
     ctx.font = '10px Inter';
     ctx.fillText('XXX-XX-' + Math.floor(1000 + Math.random() * 9000), margin + 388, y + 24);
     
-    y += 42;
+    y += 48;
     
     // === SECTION A HEADER ===
     ctx.fillStyle = '#e0e0e0';
-    ctx.fillRect(margin, y, width - 2 * margin, 16);
+    ctx.fillRect(margin, y, width - 2 * margin, 18);
     ctx.fillStyle = '#000000';
     ctx.font = 'bold 8px Inter';
-    ctx.fillText('Section A. Donated Property of $5,000 or Less and Publicly Traded Securities', margin + 5, y + 11);
+    ctx.fillText('Section A. Donated Property of $5,000 or Less and Publicly Traded Securities', margin + 5, y + 12);
     
-    y += 20;
+    y += 26;
     
     ctx.font = 'bold 7px Inter';
     ctx.fillText('Part I    Information on Donated Property—If you need more space, attach a statement.', margin, y);
     
-    y += 12;
+    y += 16;
     
     // === TABLE STRUCTURE ===
     // Define columns with proper widths
@@ -297,17 +300,17 @@ function generateForm8283A(donation) {
     ctx.font = '8px Inter';
     ctx.fillText('Comparable Sales', tableLeft + 360, y + 15);
     
-    y += 30;
+    y += 36;
     
     // === PART II ===
     ctx.font = 'bold 7px Inter';
     ctx.fillText('Part II   Partial Interests and Restricted Use Property—Complete lines 2a through 2e if you gave less than an', margin, y);
-    y += 9;
+    y += 11;
     ctx.fillText('          entire interest in a property listed in Part I. Complete lines 3a through 3c if conditions were placed on a', margin, y);
-    y += 9;
+    y += 11;
     ctx.fillText('          contribution listed in Part I; also attach the required statement (see instructions).', margin, y);
     
-    y += 15;
+    y += 18;
     ctx.font = '7px Inter';
     ctx.fillText('2a  Enter the letter from Part I that identifies the property for which you gave less than an entire interest ▶', margin, y);
     ctx.fillText('N/A', 480, y);
@@ -353,27 +356,34 @@ function generateForm8283B(donation) {
     ctx.fillRect(0, 0, width, height);
     
     const margin = 30;
-    let y = 22;
+    let y = 25;
     
     // === HEADER ===
+    // Left column - Form info
     ctx.font = 'bold 13px Inter';
     ctx.fillStyle = '#000000';
     ctx.fillText('Form 8283', margin, y);
     
     ctx.font = '7px Inter';
-    ctx.fillText('(Rev. December 2023)', margin, y + 9);
+    ctx.fillText('(Rev. December 2023)', margin, y + 11);
+    ctx.fillText('Department of the Treasury', margin, y + 20);
+    ctx.fillText('Internal Revenue Service', margin, y + 29);
     
+    // Center column - Title
     ctx.font = 'bold 11px Inter';
     ctx.textAlign = 'center';
-    ctx.fillText('Noncash Charitable Contributions', width / 2, y + 3);
+    ctx.fillText('Noncash Charitable Contributions', width / 2, y + 2);
     ctx.font = '7px Inter';
-    ctx.fillText('▶ Attach to your tax return if you claimed a total deduction of over $500.', width / 2, y + 13);
+    ctx.fillText('▶ Attach to your tax return if you claimed a total deduction of over $500.', width / 2, y + 14);
     
+    // Right column - OMB info
     ctx.textAlign = 'right';
     ctx.font = '7px Inter';
     ctx.fillText('OMB No. 1545-0908', width - margin, y);
+    ctx.fillText('Attachment', width - margin, y + 14);
+    ctx.fillText('Sequence No. 155', width - margin, y + 24);
     
-    y += 28;
+    y += 42;
     ctx.textAlign = 'left';
     
     // === NAME BOX ===
@@ -391,29 +401,29 @@ function generateForm8283B(donation) {
     ctx.font = '9px Inter';
     ctx.fillText('XXX-XX-' + Math.floor(1000 + Math.random() * 9000), margin + 388, y + 20);
     
-    y += 32;
+    y += 36;
     
     // === SECTION B HEADER ===
     ctx.fillStyle = '#e0e0e0';
-    ctx.fillRect(margin, y, width - 2 * margin, 12);
+    ctx.fillRect(margin, y, width - 2 * margin, 14);
     ctx.fillStyle = '#000000';
     ctx.font = 'bold 7px Inter';
-    ctx.fillText('Section B. Donated Property Over $5,000 (Except Publicly Traded Securities)—Complete this section for one item (or group of similar', margin + 3, y + 9);
+    ctx.fillText('Section B. Donated Property Over $5,000 (Except Publicly Traded Securities)—Complete this section for one item (or group of similar', margin + 3, y + 10);
     
-    y += 14;
+    y += 16;
     ctx.fillStyle = '#e0e0e0';
-    ctx.fillRect(margin, y, width - 2 * margin, 10);
+    ctx.fillRect(margin, y, width - 2 * margin, 12);
     ctx.fillStyle = '#000000';
     ctx.font = '6px Inter';
-    ctx.fillText('items) for which you claimed a deduction of more than $5,000 per item or group. Attach a separate Form 8283, Section B, for each property or group.', margin + 3, y + 7);
+    ctx.fillText('items) for which you claimed a deduction of more than $5,000 per item or group. Attach a separate Form 8283, Section B, for each property or group.', margin + 3, y + 8);
     
-    y += 14;
+    y += 18;
     
     // === PART I ===
     ctx.font = 'bold 7px Inter';
     ctx.fillText('Part I    Information on Donated Property', margin, y);
     
-    y += 11;
+    y += 14;
     
     // Property type checkboxes
     ctx.font = '7px Inter';
@@ -499,19 +509,19 @@ function generateForm8283B(donation) {
     ctx.font = '9px Inter';
     ctx.fillText(formatDate(donation.contributionDate), margin + 100, y + 42);
     
-    y += 58;
+    y += 62;
     
     // === PART II - Taxpayer Statement ===
     ctx.font = 'bold 7px Inter';
     ctx.fillText('Part II   Taxpayer (Donor) Statement—Complete this part for each item included in Part I above.', margin, y);
     
-    y += 12;
+    y += 14;
     ctx.font = '7px Inter';
     ctx.fillText('I declare that the following statement is true, correct, and complete to the best of my knowledge and belief: The appraised', margin, y);
-    y += 9;
+    y += 10;
     ctx.fillText('fair market value of the property shown in Part I exceeds the deduction I claimed. I received no goods or services in exchange.', margin, y);
     
-    y += 14;
+    y += 16;
     ctx.fillText('Signature ▶', margin, y);
     ctx.beginPath();
     ctx.moveTo(margin + 55, y + 2);
@@ -523,19 +533,19 @@ function generateForm8283B(donation) {
     ctx.lineTo(width - margin, y + 2);
     ctx.stroke();
     
-    y += 18;
+    y += 20;
     
     // === PART III - Appraiser Declaration ===
     ctx.font = 'bold 7px Inter';
     ctx.fillText('Part III  Declaration of Appraiser', margin, y);
     
-    y += 10;
+    y += 12;
     ctx.font = '6px Inter';
     ctx.fillText('I declare that I am not the donor, the donee, a party to the transaction, or employed by any of the foregoing. I hold myself out to the public as an', margin, y);
-    y += 8;
+    y += 9;
     ctx.fillText('appraiser and perform appraisals on a regular basis. I am qualified to appraise the type of property being valued.', margin, y);
     
-    y += 12;
+    y += 14;
     
     if (donation.appraisal) {
         ctx.font = '7px Inter';
@@ -575,21 +585,21 @@ function generateForm8283B(donation) {
     ctx.lineTo(width - margin, y + 2);
     ctx.stroke();
     
-    y += 18;
+    y += 20;
     
     // === PART IV - Donee Acknowledgment ===
     ctx.font = 'bold 7px Inter';
     ctx.fillText('Part IV  Donee Acknowledgment—To be completed by the charitable organization.', margin, y);
     
-    y += 10;
+    y += 12;
     ctx.font = '6px Inter';
     ctx.fillText('This charitable organization acknowledges that it is a qualified organization under section 170(c) and that it received the donated property', margin, y);
-    y += 8;
+    y += 9;
     ctx.fillText('as described in Part I, Section B, above on the following date:', margin, y);
     ctx.font = '8px Inter';
     ctx.fillText(formatDateShort(donation.contributionDate), margin + 250, y);
     
-    y += 12;
+    y += 14;
     ctx.font = '7px Inter';
     ctx.fillText('Donee:', margin, y);
     ctx.font = '8px Inter';
