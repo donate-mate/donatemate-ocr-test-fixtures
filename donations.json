@@ -783,6 +783,66 @@
         "valuationMethod": "Sales Comparison and Income Approach"
       },
       "forms": ["form_8283_section_b", "appraisal"]
+    },
+    {
+      "id": "D029",
+      "description": "Cash donation $63.50 - small gift with written acknowledgment (email receipt)",
+      "assetType": "cash",
+      "amount": 63.50,
+      "donor": {
+        "name": "Daniel K. Foster",
+        "address": "118 Birch Hollow Road",
+        "city": "Hanover",
+        "state": "NH",
+        "zip": "03755"
+      },
+      "donee": {
+        "name": "Friends of Dartmouth-Hitchcock Health",
+        "ein": "26-4812335",
+        "address": "One Medical Center Drive, Lebanon, NH 03756"
+      },
+      "contributionDate": "2026-06-20",
+      "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D030",
+      "description": "Cash donation $84.25 - small gift with written acknowledgment (email receipt)",
+      "assetType": "cash",
+      "amount": 84.25,
+      "donor": {
+        "name": "Marcus T. Reyes",
+        "address": "47 Larkspur Court",
+        "city": "Boulder",
+        "state": "CO",
+        "zip": "80302"
+      },
+      "donee": {
+        "name": "Grassroot Soccer",
+        "ein": "43-1957920",
+        "address": "PO Box 354, Norwich, VT 05055"
+      },
+      "contributionDate": "2025-10-08",
+      "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D031",
+      "description": "Cash donation $97.40 - small gift with written acknowledgment (email receipt)",
+      "assetType": "cash",
+      "amount": 97.40,
+      "donor": {
+        "name": "Laura B. Whitfield",
+        "address": "812 Cedar Ridge Drive",
+        "city": "Saint Paul",
+        "state": "MN",
+        "zip": "55104"
+      },
+      "donee": {
+        "name": "International Institute of Minnesota",
+        "ein": "41-0693912",
+        "address": "1694 Como Avenue, Saint Paul, MN 55108"
+      },
+      "contributionDate": "2026-01-25",
+      "forms": ["acknowledgment_letter"]
     }
   ]
 }
