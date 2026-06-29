@@ -1,15 +1,15 @@
 {
   "version": "2.0.0",
   "description": "IRS-compliant OCR test fixtures with linked forms per donation",
-  "generatedAt": "2026-06-29T21:55:35.568Z",
+  "generatedAt": "2026-06-29T22:32:18.949Z",
   "irsReference": "IRS Publication 526 (2025)",
   "namingConvention": "<form_type>_<donation_id>.png",
-  "totalDonations": 31,
-  "totalForms": 45,
+  "totalDonations": 34,
+  "totalForms": 48,
   "formCounts": {
     "bank_statement": 1,
     "cancelled_check": 1,
-    "acknowledgment_letter": 16,
+    "acknowledgment_letter": 19,
     "receipt": 4,
     "form_8283_section_a": 5,
     "form_8283_section_b": 6,
@@ -734,6 +734,54 @@
         "donee_ein": "41-0693912",
         "contribution_date": "2026-01-25",
         "amount": 97.4,
+        "asset_type": "cash",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D032.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D032",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Gregory P. Lawson",
+        "donor_address": "905 Sycamore Lane, Concord, NH 03301",
+        "donee_name": "Friends of Dartmouth-Hitchcock Health",
+        "donee_ein": "26-4812335",
+        "contribution_date": "2026-06-20",
+        "amount": 58.75,
+        "asset_type": "cash",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D033.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D033",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Stephen R. Caldwell",
+        "donor_address": "1420 Harborview Drive, Annapolis, MD 21401",
+        "donee_name": "Navy SEAL Foundation",
+        "donee_ein": "31-1728910",
+        "contribution_date": "2025-02-03",
+        "amount": 487.65,
+        "asset_type": "cash",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D034.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D034",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Walter J. Ashford",
+        "donor_address": "2611 Foxhall Road NW, Washington, DC 20007",
+        "donee_name": "Gonzaga College High School",
+        "donee_ein": "53-0204703",
+        "contribution_date": "2025-06-17",
+        "amount": 425000,
         "asset_type": "cash",
         "asset_description": null
       }

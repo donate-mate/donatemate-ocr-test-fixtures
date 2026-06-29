@@ -843,6 +843,66 @@
       },
       "contributionDate": "2026-01-25",
       "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D032",
+      "description": "Cash donation $58.75 - small gift with written acknowledgment (email receipt)",
+      "assetType": "cash",
+      "amount": 58.75,
+      "donor": {
+        "name": "Gregory P. Lawson",
+        "address": "905 Sycamore Lane",
+        "city": "Concord",
+        "state": "NH",
+        "zip": "03301"
+      },
+      "donee": {
+        "name": "Friends of Dartmouth-Hitchcock Health",
+        "ein": "26-4812335",
+        "address": "One Medical Center Drive, Lebanon, NH 03756"
+      },
+      "contributionDate": "2026-06-20",
+      "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D033",
+      "description": "Cash donation $487.65 - requires written acknowledgment",
+      "assetType": "cash",
+      "amount": 487.65,
+      "donor": {
+        "name": "Stephen R. Caldwell",
+        "address": "1420 Harborview Drive",
+        "city": "Annapolis",
+        "state": "MD",
+        "zip": "21401"
+      },
+      "donee": {
+        "name": "Navy SEAL Foundation",
+        "ein": "31-1728910",
+        "address": "1619 D Street SE, Building 5421, Virginia Beach, VA 23459"
+      },
+      "contributionDate": "2025-02-03",
+      "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D034",
+      "description": "Cash donation $425,000 - major gift, requires written acknowledgment",
+      "assetType": "cash",
+      "amount": 425000.00,
+      "donor": {
+        "name": "Walter J. Ashford",
+        "address": "2611 Foxhall Road NW",
+        "city": "Washington",
+        "state": "DC",
+        "zip": "20007"
+      },
+      "donee": {
+        "name": "Gonzaga College High School",
+        "ein": "53-0204703",
+        "address": "19 Eye Street NW, Washington, DC 20001"
+      },
+      "contributionDate": "2025-06-17",
+      "forms": ["acknowledgment_letter"]
     }
   ]
 }
