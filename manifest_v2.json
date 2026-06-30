@@ -1,11 +1,11 @@
 {
   "version": "2.0.0",
   "description": "IRS-compliant OCR test fixtures with linked forms per donation",
-  "generatedAt": "2026-03-03T00:42:44.840Z",
+  "generatedAt": "2026-06-30T14:15:15.402Z",
   "irsReference": "IRS Publication 526 (2025)",
   "namingConvention": "<form_type>_<donation_id>.png",
-  "totalDonations": 28,
-  "totalForms": 42,
+  "totalDonations": 31,
+  "totalForms": 45,
   "formCounts": {
     "bank_statement": 1,
     "cancelled_check": 1,
@@ -15,7 +15,8 @@
     "form_8283_section_b": 6,
     "appraisal": 6,
     "form_1098c": 3,
-    "stock_confirmation": 3
+    "stock_confirmation": 3,
+    "gofundme_receipt": 3
   },
   "documents": [
     {
@@ -687,6 +688,54 @@
         "contribution_date": "2025-11-15",
         "amount": 500000,
         "asset_type": "real_estate",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "gofundme_receipt/gofundme_receipt_D035.png",
+      "formType": "gofundme_receipt",
+      "donationId": "D035",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Jonathan J. Webb",
+        "donor_address": "284 Hillcrest Avenue, Sacramento, CA 95818",
+        "donee_name": "GoFundMe (Maria Rivera's fundraiser)",
+        "donee_ein": null,
+        "contribution_date": "2025-08-12",
+        "amount": 50,
+        "asset_type": "cash",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "gofundme_receipt/gofundme_receipt_D036.png",
+      "formType": "gofundme_receipt",
+      "donationId": "D036",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Priya N. Raman",
+        "donor_address": "1107 Magnolia Street, Raleigh, NC 27601",
+        "donee_name": "GoFundMe (Allison Carter's fundraiser)",
+        "donee_ein": null,
+        "contribution_date": "2025-11-04",
+        "amount": 150,
+        "asset_type": "cash",
+        "asset_description": null
+      }
+    },
+    {
+      "filename": "gofundme_receipt/gofundme_receipt_D037.png",
+      "formType": "gofundme_receipt",
+      "donationId": "D037",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Hannah L. Foster",
+        "donor_address": "56 Larkspur Lane, Columbus, OH 43215",
+        "donee_name": "GoFundMe (Tyler Brooks's fundraiser)",
+        "donee_ein": null,
+        "contribution_date": "2026-01-19",
+        "amount": 25,
+        "asset_type": "cash",
         "asset_description": null
       }
     }
