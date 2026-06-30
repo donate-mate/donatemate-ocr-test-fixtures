@@ -30,7 +30,8 @@ const generators = {
     form_8283_section_b: generateForm8283B,
     form_1098c: generateForm1098C,
     appraisal: generateAppraisal,
-    stock_confirmation: generateStockConfirmation
+    stock_confirmation: generateStockConfirmation,
+    gofundme_receipt: generateGoFundMeReceipt
 };
 
 // Utility functions
@@ -512,7 +513,137 @@ function generateReceipt(donation) {
     ctx.fillText(`This organization is a 501(c)(3) tax-exempt organization. Contributions are deductible under IRC Section 170.`, width / 2, height - 40);
     
     addWatermark(ctx, width, height);
-    
+
+    return canvas.toBuffer('image/png');
+}
+
+// Non-deductible crowdfunding payment confirmation (e.g. GoFundMe personal fundraiser).
+// Deliberately NOT a 501(c)(3) receipt: money goes to an individual organizer, no EIN,
+// and the document states the contribution is not tax deductible.
+function generateGoFundMeReceipt(donation) {
+    const width = 612, height = 792;
+    const canvas = createCanvas(width, height);
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, width, height);
+
+    const c = donation.campaign || {};
+    const tip = donation.tip || 0;
+    const total = donation.amount + tip;
+
+    // Brand header
+    ctx.fillStyle = '#02a95c';
+    ctx.fillRect(0, 0, width, 70);
+    ctx.font = 'bold 26px Inter';
+    ctx.fillStyle = 'white';
+    ctx.textAlign = 'left';
+    ctx.fillText('GoFundMe', 30, 45);
+    ctx.font = '11px Inter';
+    ctx.textAlign = 'right';
+    ctx.fillText('Donation Receipt', width - 30, 43);
+
+    let y = 110;
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#1a1a1a';
+    ctx.font = 'bold 16px Inter';
+    ctx.fillText('Thanks for your donation!', 40, y);
+
+    y += 24;
+    ctx.font = '11px Inter';
+    ctx.fillStyle = '#555555';
+    const intro = `Hi ${donation.donor.name.split(' ')[0]}, your contribution to the fundraiser below has been received.`;
+    for (const line of wrapText(ctx, intro, width - 80)) { ctx.fillText(line, 40, y); y += 16; }
+
+    y += 14;
+    // Campaign box
+    ctx.fillStyle = '#f4faf6';
+    ctx.fillRect(40, y, width - 80, 72);
+    ctx.strokeStyle = '#cce9d8';
+    ctx.strokeRect(40, y, width - 80, 72);
+    ctx.fillStyle = '#02a95c';
+    ctx.font = 'bold 9px Inter';
+    ctx.fillText('FUNDRAISER', 52, y + 20);
+    ctx.fillStyle = '#1a1a1a';
+    ctx.font = 'bold 13px Inter';
+    ctx.fillText((c.title || 'Personal Fundraiser'), 52, y + 40);
+    ctx.font = '10px Inter';
+    ctx.fillStyle = '#555555';
+    ctx.fillText(`Organized by ${c.organizer || 'Campaign Organizer'}   |   Benefiting ${c.beneficiary || c.organizer || 'the organizer'}`, 52, y + 60);
+
+    y += 98;
+
+    // Receipt meta
+    ctx.font = '10px Inter';
+    ctx.fillStyle = '#777777';
+    ctx.fillText('Confirmation #', 40, y);
+    ctx.fillText('Date', 320, y);
+    ctx.fillStyle = '#1a1a1a';
+    ctx.font = '11px Inter';
+    ctx.fillText(donation.transactionId || `GFM-${donation.id}`, 135, y);
+    ctx.fillText(formatDate(donation.contributionDate), 360, y);
+    y += 20;
+    ctx.font = '10px Inter';
+    ctx.fillStyle = '#777777';
+    ctx.fillText('Payment method', 40, y);
+    ctx.fillText('Donor', 320, y);
+    ctx.fillStyle = '#1a1a1a';
+    ctx.font = '11px Inter';
+    ctx.fillText(donation.paymentMethod || 'Credit card', 135, y);
+    ctx.fillText(donation.donor.name, 360, y);
+
+    y += 32;
+    // Amount breakdown
+    ctx.strokeStyle = '#e0e0e0';
+    ctx.beginPath(); ctx.moveTo(40, y); ctx.lineTo(width - 40, y); ctx.stroke();
+    y += 24;
+    ctx.font = '11px Inter';
+    ctx.fillStyle = '#333333';
+    ctx.fillText('Your donation', 40, y);
+    ctx.textAlign = 'right';
+    ctx.fillText(formatMoney(donation.amount), width - 40, y);
+    ctx.textAlign = 'left';
+    y += 20;
+    ctx.fillText('GoFundMe tip', 40, y);
+    ctx.textAlign = 'right';
+    ctx.fillText(formatMoney(tip), width - 40, y);
+    ctx.textAlign = 'left';
+    y += 14;
+    ctx.strokeStyle = '#e0e0e0';
+    ctx.beginPath(); ctx.moveTo(40, y); ctx.lineTo(width - 40, y); ctx.stroke();
+    y += 22;
+    ctx.font = 'bold 13px Inter';
+    ctx.fillStyle = '#1a1a1a';
+    ctx.fillText('Total charged', 40, y);
+    ctx.textAlign = 'right';
+    ctx.fillText(formatMoney(total), width - 40, y);
+    ctx.textAlign = 'left';
+
+    y += 38;
+    // Non-deductible disclaimer (prominent)
+    const boxH = 96;
+    ctx.fillStyle = '#fff7e6';
+    ctx.fillRect(40, y, width - 80, boxH);
+    ctx.strokeStyle = '#f0c36d';
+    ctx.strokeRect(40, y, width - 80, boxH);
+    ctx.fillStyle = '#8a5a00';
+    ctx.font = 'bold 11px Inter';
+    ctx.fillText('This donation is NOT tax deductible', 52, y + 22);
+    ctx.font = '9.5px Inter';
+    ctx.fillStyle = '#5a4300';
+    const disc = 'Donations to personal GoFundMe fundraisers are made to the organizer, not to a registered 501(c)(3) charity. GoFundMe is a for-profit company and does not issue tax-deductible receipts. No goods or services were exchanged. Please consult a tax advisor regarding deductibility.';
+    let dy = y + 40;
+    for (const line of wrapText(ctx, disc, width - 104)) { ctx.fillText(line, 52, dy); dy += 13; }
+
+    y += boxH + 28;
+    ctx.textAlign = 'center';
+    ctx.font = '8px Inter';
+    ctx.fillStyle = '#999999';
+    ctx.fillText('GoFundMe, Inc.   |   P.O. Box 122474, San Diego, CA 92112   |   support@gofundme.com', width / 2, height - 50);
+    ctx.fillText('This is a payment confirmation, not a charitable tax receipt.', width / 2, height - 36);
+
+    addWatermark(ctx, width, height);
+
     return canvas.toBuffer('image/png');
 }
 
@@ -1195,8 +1326,8 @@ async function main() {
     // Create output directories
     const formDirs = [
         'acknowledgment_letter', 'appraisal', 'bank_statement', 'cancelled_check',
-        'form_1098c', 'form_8283_section_a', 'form_8283_section_b', 
-        'receipt', 'stock_confirmation'
+        'form_1098c', 'form_8283_section_a', 'form_8283_section_b',
+        'receipt', 'stock_confirmation', 'gofundme_receipt'
     ];
     
     for (const dir of formDirs) {

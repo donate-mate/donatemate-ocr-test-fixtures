@@ -903,6 +903,96 @@
       },
       "contributionDate": "2025-06-17",
       "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D035",
+      "description": "Non-deductible GoFundMe personal fundraiser donation $50 - NOT tax deductible",
+      "assetType": "cash",
+      "deductible": false,
+      "platform": "GoFundMe",
+      "amount": 50.00,
+      "tip": 5.00,
+      "campaign": {
+        "title": "Help the Rivera Family Rebuild After the House Fire",
+        "organizer": "Maria Rivera",
+        "beneficiary": "The Rivera Family"
+      },
+      "donor": {
+        "name": "Jonathan J. Webb",
+        "address": "284 Hillcrest Avenue",
+        "city": "Sacramento",
+        "state": "CA",
+        "zip": "95818"
+      },
+      "donee": {
+        "name": "GoFundMe (Maria Rivera's fundraiser)",
+        "ein": null,
+        "address": "GoFundMe, Inc., P.O. Box 122474, San Diego, CA 92112"
+      },
+      "paymentMethod": "Visa ending in 4242",
+      "transactionId": "GFM-7F3A9C21D",
+      "contributionDate": "2025-08-12",
+      "forms": ["gofundme_receipt"]
+    },
+    {
+      "id": "D036",
+      "description": "Non-deductible GoFundMe memorial fundraiser donation $150 - NOT tax deductible",
+      "assetType": "cash",
+      "deductible": false,
+      "platform": "GoFundMe",
+      "amount": 150.00,
+      "tip": 0.00,
+      "campaign": {
+        "title": "In Loving Memory of David Carter - Funeral Costs",
+        "organizer": "Allison Carter",
+        "beneficiary": "The Carter Family"
+      },
+      "donor": {
+        "name": "Priya N. Raman",
+        "address": "1107 Magnolia Street",
+        "city": "Raleigh",
+        "state": "NC",
+        "zip": "27601"
+      },
+      "donee": {
+        "name": "GoFundMe (Allison Carter's fundraiser)",
+        "ein": null,
+        "address": "GoFundMe, Inc., P.O. Box 122474, San Diego, CA 92112"
+      },
+      "paymentMethod": "Mastercard ending in 5310",
+      "transactionId": "GFM-2B81E47A0",
+      "contributionDate": "2025-11-04",
+      "forms": ["gofundme_receipt"]
+    },
+    {
+      "id": "D037",
+      "description": "Non-deductible GoFundMe pet emergency fundraiser donation $25 - NOT tax deductible",
+      "assetType": "cash",
+      "deductible": false,
+      "platform": "GoFundMe",
+      "amount": 25.00,
+      "tip": 3.75,
+      "campaign": {
+        "title": "Save Biscuit - Emergency Surgery for Our Dog",
+        "organizer": "Tyler Brooks",
+        "beneficiary": "Tyler Brooks"
+      },
+      "donor": {
+        "name": "Hannah L. Foster",
+        "address": "56 Larkspur Lane",
+        "city": "Columbus",
+        "state": "OH",
+        "zip": "43215"
+      },
+      "donee": {
+        "name": "GoFundMe (Tyler Brooks's fundraiser)",
+        "ein": null,
+        "address": "GoFundMe, Inc., P.O. Box 122474, San Diego, CA 92112"
+      },
+      "paymentMethod": "PayPal",
+      "transactionId": "GFM-9D5C0F12B",
+      "contributionDate": "2026-01-19",
+      "forms": ["gofundme_receipt"]
     }
   ]
 }

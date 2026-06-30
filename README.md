@@ -19,7 +19,15 @@ This repository contains programmatically generated donation-related documents f
 | form_8283_section_b | 6 | Non-cash donations >$5,000, closely-held >$10,000, real estate |
 | receipt | 4 | Non-cash donation receipts <$500 |
 | stock_confirmation | 3 | Publicly traded securities transfers |
-| **Total** | **42** | |
+| gofundme_receipt | 3 | **Non-deductible** crowdfunding (GoFundMe personal fundraiser) payment confirmations |
+
+### Non-Deductible Fixtures
+
+Most fixtures model IRS-deductible charitable gifts. The `gofundme_receipt` type is the
+exception: it represents money sent to an individual organizer through a personal
+crowdfunding campaign. These documents carry **no EIN** and state explicitly that the
+contribution is **not tax deductible** — useful for testing OCR/classification that must
+distinguish deductible charitable receipts from non-deductible payment confirmations.
 
 ## Directory Structure
 
