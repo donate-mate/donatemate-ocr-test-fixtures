@@ -783,6 +783,126 @@
         "valuationMethod": "Sales Comparison and Income Approach"
       },
       "forms": ["form_8283_section_b", "appraisal"]
+    },
+    {
+      "id": "D029",
+      "description": "Cash donation $63.50 - small gift with written acknowledgment (email receipt)",
+      "assetType": "cash",
+      "amount": 63.50,
+      "donor": {
+        "name": "Daniel K. Foster",
+        "address": "118 Birch Hollow Road",
+        "city": "Hanover",
+        "state": "NH",
+        "zip": "03755"
+      },
+      "donee": {
+        "name": "Friends of Dartmouth-Hitchcock Health",
+        "ein": "26-4812335",
+        "address": "One Medical Center Drive, Lebanon, NH 03756"
+      },
+      "contributionDate": "2026-06-20",
+      "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D030",
+      "description": "Cash donation $84.25 - small gift with written acknowledgment (email receipt)",
+      "assetType": "cash",
+      "amount": 84.25,
+      "donor": {
+        "name": "Marcus T. Reyes",
+        "address": "47 Larkspur Court",
+        "city": "Boulder",
+        "state": "CO",
+        "zip": "80302"
+      },
+      "donee": {
+        "name": "Grassroot Soccer",
+        "ein": "43-1957920",
+        "address": "PO Box 354, Norwich, VT 05055"
+      },
+      "contributionDate": "2025-10-08",
+      "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D031",
+      "description": "Cash donation $97.40 - small gift with written acknowledgment (email receipt)",
+      "assetType": "cash",
+      "amount": 97.40,
+      "donor": {
+        "name": "Laura B. Whitfield",
+        "address": "812 Cedar Ridge Drive",
+        "city": "Saint Paul",
+        "state": "MN",
+        "zip": "55104"
+      },
+      "donee": {
+        "name": "International Institute of Minnesota",
+        "ein": "41-0693912",
+        "address": "1694 Como Avenue, Saint Paul, MN 55108"
+      },
+      "contributionDate": "2026-01-25",
+      "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D032",
+      "description": "Cash donation $58.75 - small gift with written acknowledgment (email receipt)",
+      "assetType": "cash",
+      "amount": 58.75,
+      "donor": {
+        "name": "Gregory P. Lawson",
+        "address": "905 Sycamore Lane",
+        "city": "Concord",
+        "state": "NH",
+        "zip": "03301"
+      },
+      "donee": {
+        "name": "Friends of Dartmouth-Hitchcock Health",
+        "ein": "26-4812335",
+        "address": "One Medical Center Drive, Lebanon, NH 03756"
+      },
+      "contributionDate": "2026-06-20",
+      "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D033",
+      "description": "Cash donation $487.65 - requires written acknowledgment",
+      "assetType": "cash",
+      "amount": 487.65,
+      "donor": {
+        "name": "Stephen R. Caldwell",
+        "address": "1420 Harborview Drive",
+        "city": "Annapolis",
+        "state": "MD",
+        "zip": "21401"
+      },
+      "donee": {
+        "name": "Navy SEAL Foundation",
+        "ein": "31-1728910",
+        "address": "1619 D Street SE, Building 5421, Virginia Beach, VA 23459"
+      },
+      "contributionDate": "2025-02-03",
+      "forms": ["acknowledgment_letter"]
+    },
+    {
+      "id": "D034",
+      "description": "Cash donation $425,000 - major gift, requires written acknowledgment",
+      "assetType": "cash",
+      "amount": 425000.00,
+      "donor": {
+        "name": "Walter J. Ashford",
+        "address": "2611 Foxhall Road NW",
+        "city": "Washington",
+        "state": "DC",
+        "zip": "20007"
+      },
+      "donee": {
+        "name": "Gonzaga College High School",
+        "ein": "53-0204703",
+        "address": "19 Eye Street NW, Washington, DC 20001"
+      },
+      "contributionDate": "2025-06-17",
+      "forms": ["acknowledgment_letter"]
     }
   ]
 }
