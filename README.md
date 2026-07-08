@@ -35,7 +35,7 @@ distinguish deductible charitable receipts from non-deductible payment confirmat
 donatemate-ocr-test-fixtures/
 ├── README.md
 ├── IRS_FORMS_README.md           # IRS documentation requirements reference
-├── donations.json                 # Master donation definitions (28 test cases)
+├── donations.json                 # Master donation definitions (37 test cases)
 ├── manifest_v2.json               # Generated document manifest with expected fields
 ├── documents/
 │   ├── acknowledgment_letter/     # acknowledgment_letter_D001.png, ...
@@ -46,7 +46,8 @@ donatemate-ocr-test-fixtures/
 │   ├── form_8283_section_a/       # form_8283_section_a_D010.png, ...
 │   ├── form_8283_section_b/       # form_8283_section_b_D013.png, ...
 │   ├── receipt/                   # receipt_D006.png, ...
-│   └── stock_confirmation/        # stock_confirmation_D020.png, ...
+│   ├── stock_confirmation/        # stock_confirmation_D020.png, ...
+│   └── gofundme_receipt/          # gofundme_receipt_D035.png, ...
 └── scripts/
     └── generate_from_donations.js # Generator script
 ```
@@ -69,11 +70,11 @@ For donations requiring multiple forms, **all forms share consistent data**:
 | Donation | Forms Generated | Donor | Donee | Amount |
 |----------|-----------------|-------|-------|--------|
 | D010 | form_8283_section_a, acknowledgment_letter | Sarah M. Johnson | Goodwill Industries | $501.00 |
-| D013 | form_8283_section_b, appraisal, acknowledgment_letter | Robert J. Anderson | First Community Church | $5,001.00 |
+| D013 | form_8283_section_b, appraisal, acknowledgment_letter | Robert J. Anderson | Colorado Symphony Association | $5,001.00 |
 
 ## Test Cases
 
-The `donations.json` file defines 28 test donations covering all IRS thresholds:
+The `donations.json` file defines 37 test donations covering all IRS thresholds:
 
 ### Cash Donations
 | ID | Amount | Forms | Notes |
@@ -83,6 +84,12 @@ The `donations.json` file defines 28 test donations covering all IRS thresholds:
 | D003 | **$250** | acknowledgment_letter | **Boundary** |
 | D004 | $1,500 | acknowledgment_letter | |
 | D005 | $5,000 | acknowledgment_letter | |
+| D029 | $63.50 | acknowledgment_letter | Small gift with written acknowledgment |
+| D030 | $84.25 | acknowledgment_letter | Small gift with written acknowledgment |
+| D031 | $97.40 | acknowledgment_letter | Small gift with written acknowledgment |
+| D032 | $58.75 | acknowledgment_letter | Small gift with written acknowledgment |
+| D033 | $487.65 | acknowledgment_letter | Requires written acknowledgment |
+| D034 | $425,000 | acknowledgment_letter | Major gift |
 
 ### Non-Cash Donations (Goods)
 | ID | Amount | Forms | Notes |
@@ -126,6 +133,13 @@ The `donations.json` file defines 28 test donations covering all IRS thresholds:
 |----|--------|-------|-------|
 | D027 | $100,000 | form_8283_section_b, appraisal | |
 | D028 | $500,000 | form_8283_section_b, appraisal | |
+
+### Non-Deductible Crowdfunding
+| ID | Amount | Forms | Notes |
+|----|--------|-------|-------|
+| D035 | $50 | gofundme_receipt | Personal fundraiser, not tax deductible |
+| D036 | $150 | gofundme_receipt | Personal fundraiser, not tax deductible |
+| D037 | $25 | gofundme_receipt | Platform tip included, not tax deductible |
 
 ## Manifest Format
 
@@ -174,6 +188,9 @@ npm install
 
 # Generate all documents from donations.json
 node scripts/generate_from_donations.js
+
+# Regenerate selected documents while still recomputing manifest_v2.json
+ONLY_DONATIONS=D029,D030 ONLY_FORMS=acknowledgment_letter node scripts/generate_from_donations.js
 ```
 
 ## IRS Documentation Requirements

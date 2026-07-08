@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
   "description": "IRS-compliant OCR test fixtures with linked forms per donation",
-  "generatedAt": "2026-06-30T14:26:32.334Z",
+  "generatedAt": "2026-07-08T21:19:09.240Z",
   "irsReference": "IRS Publication 526 (2025)",
   "namingConvention": "<form_type>_<donation_id>.png",
   "totalDonations": 37,
@@ -315,8 +315,8 @@
       "expectedFields": {
         "donor_name": "Robert J. Anderson",
         "donor_address": "321 Pine Road, Denver, CO 80202",
-        "donee_name": "First Community Church",
-        "donee_ein": "23-4567890",
+        "donee_name": "Colorado Symphony Association",
+        "donee_ein": "84-0511458",
         "contribution_date": "2025-07-01",
         "amount": 5001,
         "asset_type": "noncash_goods",
@@ -331,8 +331,8 @@
       "expectedFields": {
         "donor_name": "Robert J. Anderson",
         "donor_address": "321 Pine Road, Denver, CO 80202",
-        "donee_name": "First Community Church",
-        "donee_ein": "23-4567890",
+        "donee_name": "Colorado Symphony Association",
+        "donee_ein": "84-0511458",
         "contribution_date": "2025-07-01",
         "amount": 5001,
         "asset_type": "noncash_goods",
@@ -347,8 +347,8 @@
       "expectedFields": {
         "donor_name": "Robert J. Anderson",
         "donor_address": "321 Pine Road, Denver, CO 80202",
-        "donee_name": "First Community Church",
-        "donee_ein": "23-4567890",
+        "donee_name": "Colorado Symphony Association",
+        "donee_ein": "84-0511458",
         "contribution_date": "2025-07-01",
         "amount": 5001,
         "asset_type": "noncash_goods",

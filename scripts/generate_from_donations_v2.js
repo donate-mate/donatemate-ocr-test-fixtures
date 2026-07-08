@@ -20,14 +20,35 @@ const OUTPUT_DIR = path.join(__dirname, '..', 'documents');
 // Load donations
 const donationsData = JSON.parse(fs.readFileSync(DONATIONS_PATH, 'utf8'));
 
+const onlyDonationIds = parseFilter(process.env.ONLY_DONATIONS);
+const onlyFormTypes = parseFilter(process.env.ONLY_FORMS);
+
 // Utility functions
+function parseFilter(value) {
+    const items = (value || '').split(',').map(item => item.trim()).filter(Boolean);
+    return items.length ? new Set(items) : null;
+}
+
+function shouldGenerateImage(donation, formType) {
+    return (!onlyDonationIds || onlyDonationIds.has(donation.id)) &&
+        (!onlyFormTypes || onlyFormTypes.has(formType));
+}
+
+function parseFixtureDate(dateStr) {
+    const match = typeof dateStr === 'string' && dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (match) {
+        return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+    }
+    return new Date(dateStr);
+}
+
 function formatDate(dateStr) {
-    const d = new Date(dateStr);
+    const d = parseFixtureDate(dateStr);
     return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
 function formatDateShort(dateStr) {
-    const d = new Date(dateStr);
+    const d = parseFixtureDate(dateStr);
     return d.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
 }
 
@@ -843,6 +864,7 @@ async function main() {
     for (const donation of donationsData.donations) {
         for (const formType of donation.forms) {
             if (!forms.includes(formType)) continue;
+            if (!shouldGenerateImage(donation, formType)) continue;
             
             const generator = generators[formType];
             if (!generator) continue;
