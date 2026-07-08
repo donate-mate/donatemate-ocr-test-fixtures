@@ -34,14 +34,41 @@ const generators = {
     gofundme_receipt: generateGoFundMeReceipt
 };
 
+const onlyDonationIds = parseFilter(process.env.ONLY_DONATIONS);
+const onlyFormTypes = parseFilter(process.env.ONLY_FORMS);
+const hasGenerationFilter = Boolean(onlyDonationIds || onlyFormTypes);
+
 // Utility functions
+function parseFilter(value) {
+    const items = (value || '').split(',').map(item => item.trim()).filter(Boolean);
+    return items.length ? new Set(items) : null;
+}
+
+function shouldGenerateImage(donation, formType) {
+    return (!onlyDonationIds || onlyDonationIds.has(donation.id)) &&
+        (!onlyFormTypes || onlyFormTypes.has(formType));
+}
+
+function parseFixtureDate(dateStr) {
+    const match = typeof dateStr === 'string' && dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (match) {
+        return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+    }
+    return new Date(dateStr);
+}
+
+function getFixtureYear(dateStr) {
+    const match = typeof dateStr === 'string' && dateStr.match(/^(\d{4})-\d{2}-\d{2}$/);
+    return match ? Number(match[1]) : new Date(dateStr).getFullYear();
+}
+
 function formatDate(dateStr) {
-    const d = new Date(dateStr);
+    const d = parseFixtureDate(dateStr);
     return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
 function formatDateShort(dateStr) {
-    const d = new Date(dateStr);
+    const d = parseFixtureDate(dateStr);
     return d.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
 }
 
@@ -307,7 +334,7 @@ function generateAcknowledgmentLetter(donation) {
         bodyText = `Thank you for your generous cash contribution of ${formatMoney(donation.amount)} to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
     } else if (donation.assetType === 'vehicle') {
         const v = donation.vehicle;
-        bodyText = `Thank you for your generous donation of a ${v.year} ${v.make} ${v.model} (VIN: ${v.vin}) to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
+        bodyText = `Thank you for your generous donation of a ${v.year} ${v.make} ${v.model} (VIN: ${v.vin}, estimated fair market value: ${formatMoney(donation.amount)}) to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
     } else if (donation.assetType.startsWith('stock')) {
         bodyText = `Thank you for your generous donation of securities to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
     } else {
@@ -418,7 +445,7 @@ function generateReceipt(donation) {
     
     ctx.font = '11px Inter';
     ctx.fillStyle = '#333333';
-    ctx.fillText(`RCP-${donation.id}-${new Date(donation.contributionDate).getFullYear()}`, 155, y + 18);
+    ctx.fillText(`RCP-${donation.id}-${getFixtureYear(donation.contributionDate)}`, 155, y + 18);
     ctx.fillText(formatDate(new Date().toISOString()), 140, y + 36);
     ctx.fillText(formatDate(donation.contributionDate), 415, y + 18);
     
@@ -1176,7 +1203,7 @@ function generateStockConfirmation(donation) {
     ctx.fillText('Transaction Type:', 320, y + 40);
     
     ctx.font = '10px Inter';
-    ctx.fillText(`SCH-${new Date(donation.contributionDate).getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`, 170, y + 20);
+    ctx.fillText(`SCH-${getFixtureYear(donation.contributionDate)}-${Math.floor(100000 + Math.random() * 900000)}`, 170, y + 20);
     ctx.fillText(formatDate(donation.contributionDate), 130, y + 40);
     ctx.fillText('Individual Brokerage', 420, y + 20);
     ctx.fillText('DTC Transfer to Charity', 430, y + 40);
@@ -1364,29 +1391,36 @@ async function main() {
             const filename = `${formType}_${donation.id}.png`;
             const filepath = path.join(OUTPUT_DIR, formType, filename);
             
+            const manifestDocument = {
+                filename: `${formType}/${filename}`,
+                formType: formType,
+                donationId: donation.id,
+                boundary: donation.boundary || false,
+                expectedFields: {
+                    donor_name: donation.donor.name,
+                    donor_address: formatAddress(donation.donor),
+                    donee_name: donation.donee.name,
+                    donee_ein: donation.donee.ein,
+                    contribution_date: donation.contributionDate,
+                    amount: donation.amount,
+                    asset_type: donation.assetType,
+                    asset_description: donation.assetDescription || null
+                }
+            };
+
+            if (hasGenerationFilter && !shouldGenerateImage(donation, formType)) {
+                manifest.documents.push(manifestDocument);
+                manifest.formCounts[formType] = (manifest.formCounts[formType] || 0) + 1;
+                manifest.totalForms++;
+                continue;
+            }
+
             try {
                 const buffer = generator(donation);
                 fs.writeFileSync(filepath, buffer);
                 console.log(`  ✓ Generated ${formType}/${filename}`);
-                
-                // Add to manifest
-                manifest.documents.push({
-                    filename: `${formType}/${filename}`,
-                    formType: formType,
-                    donationId: donation.id,
-                    boundary: donation.boundary || false,
-                    expectedFields: {
-                        donor_name: donation.donor.name,
-                        donor_address: formatAddress(donation.donor),
-                        donee_name: donation.donee.name,
-                        donee_ein: donation.donee.ein,
-                        contribution_date: donation.contributionDate,
-                        amount: donation.amount,
-                        asset_type: donation.assetType,
-                        asset_description: donation.assetDescription || null
-                    }
-                });
-                
+
+                manifest.documents.push(manifestDocument);
                 manifest.formCounts[formType] = (manifest.formCounts[formType] || 0) + 1;
                 manifest.totalForms++;
             } catch (err) {
