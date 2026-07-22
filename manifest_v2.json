@@ -11,8 +11,8 @@
     "cancelled_check": 1,
     "acknowledgment_letter": 19,
     "receipt": 4,
-    "form_8283_section_a": 5,
-    "form_8283_section_b": 6,
+    "form_8283_section_a": 4,
+    "form_8283_section_b": 7,
     "appraisal": 6,
     "form_1098c": 3,
     "stock_confirmation": 3,
@@ -548,8 +548,8 @@
       }
     },
     {
-      "filename": "form_8283_section_a/form_8283_section_a_D024.png",
-      "formType": "form_8283_section_a",
+      "filename": "form_8283_section_b/form_8283_section_b_D024.png",
+      "formType": "form_8283_section_b",
       "donationId": "D024",
       "boundary": true,
       "expectedFields": {

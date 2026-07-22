@@ -610,7 +610,7 @@
     },
     {
       "id": "D024",
-      "description": "Closely-held stock $10,000 (boundary) - requires Form 8283-A",
+      "description": "Closely-held stock $10,000 (boundary) - requires Form 8283-B without appraisal",
       "assetType": "stock_closelyheld",
       "amount": 10000.00,
       "boundary": true,
@@ -637,7 +637,7 @@
         "address": "191 Peachtree Street NE, Atlanta, GA 30303"
       },
       "contributionDate": "2025-07-15",
-      "forms": ["form_8283_section_a"]
+      "forms": ["form_8283_section_b"]
     },
     {
       "id": "D025",

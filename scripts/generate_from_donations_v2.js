@@ -5,6 +5,7 @@
  */
 
 const { createCanvas, registerFont } = require('canvas');
+const { createHash } = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
@@ -32,6 +33,19 @@ function parseFilter(value) {
 function shouldGenerateImage(donation, formType) {
     return (!onlyDonationIds || onlyDonationIds.has(donation.id)) &&
         (!onlyFormTypes || onlyFormTypes.has(formType));
+}
+
+function maskedTaxpayerId(donation) {
+    const donorKey = [
+        donation.donor?.name,
+        donation.donor?.address,
+        donation.donor?.city,
+        donation.donor?.state,
+        donation.donor?.zip
+    ].filter(Boolean).join('|');
+    const digest = createHash('sha256').update(donorKey).digest();
+    const suffix = (digest.readUInt32BE(0) % 10000).toString().padStart(4, '0');
+    return `XXX-XX-${suffix}`;
 }
 
 function parseFixtureDate(dateStr) {
@@ -164,7 +178,7 @@ function generateForm8283A(donation) {
     
     // Name and identifying number boxes
     drawBox(ctx, 25, y, 400, 35, 'Name(s) shown on your income tax return', donation.donor.name);
-    drawBox(ctx, 430, y, 155, 35, 'Identifying number', 'XXX-XX-' + Math.floor(1000 + Math.random() * 9000));
+    drawBox(ctx, 430, y, 155, 35, 'Identifying number', maskedTaxpayerId(donation));
     
     y += 45;
     
@@ -251,23 +265,26 @@ function generateForm8283A(donation) {
     
     y += 50;
     
-    // Data row
-    ctx.strokeRect(25, y, width - 50, 55);
+    // D023 needs an expanded row so its full private-company description is
+    // visible. Preserve the established rendering for every other fixture.
+    const usesExpandedDescriptionRow = donation.id === 'D023';
+    const dataRowHeight = usesExpandedDescriptionRow ? 64 : 55;
+    ctx.strokeRect(25, y, width - 50, dataRowHeight);
     ctx.beginPath();
     ctx.moveTo(55, y);
-    ctx.lineTo(55, y + 55);
+    ctx.lineTo(55, y + dataRowHeight);
     ctx.moveTo(200, y);
-    ctx.lineTo(200, y + 55);
+    ctx.lineTo(200, y + dataRowHeight);
     ctx.moveTo(295, y);
-    ctx.lineTo(295, y + 55);
+    ctx.lineTo(295, y + dataRowHeight);
     ctx.moveTo(370, y);
-    ctx.lineTo(370, y + 55);
+    ctx.lineTo(370, y + dataRowHeight);
     ctx.moveTo(420, y);
-    ctx.lineTo(420, y + 55);
+    ctx.lineTo(420, y + dataRowHeight);
     ctx.moveTo(470, y);
-    ctx.lineTo(470, y + 55);
+    ctx.lineTo(470, y + dataRowHeight);
     ctx.moveTo(520, y);
-    ctx.lineTo(520, y + 55);
+    ctx.lineTo(520, y + dataRowHeight);
     ctx.stroke();
     
     // Fill data
@@ -286,11 +303,21 @@ function generateForm8283A(donation) {
     drawCheckbox(ctx, 205, y + 10, false, '');
     
     // Description
-    ctx.font = '8px Inter';
     const desc = donation.assetDescription || '';
-    ctx.fillText(desc.substring(0, 18), 298, y + 20);
-    if (desc.length > 18) ctx.fillText(desc.substring(18, 36), 298, y + 32);
-    ctx.fillText(donation.assetCondition || 'Good', 298, y + 44);
+    if (usesExpandedDescriptionRow) {
+        ctx.font = '7px Inter';
+        const descriptionLines = wrapText(ctx, desc, 68);
+        descriptionLines.slice(0, 4).forEach((line, index) => {
+            ctx.fillText(line, 298, y + 11 + index * 10);
+        });
+        ctx.font = '6px Inter';
+        ctx.fillText(`Condition: ${donation.assetCondition || 'Good'}`, 298, y + 57);
+    } else {
+        ctx.font = '8px Inter';
+        ctx.fillText(desc.substring(0, 18), 298, y + 20);
+        if (desc.length > 18) ctx.fillText(desc.substring(18, 36), 298, y + 32);
+        ctx.fillText(donation.assetCondition || 'Good', 298, y + 44);
+    }
     
     // Dates and values
     ctx.fillText(formatDateShort(donation.contributionDate), 373, y + 28);
@@ -298,7 +325,7 @@ function generateForm8283A(donation) {
     ctx.fillText((donation.howAcquired || 'Purchase').substring(0, 10), 473, y + 28);
     ctx.fillText(donation.costBasis ? formatMoney(donation.costBasis) : 'N/A', 523, y + 28);
     
-    y += 60;
+    y += dataRowHeight + 5;
     
     // Second header row for (h) and (i)
     ctx.strokeRect(25, y, width - 50, 35);
@@ -417,7 +444,7 @@ function generateForm8283B(donation) {
     
     // Name boxes
     drawBox(ctx, 25, y, 400, 30, 'Name(s) shown on your income tax return', donation.donor.name);
-    drawBox(ctx, 430, y, 155, 30, 'Identifying number', 'XXX-XX-' + Math.floor(1000 + Math.random() * 9000));
+    drawBox(ctx, 430, y, 155, 30, 'Identifying number', maskedTaxpayerId(donation));
     
     y += 40;
     
@@ -678,7 +705,7 @@ function generateForm1098C(donation) {
     ctx.font = '7px Inter';
     ctx.fillText("DONOR'S TIN", 450, y + 10);
     ctx.font = '10px Inter';
-    ctx.fillText('XXX-XX-' + Math.floor(1000 + Math.random() * 9000), 450, y + 24);
+    ctx.fillText(maskedTaxpayerId(donation), 450, y + 24);
     
     y += 35;
     
@@ -860,6 +887,26 @@ async function main() {
         form_8283_section_b: generateForm8283B,
         form_1098c: generateForm1098C
     };
+
+    // A targeted run owns the selected donation's supported form outputs. If a
+    // fixture changes form type, remove the superseded image as part of the same
+    // reproducible command instead of requiring a manual cleanup step.
+    if (onlyDonationIds) {
+        for (const donation of donationsData.donations) {
+            if (!onlyDonationIds.has(donation.id)) continue;
+            for (const formType of forms) {
+                if (onlyFormTypes && !onlyFormTypes.has(formType)) continue;
+                if (donation.forms.includes(formType)) continue;
+
+                const filename = `${formType}_${donation.id}.png`;
+                const filepath = path.join(OUTPUT_DIR, formType, filename);
+                if (fs.existsSync(filepath)) {
+                    fs.unlinkSync(filepath);
+                    console.log(`✓ Removed superseded ${formType}/${filename}`);
+                }
+            }
+        }
+    }
     
     for (const donation of donationsData.donations) {
         for (const formType of donation.forms) {
