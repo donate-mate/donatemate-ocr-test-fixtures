@@ -10,13 +10,13 @@ This repository contains programmatically generated donation-related documents f
 
 | Form Type | Count | Description |
 |-----------|-------|-------------|
-| acknowledgment_letter | 13 | Written acknowledgments for cash ≥$250 and non-cash donations |
+| acknowledgment_letter | 19 | Written acknowledgments for cash ≥$250 and non-cash donations |
 | appraisal | 6 | Qualified appraisals for donations >$5,000 |
 | bank_statement | 1 | Bank records for cash donations <$250 |
 | cancelled_check | 1 | Cancelled checks for cash donations <$250 |
-| form_1098c | 3 | Vehicle donations >$500 |
-| form_8283_section_a | 5 | Non-cash donations $501-$5,000 |
-| form_8283_section_b | 6 | Non-cash donations >$5,000, closely-held >$10,000, real estate |
+| form_1098c | 13 | Vehicle donations >$500 |
+| form_8283_section_a | 4 | Non-cash donations $501-$5,000 |
+| form_8283_section_b | 7 | Non-cash donations >$5,000, including closely-held stock and real estate |
 | receipt | 4 | Non-cash donation receipts <$500 |
 | stock_confirmation | 3 | Publicly traded securities transfers |
 | gofundme_receipt | 3 | **Non-deductible** crowdfunding (GoFundMe personal fundraiser) payment confirmations |
@@ -124,7 +124,7 @@ The `donations.json` file defines 37 test donations covering all IRS thresholds:
 | ID | Amount | Forms | Notes |
 |----|--------|-------|-------|
 | D023 | $5,000 | form_8283_section_a | |
-| D024 | **$10,000** | form_8283_section_a | **Boundary** |
+| D024 | **$10,000** | form_8283_section_b | **No-appraisal boundary** |
 | D025 | **$10,001** | form_8283_section_b, appraisal | **Boundary** |
 | D026 | $50,000 | form_8283_section_b, appraisal | |
 
@@ -191,6 +191,9 @@ node scripts/generate_from_donations.js
 
 # Regenerate selected documents while still recomputing manifest_v2.json
 ONLY_DONATIONS=D029,D030 ONLY_FORMS=acknowledgment_letter node scripts/generate_from_donations.js
+
+# Regenerate the corrected D023/D024 IRS fixtures and remove superseded outputs
+ONLY_DONATIONS=D023,D024 node scripts/generate_from_donations_v2.js
 ```
 
 ## IRS Documentation Requirements
@@ -210,7 +213,8 @@ Quick reference:
 | Vehicle | ≤$500 | Acknowledgment |
 | Vehicle | >$500 | Form 1098-C |
 | Public stock | Any | Brokerage confirmation |
-| Closely-held | ≤$10,000 | Form 8283-A |
+| Closely-held | $501-$5,000 | Form 8283-A |
+| Closely-held | $5,001-$10,000 | Form 8283-B without appraisal |
 | Closely-held | >$10,000 | Form 8283-B + appraisal |
 | Real estate | >$5,000 | Form 8283-B + appraisal |
 

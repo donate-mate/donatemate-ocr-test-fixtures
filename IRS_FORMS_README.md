@@ -25,7 +25,9 @@ This document describes the IRS-compliant form test fixtures generated based on 
 ### Stocks & Securities
 | Type | Amount | Required Documentation |
 |------|--------|----------------------|
-| Publicly Traded | Any | Brokerage confirmation (no appraisal) |
+| Publicly Traded | Any | Brokerage confirmation (no qualified appraisal) |
+| Closely-Held | $501-$5,000 | Form 8283 Section A |
+| Closely-Held | $5,001-$10,000 | Form 8283 Section B without a qualified appraisal |
 | Closely-Held | > $10,000 | Form 8283 Section B + Qualified Appraisal |
 
 ### Real Estate
@@ -37,14 +39,13 @@ This document describes the IRS-compliant form test fixtures generated based on 
 
 | Form Type | Count | Directory | Description |
 |-----------|-------|-----------|-------------|
-| Form 8283 Section A | 10 | `documents/form_8283/` | Non-cash donations $500-$5,000 |
-| Form 8283 Section B | 10 | `documents/form_8283/` | Non-cash donations >$5,000 |
-| Form 1098-C | 10 | `documents/form_1098c/` | Vehicle donations >$500 |
-| Qualified Appraisal | 10 | `documents/appraisals/` | For non-cash >$5,000 |
-| Acknowledgment (Cash) | 15 | `documents/acknowledgment_letters/` | Cash donations ≥$250 |
-| Acknowledgment (Non-Cash) | 10 | `documents/acknowledgment_letters/` | Non-cash donations with charity letter |
+| Form 8283 Section A | 4 | `documents/form_8283_section_a/` | Non-cash donations $501-$5,000 |
+| Form 8283 Section B | 7 | `documents/form_8283_section_b/` | Non-cash donations >$5,000 |
+| Form 1098-C | 13 | `documents/form_1098c/` | Vehicle donations >$500 |
+| Qualified Appraisal | 6 | `documents/appraisal/` | Category-specific high-value non-cash donations |
+| Acknowledgment | 19 | `documents/acknowledgment_letter/` | Cash and non-cash charity acknowledgments |
 
-**Total: 65 IRS form documents**
+**Total: 49 IRS form documents**
 
 ## Form Details
 
@@ -126,8 +127,8 @@ The `manifest_irs_forms.json` file contains metadata for each generated document
 # Install dependencies
 npm install
 
-# Generate IRS forms
-node scripts/generate_irs_forms.js
+# Regenerate the corrected D023/D024 IRS fixtures and clean stale form outputs
+ONLY_DONATIONS=D023,D024 node scripts/generate_from_donations_v2.js
 ```
 
 ## Important Notes
