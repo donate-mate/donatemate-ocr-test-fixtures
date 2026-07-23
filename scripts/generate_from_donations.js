@@ -34,6 +34,11 @@ const generators = {
     gofundme_receipt: generateGoFundMeReceipt
 };
 
+const formsWithAcquisitionDate = new Set([
+    'form_8283_section_a',
+    'form_8283_section_b'
+]);
+
 const onlyDonationIds = parseFilter(process.env.ONLY_DONATIONS);
 const onlyFormTypes = parseFilter(process.env.ONLY_FORMS);
 const hasGenerationFilter = Boolean(onlyDonationIds || onlyFormTypes);
@@ -1402,7 +1407,9 @@ async function main() {
                     donee_name: donation.donee.name,
                     donee_ein: donation.donee.ein,
                     contribution_date: donation.contributionDate,
-                    date_acquired: donation.dateAcquired || null,
+                    ...(formsWithAcquisitionDate.has(formType)
+                        ? { date_acquired: donation.dateAcquired || null }
+                        : {}),
                     amount: donation.amount,
                     asset_type: donation.assetType,
                     asset_description: donation.assetDescription || null
