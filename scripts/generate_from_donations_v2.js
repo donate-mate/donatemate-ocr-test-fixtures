@@ -321,7 +321,7 @@ function generateForm8283A(donation) {
     
     // Dates and values
     ctx.fillText(formatDateShort(donation.contributionDate), 373, y + 28);
-    ctx.fillText(donation.dateAcquired ? formatDateShort(donation.dateAcquired).substring(0, 7) : 'Various', 423, y + 28);
+    ctx.fillText(donation.dateAcquired ? formatDateShort(donation.dateAcquired) : 'Various', 423, y + 28);
     ctx.fillText((donation.howAcquired || 'Purchase').substring(0, 10), 473, y + 28);
     ctx.fillText(donation.costBasis ? formatMoney(donation.costBasis) : 'N/A', 523, y + 28);
     

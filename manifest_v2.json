@@ -222,6 +222,7 @@
         "donee_name": "Goodwill Industries International",
         "donee_ein": "53-0196517",
         "contribution_date": "2025-03-15",
+        "date_acquired": "2018-06-15",
         "amount": 501,
         "asset_type": "noncash_goods",
         "asset_description": "Antique wooden desk"
@@ -254,6 +255,7 @@
         "donee_name": "United Way Worldwide",
         "donee_ein": "13-1635294",
         "contribution_date": "2025-05-01",
+        "date_acquired": "2015-12-25",
         "amount": 3500,
         "asset_type": "noncash_goods",
         "asset_description": "Vintage jewelry collection (8 pieces)"
@@ -286,6 +288,7 @@
         "donee_name": "State University Foundation",
         "donee_ein": "34-5678901",
         "contribution_date": "2025-06-15",
+        "date_acquired": "2020-03-10",
         "amount": 5000,
         "asset_type": "noncash_goods",
         "asset_description": "Professional camera equipment (body + 3 lenses)"
@@ -318,6 +321,7 @@
         "donee_name": "Colorado Symphony Association",
         "donee_ein": "84-0511458",
         "contribution_date": "2025-07-01",
+        "date_acquired": "2010-08-20",
         "amount": 5001,
         "asset_type": "noncash_goods",
         "asset_description": "Grand piano - Baldwin Model R"
@@ -366,6 +370,7 @@
         "donee_name": "Metropolitan Museum Foundation",
         "donee_ein": "13-1624086",
         "contribution_date": "2025-08-10",
+        "date_acquired": "2005-04-15",
         "amount": 15000,
         "asset_type": "noncash_goods",
         "asset_description": "Antique Persian rug (9x12 Tabriz)"
@@ -542,6 +547,7 @@
         "donee_name": "Community Foundation of Colorado",
         "donee_ein": "84-0404757",
         "contribution_date": "2025-06-20",
+        "date_acquired": "2015-01-01",
         "amount": 5000,
         "asset_type": "stock_closelyheld",
         "asset_description": "100 shares Anderson Family Holdings LLC"
@@ -558,6 +564,7 @@
         "donee_name": "Community Foundation of Greater Atlanta",
         "donee_ein": "58-1344646",
         "contribution_date": "2025-07-15",
+        "date_acquired": "2012-06-15",
         "amount": 10000,
         "asset_type": "stock_closelyheld",
         "asset_description": "200 shares Wilson Properties Inc."
@@ -574,6 +581,7 @@
         "donee_name": "Arizona Community Foundation",
         "donee_ein": "86-0348306",
         "contribution_date": "2025-08-01",
+        "date_acquired": "2010-03-01",
         "amount": 10001,
         "asset_type": "stock_closelyheld",
         "asset_description": null
@@ -606,6 +614,7 @@
         "donee_name": "Illinois Community Foundation",
         "donee_ein": "37-1349398",
         "contribution_date": "2025-09-10",
+        "date_acquired": "2008-09-15",
         "amount": 50000,
         "asset_type": "stock_closelyheld",
         "asset_description": null
@@ -638,6 +647,7 @@
         "donee_name": "Habitat for Humanity International",
         "donee_ein": "91-1914868",
         "contribution_date": "2025-10-01",
+        "date_acquired": "2015-05-20",
         "amount": 100000,
         "asset_type": "real_estate",
         "asset_description": null
@@ -670,6 +680,7 @@
         "donee_name": "Seattle Foundation",
         "donee_ein": "91-0596010",
         "contribution_date": "2025-11-15",
+        "date_acquired": "2010-08-15",
         "amount": 500000,
         "asset_type": "real_estate",
         "asset_description": null
