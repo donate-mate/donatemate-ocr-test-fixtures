@@ -1402,6 +1402,7 @@ async function main() {
                     donee_name: donation.donee.name,
                     donee_ein: donation.donee.ein,
                     contribution_date: donation.contributionDate,
+                    date_acquired: donation.dateAcquired || null,
                     amount: donation.amount,
                     asset_type: donation.assetType,
                     asset_description: donation.assetDescription || null
