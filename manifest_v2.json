@@ -542,6 +542,7 @@
         "donee_name": "Community Foundation of Colorado",
         "donee_ein": "84-0404757",
         "contribution_date": "2025-06-20",
+        "date_acquired": "2015-01-01",
         "amount": 5000,
         "asset_type": "stock_closelyheld",
         "asset_description": "100 shares Anderson Family Holdings LLC"
