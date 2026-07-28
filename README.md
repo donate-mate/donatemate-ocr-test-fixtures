@@ -11,12 +11,12 @@ This repository contains programmatically generated donation-related documents f
 | Form Type | Count | Description |
 |-----------|-------|-------------|
 | acknowledgment_letter | 19 | Written acknowledgments for cash ≥$250 and non-cash donations |
-| appraisal | 6 | Qualified appraisals for donations >$5,000 |
+| appraisal | 7 | Qualified appraisals for FMV-basis donations >$5,000 |
 | bank_statement | 1 | Bank records for cash donations <$250 |
 | cancelled_check | 1 | Cancelled checks for cash donations <$250 |
 | form_1098c | 13 | Vehicle donations >$500 |
-| form_8283_section_a | 4 | Non-cash donations $501-$5,000 |
-| form_8283_section_b | 7 | Non-cash donations >$5,000, including closely-held stock and real estate |
+| form_8283_section_a | 6 | Non-cash donations $501-$5,000 and gross-proceeds vehicle donations |
+| form_8283_section_b | 8 | FMV-basis non-cash donations >$5,000, including vehicles, closely-held stock, and real estate |
 | receipt | 4 | Non-cash donation receipts <$500 |
 | stock_confirmation | 3 | Publicly traded securities transfers |
 | gofundme_receipt | 3 | **Non-deductible** crowdfunding (GoFundMe personal fundraiser) payment confirmations |
@@ -107,11 +107,11 @@ The `donations.json` file defines 37 test donations covering all IRS thresholds:
 ### Vehicles
 | ID | Amount | Forms | Notes |
 |----|--------|-------|-------|
-| D015 | $400 | acknowledgment_letter | Below $500 |
+| D015 | $400 | acknowledgment_letter | Below $500; intentional synthetic EIN expected to reach `NOT_FOUND` |
 | D016 | **$500** | acknowledgment_letter | **Boundary** |
-| D017 | **$501** | form_1098c | **Boundary** |
-| D018 | $12,000 | form_1098c | |
-| D019 | $35,000 | form_1098c | |
+| D017 | **$501** | form_1098c, form_8283_section_a | **Boundary; auction/gross-proceeds basis** |
+| D018 | $12,000 | form_1098c, form_8283_section_a | Auction/gross-proceeds basis |
+| D019 | $35,000 | form_1098c, form_8283_section_b, appraisal | Needy-transfer/FMV basis |
 
 ### Publicly Traded Securities
 | ID | Amount | Forms | Notes |
@@ -194,6 +194,14 @@ ONLY_DONATIONS=D029,D030 ONLY_FORMS=acknowledgment_letter node scripts/generate_
 
 # Regenerate the corrected D023/D024 IRS fixtures and remove superseded outputs
 ONLY_DONATIONS=D023,D024 node scripts/generate_from_donations_v2.js
+
+# Regenerate the DM-599 vehicle fixtures and manifest. The second command
+# replaces the simplified IRS forms with the OCR-accurate deterministic forms.
+ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations.js
+ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations_v2.js
+
+# Validate fixture metadata, required files, and manifest parity
+npm test
 ```
 
 ## IRS Documentation Requirements
@@ -211,7 +219,9 @@ Quick reference:
 | Non-cash | $501-$5,000 | Form 8283-A + acknowledgment |
 | Non-cash | >$5,000 | Form 8283-B + appraisal + acknowledgment |
 | Vehicle | ≤$500 | Acknowledgment |
-| Vehicle | >$500 | Form 1098-C |
+| Vehicle | >$500, deduction limited to gross proceeds | Form 1098-C + Form 8283-A |
+| Vehicle | $501-$5,000, FMV-basis exception | Form 1098-C + Form 8283-A |
+| Vehicle | >$5,000, FMV-basis exception | Form 1098-C + Form 8283-B + qualified appraisal |
 | Public stock | Any | Brokerage confirmation |
 | Closely-held | $501-$5,000 | Form 8283-A |
 | Closely-held | $5,001-$10,000 | Form 8283-B without appraisal |
@@ -225,6 +235,7 @@ Quick reference:
 3. Donor information uses placeholder values
 4. EINs for real organizations (Red Cross, Goodwill, etc.) are used; fictional orgs have fake EINs
 5. Forms for the same donation have **matching** donor, donee, date, and amount data
+6. D015 is intentionally annotated as a synthetic terminal `NOT_FOUND` EIN validation fixture; the printed EIN must be retained rather than treated as missing, skipped, or pending
 
 ## License
 

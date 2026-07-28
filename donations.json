@@ -340,7 +340,7 @@
     },
     {
       "id": "D015",
-      "description": "Vehicle $400 - requires acknowledgment only",
+      "description": "Vehicle $400 - requires acknowledgment only; intentional terminal EIN no-match",
       "assetType": "vehicle",
       "amount": 400.00,
       "vehicle": {
@@ -362,6 +362,11 @@
         "name": "Vehicles for Veterans",
         "ein": "45-3827461",
         "address": "1500 Charity Drive, Atlanta, GA 30302"
+      },
+      "einValidationExpectation": {
+        "status": "NOT_FOUND",
+        "intentionalSyntheticNoMatch": true,
+        "reason": "Dedicated DM-534 regression: retain the printed, well-formed EIN after validation reaches terminal NOT_FOUND."
       },
       "contributionDate": "2025-02-28",
       "forms": ["acknowledgment_letter"]
@@ -397,10 +402,15 @@
     },
     {
       "id": "D017",
-      "description": "Vehicle $501 (boundary) - requires Form 1098-C",
+      "description": "Vehicle $501 (boundary) sold at auction - requires Form 1098-C + Form 8283 Section A",
       "assetType": "vehicle",
       "amount": 501.00,
       "boundary": true,
+      "assetDescription": "2010 Ford Focus, VIN 1FAHP3F29CL345678",
+      "assetCondition": "Fair",
+      "dateAcquired": "2016-05-10",
+      "howAcquired": "Purchase",
+      "costBasis": 6500.00,
       "vehicle": {
         "year": 2010,
         "make": "Ford",
@@ -427,13 +437,18 @@
         "address": "300 Donation Drive, Springfield, IL 62702"
       },
       "contributionDate": "2025-04-01",
-      "forms": ["form_1098c"]
+      "forms": ["form_1098c", "form_8283_section_a"]
     },
     {
       "id": "D018",
-      "description": "Vehicle $12,000 - requires Form 1098-C",
+      "description": "Vehicle $12,000 sold at auction - requires Form 1098-C + Form 8283 Section A",
       "assetType": "vehicle",
       "amount": 12000.00,
+      "assetDescription": "2018 Honda CR-V, VIN 5J6RW2H85JL012345",
+      "assetCondition": "Good",
+      "dateAcquired": "2018-02-12",
+      "howAcquired": "Purchase",
+      "costBasis": 28500.00,
       "vehicle": {
         "year": 2018,
         "make": "Honda",
@@ -460,13 +475,18 @@
         "address": "431 18th Street NW, Washington, DC 20006"
       },
       "contributionDate": "2025-05-15",
-      "forms": ["form_1098c"]
+      "forms": ["form_1098c", "form_8283_section_a"]
     },
     {
       "id": "D019",
-      "description": "Vehicle $35,000 - requires Form 1098-C",
+      "description": "Vehicle $35,000 transferred to a needy individual - requires Form 1098-C + Form 8283 Section B + qualified appraisal",
       "assetType": "vehicle",
       "amount": 35000.00,
+      "assetDescription": "2022 Tesla Model 3, VIN 5YJ3E1EA1NF567890",
+      "assetCondition": "Excellent",
+      "dateAcquired": "2022-03-15",
+      "howAcquired": "Purchase",
+      "costBasis": 46990.00,
       "vehicle": {
         "year": 2022,
         "make": "Tesla",
@@ -492,7 +512,14 @@
         "address": "1200 Community Blvd, Denver, CO 80204"
       },
       "contributionDate": "2025-07-20",
-      "forms": ["form_1098c"]
+      "appraisal": {
+        "appraiserName": "Alexandra M. Reyes, ASA",
+        "appraiserAddress": "1750 Market Street, Denver, CO 80202",
+        "appraiserQualifications": "ASA accredited; passenger-vehicle valuation specialist",
+        "appraisalDate": "2025-07-10",
+        "valuationMethod": "Comparable Sales / Vehicle Market Data"
+      },
+      "forms": ["form_1098c", "form_8283_section_b", "appraisal"]
     },
     {
       "id": "D020",
