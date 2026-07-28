@@ -265,9 +265,10 @@ function generateForm8283A(donation) {
     
     y += 50;
     
-    // D023 needs an expanded row so its full private-company description is
-    // visible. Preserve the established rendering for every other fixture.
-    const usesExpandedDescriptionRow = donation.id === 'D023';
+    // D023 and vehicle fixtures need an expanded row so their complete
+    // property description (including the VIN) remains OCR-visible.
+    const usesExpandedDescriptionRow =
+        donation.id === 'D023' || donation.assetType === 'vehicle';
     const dataRowHeight = usesExpandedDescriptionRow ? 64 : 55;
     ctx.strokeRect(25, y, width - 50, dataRowHeight);
     ctx.beginPath();
@@ -299,8 +300,13 @@ function generateForm8283A(donation) {
     ctx.font = '7px Inter';
     ctx.fillText('EIN: ' + donation.donee.ein, 58, y + 48);
     
-    // Vehicle checkbox (empty for non-vehicles)
-    drawCheckbox(ctx, 205, y + 10, false, '');
+    // Vehicle checkbox and VIN are required for qualified vehicles reported
+    // in Section A.
+    drawCheckbox(ctx, 205, y + 10, donation.assetType === 'vehicle', '');
+    if (donation.assetType === 'vehicle' && donation.vehicle?.vin) {
+        ctx.font = '6px Inter';
+        ctx.fillText(donation.vehicle.vin, 205, y + 35);
+    }
     
     // Description
     const desc = donation.assetDescription || '';

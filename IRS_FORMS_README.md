@@ -18,9 +18,11 @@ This document describes the IRS-compliant form test fixtures generated based on 
 | > $5,000 | Form 8283 Section B + Qualified Appraisal |
 
 ### Vehicles (Cars, Boats, Aircraft)
-| Amount | Required Documentation |
-|--------|----------------------|
-| > $500 | Form 1098-C from charity |
+| Deduction basis | Amount | Required Documentation |
+|-----------------|--------|------------------------|
+| Gross proceeds from charity sale | > $500 | Form 1098-C + Form 8283 Section A |
+| FMV exception (significant use/improvement or needy transfer) | $501-$5,000 | Form 1098-C + Form 8283 Section A |
+| FMV exception (significant use/improvement or needy transfer) | > $5,000 | Form 1098-C + Form 8283 Section B + Qualified Appraisal |
 
 ### Stocks & Securities
 | Type | Amount | Required Documentation |
@@ -39,13 +41,13 @@ This document describes the IRS-compliant form test fixtures generated based on 
 
 | Form Type | Count | Directory | Description |
 |-----------|-------|-----------|-------------|
-| Form 8283 Section A | 4 | `documents/form_8283_section_a/` | Non-cash donations $501-$5,000 |
-| Form 8283 Section B | 7 | `documents/form_8283_section_b/` | Non-cash donations >$5,000 |
+| Form 8283 Section A | 6 | `documents/form_8283_section_a/` | Non-cash donations $501-$5,000 and gross-proceeds vehicles |
+| Form 8283 Section B | 8 | `documents/form_8283_section_b/` | FMV-basis non-cash donations >$5,000 |
 | Form 1098-C | 13 | `documents/form_1098c/` | Vehicle donations >$500 |
-| Qualified Appraisal | 6 | `documents/appraisal/` | Category-specific high-value non-cash donations |
+| Qualified Appraisal | 7 | `documents/appraisal/` | Category-specific high-value FMV-basis donations |
 | Acknowledgment | 19 | `documents/acknowledgment_letter/` | Cash and non-cash charity acknowledgments |
 
-**Total: 49 IRS form documents**
+**Total: 53 IRS form documents**
 
 ## Form Details
 
@@ -129,6 +131,13 @@ npm install
 
 # Regenerate the corrected D023/D024 IRS fixtures and clean stale form outputs
 ONLY_DONATIONS=D023,D024 node scripts/generate_from_donations_v2.js
+
+# Regenerate DM-599 vehicle documents and the linked manifest
+ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations.js
+ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations_v2.js
+
+# Validate the fixture contract
+npm test
 ```
 
 ## Important Notes
@@ -143,4 +152,5 @@ ONLY_DONATIONS=D023,D024 node scripts/generate_from_donations_v2.js
 - [IRS Publication 1771](https://www.irs.gov/pub/irs-pdf/p1771.pdf) - Charitable Contributions Substantiation
 - [Form 8283 Instructions](https://www.irs.gov/instructions/i8283)
 - [Form 1098-C Instructions](https://www.irs.gov/instructions/i1098c)
+- [IRS Notice 2005-44](https://www.irs.gov/irb/2005-25_IRB) - Qualified vehicle deduction and appraisal rules
 - [IRC §170(f)(8)](https://www.law.cornell.edu/uscode/text/26/170) - Substantiation requirements

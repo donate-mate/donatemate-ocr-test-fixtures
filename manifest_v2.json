@@ -1,19 +1,19 @@
 {
   "version": "2.0.0",
   "description": "IRS-compliant OCR test fixtures with linked forms per donation",
-  "generatedAt": "2026-07-08T21:19:09.240Z",
+  "generatedAt": "2026-07-28T23:11:54.730Z",
   "irsReference": "IRS Publication 526 (2025)",
   "namingConvention": "<form_type>_<donation_id>.png",
   "totalDonations": 37,
-  "totalForms": 51,
+  "totalForms": 55,
   "formCounts": {
     "bank_statement": 1,
     "cancelled_check": 1,
     "acknowledgment_letter": 19,
     "receipt": 4,
-    "form_8283_section_a": 4,
-    "form_8283_section_b": 7,
-    "appraisal": 6,
+    "form_8283_section_a": 6,
+    "form_8283_section_b": 8,
+    "appraisal": 7,
     "form_1098c": 3,
     "stock_confirmation": 3,
     "gofundme_receipt": 3
@@ -418,6 +418,8 @@
         "donor_address": "258 Willow Street, Atlanta, GA 30301",
         "donee_name": "Vehicles for Veterans",
         "donee_ein": "45-3827461",
+        "ein_validation_status": "NOT_FOUND",
+        "ein_intentional_synthetic_no_match": true,
         "contribution_date": "2025-02-28",
         "amount": 400,
         "asset_type": "vehicle",
@@ -453,7 +455,24 @@
         "contribution_date": "2025-04-01",
         "amount": 501,
         "asset_type": "vehicle",
-        "asset_description": null
+        "asset_description": "2010 Ford Focus, VIN 1FAHP3F29CL345678"
+      }
+    },
+    {
+      "filename": "form_8283_section_a/form_8283_section_a_D017.png",
+      "formType": "form_8283_section_a",
+      "donationId": "D017",
+      "boundary": true,
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "donor_address": "123 Main Street, Springfield, IL 62701",
+        "donee_name": "Wheels for Wishes",
+        "donee_ein": "27-1583946",
+        "contribution_date": "2025-04-01",
+        "date_acquired": "2016-05-10",
+        "amount": 501,
+        "asset_type": "vehicle",
+        "asset_description": "2010 Ford Focus, VIN 1FAHP3F29CL345678"
       }
     },
     {
@@ -469,7 +488,24 @@
         "contribution_date": "2025-05-15",
         "amount": 12000,
         "asset_type": "vehicle",
-        "asset_description": null
+        "asset_description": "2018 Honda CR-V, VIN 5J6RW2H85JL012345"
+      }
+    },
+    {
+      "filename": "form_8283_section_a/form_8283_section_a_D018.png",
+      "formType": "form_8283_section_a",
+      "donationId": "D018",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "donor_address": "654 Maple Lane, Seattle, WA 98101",
+        "donee_name": "American Red Cross",
+        "donee_ein": "53-0196605",
+        "contribution_date": "2025-05-15",
+        "date_acquired": "2018-02-12",
+        "amount": 12000,
+        "asset_type": "vehicle",
+        "asset_description": "2018 Honda CR-V, VIN 5J6RW2H85JL012345"
       }
     },
     {
@@ -485,7 +521,40 @@
         "contribution_date": "2025-07-20",
         "amount": 35000,
         "asset_type": "vehicle",
-        "asset_description": null
+        "asset_description": "2022 Tesla Model 3, VIN 5YJ3E1EA1NF567890"
+      }
+    },
+    {
+      "filename": "form_8283_section_b/form_8283_section_b_D019.png",
+      "formType": "form_8283_section_b",
+      "donationId": "D019",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Robert J. Anderson",
+        "donor_address": "321 Pine Road, Denver, CO 80202",
+        "donee_name": "Working Cars for Working Families",
+        "donee_ein": "84-2957163",
+        "contribution_date": "2025-07-20",
+        "date_acquired": "2022-03-15",
+        "amount": 35000,
+        "asset_type": "vehicle",
+        "asset_description": "2022 Tesla Model 3, VIN 5YJ3E1EA1NF567890"
+      }
+    },
+    {
+      "filename": "appraisal/appraisal_D019.png",
+      "formType": "appraisal",
+      "donationId": "D019",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Robert J. Anderson",
+        "donor_address": "321 Pine Road, Denver, CO 80202",
+        "donee_name": "Working Cars for Working Families",
+        "donee_ein": "84-2957163",
+        "contribution_date": "2025-07-20",
+        "amount": 35000,
+        "asset_type": "vehicle",
+        "asset_description": "2022 Tesla Model 3, VIN 5YJ3E1EA1NF567890"
       }
     },
     {

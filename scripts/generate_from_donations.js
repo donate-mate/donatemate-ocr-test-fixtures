@@ -1079,6 +1079,15 @@ function generateAppraisal(donation) {
         ctx.fillText(`Legal Description: ${donation.property.legalDescription}`, 50, y);
         y += 16;
         ctx.fillText(`Parcel Number: ${donation.property.parcelNumber}`, 50, y);
+    } else if (donation.assetType === 'vehicle' && donation.vehicle) {
+        const vehicle = donation.vehicle;
+        ctx.fillText(`Vehicle: ${vehicle.year} ${vehicle.make} ${vehicle.model}`, 50, y);
+        y += 16;
+        ctx.fillText(`VIN: ${vehicle.vin}`, 50, y);
+        y += 16;
+        ctx.fillText(`Odometer: ${vehicle.mileage.toLocaleString()} miles`, 50, y);
+        y += 16;
+        ctx.fillText(`Condition: ${vehicle.condition || donation.assetCondition || 'Good'}`, 50, y);
     } else if (donation.security) {
         ctx.fillText(`Security: ${donation.security.name}`, 50, y);
         y += 16;
@@ -1406,6 +1415,13 @@ async function main() {
                     donor_address: formatAddress(donation.donor),
                     donee_name: donation.donee.name,
                     donee_ein: donation.donee.ein,
+                    ...(donation.einValidationExpectation
+                        ? {
+                            ein_validation_status: donation.einValidationExpectation.status,
+                            ein_intentional_synthetic_no_match:
+                                donation.einValidationExpectation.intentionalSyntheticNoMatch
+                        }
+                        : {}),
                     contribution_date: donation.contributionDate,
                     ...(formsWithAcquisitionDate.has(formType)
                         ? { date_acquired: donation.dateAcquired || null }
@@ -1439,7 +1455,7 @@ async function main() {
     
     // Write manifest
     const manifestPath = path.join(__dirname, '..', 'manifest_v2.json');
-    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+    fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
     console.log(`\n✓ Generated manifest_v2.json`);
     
     console.log(`\nSummary:`);
