@@ -2,6 +2,14 @@
 
 const fs = require('fs');
 const path = require('path');
+const { createCanvas } = require('canvas');
+const {
+    formatDate,
+    formatDateShort,
+    formatMoney,
+    getGoFundMeReceiptAmounts,
+    wrapText
+} = require('./generate_from_donations');
 
 const root = path.join(__dirname, '..');
 const donations = JSON.parse(
@@ -121,6 +129,54 @@ assert(
         d015Manifest?.expectedFields?.ein_intentional_synthetic_no_match === true,
     'D015 manifest must retain the printed EIN and its terminal NOT_FOUND expectation'
 );
+
+const d023 = fixture('D023');
+const measurementContext = createCanvas(612, 792).getContext('2d');
+measurementContext.font = '8px Inter';
+const d023DoneeNameLines = wrapText(measurementContext, d023.donee.name, 150);
+assert(
+    d023DoneeNameLines.length <= 2 &&
+        d023DoneeNameLines.join(' ') === d023.donee.name,
+    'D023 donee name must render in full within the two-line Form 8283-A cell'
+);
+
+const goFundMeExpectations = {
+    D035: {
+        date: 'August 12, 2025',
+        shortDate: '08/12/2025',
+        donation: '$50.00',
+        tip: '$5.00',
+        total: '$55.00'
+    },
+    D036: {
+        date: 'November 4, 2025',
+        shortDate: '11/04/2025',
+        donation: '$150.00',
+        tip: '$0.00',
+        total: '$150.00'
+    },
+    D037: {
+        date: 'January 19, 2026',
+        shortDate: '01/19/2026',
+        donation: '$25.00',
+        tip: '$3.75',
+        total: '$28.75'
+    }
+};
+
+for (const [id, expected] of Object.entries(goFundMeExpectations)) {
+    const donation = fixture(id);
+    const amounts = getGoFundMeReceiptAmounts(donation);
+    assert(formatDate(donation.contributionDate) === expected.date, `${id} long date drifted`);
+    assert(formatDateShort(donation.contributionDate) === expected.shortDate, `${id} short date drifted`);
+    assert(formatMoney(amounts.donationAmount) === expected.donation, `${id} donation amount drifted`);
+    assert(formatMoney(amounts.tip) === expected.tip, `${id} tip amount drifted`);
+    assert(formatMoney(amounts.total) === expected.total, `${id} total amount drifted`);
+    assert(
+        donation.deductible === false && donation.donee.ein === null,
+        `${id} must remain a non-deductible personal fundraiser without an EIN`
+    );
+}
 
 console.log(
     `Validated ${manifest.totalDonations} donations and ${manifest.totalForms} linked fixture documents.`
