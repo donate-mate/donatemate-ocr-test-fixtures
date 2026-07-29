@@ -81,6 +81,16 @@ function formatMoney(amount) {
     return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
+function getGoFundMeReceiptAmounts(donation) {
+    const donationAmount = donation.amount;
+    const tip = donation.tip || 0;
+    return {
+        donationAmount,
+        tip,
+        total: donationAmount + tip
+    };
+}
+
 function formatAddress(donor) {
     return `${donor.address}, ${donor.city}, ${donor.state} ${donor.zip}`;
 }
@@ -561,8 +571,7 @@ function generateGoFundMeReceipt(donation) {
     ctx.fillRect(0, 0, width, height);
 
     const c = donation.campaign || {};
-    const tip = donation.tip || 0;
-    const total = donation.amount + tip;
+    const amounts = getGoFundMeReceiptAmounts(donation);
 
     // Brand header
     ctx.fillStyle = '#02a95c';
@@ -633,12 +642,12 @@ function generateGoFundMeReceipt(donation) {
     ctx.fillStyle = '#333333';
     ctx.fillText('Your donation', 40, y);
     ctx.textAlign = 'right';
-    ctx.fillText(formatMoney(donation.amount), width - 40, y);
+    ctx.fillText(formatMoney(amounts.donationAmount), width - 40, y);
     ctx.textAlign = 'left';
     y += 20;
     ctx.fillText('GoFundMe tip', 40, y);
     ctx.textAlign = 'right';
-    ctx.fillText(formatMoney(tip), width - 40, y);
+    ctx.fillText(formatMoney(amounts.tip), width - 40, y);
     ctx.textAlign = 'left';
     y += 14;
     ctx.strokeStyle = '#e0e0e0';
@@ -648,7 +657,7 @@ function generateGoFundMeReceipt(donation) {
     ctx.fillStyle = '#1a1a1a';
     ctx.fillText('Total charged', 40, y);
     ctx.textAlign = 'right';
-    ctx.fillText(formatMoney(total), width - 40, y);
+    ctx.fillText(formatMoney(amounts.total), width - 40, y);
     ctx.textAlign = 'left';
 
     y += 38;
@@ -766,10 +775,14 @@ function generateForm8283A(donation) {
     
     // Data row
     ctx.strokeRect(30, y, width - 60, 45);
-    ctx.font = '9px Inter';
-    ctx.fillText(donation.donee.name.substring(0, 25), 35, y + 15);
+    ctx.font = '8px Inter';
+    const doneeNameLines = wrapText(ctx, donation.donee.name, 150);
+    if (doneeNameLines.length > 2) {
+        throw new Error(`Donee name does not fit Form 8283-A: ${donation.donee.name}`);
+    }
+    doneeNameLines.forEach((line, index) => ctx.fillText(line, 35, y + 11 + index * 9));
     ctx.font = '7px Inter';
-    ctx.fillText(donation.donee.address.substring(0, 30), 35, y + 28);
+    ctx.fillText(donation.donee.address.substring(0, 30), 35, y + 36);
     
     ctx.font = '9px Inter';
     const descLines = wrapText(ctx, donation.assetDescription, 115);
@@ -1464,4 +1477,14 @@ async function main() {
     console.log(`  Form types:`, manifest.formCounts);
 }
 
-main().catch(console.error);
+if (require.main === module) {
+    main().catch(console.error);
+}
+
+module.exports = {
+    formatDate,
+    formatDateShort,
+    formatMoney,
+    getGoFundMeReceiptAmounts,
+    wrapText
+};

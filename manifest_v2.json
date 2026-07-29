@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
   "description": "IRS-compliant OCR test fixtures with linked forms per donation",
-  "generatedAt": "2026-07-28T23:11:54.730Z",
+  "generatedAt": "2026-07-29T14:50:56.409Z",
   "irsReference": "IRS Publication 526 (2025)",
   "namingConvention": "<form_type>_<donation_id>.png",
   "totalDonations": 37,
