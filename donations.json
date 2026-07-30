@@ -610,7 +610,7 @@
     },
     {
       "id": "D023",
-      "description": "Closely-held stock $5,000 - requires Form 8283-A",
+      "description": "Closely-held stock $5,000 - active 501(c)(3), requires Form 8283-A and acknowledgment",
       "assetType": "stock_closelyheld",
       "amount": 5000.00,
       "assetDescription": "100 shares Anderson Family Holdings LLC",
@@ -631,9 +631,9 @@
         "zip": "80202"
       },
       "donee": {
-        "name": "Community Foundation of Colorado",
-        "ein": "84-0404757",
-        "address": "1600 Grant Street, Denver, CO 80203"
+        "name": "Community Foundation of Northern Colorado",
+        "ein": "84-0699243",
+        "address": "4745 Wheaton Drive, Fort Collins, CO 80525"
       },
       "contributionDate": "2025-06-20",
       "forms": ["form_8283_section_a", "acknowledgment_letter"]
