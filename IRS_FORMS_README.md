@@ -45,9 +45,9 @@ This document describes the IRS-compliant form test fixtures generated based on 
 | Form 8283 Section B | 8 | `documents/form_8283_section_b/` | FMV-basis non-cash donations >$5,000 |
 | Form 1098-C | 13 | `documents/form_1098c/` | Vehicle donations >$500 |
 | Qualified Appraisal | 7 | `documents/appraisal/` | Category-specific high-value FMV-basis donations |
-| Acknowledgment | 19 | `documents/acknowledgment_letter/` | Cash and non-cash charity acknowledgments |
+| Acknowledgment | 20 | `documents/acknowledgment_letter/` | Cash and non-cash charity acknowledgments |
 
-**Total: 53 IRS form documents**
+**Total: 54 IRS form documents**
 
 ## Form Details
 
@@ -55,7 +55,7 @@ This document describes the IRS-compliant form test fixtures generated based on 
 
 **Section A** (for donations $500 - $5,000):
 - Donor information
-- Donee organization name, address, EIN
+- Donee organization name and address
 - Property description and condition
 - Date of contribution
 - Date acquired and how acquired

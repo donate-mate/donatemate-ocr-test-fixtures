@@ -351,7 +351,7 @@ function generateAcknowledgmentLetter(donation) {
         const v = donation.vehicle;
         bodyText = `Thank you for your generous donation of a ${v.year} ${v.make} ${v.model} (VIN: ${v.vin}, estimated fair market value: ${formatMoney(donation.amount)}) to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
     } else if (donation.assetType.startsWith('stock')) {
-        bodyText = `Thank you for your generous donation of securities to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
+        bodyText = `Thank you for your generous donation of ${donation.assetDescription || 'securities'} to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
     } else {
         bodyText = `Thank you for your generous donation of ${donation.assetDescription} (estimated fair market value: ${formatMoney(donation.amount)}) to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
     }

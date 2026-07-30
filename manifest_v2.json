@@ -1,15 +1,15 @@
 {
   "version": "2.0.0",
   "description": "IRS-compliant OCR test fixtures with linked forms per donation",
-  "generatedAt": "2026-07-29T14:50:56.409Z",
+  "generatedAt": "2026-07-30T15:40:20.073Z",
   "irsReference": "IRS Publication 526 (2025)",
   "namingConvention": "<form_type>_<donation_id>.png",
   "totalDonations": 37,
-  "totalForms": 55,
+  "totalForms": 56,
   "formCounts": {
     "bank_statement": 1,
     "cancelled_check": 1,
-    "acknowledgment_letter": 19,
+    "acknowledgment_letter": 20,
     "receipt": 4,
     "form_8283_section_a": 6,
     "form_8283_section_b": 8,
@@ -617,6 +617,22 @@
         "donee_ein": "84-0404757",
         "contribution_date": "2025-06-20",
         "date_acquired": "2015-01-01",
+        "amount": 5000,
+        "asset_type": "stock_closelyheld",
+        "asset_description": "100 shares Anderson Family Holdings LLC"
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D023.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D023",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Robert J. Anderson",
+        "donor_address": "321 Pine Road, Denver, CO 80202",
+        "donee_name": "Community Foundation of Colorado",
+        "donee_ein": "84-0404757",
+        "contribution_date": "2025-06-20",
         "amount": 5000,
         "asset_type": "stock_closelyheld",
         "asset_description": "100 shares Anderson Family Holdings LLC"

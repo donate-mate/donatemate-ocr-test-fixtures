@@ -10,7 +10,7 @@ This repository contains programmatically generated donation-related documents f
 
 | Form Type | Count | Description |
 |-----------|-------|-------------|
-| acknowledgment_letter | 19 | Written acknowledgments for cash ≥$250 and non-cash donations |
+| acknowledgment_letter | 20 | Written acknowledgments for cash ≥$250 and non-cash donations |
 | appraisal | 7 | Qualified appraisals for FMV-basis donations >$5,000 |
 | bank_statement | 1 | Bank records for cash donations <$250 |
 | cancelled_check | 1 | Cancelled checks for cash donations <$250 |
@@ -123,7 +123,7 @@ The `donations.json` file defines 37 test donations covering all IRS thresholds:
 ### Closely-Held Securities
 | ID | Amount | Forms | Notes |
 |----|--------|-------|-------|
-| D023 | $5,000 | form_8283_section_a | |
+| D023 | $5,000 | form_8283_section_a, acknowledgment_letter | EIN-bearing acknowledgment accompanies Section A |
 | D024 | **$10,000** | form_8283_section_b | **No-appraisal boundary** |
 | D025 | **$10,001** | form_8283_section_b, appraisal | **Boundary** |
 | D026 | $50,000 | form_8283_section_b, appraisal | |

@@ -131,6 +131,7 @@ assert(
 );
 
 const d023 = fixture('D023');
+assertForms('D023', ['form_8283_section_a', 'acknowledgment_letter']);
 const measurementContext = createCanvas(612, 792).getContext('2d');
 measurementContext.font = '8px Inter';
 const d023DoneeNameLines = wrapText(measurementContext, d023.donee.name, 150);
@@ -138,6 +139,18 @@ assert(
     d023DoneeNameLines.length <= 2 &&
         d023DoneeNameLines.join(' ') === d023.donee.name,
     'D023 donee name must render in full within the two-line Form 8283-A cell'
+);
+const d023Acknowledgment = manifestDocuments.get(
+    'acknowledgment_letter/acknowledgment_letter_D023.png'
+);
+assert(
+    d023Acknowledgment?.expectedFields?.donee_name === d023.donee.name &&
+        d023Acknowledgment?.expectedFields?.donee_ein === d023.donee.ein &&
+        d023Acknowledgment?.expectedFields?.contribution_date === d023.contributionDate &&
+        d023Acknowledgment?.expectedFields?.amount === d023.amount &&
+        d023Acknowledgment?.expectedFields?.asset_type === d023.assetType &&
+        d023Acknowledgment?.expectedFields?.asset_description === d023.assetDescription,
+    'D023 acknowledgment manifest must retain its EIN-bearing donation contract'
 );
 
 const goFundMeExpectations = {
