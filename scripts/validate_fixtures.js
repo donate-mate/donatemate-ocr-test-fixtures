@@ -79,6 +79,68 @@ assert(
     `Manifest document count mismatch: expected ${expectedDocuments.size}, got ${manifestDocuments.size}`
 );
 
+for (const donation of donations) {
+    assert(
+        typeof donation.deductible === 'boolean',
+        `${donation.id} must declare an explicit boolean deductible expectation`
+    );
+
+    const expectation = donation.einValidationExpectation;
+    if (!expectation) {
+        continue;
+    }
+
+    assert(
+        ['VALID', 'NOT_FOUND', 'PENDING'].includes(expectation.status),
+        `${donation.id} has unsupported EIN validation expectation ${expectation.status}`
+    );
+    assert(
+        typeof expectation.reason === 'string' && expectation.reason.trim().length > 0,
+        `${donation.id} EIN validation expectation must explain its evidence contract`
+    );
+    assert(
+        donation.deductible === (expectation.status === 'VALID'),
+        `${donation.id} deductible expectation must agree with its EIN validation status`
+    );
+}
+
+const dm3063Expectations = new Map([
+    ['D002', { deductible: false, status: 'PENDING' }],
+    ['D012', { deductible: false, status: 'NOT_FOUND' }],
+    ['D015', { deductible: false, status: 'NOT_FOUND' }],
+    ['D016', { deductible: false, status: 'NOT_FOUND' }],
+    ['D017', { deductible: false, status: 'NOT_FOUND' }],
+    ['D019', { deductible: false, status: 'NOT_FOUND' }],
+    ['D022', { deductible: false, status: 'NOT_FOUND' }],
+    ['D023', { deductible: true, status: 'VALID' }],
+    ['D026', { deductible: false, status: 'NOT_FOUND' }],
+    ['D028', { deductible: false, status: 'NOT_FOUND' }]
+]);
+
+for (const [id, expected] of dm3063Expectations) {
+    const donation = fixture(id);
+    assert(
+        donation.deductible === expected.deductible &&
+            donation.einValidationExpectation?.status === expected.status,
+        `${id} must retain the DM-3063 deductibility and EIN evidence contract`
+    );
+
+    for (const formType of donation.forms) {
+        const document = manifestDocuments.get(`${formType}/${formType}_${id}.png`);
+        assert(
+            document?.expectedFields?.ein_validation_status === expected.status,
+            `${id} manifest documents must retain EIN status ${expected.status}`
+        );
+    }
+
+    if (expected.status === 'NOT_FOUND') {
+        assert(
+            donation.einValidationExpectation.intentionalSyntheticNoMatch === true,
+            `${id} terminal NOT_FOUND must remain explicitly synthetic`
+        );
+    }
+}
+
 for (const [filename, expected] of expectedDocuments) {
     const document = manifestDocuments.get(filename);
     assert(document, `Manifest is missing ${filename}`);

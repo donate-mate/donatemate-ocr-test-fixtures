@@ -29,6 +29,12 @@ crowdfunding campaign. These documents carry **no EIN** and state explicitly tha
 contribution is **not tax deductible** — useful for testing OCR/classification that must
 distinguish deductible charitable receipts from non-deductible payment confirmations.
 
+Every donation declares an explicit boolean `deductible` expectation. Omission is invalid
+and never defaults to `true`. Fixtures that exercise a specific EIN outcome also declare
+`einValidationExpectation` with the expected status and evidence rationale. A qualifying
+`VALID` result may be deductible; unresolved, missing, or `NOT_FOUND` evidence remains
+fail-closed.
+
 ## Directory Structure
 
 ```
