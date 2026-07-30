@@ -10,6 +10,7 @@ const {
     generateForm8283A,
     getGoFundMeReceiptAmounts,
     getForm8283FmvMethod,
+    getForm8283PropertyDescription,
     maskedTaxpayerId,
     wrapText
 } = require('./generate_from_donations');
@@ -133,8 +134,6 @@ assert(
     'D015 manifest must retain the printed EIN and its terminal NOT_FOUND expectation'
 );
 
-const d023 = fixture('D023');
-assertForms('D023', ['form_8283_section_a', 'acknowledgment_letter']);
 const measurementContext = createCanvas(612, 792).getContext('2d');
 
 function assertWrappedFieldFits(text, font, width, maxLines, label) {
@@ -148,24 +147,93 @@ function assertWrappedFieldFits(text, font, width, maxLines, label) {
     );
 }
 
-assertWrappedFieldFits(d023.donee.name, '7.5px Inter', 126, 2, 'D023 donee name');
-assertWrappedFieldFits(d023.donee.address, '6.5px Inter', 126, 3, 'D023 donee address');
-assertWrappedFieldFits(d023.assetDescription, '8px Inter', 296, 3, 'D023 property description');
-assertWrappedFieldFits(d023.howAcquired, '7px Inter', 104, 2, 'D023 acquisition method');
+const sectionADonations = donations.filter(donation =>
+    donation.forms.includes('form_8283_section_a')
+);
+assert(sectionADonations.length === 6, 'Expected six Form 8283-A fixture variants');
+
+for (const donation of sectionADonations) {
+    const description = getForm8283PropertyDescription(donation);
+    const fmvMethod = getForm8283FmvMethod(donation);
+
+    assertWrappedFieldFits(
+        donation.donee.name,
+        '7.5px Inter',
+        126,
+        2,
+        `${donation.id} donee name`
+    );
+    assertWrappedFieldFits(
+        donation.donee.address,
+        '6.5px Inter',
+        126,
+        3,
+        `${donation.id} donee address`
+    );
+    assertWrappedFieldFits(
+        description,
+        '8px Inter',
+        296,
+        3,
+        `${donation.id} property description`
+    );
+    assertWrappedFieldFits(
+        donation.howAcquired,
+        '7px Inter',
+        104,
+        2,
+        `${donation.id} acquisition method`
+    );
+    assert(fmvMethod, `${donation.id} must declare or derive an FMV method`);
+    assertWrappedFieldFits(
+        fmvMethod,
+        '7px Inter',
+        104,
+        2,
+        `${donation.id} FMV method`
+    );
+
+    const taxpayerId = maskedTaxpayerId(donation);
+    assert(
+        /^XXX-XX-\d{4}$/.test(taxpayerId) &&
+            taxpayerId === maskedTaxpayerId(donation),
+        `${donation.id} taxpayer identifier must be masked and deterministic`
+    );
+
+    const renderedForm = generateForm8283A(donation);
+    assert(
+        renderedForm.equals(generateForm8283A(donation)),
+        `${donation.id} Form 8283-A generation must be deterministic`
+    );
+    const trackedForm = fs.readFileSync(
+        path.join(
+            root,
+            'documents',
+            'form_8283_section_a',
+            `form_8283_section_a_${donation.id}.png`
+        )
+    );
+    assert(
+        trackedForm.equals(renderedForm),
+        `${donation.id} tracked Form 8283-A must match the canonical generator`
+    );
+
+    if (donation.assetType === 'vehicle') {
+        assert(
+            description.includes(`${donation.vehicle.mileage.toLocaleString('en-US')} miles`) &&
+                donation.forms.includes('form_1098c') &&
+                fmvMethod === 'Gross proceeds',
+            `${donation.id} vehicle Section A must include mileage, Form 1098-C, and gross-proceeds valuation`
+        );
+    }
+}
+
+const d023 = fixture('D023');
+assertForms('D023', ['form_8283_section_a', 'acknowledgment_letter']);
 assert(!d023.assetCondition, 'D023 securities must not declare a physical condition');
 assert(
     getForm8283FmvMethod(d023) === '100 shares at $50.00',
     'D023 Form 8283-A must derive its FMV method from the declared share data'
-);
-const d023TaxpayerId = maskedTaxpayerId(d023);
-assert(
-    /^XXX-XX-\d{4}$/.test(d023TaxpayerId) &&
-        d023TaxpayerId === maskedTaxpayerId(d023),
-    'D023 taxpayer identifier must be masked and deterministic'
-);
-assert(
-    generateForm8283A(d023).equals(generateForm8283A(d023)),
-    'D023 Form 8283-A generation must be deterministic'
 );
 const d023Acknowledgment = manifestDocuments.get(
     'acknowledgment_letter/acknowledgment_letter_D023.png'

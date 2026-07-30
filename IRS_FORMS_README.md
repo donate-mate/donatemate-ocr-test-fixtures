@@ -129,15 +129,18 @@ The `manifest_irs_forms.json` file contains metadata for each generated document
 # Install dependencies
 npm install
 
-# Regenerate the corrected D023 Section A and acknowledgment
-ONLY_DONATIONS=D023 node scripts/generate_from_donations.js
+# Regenerate every corrected Form 8283 Section A fixture
+ONLY_FORMS=form_8283_section_a node scripts/generate_from_donations.js
+
+# Regenerate the D023 acknowledgment
+ONLY_DONATIONS=D023 ONLY_FORMS=acknowledgment_letter node scripts/generate_from_donations.js
 
 # Regenerate the corrected D024 Section B and clean stale form outputs
 ONLY_DONATIONS=D024 node scripts/generate_from_donations_v2.js
 
 # Regenerate DM-599 vehicle documents and the linked manifest
 ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations.js
-ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations_v2.js
+ONLY_DONATIONS=D017,D018,D019 ONLY_FORMS=form_1098c,form_8283_section_b,appraisal node scripts/generate_from_donations_v2.js
 
 # Validate the fixture contract
 npm test

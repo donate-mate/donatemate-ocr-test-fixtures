@@ -121,6 +121,29 @@ function getForm8283FmvMethod(donation) {
     return '';
 }
 
+function getForm8283PropertyDescription(donation) {
+    if (donation.assetType !== 'vehicle') {
+        return donation.assetDescription;
+    }
+
+    const vehicle = donation.vehicle;
+    if (
+        !vehicle?.year ||
+        !vehicle?.make ||
+        !vehicle?.model ||
+        !vehicle?.vin ||
+        vehicle?.mileage == null
+    ) {
+        throw new Error(`Vehicle data is incomplete for Form 8283-A: ${donation.id}`);
+    }
+
+    return [
+        `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
+        `${vehicle.mileage.toLocaleString('en-US')} miles`,
+        `VIN ${vehicle.vin}`
+    ].join(', ');
+}
+
 function formatAddress(donor) {
     return `${donor.address}, ${donor.city}, ${donor.state} ${donor.zip}`;
 }
@@ -920,7 +943,7 @@ function generateForm8283A(donation) {
     ctx.font = '8px Inter';
     const descriptionLines = drawWrappedText(
         ctx,
-        donation.assetDescription,
+        getForm8283PropertyDescription(donation),
         descriptionX,
         y + 17,
         primaryWidths[3] - 6,
@@ -1697,6 +1720,7 @@ module.exports = {
     generateForm8283A,
     getGoFundMeReceiptAmounts,
     getForm8283FmvMethod,
+    getForm8283PropertyDescription,
     maskedTaxpayerId,
     wrapText
 };

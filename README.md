@@ -192,16 +192,19 @@ node scripts/generate_from_donations.js
 # Regenerate selected documents while still recomputing manifest_v2.json
 ONLY_DONATIONS=D029,D030 ONLY_FORMS=acknowledgment_letter node scripts/generate_from_donations.js
 
-# Regenerate the corrected D023 Section A and acknowledgment
-ONLY_DONATIONS=D023 node scripts/generate_from_donations.js
+# Regenerate every corrected Form 8283 Section A fixture
+ONLY_FORMS=form_8283_section_a node scripts/generate_from_donations.js
+
+# Regenerate the D023 acknowledgment
+ONLY_DONATIONS=D023 ONLY_FORMS=acknowledgment_letter node scripts/generate_from_donations.js
 
 # Regenerate the corrected D024 Section B and remove superseded outputs
 ONLY_DONATIONS=D024 node scripts/generate_from_donations_v2.js
 
 # Regenerate the DM-599 vehicle fixtures and manifest. The second command
-# replaces the simplified IRS forms with the OCR-accurate deterministic forms.
+# replaces only the non-Section-A IRS forms with their specialized renderings.
 ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations.js
-ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations_v2.js
+ONLY_DONATIONS=D017,D018,D019 ONLY_FORMS=form_1098c,form_8283_section_b,appraisal node scripts/generate_from_donations_v2.js
 
 # Validate fixture metadata, required files, and manifest parity
 npm test
