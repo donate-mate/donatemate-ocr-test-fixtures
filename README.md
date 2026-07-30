@@ -123,7 +123,7 @@ The `donations.json` file defines 37 test donations covering all IRS thresholds:
 ### Closely-Held Securities
 | ID | Amount | Forms | Notes |
 |----|--------|-------|-------|
-| D023 | $5,000 | form_8283_section_a, acknowledgment_letter | Complete, non-overlapping Section A; EIN-bearing acknowledgment supplies the donee EIN |
+| D023 | $5,000 | form_8283_section_a, acknowledgment_letter | Complete, non-overlapping Section A; active 501(c)(3) donee; EIN-bearing acknowledgment supplies the donee EIN |
 | D024 | **$10,000** | form_8283_section_b | **No-appraisal boundary** |
 | D025 | **$10,001** | form_8283_section_b, appraisal | **Boundary** |
 | D026 | $50,000 | form_8283_section_b, appraisal | |

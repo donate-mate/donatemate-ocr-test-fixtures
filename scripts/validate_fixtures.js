@@ -230,6 +230,12 @@ for (const donation of sectionADonations) {
 
 const d023 = fixture('D023');
 assertForms('D023', ['form_8283_section_a', 'acknowledgment_letter']);
+assert(
+    d023.donee.name === 'Community Foundation of Northern Colorado' &&
+        d023.donee.ein === '84-0699243' &&
+        d023.donee.address === '4745 Wheaton Drive, Fort Collins, CO 80525',
+    'D023 must retain its active staging-BMF-backed 501(c)(3) identity'
+);
 assert(!d023.assetCondition, 'D023 securities must not declare a physical condition');
 assert(
     getForm8283FmvMethod(d023) === '100 shares at $50.00',

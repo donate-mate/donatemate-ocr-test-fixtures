@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
   "description": "IRS-compliant OCR test fixtures with linked forms per donation",
-  "generatedAt": "2026-07-30T16:13:44.822Z",
+  "generatedAt": "2026-07-30T16:40:50.419Z",
   "irsReference": "IRS Publication 526 (2025)",
   "namingConvention": "<form_type>_<donation_id>.png",
   "totalDonations": 37,
@@ -613,8 +613,8 @@
       "expectedFields": {
         "donor_name": "Robert J. Anderson",
         "donor_address": "321 Pine Road, Denver, CO 80202",
-        "donee_name": "Community Foundation of Colorado",
-        "donee_ein": "84-0404757",
+        "donee_name": "Community Foundation of Northern Colorado",
+        "donee_ein": "84-0699243",
         "contribution_date": "2025-06-20",
         "date_acquired": "2015-01-01",
         "amount": 5000,
@@ -630,8 +630,8 @@
       "expectedFields": {
         "donor_name": "Robert J. Anderson",
         "donor_address": "321 Pine Road, Denver, CO 80202",
-        "donee_name": "Community Foundation of Colorado",
-        "donee_ein": "84-0404757",
+        "donee_name": "Community Foundation of Northern Colorado",
+        "donee_ein": "84-0699243",
         "contribution_date": "2025-06-20",
         "amount": 5000,
         "asset_type": "stock_closelyheld",
