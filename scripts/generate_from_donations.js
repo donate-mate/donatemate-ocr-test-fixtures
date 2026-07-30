@@ -1662,9 +1662,7 @@ async function main() {
                     donee_ein: donation.donee.ein,
                     ...(donation.einValidationExpectation
                         ? {
-                            ein_validation_status: donation.einValidationExpectation.status,
-                            ein_intentional_synthetic_no_match:
-                                donation.einValidationExpectation.intentionalSyntheticNoMatch
+                            ein_validation_status: donation.einValidationExpectation.status
                         }
                         : {}),
                     contribution_date: donation.contributionDate,

@@ -10,6 +10,7 @@
       "description": "Cash donation $100 - requires bank record",
       "assetType": "cash",
       "amount": 100.00,
+      "deductible": true,
       "donor": {
         "name": "John A. Smith",
         "address": "123 Main Street",
@@ -30,6 +31,7 @@
       "description": "Cash donation $200 - requires cancelled check",
       "assetType": "cash",
       "amount": 200.00,
+      "deductible": true,
       "donor": {
         "name": "Emily R. Davis",
         "address": "789 Elm Drive",
@@ -38,9 +40,13 @@
         "zip": "78701"
       },
       "donee": {
-        "name": "Habitat for Humanity International",
-        "ein": "91-1914868",
-        "address": "322 W. Lamar Street, Americus, GA 31709"
+        "name": "Community Foundation of Northern Colorado",
+        "ein": "84-0699243",
+        "address": "4745 Wheaton Drive, Fort Collins, CO 80525"
+      },
+      "einValidationExpectation": {
+        "status": "VALID",
+        "reason": "The uniquely resolvable donee is backed by an active, deductible 501(c)(3) IRS BMF record after organization enrichment."
       },
       "contributionDate": "2025-02-20",
       "forms": ["cancelled_check"]
@@ -50,6 +56,7 @@
       "description": "Cash donation $250 (boundary) - requires acknowledgment",
       "assetType": "cash",
       "amount": 250.00,
+      "deductible": true,
       "boundary": true,
       "donor": {
         "name": "Michael T. Williams",
@@ -71,6 +78,7 @@
       "description": "Cash donation $1,500 - requires acknowledgment",
       "assetType": "cash",
       "amount": 1500.00,
+      "deductible": true,
       "donor": {
         "name": "Sarah M. Johnson",
         "address": "654 Maple Lane",
@@ -91,6 +99,7 @@
       "description": "Cash donation $5,000 - requires acknowledgment",
       "assetType": "cash",
       "amount": 5000.00,
+      "deductible": true,
       "donor": {
         "name": "Robert J. Anderson",
         "address": "321 Pine Road",
@@ -111,6 +120,7 @@
       "description": "Non-cash goods $150 - requires receipt only",
       "assetType": "noncash_goods",
       "amount": 150.00,
+      "deductible": true,
       "assetDescription": "Men's winter coat and dress shoes",
       "assetCondition": "Good",
       "donor": {
@@ -133,6 +143,7 @@
       "description": "Non-cash goods $250 (boundary) - requires receipt + acknowledgment",
       "assetType": "noncash_goods",
       "amount": 250.00,
+      "deductible": true,
       "boundary": true,
       "assetDescription": "Vintage leather briefcase",
       "assetCondition": "Excellent",
@@ -156,6 +167,7 @@
       "description": "Non-cash goods $400 - requires receipt + acknowledgment",
       "assetType": "noncash_goods",
       "amount": 400.00,
+      "deductible": true,
       "assetDescription": "Antique oak side table",
       "assetCondition": "Good",
       "donor": {
@@ -178,6 +190,7 @@
       "description": "Non-cash goods $500 (boundary) - requires receipt + acknowledgment",
       "assetType": "noncash_goods",
       "amount": 500.00,
+      "deductible": true,
       "boundary": true,
       "assetDescription": "Complete dining set (table + 4 chairs)",
       "assetCondition": "Good",
@@ -201,6 +214,7 @@
       "description": "Non-cash goods $501 (boundary) - requires Form 8283-A + acknowledgment",
       "assetType": "noncash_goods",
       "amount": 501.00,
+      "deductible": true,
       "boundary": true,
       "assetDescription": "Antique wooden desk",
       "assetCondition": "Good",
@@ -228,6 +242,7 @@
       "description": "Non-cash goods $3,500 - requires Form 8283-A + acknowledgment",
       "assetType": "noncash_goods",
       "amount": 3500.00,
+      "deductible": true,
       "assetDescription": "Vintage jewelry collection (8 pieces)",
       "assetCondition": "Excellent",
       "valuationMethod": "Comparable Sales",
@@ -254,6 +269,7 @@
       "description": "Non-cash goods $5,000 (boundary) - requires Form 8283-A + acknowledgment",
       "assetType": "noncash_goods",
       "amount": 5000.00,
+      "deductible": true,
       "boundary": true,
       "assetDescription": "Professional camera equipment (body + 3 lenses)",
       "assetCondition": "Excellent",
@@ -269,9 +285,13 @@
         "zip": "97201"
       },
       "donee": {
-        "name": "State University Foundation",
-        "ein": "34-5678901",
-        "address": "100 College Drive, University City, ST 34567"
+        "name": "Community Foundation of Northern Colorado",
+        "ein": "84-0699243",
+        "address": "4745 Wheaton Drive, Fort Collins, CO 80525"
+      },
+      "einValidationExpectation": {
+        "status": "VALID",
+        "reason": "The charitable boundary fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-06-15",
       "forms": ["form_8283_section_a", "acknowledgment_letter"]
@@ -281,6 +301,7 @@
       "description": "Non-cash goods $5,001 (boundary) - requires Form 8283-B + appraisal + acknowledgment",
       "assetType": "noncash_goods",
       "amount": 5001.00,
+      "deductible": true,
       "boundary": true,
       "assetDescription": "Grand piano - Baldwin Model R",
       "assetCondition": "Excellent",
@@ -314,6 +335,7 @@
       "description": "Non-cash goods $15,000 - requires Form 8283-B + appraisal + acknowledgment",
       "assetType": "noncash_goods",
       "amount": 15000.00,
+      "deductible": true,
       "assetDescription": "Antique Persian rug (9x12 Tabriz)",
       "assetCondition": "Excellent",
       "dateAcquired": "2005-04-15",
@@ -343,9 +365,10 @@
     },
     {
       "id": "D015",
-      "description": "Vehicle $400 - requires acknowledgment only; intentional terminal EIN no-match",
+      "description": "Vehicle $400 - requires acknowledgment only",
       "assetType": "vehicle",
       "amount": 400.00,
+      "deductible": true,
       "vehicle": {
         "year": 2008,
         "make": "Honda",
@@ -362,14 +385,13 @@
         "zip": "30301"
       },
       "donee": {
-        "name": "Vehicles for Veterans",
-        "ein": "45-3827461",
-        "address": "1500 Charity Drive, Atlanta, GA 30302"
+        "name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "address": "15810 Indianola Drive, Rockville, MD 20855"
       },
       "einValidationExpectation": {
-        "status": "NOT_FOUND",
-        "intentionalSyntheticNoMatch": true,
-        "reason": "Dedicated DM-534 regression: retain the printed, well-formed EIN after validation reaches terminal NOT_FOUND."
+        "status": "VALID",
+        "reason": "The vehicle fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-02-28",
       "forms": ["acknowledgment_letter"]
@@ -379,6 +401,7 @@
       "description": "Vehicle $500 (boundary) - requires acknowledgment only",
       "assetType": "vehicle",
       "amount": 500.00,
+      "deductible": true,
       "boundary": true,
       "vehicle": {
         "year": 2006,
@@ -396,9 +419,13 @@
         "zip": "02101"
       },
       "donee": {
-        "name": "Cars for Causes",
-        "ein": "52-1847362",
-        "address": "750 Auto Row, Boston, MA 02102"
+        "name": "The Salvation Army",
+        "ein": "13-5562351",
+        "address": "615 Slaters Lane, Alexandria, VA 22314"
+      },
+      "einValidationExpectation": {
+        "status": "VALID",
+        "reason": "The vehicle boundary fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-03-20",
       "forms": ["acknowledgment_letter"]
@@ -408,6 +435,7 @@
       "description": "Vehicle $501 (boundary) sold at auction - requires Form 1098-C + Form 8283 Section A",
       "assetType": "vehicle",
       "amount": 501.00,
+      "deductible": true,
       "boundary": true,
       "assetDescription": "2010 Ford Focus, VIN 1FAHP3F29CL345678",
       "assetCondition": "Fair",
@@ -435,9 +463,13 @@
         "zip": "62701"
       },
       "donee": {
-        "name": "Wheels for Wishes",
-        "ein": "27-1583946",
-        "address": "300 Donation Drive, Springfield, IL 62702"
+        "name": "Habitat for Humanity International",
+        "ein": "91-1914868",
+        "address": "322 W. Lamar Street, Americus, GA 31709"
+      },
+      "einValidationExpectation": {
+        "status": "VALID",
+        "reason": "The vehicle boundary fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-04-01",
       "forms": ["form_1098c", "form_8283_section_a"]
@@ -447,6 +479,7 @@
       "description": "Vehicle $12,000 sold at auction - requires Form 1098-C + Form 8283 Section A",
       "assetType": "vehicle",
       "amount": 12000.00,
+      "deductible": true,
       "assetDescription": "2018 Honda CR-V, VIN 5J6RW2H85JL012345",
       "assetCondition": "Good",
       "dateAcquired": "2018-02-12",
@@ -485,6 +518,7 @@
       "description": "Vehicle $35,000 transferred to a needy individual - requires Form 1098-C + Form 8283 Section B + qualified appraisal",
       "assetType": "vehicle",
       "amount": 35000.00,
+      "deductible": true,
       "assetDescription": "2022 Tesla Model 3, VIN 5YJ3E1EA1NF567890",
       "assetCondition": "Excellent",
       "dateAcquired": "2022-03-15",
@@ -510,9 +544,13 @@
         "zip": "80202"
       },
       "donee": {
-        "name": "Working Cars for Working Families",
-        "ein": "84-2957163",
-        "address": "1200 Community Blvd, Denver, CO 80204"
+        "name": "American Red Cross",
+        "ein": "53-0196605",
+        "address": "431 18th Street NW, Washington, DC 20006"
+      },
+      "einValidationExpectation": {
+        "status": "VALID",
+        "reason": "The vehicle fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-07-20",
       "appraisal": {
@@ -529,6 +567,7 @@
       "description": "Publicly traded stock $500",
       "assetType": "stock_public",
       "amount": 500.00,
+      "deductible": true,
       "security": {
         "name": "Apple Inc.",
         "ticker": "AAPL",
@@ -557,6 +596,7 @@
       "description": "Publicly traded stock $5,000",
       "assetType": "stock_public",
       "amount": 5000.00,
+      "deductible": true,
       "security": {
         "name": "Microsoft Corporation",
         "ticker": "MSFT",
@@ -585,6 +625,7 @@
       "description": "Publicly traded stock $25,000",
       "assetType": "stock_public",
       "amount": 25000.00,
+      "deductible": true,
       "security": {
         "name": "Amazon.com Inc.",
         "ticker": "AMZN",
@@ -601,9 +642,13 @@
         "zip": "85001"
       },
       "donee": {
-        "name": "State University Foundation",
-        "ein": "34-5678901",
-        "address": "100 College Drive, University City, ST 34567"
+        "name": "Community Foundation of Northern Colorado",
+        "ein": "84-0699243",
+        "address": "4745 Wheaton Drive, Fort Collins, CO 80525"
+      },
+      "einValidationExpectation": {
+        "status": "VALID",
+        "reason": "The securities fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-05-30",
       "forms": ["stock_confirmation"]
@@ -613,6 +658,7 @@
       "description": "Closely-held stock $5,000 - active 501(c)(3), requires Form 8283-A and acknowledgment",
       "assetType": "stock_closelyheld",
       "amount": 5000.00,
+      "deductible": true,
       "assetDescription": "100 shares Anderson Family Holdings LLC",
       "security": {
         "name": "Anderson Family Holdings LLC",
@@ -635,6 +681,10 @@
         "ein": "84-0699243",
         "address": "4745 Wheaton Drive, Fort Collins, CO 80525"
       },
+      "einValidationExpectation": {
+        "status": "VALID",
+        "reason": "DM-3067 fixture backed by an active, deductible 501(c)(3) IRS BMF record."
+      },
       "contributionDate": "2025-06-20",
       "forms": ["form_8283_section_a", "acknowledgment_letter"]
     },
@@ -643,6 +693,7 @@
       "description": "Closely-held stock $10,000 (boundary) - requires Form 8283-B without appraisal",
       "assetType": "stock_closelyheld",
       "amount": 10000.00,
+      "deductible": true,
       "boundary": true,
       "assetDescription": "200 shares Wilson Properties Inc.",
       "security": {
@@ -674,6 +725,7 @@
       "description": "Closely-held stock $10,001 (boundary) - requires Form 8283-B + appraisal",
       "assetType": "stock_closelyheld",
       "amount": 10001.00,
+      "deductible": true,
       "boundary": true,
       "security": {
         "name": "Miller Family Enterprises LLC",
@@ -711,6 +763,7 @@
       "description": "Closely-held stock $50,000 - requires Form 8283-B + appraisal",
       "assetType": "stock_closelyheld",
       "amount": 50000.00,
+      "deductible": true,
       "security": {
         "name": "Smith Tech Ventures Inc.",
         "shares": 500,
@@ -728,9 +781,13 @@
         "zip": "62701"
       },
       "donee": {
-        "name": "Illinois Community Foundation",
-        "ein": "37-1349398",
-        "address": "505 S. Neil Street, Champaign, IL 61820"
+        "name": "Community Foundation of Northern Colorado",
+        "ein": "84-0699243",
+        "address": "4745 Wheaton Drive, Fort Collins, CO 80525"
+      },
+      "einValidationExpectation": {
+        "status": "VALID",
+        "reason": "The closely-held securities fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-09-10",
       "appraisal": {
@@ -747,6 +804,7 @@
       "description": "Real estate $100,000 - requires Form 8283-B + appraisal",
       "assetType": "real_estate",
       "amount": 100000.00,
+      "deductible": true,
       "property": {
         "description": "Vacant residential lot, 0.5 acres",
         "address": "1500 Development Road, Austin, TX 78702",
@@ -783,6 +841,7 @@
       "description": "Real estate $500,000 - requires Form 8283-B + appraisal",
       "assetType": "real_estate",
       "amount": 500000.00,
+      "deductible": true,
       "property": {
         "description": "Single-family rental property, 3BR/2BA, 1,850 sq ft",
         "address": "742 Evergreen Terrace, Seattle, WA 98102",
@@ -800,9 +859,13 @@
         "zip": "98101"
       },
       "donee": {
-        "name": "Seattle Foundation",
-        "ein": "91-0596010",
-        "address": "1601 Fifth Avenue, Seattle, WA 98101"
+        "name": "Community Foundation of Northern Colorado",
+        "ein": "84-0699243",
+        "address": "4745 Wheaton Drive, Fort Collins, CO 80525"
+      },
+      "einValidationExpectation": {
+        "status": "VALID",
+        "reason": "The real-estate fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-11-15",
       "appraisal": {
@@ -819,6 +882,7 @@
       "description": "Cash donation $63.50 - small gift with written acknowledgment (email receipt)",
       "assetType": "cash",
       "amount": 63.50,
+      "deductible": true,
       "donor": {
         "name": "Daniel K. Foster",
         "address": "118 Birch Hollow Road",
@@ -839,6 +903,7 @@
       "description": "Cash donation $84.25 - small gift with written acknowledgment (email receipt)",
       "assetType": "cash",
       "amount": 84.25,
+      "deductible": true,
       "donor": {
         "name": "Marcus T. Reyes",
         "address": "47 Larkspur Court",
@@ -859,6 +924,7 @@
       "description": "Cash donation $97.40 - small gift with written acknowledgment (email receipt)",
       "assetType": "cash",
       "amount": 97.40,
+      "deductible": true,
       "donor": {
         "name": "Laura B. Whitfield",
         "address": "812 Cedar Ridge Drive",
@@ -879,6 +945,7 @@
       "description": "Cash donation $58.75 - small gift with written acknowledgment (email receipt)",
       "assetType": "cash",
       "amount": 58.75,
+      "deductible": true,
       "donor": {
         "name": "Gregory P. Lawson",
         "address": "905 Sycamore Lane",
@@ -899,6 +966,7 @@
       "description": "Cash donation $487.65 - requires written acknowledgment",
       "assetType": "cash",
       "amount": 487.65,
+      "deductible": true,
       "donor": {
         "name": "Stephen R. Caldwell",
         "address": "1420 Harborview Drive",
@@ -919,6 +987,7 @@
       "description": "Cash donation $425,000 - major gift, requires written acknowledgment",
       "assetType": "cash",
       "amount": 425000.00,
+      "deductible": true,
       "donor": {
         "name": "Walter J. Ashford",
         "address": "2611 Foxhall Road NW",

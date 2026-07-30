@@ -79,6 +79,68 @@ assert(
     `Manifest document count mismatch: expected ${expectedDocuments.size}, got ${manifestDocuments.size}`
 );
 
+for (const donation of donations) {
+    assert(
+        typeof donation.deductible === 'boolean',
+        `${donation.id} must declare an explicit boolean deductible expectation`
+    );
+
+    const isPersonalFundraiser = donation.forms.includes('gofundme_receipt');
+    assert(
+        donation.deductible === !isPersonalFundraiser,
+        `${donation.id} deductibility must be true for charitable fixtures and false only for personal fundraisers`
+    );
+
+    const expectation = donation.einValidationExpectation;
+    if (!expectation) {
+        continue;
+    }
+
+    assert(
+        expectation.status === 'VALID',
+        `${donation.id} charitable OCR fixture must terminate with VALID EIN evidence`
+    );
+    assert(
+        typeof expectation.reason === 'string' && expectation.reason.trim().length > 0,
+        `${donation.id} EIN validation expectation must explain its evidence contract`
+    );
+    assert(
+        donation.deductible === true && donation.donee.ein !== null,
+        `${donation.id} terminal VALID evidence requires a deductible fixture with an EIN`
+    );
+}
+
+const dm3063Expectations = new Map([
+    ['D002', { deductible: true, status: 'VALID' }],
+    ['D012', { deductible: true, status: 'VALID' }],
+    ['D015', { deductible: true, status: 'VALID' }],
+    ['D016', { deductible: true, status: 'VALID' }],
+    ['D017', { deductible: true, status: 'VALID' }],
+    ['D019', { deductible: true, status: 'VALID' }],
+    ['D022', { deductible: true, status: 'VALID' }],
+    ['D023', { deductible: true, status: 'VALID' }],
+    ['D026', { deductible: true, status: 'VALID' }],
+    ['D028', { deductible: true, status: 'VALID' }]
+]);
+
+for (const [id, expected] of dm3063Expectations) {
+    const donation = fixture(id);
+    assert(
+        donation.deductible === expected.deductible &&
+            donation.einValidationExpectation?.status === expected.status,
+        `${id} must retain the DM-3063 deductibility and EIN evidence contract`
+    );
+
+    for (const formType of donation.forms) {
+        const document = manifestDocuments.get(`${formType}/${formType}_${id}.png`);
+        assert(
+            document?.expectedFields?.ein_validation_status === expected.status,
+            `${id} manifest documents must retain EIN status ${expected.status}`
+        );
+    }
+
+}
+
 for (const [filename, expected] of expectedDocuments) {
     const document = manifestDocuments.get(filename);
     assert(document, `Manifest is missing ${filename}`);
@@ -120,18 +182,16 @@ assert(
 
 const d015 = fixture('D015');
 assert(
-    d015.einValidationExpectation?.status === 'NOT_FOUND' &&
-        d015.einValidationExpectation?.intentionalSyntheticNoMatch === true,
-    'D015 must remain the intentional terminal NOT_FOUND EIN fixture'
+    d015.deductible === true && d015.einValidationExpectation?.status === 'VALID',
+    'D015 must remain a deductible fixture with terminal VALID EIN evidence'
 );
 const d015Manifest = manifestDocuments.get(
     'acknowledgment_letter/acknowledgment_letter_D015.png'
 );
 assert(
     d015Manifest?.expectedFields?.donee_ein === d015.donee.ein &&
-        d015Manifest?.expectedFields?.ein_validation_status === 'NOT_FOUND' &&
-        d015Manifest?.expectedFields?.ein_intentional_synthetic_no_match === true,
-    'D015 manifest must retain the printed EIN and its terminal NOT_FOUND expectation'
+        d015Manifest?.expectedFields?.ein_validation_status === 'VALID',
+    'D015 manifest must retain the printed EIN and its terminal VALID expectation'
 );
 
 const measurementContext = createCanvas(612, 792).getContext('2d');
