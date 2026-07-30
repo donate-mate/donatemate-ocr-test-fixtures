@@ -30,10 +30,12 @@ contribution is **not tax deductible** — useful for testing OCR/classification
 distinguish deductible charitable receipts from non-deductible payment confirmations.
 
 Every donation declares an explicit boolean `deductible` expectation. Omission is invalid
-and never defaults to `true`. Fixtures that exercise a specific EIN outcome also declare
-`einValidationExpectation` with the expected status and evidence rationale. A qualifying
-`VALID` result may be deductible; unresolved, missing, or `NOT_FOUND` evidence remains
-fail-closed.
+and never defaults to `true`. The charitable fixtures D001–D034 are deductible and use
+qualifying organizations; only the personal GoFundMe fixtures D035–D037 are non-deductible.
+Fixtures that exercise terminal organization enrichment also declare a `VALID`
+`einValidationExpectation` with the evidence rationale. Negative EIN outcomes belong in
+the focused EIN-validation test suite rather than changing the meaning of these charitable
+OCR fixtures.
 
 ## Directory Structure
 
@@ -113,7 +115,7 @@ The `donations.json` file defines 37 test donations covering all IRS thresholds:
 ### Vehicles
 | ID | Amount | Forms | Notes |
 |----|--------|-------|-------|
-| D015 | $400 | acknowledgment_letter | Below $500; intentional synthetic EIN expected to reach `NOT_FOUND` |
+| D015 | $400 | acknowledgment_letter | Below $500; verified charitable recipient |
 | D016 | **$500** | acknowledgment_letter | **Boundary** |
 | D017 | **$501** | form_1098c, form_8283_section_a | **Boundary; auction/gross-proceeds basis** |
 | D018 | $12,000 | form_1098c, form_8283_section_a | Auction/gross-proceeds basis |
@@ -245,9 +247,9 @@ Quick reference:
 1. **All documents are SYNTHETIC** - do not use as real tax documents
 2. All documents contain "SAMPLE - FOR TESTING ONLY" watermarks
 3. Donor information uses placeholder values
-4. EINs for real organizations (Red Cross, Goodwill, etc.) are used; fictional orgs have fake EINs
+4. Charitable fixtures use EINs for qualifying organizations; personal fundraisers have no EIN
 5. Forms for the same donation have **matching** donor, donee, date, and amount data
-6. D015 is intentionally annotated as a synthetic terminal `NOT_FOUND` EIN validation fixture; the printed EIN must be retained rather than treated as missing, skipped, or pending
+6. Only D035–D037 are non-deductible; D001–D034 must remain deductible charitable fixtures
 
 ## License
 

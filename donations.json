@@ -31,7 +31,7 @@
       "description": "Cash donation $200 - requires cancelled check",
       "assetType": "cash",
       "amount": 200.00,
-      "deductible": false,
+      "deductible": true,
       "donor": {
         "name": "Emily R. Davis",
         "address": "789 Elm Drive",
@@ -40,13 +40,13 @@
         "zip": "78701"
       },
       "donee": {
-        "name": "Habitat for Humanity International",
-        "ein": "91-1914868",
-        "address": "322 W. Lamar Street, Americus, GA 31709"
+        "name": "Community Foundation of Northern Colorado",
+        "ein": "84-0699243",
+        "address": "4745 Wheaton Drive, Fort Collins, CO 80525"
       },
       "einValidationExpectation": {
-        "status": "PENDING",
-        "reason": "The cancelled check contains no donee EIN; deductibility remains fail-closed until the donor confirms a unique organization."
+        "status": "VALID",
+        "reason": "The uniquely resolvable donee is backed by an active, deductible 501(c)(3) IRS BMF record after organization enrichment."
       },
       "contributionDate": "2025-02-20",
       "forms": ["cancelled_check"]
@@ -269,7 +269,7 @@
       "description": "Non-cash goods $5,000 (boundary) - requires Form 8283-A + acknowledgment",
       "assetType": "noncash_goods",
       "amount": 5000.00,
-      "deductible": false,
+      "deductible": true,
       "boundary": true,
       "assetDescription": "Professional camera equipment (body + 3 lenses)",
       "assetCondition": "Excellent",
@@ -285,14 +285,13 @@
         "zip": "97201"
       },
       "donee": {
-        "name": "State University Foundation",
-        "ein": "34-5678901",
-        "address": "100 College Drive, University City, ST 34567"
+        "name": "Community Foundation of Northern Colorado",
+        "ein": "84-0699243",
+        "address": "4745 Wheaton Drive, Fort Collins, CO 80525"
       },
       "einValidationExpectation": {
-        "status": "NOT_FOUND",
-        "intentionalSyntheticNoMatch": true,
-        "reason": "Synthetic boundary fixture: the printed EIN intentionally has no qualifying IRS BMF record."
+        "status": "VALID",
+        "reason": "The charitable boundary fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-06-15",
       "forms": ["form_8283_section_a", "acknowledgment_letter"]
@@ -366,10 +365,10 @@
     },
     {
       "id": "D015",
-      "description": "Vehicle $400 - requires acknowledgment only; intentional terminal EIN no-match",
+      "description": "Vehicle $400 - requires acknowledgment only",
       "assetType": "vehicle",
       "amount": 400.00,
-      "deductible": false,
+      "deductible": true,
       "vehicle": {
         "year": 2008,
         "make": "Honda",
@@ -386,14 +385,13 @@
         "zip": "30301"
       },
       "donee": {
-        "name": "Vehicles for Veterans",
-        "ein": "45-3827461",
-        "address": "1500 Charity Drive, Atlanta, GA 30302"
+        "name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "address": "15810 Indianola Drive, Rockville, MD 20855"
       },
       "einValidationExpectation": {
-        "status": "NOT_FOUND",
-        "intentionalSyntheticNoMatch": true,
-        "reason": "Dedicated DM-534 regression: retain the printed, well-formed EIN after validation reaches terminal NOT_FOUND."
+        "status": "VALID",
+        "reason": "The vehicle fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-02-28",
       "forms": ["acknowledgment_letter"]
@@ -403,7 +401,7 @@
       "description": "Vehicle $500 (boundary) - requires acknowledgment only",
       "assetType": "vehicle",
       "amount": 500.00,
-      "deductible": false,
+      "deductible": true,
       "boundary": true,
       "vehicle": {
         "year": 2006,
@@ -421,14 +419,13 @@
         "zip": "02101"
       },
       "donee": {
-        "name": "Cars for Causes",
-        "ein": "52-1847362",
-        "address": "750 Auto Row, Boston, MA 02102"
+        "name": "The Salvation Army",
+        "ein": "13-5562351",
+        "address": "615 Slaters Lane, Alexandria, VA 22314"
       },
       "einValidationExpectation": {
-        "status": "NOT_FOUND",
-        "intentionalSyntheticNoMatch": true,
-        "reason": "Synthetic vehicle boundary fixture: the printed EIN intentionally has no qualifying IRS BMF record."
+        "status": "VALID",
+        "reason": "The vehicle boundary fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-03-20",
       "forms": ["acknowledgment_letter"]
@@ -438,7 +435,7 @@
       "description": "Vehicle $501 (boundary) sold at auction - requires Form 1098-C + Form 8283 Section A",
       "assetType": "vehicle",
       "amount": 501.00,
-      "deductible": false,
+      "deductible": true,
       "boundary": true,
       "assetDescription": "2010 Ford Focus, VIN 1FAHP3F29CL345678",
       "assetCondition": "Fair",
@@ -466,14 +463,13 @@
         "zip": "62701"
       },
       "donee": {
-        "name": "Wheels for Wishes",
-        "ein": "27-1583946",
-        "address": "300 Donation Drive, Springfield, IL 62702"
+        "name": "Habitat for Humanity International",
+        "ein": "91-1914868",
+        "address": "322 W. Lamar Street, Americus, GA 31709"
       },
       "einValidationExpectation": {
-        "status": "NOT_FOUND",
-        "intentionalSyntheticNoMatch": true,
-        "reason": "Synthetic vehicle boundary fixture: the printed EIN intentionally has no qualifying IRS BMF record."
+        "status": "VALID",
+        "reason": "The vehicle boundary fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-04-01",
       "forms": ["form_1098c", "form_8283_section_a"]
@@ -522,7 +518,7 @@
       "description": "Vehicle $35,000 transferred to a needy individual - requires Form 1098-C + Form 8283 Section B + qualified appraisal",
       "assetType": "vehicle",
       "amount": 35000.00,
-      "deductible": false,
+      "deductible": true,
       "assetDescription": "2022 Tesla Model 3, VIN 5YJ3E1EA1NF567890",
       "assetCondition": "Excellent",
       "dateAcquired": "2022-03-15",
@@ -548,14 +544,13 @@
         "zip": "80202"
       },
       "donee": {
-        "name": "Working Cars for Working Families",
-        "ein": "84-2957163",
-        "address": "1200 Community Blvd, Denver, CO 80204"
+        "name": "American Red Cross",
+        "ein": "53-0196605",
+        "address": "431 18th Street NW, Washington, DC 20006"
       },
       "einValidationExpectation": {
-        "status": "NOT_FOUND",
-        "intentionalSyntheticNoMatch": true,
-        "reason": "Synthetic vehicle fixture: the printed EIN intentionally has no qualifying IRS BMF record."
+        "status": "VALID",
+        "reason": "The vehicle fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-07-20",
       "appraisal": {
@@ -630,7 +625,7 @@
       "description": "Publicly traded stock $25,000",
       "assetType": "stock_public",
       "amount": 25000.00,
-      "deductible": false,
+      "deductible": true,
       "security": {
         "name": "Amazon.com Inc.",
         "ticker": "AMZN",
@@ -647,14 +642,13 @@
         "zip": "85001"
       },
       "donee": {
-        "name": "State University Foundation",
-        "ein": "34-5678901",
-        "address": "100 College Drive, University City, ST 34567"
+        "name": "Community Foundation of Northern Colorado",
+        "ein": "84-0699243",
+        "address": "4745 Wheaton Drive, Fort Collins, CO 80525"
       },
       "einValidationExpectation": {
-        "status": "NOT_FOUND",
-        "intentionalSyntheticNoMatch": true,
-        "reason": "Synthetic securities fixture: the printed EIN intentionally has no qualifying IRS BMF record."
+        "status": "VALID",
+        "reason": "The securities fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-05-30",
       "forms": ["stock_confirmation"]
@@ -769,7 +763,7 @@
       "description": "Closely-held stock $50,000 - requires Form 8283-B + appraisal",
       "assetType": "stock_closelyheld",
       "amount": 50000.00,
-      "deductible": false,
+      "deductible": true,
       "security": {
         "name": "Smith Tech Ventures Inc.",
         "shares": 500,
@@ -787,14 +781,13 @@
         "zip": "62701"
       },
       "donee": {
-        "name": "Illinois Community Foundation",
-        "ein": "37-1349398",
-        "address": "505 S. Neil Street, Champaign, IL 61820"
+        "name": "Community Foundation of Northern Colorado",
+        "ein": "84-0699243",
+        "address": "4745 Wheaton Drive, Fort Collins, CO 80525"
       },
       "einValidationExpectation": {
-        "status": "NOT_FOUND",
-        "intentionalSyntheticNoMatch": true,
-        "reason": "Synthetic closely-held securities fixture: the printed EIN intentionally has no qualifying IRS BMF record."
+        "status": "VALID",
+        "reason": "The closely-held securities fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-09-10",
       "appraisal": {
@@ -848,7 +841,7 @@
       "description": "Real estate $500,000 - requires Form 8283-B + appraisal",
       "assetType": "real_estate",
       "amount": 500000.00,
-      "deductible": false,
+      "deductible": true,
       "property": {
         "description": "Single-family rental property, 3BR/2BA, 1,850 sq ft",
         "address": "742 Evergreen Terrace, Seattle, WA 98102",
@@ -866,14 +859,13 @@
         "zip": "98101"
       },
       "donee": {
-        "name": "Seattle Foundation",
-        "ein": "91-0596010",
-        "address": "1601 Fifth Avenue, Seattle, WA 98101"
+        "name": "Community Foundation of Northern Colorado",
+        "ein": "84-0699243",
+        "address": "4745 Wheaton Drive, Fort Collins, CO 80525"
       },
       "einValidationExpectation": {
-        "status": "NOT_FOUND",
-        "intentionalSyntheticNoMatch": true,
-        "reason": "Synthetic real-estate fixture: the printed EIN intentionally has no qualifying IRS BMF record."
+        "status": "VALID",
+        "reason": "The real-estate fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-11-15",
       "appraisal": {
