@@ -204,6 +204,7 @@
       "boundary": true,
       "assetDescription": "Antique wooden desk",
       "assetCondition": "Good",
+      "valuationMethod": "Comparable Sales",
       "dateAcquired": "2018-06-15",
       "howAcquired": "Purchase",
       "costBasis": 200.00,
@@ -229,6 +230,7 @@
       "amount": 3500.00,
       "assetDescription": "Vintage jewelry collection (8 pieces)",
       "assetCondition": "Excellent",
+      "valuationMethod": "Comparable Sales",
       "dateAcquired": "2015-12-25",
       "howAcquired": "Gift",
       "costBasis": 1500.00,
@@ -255,6 +257,7 @@
       "boundary": true,
       "assetDescription": "Professional camera equipment (body + 3 lenses)",
       "assetCondition": "Excellent",
+      "valuationMethod": "Comparable Sales",
       "dateAcquired": "2020-03-10",
       "howAcquired": "Purchase",
       "costBasis": 3200.00,
@@ -633,7 +636,7 @@
         "address": "1600 Grant Street, Denver, CO 80203"
       },
       "contributionDate": "2025-06-20",
-      "forms": ["form_8283_section_a"]
+      "forms": ["form_8283_section_a", "acknowledgment_letter"]
     },
     {
       "id": "D024",

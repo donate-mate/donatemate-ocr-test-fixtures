@@ -5,6 +5,7 @@
  */
 
 const { createCanvas, registerFont } = require('canvas');
+const { createHash } = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
@@ -91,6 +92,58 @@ function getGoFundMeReceiptAmounts(donation) {
     };
 }
 
+function maskedTaxpayerId(donation) {
+    const donorKey = [
+        donation.donor?.name,
+        donation.donor?.address,
+        donation.donor?.city,
+        donation.donor?.state,
+        donation.donor?.zip
+    ].filter(Boolean).join('|');
+    const digest = createHash('sha256').update(donorKey).digest();
+    const suffix = (digest.readUInt32BE(0) % 10000).toString().padStart(4, '0');
+    return `XXX-XX-${suffix}`;
+}
+
+function getForm8283FmvMethod(donation) {
+    if (donation.valuationMethod) {
+        return donation.valuationMethod;
+    }
+    if (donation.appraisal?.valuationMethod) {
+        return donation.appraisal.valuationMethod;
+    }
+    if (donation.security?.shares && donation.security?.pricePerShare) {
+        return `${donation.security.shares} shares at ${formatMoney(donation.security.pricePerShare)}`;
+    }
+    if (donation.saleInfo?.soldAtAuction) {
+        return 'Gross proceeds';
+    }
+    return '';
+}
+
+function getForm8283PropertyDescription(donation) {
+    if (donation.assetType !== 'vehicle') {
+        return donation.assetDescription;
+    }
+
+    const vehicle = donation.vehicle;
+    if (
+        !vehicle?.year ||
+        !vehicle?.make ||
+        !vehicle?.model ||
+        !vehicle?.vin ||
+        vehicle?.mileage == null
+    ) {
+        throw new Error(`Vehicle data is incomplete for Form 8283-A: ${donation.id}`);
+    }
+
+    return [
+        `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
+        `${vehicle.mileage.toLocaleString('en-US')} miles`,
+        `VIN ${vehicle.vin}`
+    ].join(', ');
+}
+
 function formatAddress(donor) {
     return `${donor.address}, ${donor.city}, ${donor.state} ${donor.zip}`;
 }
@@ -122,6 +175,23 @@ function wrapText(ctx, text, maxWidth) {
         }
     }
     if (currentLine) lines.push(currentLine);
+    return lines;
+}
+
+function drawWrappedText(ctx, text, x, y, maxWidth, maxLines, lineHeight, fieldName) {
+    if (!text) {
+        return [];
+    }
+
+    const lines = wrapText(ctx, String(text), maxWidth);
+    if (
+        lines.length > maxLines ||
+        lines.some(line => ctx.measureText(line).width > maxWidth)
+    ) {
+        throw new Error(`${fieldName} does not fit Form 8283-A: ${text}`);
+    }
+
+    lines.forEach((line, index) => ctx.fillText(line, x, y + index * lineHeight));
     return lines;
 }
 
@@ -351,7 +421,7 @@ function generateAcknowledgmentLetter(donation) {
         const v = donation.vehicle;
         bodyText = `Thank you for your generous donation of a ${v.year} ${v.make} ${v.model} (VIN: ${v.vin}, estimated fair market value: ${formatMoney(donation.amount)}) to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
     } else if (donation.assetType.startsWith('stock')) {
-        bodyText = `Thank you for your generous donation of securities to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
+        bodyText = `Thank you for your generous donation of ${donation.assetDescription || 'securities'} to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
     } else {
         bodyText = `Thank you for your generous donation of ${donation.assetDescription} (estimated fair market value: ${formatMoney(donation.amount)}) to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
     }
@@ -692,114 +762,276 @@ function generateForm8283A(donation) {
     const width = 612, height = 792;
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext('2d');
-    
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
-    
+
+    const margin = 30;
+    const contentWidth = width - margin * 2;
+
+    function drawGrid(top, cellWidths, cellHeight) {
+        ctx.strokeRect(margin, top, contentWidth, cellHeight);
+        let offset = 0;
+        for (const cellWidth of cellWidths.slice(0, -1)) {
+            offset += cellWidth;
+            ctx.beginPath();
+            ctx.moveTo(margin + offset, top);
+            ctx.lineTo(margin + offset, top + cellHeight);
+            ctx.stroke();
+        }
+    }
+
+    function cellX(cellWidths, index) {
+        return margin + cellWidths.slice(0, index).reduce((sum, cellWidth) => sum + cellWidth, 0);
+    }
+
+    function drawLabelLines(lines, x, top, lineHeight = 8) {
+        lines.forEach((line, index) => ctx.fillText(line, x, top + index * lineHeight));
+    }
+
     let y = 30;
-    
+
     // Form header
     ctx.font = 'bold 14px Inter';
     ctx.fillStyle = '#000000';
-    ctx.fillText('Form 8283', 30, y);
+    ctx.fillText('Form 8283', margin, y);
     ctx.font = '9px Inter';
-    ctx.fillText('(Rev. December 2023)', 30, y + 12);
-    ctx.fillText('Department of the Treasury', 30, y + 24);
-    ctx.fillText('Internal Revenue Service', 30, y + 36);
-    
+    ctx.fillText('(Rev. December 2023)', margin, y + 12);
+    ctx.fillText('Department of the Treasury', margin, y + 24);
+    ctx.fillText('Internal Revenue Service', margin, y + 36);
+
     ctx.font = 'bold 16px Inter';
     ctx.textAlign = 'center';
     ctx.fillText('Noncash Charitable Contributions', width / 2, y + 15);
-    ctx.font = '10px Inter';
-    ctx.fillText('Attach to your tax return if you claimed a total deduction', width / 2, y + 30);
-    ctx.fillText('of over $500 for all contributed property.', width / 2, y + 42);
-    
+    ctx.font = '7.5px Inter';
+    ctx.fillText('Attach one or more Forms 8283 to your tax return if you claimed', width / 2, y + 29);
+    ctx.fillText('a total deduction of over $500 for all contributed property.', width / 2, y + 39);
+    ctx.fillText('Go to www.irs.gov/Form8283 for instructions and the latest information.', width / 2, y + 49);
+
     ctx.textAlign = 'right';
     ctx.font = '9px Inter';
-    ctx.fillText('OMB No. 1545-0908', width - 30, y);
-    ctx.fillText('Attachment', width - 30, y + 15);
-    ctx.fillText('Sequence No. 155', width - 30, y + 27);
-    
+    ctx.fillText('OMB No. 1545-0074', width - margin, y);
+    ctx.fillText('Attachment', width - margin, y + 15);
+    ctx.fillText('Sequence No. 155', width - margin, y + 27);
+
     y += 60;
     ctx.textAlign = 'left';
-    
+
     // Taxpayer info box
     ctx.strokeStyle = '#000000';
-    ctx.lineWidth = 1;
-    ctx.strokeRect(30, y, width - 200, 40);
+    ctx.lineWidth = 0.75;
+    const identifyingNumberWidth = 140;
+    ctx.strokeRect(margin, y, contentWidth - identifyingNumberWidth, 40);
     ctx.font = '8px Inter';
-    ctx.fillText('Name(s) shown on your income tax return', 35, y + 12);
+    ctx.fillText('Name(s) shown on your income tax return', margin + 5, y + 12);
     ctx.font = '11px Inter';
-    ctx.fillText(donation.donor.name, 35, y + 30);
-    
-    ctx.strokeRect(width - 165, y, 135, 40);
+    ctx.fillText(donation.donor.name, margin + 5, y + 30);
+
+    const identifyingNumberX = margin + contentWidth - identifyingNumberWidth;
+    ctx.strokeRect(identifyingNumberX, y, identifyingNumberWidth, 40);
     ctx.font = '8px Inter';
-    ctx.fillText('Identifying number', width - 160, y + 12);
+    ctx.fillText('Identifying number', identifyingNumberX + 5, y + 12);
     ctx.font = '11px Inter';
-    ctx.fillText('XXX-XX-' + Math.floor(1000 + Math.random() * 9000), width - 160, y + 30);
-    
-    y += 55;
-    
+    ctx.fillText(maskedTaxpayerId(donation), identifyingNumberX + 5, y + 30);
+
+    y += 51;
+    ctx.font = '7px Inter';
+    ctx.fillText(
+        'Note: Figure the amount of your contribution deduction before completing this form. See your tax return instructions.',
+        margin,
+        y
+    );
+
+    y += 10;
+
     // Section A header
     ctx.fillStyle = '#e0e0e0';
-    ctx.fillRect(30, y, width - 60, 25);
-    ctx.font = 'bold 10px Inter';
+    ctx.fillRect(margin, y, contentWidth, 36);
+    ctx.font = 'bold 9px Inter';
     ctx.fillStyle = '#000000';
-    ctx.fillText('Section A. Donated Property of $5,000 or Less and Publicly Traded Securities', 35, y + 17);
-    
-    y += 30;
-    ctx.font = 'bold 9px Inter';
-    ctx.fillText('Part I    Information on Donated Property', 30, y);
-    
-    y += 20;
-    
-    // Column headers
-    ctx.strokeRect(30, y, width - 60, 25);
-    ctx.font = '7px Inter';
-    const headers = [
-        { text: '(a) Name and address of donee organization', x: 35, w: 150 },
-        { text: '(b) Description of donated property', x: 190, w: 120 },
-        { text: '(c) Date of contribution', x: 315, w: 55 },
-        { text: '(d) Date acquired', x: 375, w: 50 },
-        { text: '(e) How acquired', x: 430, w: 45 },
-        { text: '(f) Donor\'s cost or basis', x: 480, w: 45 },
-        { text: '(g) Fair market value', x: 530, w: 50 }
-    ];
-    
-    for (const h of headers) {
-        ctx.fillText(h.text.substring(0, 20), h.x, y + 10);
-        if (h.text.length > 20) ctx.fillText(h.text.substring(20), h.x, y + 18);
-    }
-    
-    y += 30;
-    
-    // Data row
-    ctx.strokeRect(30, y, width - 60, 45);
+    drawLabelLines([
+        'Section A. Donated Property of $5,000 or Less and Publicly Traded Securities—List in this section only an item',
+        '(or a group of similar items) for which you claimed a deduction of $5,000 or less. Also list publicly traded',
+        'securities and certain other property even if the deduction is more than $5,000. See instructions.'
+    ], margin + 4, y + 10, 10);
+
+    y += 48;
+    ctx.font = 'bold 8px Inter';
+    ctx.fillText('Part I', margin, y);
     ctx.font = '8px Inter';
-    const doneeNameLines = wrapText(ctx, donation.donee.name, 150);
-    if (doneeNameLines.length > 2) {
-        throw new Error(`Donee name does not fit Form 8283-A: ${donation.donee.name}`);
+    ctx.fillText('Information on Donated Property—If you need more space, attach a statement.', margin + 30, y);
+
+    y += 10;
+
+    // IRS Section A line 1 is split into two tables. Keeping that structure gives
+    // every value enough room and prevents adjacent OCR fields from bleeding together.
+    const primaryWidths = [18, 132, 100, 302];
+    const primaryHeaderHeight = 55;
+    drawGrid(y, primaryWidths, primaryHeaderHeight);
+    ctx.font = '6px Inter';
+    ctx.fillText('1', cellX(primaryWidths, 0) + 7, y + 28);
+    drawLabelLines(
+        ['(a) Name and address of the', 'donee organization'],
+        cellX(primaryWidths, 1) + 3,
+        y + 15
+    );
+    drawLabelLines(
+        [
+            '(b) If donated property is a',
+            'vehicle, check the box. Enter',
+            'the VIN unless Form 1098-C',
+            'is attached.'
+        ],
+        cellX(primaryWidths, 2) + 3,
+        y + 10
+    );
+    drawLabelLines(
+        [
+            '(c) Description and condition of donated property',
+            '(For a vehicle, enter the year, make, model, and mileage.',
+            'For securities and other property, see instructions.)'
+        ],
+        cellX(primaryWidths, 3) + 3,
+        y + 15
+    );
+
+    y += primaryHeaderHeight;
+    const primaryDataHeight = 72;
+    drawGrid(y, primaryWidths, primaryDataHeight);
+    ctx.font = 'bold 8px Inter';
+    ctx.fillText('A', cellX(primaryWidths, 0) + 6, y + 38);
+
+    const doneeX = cellX(primaryWidths, 1) + 3;
+    ctx.font = '7.5px Inter';
+    const doneeNameLines = drawWrappedText(
+        ctx,
+        donation.donee.name,
+        doneeX,
+        y + 12,
+        primaryWidths[1] - 6,
+        2,
+        9,
+        'Donee name'
+    );
+    ctx.font = '6.5px Inter';
+    drawWrappedText(
+        ctx,
+        donation.donee.address,
+        doneeX,
+        y + 15 + doneeNameLines.length * 9,
+        primaryWidths[1] - 6,
+        3,
+        8,
+        'Donee address'
+    );
+
+    const vehicleX = cellX(primaryWidths, 2);
+    ctx.strokeRect(vehicleX + 7, y + 13, 9, 9);
+    if (donation.assetType === 'vehicle') {
+        ctx.font = 'bold 10px Inter';
+        ctx.fillText('✓', vehicleX + 7, y + 22);
+        ctx.font = '6.5px Inter';
+        drawLabelLines(
+            ['Form 1098-C', 'attached'],
+            vehicleX + 22,
+            y + 18,
+            9
+        );
     }
-    doneeNameLines.forEach((line, index) => ctx.fillText(line, 35, y + 11 + index * 9));
+
+    const descriptionX = cellX(primaryWidths, 3) + 3;
+    ctx.font = '8px Inter';
+    const descriptionLines = drawWrappedText(
+        ctx,
+        getForm8283PropertyDescription(donation),
+        descriptionX,
+        y + 17,
+        primaryWidths[3] - 6,
+        3,
+        10,
+        'Property description'
+    );
+    if (donation.assetCondition) {
+        ctx.font = '7px Inter';
+        ctx.fillText(
+            `Condition: ${donation.assetCondition}`,
+            descriptionX,
+            y + 23 + descriptionLines.length * 10
+        );
+    }
+
+    y += primaryDataHeight;
+    ctx.font = '6px Inter';
+    ctx.fillText(
+        'Note: If the amount claimed as a deduction is $500 or less, columns (e), (f), and (g) are not required.',
+        margin + 3,
+        y + 11
+    );
+    y += 17;
+
+    const detailWidths = [18, 74, 74, 112, 82, 80, 112];
+    const detailHeaderHeight = 42;
+    drawGrid(y, detailWidths, detailHeaderHeight);
+    ctx.font = '6px Inter';
+    ctx.fillText('A', cellX(detailWidths, 0) + 6, y + 24);
+    drawLabelLines(['(d) Date of the', 'contribution'], cellX(detailWidths, 1) + 3, y + 14);
+    drawLabelLines(['(e) Date acquired', 'by donor (mo., yr.)'], cellX(detailWidths, 2) + 3, y + 14);
+    drawLabelLines(['(f) How acquired', 'by donor'], cellX(detailWidths, 3) + 3, y + 14);
+    drawLabelLines(['(g) Donor’s cost', 'or adjusted basis'], cellX(detailWidths, 4) + 3, y + 14);
+    drawLabelLines(['(h) Fair market value', '(see instructions)'], cellX(detailWidths, 5) + 3, y + 14);
+    drawLabelLines(
+        ['(i) Method used to', 'determine the fair', 'market value'],
+        cellX(detailWidths, 6) + 3,
+        y + 10
+    );
+
+    y += detailHeaderHeight;
+    const detailDataHeight = 42;
+    drawGrid(y, detailWidths, detailDataHeight);
     ctx.font = '7px Inter';
-    ctx.fillText(donation.donee.address.substring(0, 30), 35, y + 36);
-    
-    ctx.font = '9px Inter';
-    const descLines = wrapText(ctx, donation.assetDescription, 115);
-    ctx.fillText(descLines[0].substring(0, 20), 190, y + 15);
-    if (descLines[0].length > 20 || descLines[1]) {
-        ctx.fillText((descLines[0].substring(20) + ' ' + (descLines[1] || '')).substring(0, 20), 190, y + 28);
-    }
-    
-    ctx.fillText(formatDateShort(donation.contributionDate), 315, y + 20);
-    ctx.fillText(donation.dateAcquired ? formatDateShort(donation.dateAcquired) : 'Various', 375, y + 20);
-    ctx.fillText(donation.howAcquired || 'Purchase', 430, y + 20);
-    ctx.fillText(donation.costBasis ? formatMoney(donation.costBasis) : 'N/A', 480, y + 20);
-    ctx.font = 'bold 9px Inter';
-    ctx.fillText(formatMoney(donation.amount), 530, y + 20);
-    
+    ctx.fillText(formatDateShort(donation.contributionDate), cellX(detailWidths, 1) + 4, y + 24);
+    ctx.fillText(
+        donation.dateAcquired ? formatDateShort(donation.dateAcquired) : 'Various',
+        cellX(detailWidths, 2) + 4,
+        y + 24
+    );
+    drawWrappedText(
+        ctx,
+        donation.howAcquired || 'Purchase',
+        cellX(detailWidths, 3) + 4,
+        y + 16,
+        detailWidths[3] - 8,
+        2,
+        10,
+        'Acquisition method'
+    );
+    ctx.fillText(
+        donation.costBasis != null ? formatMoney(donation.costBasis) : 'N/A',
+        cellX(detailWidths, 4) + 4,
+        y + 24
+    );
+    ctx.font = 'bold 7px Inter';
+    ctx.fillText(formatMoney(donation.amount), cellX(detailWidths, 5) + 4, y + 24);
+    ctx.font = '7px Inter';
+    drawWrappedText(
+        ctx,
+        getForm8283FmvMethod(donation),
+        cellX(detailWidths, 6) + 4,
+        y + 16,
+        detailWidths[6] - 8,
+        2,
+        10,
+        'FMV method'
+    );
+
+    ctx.font = '7px Inter';
+    ctx.fillText('For Paperwork Reduction Act Notice, see separate instructions.', margin, height - 28);
+    ctx.textAlign = 'right';
+    ctx.fillText('Form 8283 (Rev. 12-2023)', width - margin, height - 28);
+    ctx.textAlign = 'left';
+
     addWatermark(ctx, width, height);
-    
+
     return canvas.toBuffer('image/png');
 }
 
@@ -1485,6 +1717,10 @@ module.exports = {
     formatDate,
     formatDateShort,
     formatMoney,
+    generateForm8283A,
     getGoFundMeReceiptAmounts,
+    getForm8283FmvMethod,
+    getForm8283PropertyDescription,
+    maskedTaxpayerId,
     wrapText
 };

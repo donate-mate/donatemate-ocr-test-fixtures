@@ -10,7 +10,7 @@ This repository contains programmatically generated donation-related documents f
 
 | Form Type | Count | Description |
 |-----------|-------|-------------|
-| acknowledgment_letter | 19 | Written acknowledgments for cash ≥$250 and non-cash donations |
+| acknowledgment_letter | 20 | Written acknowledgments for cash ≥$250 and non-cash donations |
 | appraisal | 7 | Qualified appraisals for FMV-basis donations >$5,000 |
 | bank_statement | 1 | Bank records for cash donations <$250 |
 | cancelled_check | 1 | Cancelled checks for cash donations <$250 |
@@ -123,7 +123,7 @@ The `donations.json` file defines 37 test donations covering all IRS thresholds:
 ### Closely-Held Securities
 | ID | Amount | Forms | Notes |
 |----|--------|-------|-------|
-| D023 | $5,000 | form_8283_section_a | |
+| D023 | $5,000 | form_8283_section_a, acknowledgment_letter | Complete, non-overlapping Section A; EIN-bearing acknowledgment supplies the donee EIN |
 | D024 | **$10,000** | form_8283_section_b | **No-appraisal boundary** |
 | D025 | **$10,001** | form_8283_section_b, appraisal | **Boundary** |
 | D026 | $50,000 | form_8283_section_b, appraisal | |
@@ -192,13 +192,19 @@ node scripts/generate_from_donations.js
 # Regenerate selected documents while still recomputing manifest_v2.json
 ONLY_DONATIONS=D029,D030 ONLY_FORMS=acknowledgment_letter node scripts/generate_from_donations.js
 
-# Regenerate the corrected D023/D024 IRS fixtures and remove superseded outputs
-ONLY_DONATIONS=D023,D024 node scripts/generate_from_donations_v2.js
+# Regenerate every corrected Form 8283 Section A fixture
+ONLY_FORMS=form_8283_section_a node scripts/generate_from_donations.js
+
+# Regenerate the D023 acknowledgment
+ONLY_DONATIONS=D023 ONLY_FORMS=acknowledgment_letter node scripts/generate_from_donations.js
+
+# Regenerate the corrected D024 Section B and remove superseded outputs
+ONLY_DONATIONS=D024 node scripts/generate_from_donations_v2.js
 
 # Regenerate the DM-599 vehicle fixtures and manifest. The second command
-# replaces the simplified IRS forms with the OCR-accurate deterministic forms.
+# replaces only the non-Section-A IRS forms with their specialized renderings.
 ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations.js
-ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations_v2.js
+ONLY_DONATIONS=D017,D018,D019 ONLY_FORMS=form_1098c,form_8283_section_b,appraisal node scripts/generate_from_donations_v2.js
 
 # Validate fixture metadata, required files, and manifest parity
 npm test

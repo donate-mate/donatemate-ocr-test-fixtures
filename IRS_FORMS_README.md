@@ -45,9 +45,9 @@ This document describes the IRS-compliant form test fixtures generated based on 
 | Form 8283 Section B | 8 | `documents/form_8283_section_b/` | FMV-basis non-cash donations >$5,000 |
 | Form 1098-C | 13 | `documents/form_1098c/` | Vehicle donations >$500 |
 | Qualified Appraisal | 7 | `documents/appraisal/` | Category-specific high-value FMV-basis donations |
-| Acknowledgment | 19 | `documents/acknowledgment_letter/` | Cash and non-cash charity acknowledgments |
+| Acknowledgment | 20 | `documents/acknowledgment_letter/` | Cash and non-cash charity acknowledgments |
 
-**Total: 53 IRS form documents**
+**Total: 54 IRS form documents**
 
 ## Form Details
 
@@ -55,8 +55,8 @@ This document describes the IRS-compliant form test fixtures generated based on 
 
 **Section A** (for donations $500 - $5,000):
 - Donor information
-- Donee organization name, address, EIN
-- Property description and condition
+- Donee organization name and address
+- Property description and condition when applicable (condition is omitted for securities)
 - Date of contribution
 - Date acquired and how acquired
 - Donor's cost or adjusted basis
@@ -129,12 +129,18 @@ The `manifest_irs_forms.json` file contains metadata for each generated document
 # Install dependencies
 npm install
 
-# Regenerate the corrected D023/D024 IRS fixtures and clean stale form outputs
-ONLY_DONATIONS=D023,D024 node scripts/generate_from_donations_v2.js
+# Regenerate every corrected Form 8283 Section A fixture
+ONLY_FORMS=form_8283_section_a node scripts/generate_from_donations.js
+
+# Regenerate the D023 acknowledgment
+ONLY_DONATIONS=D023 ONLY_FORMS=acknowledgment_letter node scripts/generate_from_donations.js
+
+# Regenerate the corrected D024 Section B and clean stale form outputs
+ONLY_DONATIONS=D024 node scripts/generate_from_donations_v2.js
 
 # Regenerate DM-599 vehicle documents and the linked manifest
 ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations.js
-ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations_v2.js
+ONLY_DONATIONS=D017,D018,D019 ONLY_FORMS=form_1098c,form_8283_section_b,appraisal node scripts/generate_from_donations_v2.js
 
 # Validate the fixture contract
 npm test
