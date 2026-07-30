@@ -123,7 +123,7 @@ The `donations.json` file defines 37 test donations covering all IRS thresholds:
 ### Closely-Held Securities
 | ID | Amount | Forms | Notes |
 |----|--------|-------|-------|
-| D023 | $5,000 | form_8283_section_a, acknowledgment_letter | EIN-bearing acknowledgment accompanies Section A |
+| D023 | $5,000 | form_8283_section_a, acknowledgment_letter | Complete, non-overlapping Section A; EIN-bearing acknowledgment supplies the donee EIN |
 | D024 | **$10,000** | form_8283_section_b | **No-appraisal boundary** |
 | D025 | **$10,001** | form_8283_section_b, appraisal | **Boundary** |
 | D026 | $50,000 | form_8283_section_b, appraisal | |
@@ -192,8 +192,11 @@ node scripts/generate_from_donations.js
 # Regenerate selected documents while still recomputing manifest_v2.json
 ONLY_DONATIONS=D029,D030 ONLY_FORMS=acknowledgment_letter node scripts/generate_from_donations.js
 
-# Regenerate the corrected D023/D024 IRS fixtures and remove superseded outputs
-ONLY_DONATIONS=D023,D024 node scripts/generate_from_donations_v2.js
+# Regenerate the corrected D023 Section A and acknowledgment
+ONLY_DONATIONS=D023 node scripts/generate_from_donations.js
+
+# Regenerate the corrected D024 Section B and remove superseded outputs
+ONLY_DONATIONS=D024 node scripts/generate_from_donations_v2.js
 
 # Regenerate the DM-599 vehicle fixtures and manifest. The second command
 # replaces the simplified IRS forms with the OCR-accurate deterministic forms.

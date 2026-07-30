@@ -56,7 +56,7 @@ This document describes the IRS-compliant form test fixtures generated based on 
 **Section A** (for donations $500 - $5,000):
 - Donor information
 - Donee organization name and address
-- Property description and condition
+- Property description and condition when applicable (condition is omitted for securities)
 - Date of contribution
 - Date acquired and how acquired
 - Donor's cost or adjusted basis
@@ -129,8 +129,11 @@ The `manifest_irs_forms.json` file contains metadata for each generated document
 # Install dependencies
 npm install
 
-# Regenerate the corrected D023/D024 IRS fixtures and clean stale form outputs
-ONLY_DONATIONS=D023,D024 node scripts/generate_from_donations_v2.js
+# Regenerate the corrected D023 Section A and acknowledgment
+ONLY_DONATIONS=D023 node scripts/generate_from_donations.js
+
+# Regenerate the corrected D024 Section B and clean stale form outputs
+ONLY_DONATIONS=D024 node scripts/generate_from_donations_v2.js
 
 # Regenerate DM-599 vehicle documents and the linked manifest
 ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations.js

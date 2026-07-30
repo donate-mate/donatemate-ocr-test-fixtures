@@ -7,7 +7,10 @@ const {
     formatDate,
     formatDateShort,
     formatMoney,
+    generateForm8283A,
     getGoFundMeReceiptAmounts,
+    getForm8283FmvMethod,
+    maskedTaxpayerId,
     wrapText
 } = require('./generate_from_donations');
 
@@ -133,12 +136,36 @@ assert(
 const d023 = fixture('D023');
 assertForms('D023', ['form_8283_section_a', 'acknowledgment_letter']);
 const measurementContext = createCanvas(612, 792).getContext('2d');
-measurementContext.font = '8px Inter';
-const d023DoneeNameLines = wrapText(measurementContext, d023.donee.name, 150);
+
+function assertWrappedFieldFits(text, font, width, maxLines, label) {
+    measurementContext.font = font;
+    const lines = wrapText(measurementContext, text, width);
+    assert(
+        lines.length <= maxLines &&
+            lines.join(' ') === text &&
+            lines.every(line => measurementContext.measureText(line).width <= width),
+        `${label} must render in full within its Form 8283-A cell`
+    );
+}
+
+assertWrappedFieldFits(d023.donee.name, '7.5px Inter', 126, 2, 'D023 donee name');
+assertWrappedFieldFits(d023.donee.address, '6.5px Inter', 126, 3, 'D023 donee address');
+assertWrappedFieldFits(d023.assetDescription, '8px Inter', 296, 3, 'D023 property description');
+assertWrappedFieldFits(d023.howAcquired, '7px Inter', 104, 2, 'D023 acquisition method');
+assert(!d023.assetCondition, 'D023 securities must not declare a physical condition');
 assert(
-    d023DoneeNameLines.length <= 2 &&
-        d023DoneeNameLines.join(' ') === d023.donee.name,
-    'D023 donee name must render in full within the two-line Form 8283-A cell'
+    getForm8283FmvMethod(d023) === '100 shares at $50.00',
+    'D023 Form 8283-A must derive its FMV method from the declared share data'
+);
+const d023TaxpayerId = maskedTaxpayerId(d023);
+assert(
+    /^XXX-XX-\d{4}$/.test(d023TaxpayerId) &&
+        d023TaxpayerId === maskedTaxpayerId(d023),
+    'D023 taxpayer identifier must be masked and deterministic'
+);
+assert(
+    generateForm8283A(d023).equals(generateForm8283A(d023)),
+    'D023 Form 8283-A generation must be deterministic'
 );
 const d023Acknowledgment = manifestDocuments.get(
     'acknowledgment_letter/acknowledgment_letter_D023.png'
