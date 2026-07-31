@@ -1,19 +1,19 @@
 {
   "version": "2.0.0",
   "description": "IRS-compliant OCR test fixtures with linked forms per donation",
-  "generatedAt": "2026-07-31T17:21:43.497Z",
-  "irsReference": "IRS Publication 526 (2025)",
+  "generatedAt": "2026-07-31T00:00:00.000Z",
+  "irsReference": "2025 Form 8283 instructions; 2025 Form 1098-C instructions; IRS Publication 561",
   "namingConvention": "<form_type>_<donation_id>.png",
   "totalDonations": 37,
-  "totalForms": 56,
+  "totalForms": 62,
   "formCounts": {
     "bank_statement": 1,
     "cancelled_check": 1,
-    "acknowledgment_letter": 20,
+    "acknowledgment_letter": 25,
     "receipt": 4,
     "form_8283_section_a": 6,
     "form_8283_section_b": 8,
-    "appraisal": 7,
+    "appraisal": 8,
     "form_1098c": 3,
     "stock_confirmation": 3,
     "gofundme_receipt": 3
@@ -327,7 +327,14 @@
         "date_acquired": "2010-08-20",
         "amount": 5001,
         "asset_type": "noncash_goods",
-        "asset_description": "Grand piano - Baldwin Model R"
+        "asset_description": "Grand piano - Baldwin Model R",
+        "appraiser_name": "Thomas E. Richardson",
+        "appraiser_tin": "000-00-4991",
+        "appraisal_date": "2025-06-25",
+        "appraiser_signed": true,
+        "donee_signer": "Morgan Reed",
+        "donee_signer_title": "Authorized Financial Officer",
+        "donee_signed_date": "2025-07-01"
       }
     },
     {
@@ -343,7 +350,11 @@
         "contribution_date": "2025-07-01",
         "amount": 5001,
         "asset_type": "noncash_goods",
-        "asset_description": "Grand piano - Baldwin Model R"
+        "asset_description": "Grand piano - Baldwin Model R",
+        "appraiser_name": "Thomas E. Richardson",
+        "appraiser_tin": "000-00-4991",
+        "appraisal_date": "2025-06-25",
+        "appraiser_signed": true
       }
     },
     {
@@ -359,7 +370,10 @@
         "contribution_date": "2025-07-01",
         "amount": 5001,
         "asset_type": "noncash_goods",
-        "asset_description": "Grand piano - Baldwin Model R"
+        "asset_description": "Grand piano - Baldwin Model R",
+        "donee_signer": "Morgan Reed",
+        "donee_signer_title": "Authorized Financial Officer",
+        "goods_or_services_provided": false
       }
     },
     {
@@ -376,7 +390,14 @@
         "date_acquired": "2005-04-15",
         "amount": 15000,
         "asset_type": "noncash_goods",
-        "asset_description": "Antique Persian rug (9x12 Tabriz)"
+        "asset_description": "Antique Persian rug (9x12 Tabriz)",
+        "appraiser_name": "Catherine M. Knowles",
+        "appraiser_tin": "000-00-1712",
+        "appraisal_date": "2025-08-01",
+        "appraiser_signed": true,
+        "donee_signer": "Jordan Ellis",
+        "donee_signer_title": "Authorized Financial Officer",
+        "donee_signed_date": "2025-08-10"
       }
     },
     {
@@ -392,7 +413,11 @@
         "contribution_date": "2025-08-10",
         "amount": 15000,
         "asset_type": "noncash_goods",
-        "asset_description": "Antique Persian rug (9x12 Tabriz)"
+        "asset_description": "Antique Persian rug (9x12 Tabriz)",
+        "appraiser_name": "Catherine M. Knowles",
+        "appraiser_tin": "000-00-1712",
+        "appraisal_date": "2025-08-01",
+        "appraiser_signed": true
       }
     },
     {
@@ -408,7 +433,10 @@
         "contribution_date": "2025-08-10",
         "amount": 15000,
         "asset_type": "noncash_goods",
-        "asset_description": "Antique Persian rug (9x12 Tabriz)"
+        "asset_description": "Antique Persian rug (9x12 Tabriz)",
+        "donee_signer": "Jordan Ellis",
+        "donee_signer_title": "Authorized Financial Officer",
+        "goods_or_services_provided": false
       }
     },
     {
@@ -459,7 +487,22 @@
         "contribution_date": "2025-04-01",
         "amount": 501,
         "asset_type": "vehicle",
-        "asset_description": "2010 Ford Focus, VIN 1FAHP3F29CL345678"
+        "asset_description": "2010 Ford Focus, VIN 1FAHP3F29CL345678",
+        "donor_tin": "XXX-XX-2460",
+        "vehicle_year": 2010,
+        "vehicle_make": "Ford",
+        "vehicle_model": "Focus",
+        "vehicle_vin": "1FAHP3F29CL345678",
+        "vehicle_mileage": 165000,
+        "disposition_type": "arms_length_sale",
+        "box_4a_arms_length_sale": true,
+        "box_4b_sale_date": "2025-04-15",
+        "box_4c_gross_proceeds": 501,
+        "box_5a_significant_use_or_improvement": false,
+        "box_5b_needy_transfer": false,
+        "box_6a_goods_or_services": false,
+        "box_7_low_value_or_missing_tin": false,
+        "deduction_basis": "gross_proceeds"
       }
     },
     {
@@ -493,7 +536,22 @@
         "contribution_date": "2025-05-15",
         "amount": 12000,
         "asset_type": "vehicle",
-        "asset_description": "2018 Honda CR-V, VIN 5J6RW2H85JL012345"
+        "asset_description": "2018 Honda CR-V, VIN 5J6RW2H85JL012345",
+        "donor_tin": "XXX-XX-8038",
+        "vehicle_year": 2018,
+        "vehicle_make": "Honda",
+        "vehicle_model": "CR-V",
+        "vehicle_vin": "5J6RW2H85JL012345",
+        "vehicle_mileage": 85000,
+        "disposition_type": "arms_length_sale",
+        "box_4a_arms_length_sale": true,
+        "box_4b_sale_date": "2025-06-01",
+        "box_4c_gross_proceeds": 12000,
+        "box_5a_significant_use_or_improvement": false,
+        "box_5b_needy_transfer": false,
+        "box_6a_goods_or_services": false,
+        "box_7_low_value_or_missing_tin": false,
+        "deduction_basis": "gross_proceeds"
       }
     },
     {
@@ -527,7 +585,22 @@
         "contribution_date": "2025-07-20",
         "amount": 35000,
         "asset_type": "vehicle",
-        "asset_description": "2022 Tesla Model 3, VIN 5YJ3E1EA1NF567890"
+        "asset_description": "2022 Tesla Model 3, VIN 5YJ3E1EA1NF567890",
+        "donor_tin": "XXX-XX-3728",
+        "vehicle_year": 2022,
+        "vehicle_make": "Tesla",
+        "vehicle_model": "Model 3",
+        "vehicle_vin": "5YJ3E1EA1NF567890",
+        "vehicle_mileage": 25000,
+        "disposition_type": "needy_transfer",
+        "box_4a_arms_length_sale": false,
+        "box_4b_sale_date": null,
+        "box_4c_gross_proceeds": null,
+        "box_5a_significant_use_or_improvement": false,
+        "box_5b_needy_transfer": true,
+        "box_6a_goods_or_services": false,
+        "box_7_low_value_or_missing_tin": false,
+        "deduction_basis": "fair_market_value"
       }
     },
     {
@@ -545,7 +618,14 @@
         "date_acquired": "2022-03-15",
         "amount": 35000,
         "asset_type": "vehicle",
-        "asset_description": "2022 Tesla Model 3, VIN 5YJ3E1EA1NF567890"
+        "asset_description": "2022 Tesla Model 3, VIN 5YJ3E1EA1NF567890",
+        "appraiser_name": "Alexandra M. Reyes, ASA",
+        "appraiser_tin": "000-00-4583",
+        "appraisal_date": "2025-07-10",
+        "appraiser_signed": true,
+        "donee_signer": "Jordan Ellis",
+        "donee_signer_title": "Authorized Financial Officer",
+        "donee_signed_date": "2025-07-20"
       }
     },
     {
@@ -562,7 +642,11 @@
         "contribution_date": "2025-07-20",
         "amount": 35000,
         "asset_type": "vehicle",
-        "asset_description": "2022 Tesla Model 3, VIN 5YJ3E1EA1NF567890"
+        "asset_description": "2022 Tesla Model 3, VIN 5YJ3E1EA1NF567890",
+        "appraiser_name": "Alexandra M. Reyes, ASA",
+        "appraiser_tin": "000-00-4583",
+        "appraisal_date": "2025-07-10",
+        "appraiser_signed": true
       }
     },
     {
@@ -653,7 +737,7 @@
       "filename": "form_8283_section_b/form_8283_section_b_D024.png",
       "formType": "form_8283_section_b",
       "donationId": "D024",
-      "boundary": true,
+      "boundary": false,
       "expectedFields": {
         "donor_name": "David K. Wilson",
         "donor_address": "258 Willow Street, Atlanta, GA 30301",
@@ -663,14 +747,60 @@
         "date_acquired": "2012-06-15",
         "amount": 10000,
         "asset_type": "stock_closelyheld",
-        "asset_description": "200 shares Wilson Properties Inc."
+        "asset_description": "200 shares Wilson Properties Inc.",
+        "appraiser_name": "Eleanor J. Watkins, ASA",
+        "appraiser_tin": "000-00-6374",
+        "appraisal_date": "2025-07-08",
+        "appraiser_signed": true,
+        "donee_signer": "Avery Morgan",
+        "donee_signer_title": "Authorized Financial Officer",
+        "donee_signed_date": "2025-07-15"
+      }
+    },
+    {
+      "filename": "appraisal/appraisal_D024.png",
+      "formType": "appraisal",
+      "donationId": "D024",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "David K. Wilson",
+        "donor_address": "258 Willow Street, Atlanta, GA 30301",
+        "donee_name": "Community Foundation of Greater Atlanta",
+        "donee_ein": "58-1344646",
+        "contribution_date": "2025-07-15",
+        "amount": 10000,
+        "asset_type": "stock_closelyheld",
+        "asset_description": "200 shares Wilson Properties Inc.",
+        "appraiser_name": "Eleanor J. Watkins, ASA",
+        "appraiser_tin": "000-00-6374",
+        "appraisal_date": "2025-07-08",
+        "appraiser_signed": true
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D024.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D024",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "David K. Wilson",
+        "donor_address": "258 Willow Street, Atlanta, GA 30301",
+        "donee_name": "Community Foundation of Greater Atlanta",
+        "donee_ein": "58-1344646",
+        "contribution_date": "2025-07-15",
+        "amount": 10000,
+        "asset_type": "stock_closelyheld",
+        "asset_description": "200 shares Wilson Properties Inc.",
+        "donee_signer": "Avery Morgan",
+        "donee_signer_title": "Authorized Financial Officer",
+        "goods_or_services_provided": false
       }
     },
     {
       "filename": "form_8283_section_b/form_8283_section_b_D025.png",
       "formType": "form_8283_section_b",
       "donationId": "D025",
-      "boundary": true,
+      "boundary": false,
       "expectedFields": {
         "donor_name": "Jennifer L. Miller",
         "donor_address": "147 Birch Way, Phoenix, AZ 85001",
@@ -680,14 +810,21 @@
         "date_acquired": "2010-03-01",
         "amount": 10001,
         "asset_type": "stock_closelyheld",
-        "asset_description": null
+        "asset_description": "50 shares Miller Family Enterprises LLC",
+        "appraiser_name": "James P. Thornton, CFA, ASA",
+        "appraiser_tin": "000-00-5066",
+        "appraisal_date": "2025-07-25",
+        "appraiser_signed": true,
+        "donee_signer": "Morgan Reed",
+        "donee_signer_title": "Authorized Financial Officer",
+        "donee_signed_date": "2025-08-01"
       }
     },
     {
       "filename": "appraisal/appraisal_D025.png",
       "formType": "appraisal",
       "donationId": "D025",
-      "boundary": true,
+      "boundary": false,
       "expectedFields": {
         "donor_name": "Jennifer L. Miller",
         "donor_address": "147 Birch Way, Phoenix, AZ 85001",
@@ -696,7 +833,30 @@
         "contribution_date": "2025-08-01",
         "amount": 10001,
         "asset_type": "stock_closelyheld",
-        "asset_description": null
+        "asset_description": "50 shares Miller Family Enterprises LLC",
+        "appraiser_name": "James P. Thornton, CFA, ASA",
+        "appraiser_tin": "000-00-5066",
+        "appraisal_date": "2025-07-25",
+        "appraiser_signed": true
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D025.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D025",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Jennifer L. Miller",
+        "donor_address": "147 Birch Way, Phoenix, AZ 85001",
+        "donee_name": "Arizona Community Foundation",
+        "donee_ein": "86-0348306",
+        "contribution_date": "2025-08-01",
+        "amount": 10001,
+        "asset_type": "stock_closelyheld",
+        "asset_description": "50 shares Miller Family Enterprises LLC",
+        "donee_signer": "Morgan Reed",
+        "donee_signer_title": "Authorized Financial Officer",
+        "goods_or_services_provided": false
       }
     },
     {
@@ -714,7 +874,14 @@
         "date_acquired": "2008-09-15",
         "amount": 50000,
         "asset_type": "stock_closelyheld",
-        "asset_description": null
+        "asset_description": "500 shares Smith Tech Ventures Inc.",
+        "appraiser_name": "Patricia A. Nelson, CPA/ABV, CVA",
+        "appraiser_tin": "000-00-7592",
+        "appraisal_date": "2025-09-01",
+        "appraiser_signed": true,
+        "donee_signer": "Riley Parker",
+        "donee_signer_title": "Authorized Financial Officer",
+        "donee_signed_date": "2025-09-10"
       }
     },
     {
@@ -731,7 +898,31 @@
         "contribution_date": "2025-09-10",
         "amount": 50000,
         "asset_type": "stock_closelyheld",
-        "asset_description": null
+        "asset_description": "500 shares Smith Tech Ventures Inc.",
+        "appraiser_name": "Patricia A. Nelson, CPA/ABV, CVA",
+        "appraiser_tin": "000-00-7592",
+        "appraisal_date": "2025-09-01",
+        "appraiser_signed": true
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D026.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D026",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "John A. Smith",
+        "donor_address": "123 Main Street, Springfield, IL 62701",
+        "donee_name": "Community Foundation of Northern Colorado",
+        "donee_ein": "84-0699243",
+        "ein_validation_status": "VALID",
+        "contribution_date": "2025-09-10",
+        "amount": 50000,
+        "asset_type": "stock_closelyheld",
+        "asset_description": "500 shares Smith Tech Ventures Inc.",
+        "donee_signer": "Riley Parker",
+        "donee_signer_title": "Authorized Financial Officer",
+        "goods_or_services_provided": false
       }
     },
     {
@@ -748,7 +939,14 @@
         "date_acquired": "2015-05-20",
         "amount": 100000,
         "asset_type": "real_estate",
-        "asset_description": null
+        "asset_description": "Vacant residential lot, 0.5 acres, 1500 Development Road, Austin, TX 78702",
+        "appraiser_name": "William R. Foster, MAI",
+        "appraiser_tin": "000-00-2354",
+        "appraisal_date": "2025-09-20",
+        "appraiser_signed": true,
+        "donee_signer": "Avery Morgan",
+        "donee_signer_title": "Authorized Financial Officer",
+        "donee_signed_date": "2025-10-01"
       }
     },
     {
@@ -764,7 +962,30 @@
         "contribution_date": "2025-10-01",
         "amount": 100000,
         "asset_type": "real_estate",
-        "asset_description": null
+        "asset_description": "Vacant residential lot, 0.5 acres, 1500 Development Road, Austin, TX 78702",
+        "appraiser_name": "William R. Foster, MAI",
+        "appraiser_tin": "000-00-2354",
+        "appraisal_date": "2025-09-20",
+        "appraiser_signed": true
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D027.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D027",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Emily R. Davis",
+        "donor_address": "789 Elm Drive, Austin, TX 78701",
+        "donee_name": "Habitat for Humanity International",
+        "donee_ein": "91-1914868",
+        "contribution_date": "2025-10-01",
+        "amount": 100000,
+        "asset_type": "real_estate",
+        "asset_description": "Vacant residential lot, 0.5 acres, 1500 Development Road, Austin, TX 78702",
+        "donee_signer": "Avery Morgan",
+        "donee_signer_title": "Authorized Financial Officer",
+        "goods_or_services_provided": false
       }
     },
     {
@@ -782,7 +1003,14 @@
         "date_acquired": "2010-08-15",
         "amount": 500000,
         "asset_type": "real_estate",
-        "asset_description": null
+        "asset_description": "Single-family rental property, 3BR/2BA, 1,850 sq ft, 742 Evergreen Terrace, Seattle, WA 98102",
+        "appraiser_name": "Margaret C. Hayes, SRA, AI-RRS",
+        "appraiser_tin": "000-00-1290",
+        "appraisal_date": "2025-11-01",
+        "appraiser_signed": true,
+        "donee_signer": "Riley Parker",
+        "donee_signer_title": "Authorized Financial Officer",
+        "donee_signed_date": "2025-11-15"
       }
     },
     {
@@ -799,7 +1027,31 @@
         "contribution_date": "2025-11-15",
         "amount": 500000,
         "asset_type": "real_estate",
-        "asset_description": null
+        "asset_description": "Single-family rental property, 3BR/2BA, 1,850 sq ft, 742 Evergreen Terrace, Seattle, WA 98102",
+        "appraiser_name": "Margaret C. Hayes, SRA, AI-RRS",
+        "appraiser_tin": "000-00-1290",
+        "appraisal_date": "2025-11-01",
+        "appraiser_signed": true
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D028.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D028",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Sarah M. Johnson",
+        "donor_address": "654 Maple Lane, Seattle, WA 98101",
+        "donee_name": "Community Foundation of Northern Colorado",
+        "donee_ein": "84-0699243",
+        "ein_validation_status": "VALID",
+        "contribution_date": "2025-11-15",
+        "amount": 500000,
+        "asset_type": "real_estate",
+        "asset_description": "Single-family rental property, 3BR/2BA, 1,850 sq ft, 742 Evergreen Terrace, Seattle, WA 98102",
+        "donee_signer": "Riley Parker",
+        "donee_signer_title": "Authorized Financial Officer",
+        "goods_or_services_provided": false
       }
     },
     {

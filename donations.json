@@ -690,11 +690,10 @@
     },
     {
       "id": "D024",
-      "description": "Closely-held stock $10,000 (boundary) - requires Form 8283-B without appraisal",
+      "description": "Closely-held stock $10,000 regression case - requires Form 8283-B + qualified appraisal + acknowledgment",
       "assetType": "stock_closelyheld",
       "amount": 10000.00,
       "deductible": true,
-      "boundary": true,
       "assetDescription": "200 shares Wilson Properties Inc.",
       "security": {
         "name": "Wilson Properties Inc.",
@@ -718,15 +717,22 @@
         "address": "191 Peachtree Street NE, Atlanta, GA 30303"
       },
       "contributionDate": "2025-07-15",
-      "forms": ["form_8283_section_b"]
+      "appraisal": {
+        "appraiserName": "Eleanor J. Watkins, ASA",
+        "appraiserAddress": "275 Peachtree Center Avenue, Atlanta, GA 30303",
+        "appraiserQualifications": "Accredited Senior Appraiser, Business Valuation, 12 years of closely-held securities experience",
+        "appraisalDate": "2025-07-08",
+        "valuationMethod": "Income and Market Approaches"
+      },
+      "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
     },
     {
       "id": "D025",
-      "description": "Closely-held stock $10,001 (boundary) - requires Form 8283-B + appraisal",
+      "description": "Closely-held stock $10,001 regression case - requires Form 8283-B + qualified appraisal + acknowledgment",
       "assetType": "stock_closelyheld",
       "amount": 10001.00,
       "deductible": true,
-      "boundary": true,
+      "assetDescription": "50 shares Miller Family Enterprises LLC",
       "security": {
         "name": "Miller Family Enterprises LLC",
         "shares": 50,
@@ -756,7 +762,7 @@
         "appraisalDate": "2025-07-25",
         "valuationMethod": "Discounted Cash Flow / Market Approach"
       },
-      "forms": ["form_8283_section_b", "appraisal"]
+      "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
     },
     {
       "id": "D026",
@@ -764,6 +770,7 @@
       "assetType": "stock_closelyheld",
       "amount": 50000.00,
       "deductible": true,
+      "assetDescription": "500 shares Smith Tech Ventures Inc.",
       "security": {
         "name": "Smith Tech Ventures Inc.",
         "shares": 500,
@@ -797,7 +804,7 @@
         "appraisalDate": "2025-09-01",
         "valuationMethod": "Asset-Based / Income Approach"
       },
-      "forms": ["form_8283_section_b", "appraisal"]
+      "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
     },
     {
       "id": "D027",
@@ -805,6 +812,7 @@
       "assetType": "real_estate",
       "amount": 100000.00,
       "deductible": true,
+      "assetDescription": "Vacant residential lot, 0.5 acres, 1500 Development Road, Austin, TX 78702",
       "property": {
         "description": "Vacant residential lot, 0.5 acres",
         "address": "1500 Development Road, Austin, TX 78702",
@@ -834,7 +842,7 @@
         "appraisalDate": "2025-09-20",
         "valuationMethod": "Sales Comparison Approach"
       },
-      "forms": ["form_8283_section_b", "appraisal"]
+      "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
     },
     {
       "id": "D028",
@@ -842,6 +850,7 @@
       "assetType": "real_estate",
       "amount": 500000.00,
       "deductible": true,
+      "assetDescription": "Single-family rental property, 3BR/2BA, 1,850 sq ft, 742 Evergreen Terrace, Seattle, WA 98102",
       "property": {
         "description": "Single-family rental property, 3BR/2BA, 1,850 sq ft",
         "address": "742 Evergreen Terrace, Seattle, WA 98102",
@@ -875,7 +884,7 @@
         "appraisalDate": "2025-11-01",
         "valuationMethod": "Sales Comparison and Income Approach"
       },
-      "forms": ["form_8283_section_b", "appraisal"]
+      "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
     },
     {
       "id": "D029",

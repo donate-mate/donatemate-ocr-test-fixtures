@@ -29,8 +29,7 @@ This document describes the IRS-compliant form test fixtures generated based on 
 |------|--------|----------------------|
 | Publicly Traded | Any | Brokerage confirmation (no qualified appraisal) |
 | Closely-Held | $501-$5,000 | Form 8283 Section A |
-| Closely-Held | $5,001-$10,000 | Form 8283 Section B without a qualified appraisal |
-| Closely-Held | > $10,000 | Form 8283 Section B + Qualified Appraisal |
+| Closely-Held | > $5,000 | Form 8283 Section B + Qualified Appraisal |
 
 ### Real Estate
 | Amount | Required Documentation |
@@ -43,11 +42,11 @@ This document describes the IRS-compliant form test fixtures generated based on 
 |-----------|-------|-----------|-------------|
 | Form 8283 Section A | 6 | `documents/form_8283_section_a/` | Non-cash donations $501-$5,000 and gross-proceeds vehicles |
 | Form 8283 Section B | 8 | `documents/form_8283_section_b/` | FMV-basis non-cash donations >$5,000 |
-| Form 1098-C | 13 | `documents/form_1098c/` | Vehicle donations >$500 |
-| Qualified Appraisal | 7 | `documents/appraisal/` | Category-specific high-value FMV-basis donations |
-| Acknowledgment | 20 | `documents/acknowledgment_letter/` | Cash and non-cash charity acknowledgments |
+| Form 1098-C | 3 | `documents/form_1098c/` | Vehicle donations >$500 with explicit disposition |
+| Qualified Appraisal | 8 | `documents/appraisal/` | Signed category-specific high-value FMV-basis donations |
+| Acknowledgment | 25 | `documents/acknowledgment_letter/` | Cash and non-cash charity acknowledgments |
 
-**Total: 54 IRS form documents**
+**Total: 50 IRS substantiation documents (62 generated documents across all fixture types)**
 
 ## Form Details
 
@@ -64,10 +63,11 @@ This document describes the IRS-compliant form test fixtures generated based on 
 - Method used to determine FMV
 
 **Section B** (for donations >$5,000):
-- All Section A fields plus:
-- Part II: Taxpayer (Donor) Statement with signature
-- Part III: Declaration of Appraiser (signed)
-- Part IV: Donee Acknowledgment (signed by charity)
+- Part I: detailed property identity, condition when applicable, appraised FMV, acquisition, basis, and contribution data
+- Part II: partial-interest/restricted-use data when applicable
+- Part III: taxpayer statement only for an item in the appraisal group valued at $500 or less
+- Part IV: completed and signed declaration of the qualified appraiser, including identifying number
+- Part V: completed and signed donee acknowledgment
 
 ### Form 1098-C - Contributions of Motor Vehicles, Boats, and Airplanes
 
@@ -135,12 +135,12 @@ ONLY_FORMS=form_8283_section_a node scripts/generate_from_donations.js
 # Regenerate the D023 acknowledgment
 ONLY_DONATIONS=D023 ONLY_FORMS=acknowledgment_letter node scripts/generate_from_donations.js
 
-# Regenerate the corrected D024 Section B and clean stale form outputs
-ONLY_DONATIONS=D024 node scripts/generate_from_donations_v2.js
+# Regenerate the complete canonical set, remove obsolete images, and rebuild
+# the deterministic linked manifest
+node scripts/generate_from_donations.js
 
-# Regenerate DM-599 vehicle documents and the linked manifest
-ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations.js
-ONLY_DONATIONS=D017,D018,D019 ONLY_FORMS=form_1098c,form_8283_section_b,appraisal node scripts/generate_from_donations_v2.js
+# Regenerate only DM-599 renderings while still rebuilding the full manifest
+ONLY_DONATIONS=D013,D014,D017,D018,D019,D024,D025,D026,D027,D028 node scripts/generate_from_donations.js
 
 # Validate the fixture contract
 npm test
