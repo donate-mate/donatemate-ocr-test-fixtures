@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "revision:apply": "node scripts/revision_pngs.js",
     "test": "node scripts/validate_fixtures.js"
   },
   "repository": {

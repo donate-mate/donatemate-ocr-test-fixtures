@@ -14,6 +14,11 @@ const {
     maskedTaxpayerId,
     wrapText
 } = require('./generate_from_donations');
+const {
+    FIXTURE_REVISION,
+    applyFixtureRevision,
+    fixtureRevision
+} = require('./png_fixture_revision');
 
 const root = path.join(__dirname, '..');
 const donations = JSON.parse(
@@ -27,6 +32,14 @@ function assert(condition, message) {
     if (!condition) {
         throw new Error(message);
     }
+}
+
+function pngFiles(directory) {
+    return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
+        const absolutePath = path.join(directory, entry.name);
+        if (entry.isDirectory()) return pngFiles(absolutePath);
+        return entry.isFile() && entry.name.toLowerCase().endsWith('.png') ? [absolutePath] : [];
+    });
 }
 
 function fixture(id) {
@@ -154,6 +167,18 @@ for (const [filename, expected] of expectedDocuments) {
     );
 }
 
+for (const filename of pngFiles(path.join(root, 'documents'))) {
+    const document = fs.readFileSync(filename);
+    assert(
+        fixtureRevision(document) === FIXTURE_REVISION,
+        `${path.relative(root, filename)} must carry fixture revision ${FIXTURE_REVISION}`
+    );
+    assert(
+        applyFixtureRevision(document).equals(document),
+        `${path.relative(root, filename)} fixture revision must be idempotent`
+    );
+}
+
 assertForms('D017', ['form_1098c', 'form_8283_section_a']);
 assertForms('D018', ['form_1098c', 'form_8283_section_a']);
 assertForms('D019', ['form_1098c', 'form_8283_section_b', 'appraisal']);
@@ -260,9 +285,9 @@ for (const donation of sectionADonations) {
         `${donation.id} taxpayer identifier must be masked and deterministic`
     );
 
-    const renderedForm = generateForm8283A(donation);
+    const renderedForm = applyFixtureRevision(generateForm8283A(donation));
     assert(
-        renderedForm.equals(generateForm8283A(donation)),
+        renderedForm.equals(applyFixtureRevision(generateForm8283A(donation))),
         `${donation.id} Form 8283-A generation must be deterministic`
     );
     const trackedForm = fs.readFileSync(
@@ -316,22 +341,22 @@ assert(
 
 const goFundMeExpectations = {
     D035: {
-        date: 'August 12, 2025',
-        shortDate: '08/12/2025',
+        date: '2025-08-12',
+        shortDate: '2025-08-12',
         donation: '$50.00',
         tip: '$5.00',
         total: '$55.00'
     },
     D036: {
-        date: 'November 4, 2025',
-        shortDate: '11/04/2025',
+        date: '2025-11-04',
+        shortDate: '2025-11-04',
         donation: '$150.00',
         tip: '$0.00',
         total: '$150.00'
     },
     D037: {
-        date: 'January 19, 2026',
-        shortDate: '01/19/2026',
+        date: '2026-01-19',
+        shortDate: '2026-01-19',
         donation: '$25.00',
         tip: '$3.75',
         total: '$28.75'

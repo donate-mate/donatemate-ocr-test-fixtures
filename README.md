@@ -37,6 +37,12 @@ Fixtures that exercise terminal organization enrichment also declare a `VALID`
 the focused EIN-validation test suite rather than changing the meaning of these charitable
 OCR fixtures.
 
+All machine-read dates are rendered as `YYYY-MM-DD`, matching the OCR structured-data
+contract directly. Every PNG also carries the deterministic
+`DonateMateFixtureRevision=dm-3062-v1` text chunk. The revision changes fixture bytes
+without changing their pixels, preventing historical uploads by a different synthetic
+account from contaminating duplicate-image fraud checks.
+
 ## Directory Structure
 
 ```
@@ -213,6 +219,9 @@ ONLY_DONATIONS=D024 node scripts/generate_from_donations_v2.js
 # replaces only the non-Section-A IRS forms with their specialized renderings.
 ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations.js
 ONLY_DONATIONS=D017,D018,D019 ONLY_FORMS=form_1098c,form_8283_section_b,appraisal node scripts/generate_from_donations_v2.js
+
+# Reapply the current byte revision to every PNG (safe to run repeatedly)
+npm run revision:apply
 
 # Validate fixture metadata, required files, and manifest parity
 npm test
