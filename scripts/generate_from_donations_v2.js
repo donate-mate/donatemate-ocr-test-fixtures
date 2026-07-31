@@ -8,6 +8,7 @@ const { createCanvas, registerFont } = require('canvas');
 const { createHash } = require('crypto');
 const fs = require('fs');
 const path = require('path');
+const { applyFixtureRevision } = require('./png_fixture_revision');
 
 // Load font if available
 const fontPath = path.join(__dirname, '..', 'fonts', 'Inter.ttf');
@@ -58,12 +59,14 @@ function parseFixtureDate(dateStr) {
 
 function formatDate(dateStr) {
     const d = parseFixtureDate(dateStr);
-    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    if (Number.isNaN(d.getTime())) throw new Error(`Invalid fixture date: ${dateStr}`);
+    return [d.getFullYear(), d.getMonth() + 1, d.getDate()]
+        .map((value, index) => index === 0 ? String(value) : String(value).padStart(2, '0'))
+        .join('-');
 }
 
 function formatDateShort(dateStr) {
-    const d = parseFixtureDate(dateStr);
-    return d.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
+    return formatDate(dateStr);
 }
 
 function formatMoney(amount) {
@@ -926,7 +929,7 @@ async function main() {
             const filepath = path.join(OUTPUT_DIR, formType, filename);
             
             try {
-                const buffer = generator(donation);
+                const buffer = applyFixtureRevision(generator(donation));
                 fs.writeFileSync(filepath, buffer);
                 console.log(`✓ Regenerated ${formType}/${filename}`);
             } catch (err) {

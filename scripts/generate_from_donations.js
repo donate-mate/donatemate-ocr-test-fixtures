@@ -8,6 +8,7 @@ const { createCanvas, registerFont } = require('canvas');
 const { createHash } = require('crypto');
 const fs = require('fs');
 const path = require('path');
+const { applyFixtureRevision } = require('./png_fixture_revision');
 
 // Load font if available
 const fontPath = path.join(__dirname, '..', 'fonts', 'Inter.ttf');
@@ -70,12 +71,14 @@ function getFixtureYear(dateStr) {
 
 function formatDate(dateStr) {
     const d = parseFixtureDate(dateStr);
-    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    if (Number.isNaN(d.getTime())) throw new Error(`Invalid fixture date: ${dateStr}`);
+    return [d.getFullYear(), d.getMonth() + 1, d.getDate()]
+        .map((value, index) => index === 0 ? String(value) : String(value).padStart(2, '0'))
+        .join('-');
 }
 
 function formatDateShort(dateStr) {
-    const d = parseFixtureDate(dateStr);
-    return d.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
+    return formatDate(dateStr);
 }
 
 function formatMoney(amount) {
@@ -421,7 +424,7 @@ function generateAcknowledgmentLetter(donation) {
         const v = donation.vehicle;
         bodyText = `Thank you for your generous donation of a ${v.year} ${v.make} ${v.model} (VIN: ${v.vin}, estimated fair market value: ${formatMoney(donation.amount)}) to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
     } else if (donation.assetType.startsWith('stock')) {
-        bodyText = `Thank you for your generous donation of ${donation.assetDescription || 'securities'} to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
+        bodyText = `Thank you for your generous donation of ${donation.assetDescription || 'securities'} to ${donation.donee.name} on ${formatDate(donation.contributionDate)}. No value was assigned by the donee; the donor is responsible for determining fair market value.`;
     } else {
         bodyText = `Thank you for your generous donation of ${donation.assetDescription} (estimated fair market value: ${formatMoney(donation.amount)}) to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
     }
@@ -531,7 +534,7 @@ function generateReceipt(donation) {
     ctx.font = '11px Inter';
     ctx.fillStyle = '#333333';
     ctx.fillText(`RCP-${donation.id}-${getFixtureYear(donation.contributionDate)}`, 155, y + 18);
-    ctx.fillText(formatDate(new Date().toISOString()), 140, y + 36);
+    ctx.fillText(formatDate(donation.contributionDate), 140, y + 36);
     ctx.fillText(formatDate(donation.contributionDate), 415, y + 18);
     
     y += 70;
@@ -1077,7 +1080,7 @@ function generateForm8283B(donation) {
     ctx.font = '8px Inter';
     ctx.fillText('Identifying number', width - 160, y + 12);
     ctx.font = '11px Inter';
-    ctx.fillText('XXX-XX-' + Math.floor(1000 + Math.random() * 9000), width - 160, y + 30);
+    ctx.fillText(maskedTaxpayerId(donation), width - 160, y + 30);
     
     y += 55;
     
@@ -1462,7 +1465,7 @@ function generateStockConfirmation(donation) {
     ctx.fillText('Transaction Type:', 320, y + 40);
     
     ctx.font = '10px Inter';
-    ctx.fillText(`SCH-${getFixtureYear(donation.contributionDate)}-${Math.floor(100000 + Math.random() * 900000)}`, 170, y + 20);
+    ctx.fillText(`SCH-${getFixtureYear(donation.contributionDate)}-${maskedTaxpayerId(donation).slice(-4)}01`, 170, y + 20);
     ctx.fillText(formatDate(donation.contributionDate), 130, y + 40);
     ctx.fillText('Individual Brokerage', 420, y + 20);
     ctx.fillText('DTC Transfer to Charity', 430, y + 40);
@@ -1481,7 +1484,7 @@ function generateStockConfirmation(donation) {
     y += 16;
     ctx.fillText(`Address: ${formatAddress(donation.donor)}`, 45, y);
     y += 16;
-    ctx.fillText('Tax ID: XXX-XX-' + Math.floor(1000 + Math.random() * 9000), 45, y);
+    ctx.fillText(`Tax ID: ${maskedTaxpayerId(donation)}`, 45, y);
     
     y += 35;
     
@@ -1683,7 +1686,7 @@ async function main() {
             }
 
             try {
-                const buffer = generator(donation);
+                const buffer = applyFixtureRevision(generator(donation));
                 fs.writeFileSync(filepath, buffer);
                 console.log(`  ✓ Generated ${formType}/${filename}`);
 
