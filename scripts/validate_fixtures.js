@@ -7,11 +7,17 @@ const {
     formatDate,
     formatDateShort,
     formatMoney,
+    generateAcknowledgmentLetter,
+    generateAppraisal,
     generateForm8283A,
+    generateForm8283B,
+    generateForm1098C,
     getGoFundMeReceiptAmounts,
     getForm8283FmvMethod,
     getForm8283PropertyDescription,
     maskedTaxpayerId,
+    syntheticAppraiserTaxId,
+    syntheticDoneeSigner,
     wrapText
 } = require('./generate_from_donations');
 const {
@@ -91,6 +97,21 @@ assert(
     manifestDocuments.size === expectedDocuments.size,
     `Manifest document count mismatch: expected ${expectedDocuments.size}, got ${manifestDocuments.size}`
 );
+assert(
+    manifest.generatedAt === '2026-07-31T00:00:00.000Z',
+    'Manifest generation timestamp must be deterministic'
+);
+
+const actualDocumentNames = pngFiles(path.join(root, 'documents'))
+    .map(filename => path.relative(path.join(root, 'documents'), filename))
+    .sort();
+assert(
+    actualDocumentNames.length === expectedDocuments.size,
+    `Generated PNG count mismatch: expected ${expectedDocuments.size}, got ${actualDocumentNames.length}`
+);
+for (const filename of actualDocumentNames) {
+    assert(expectedDocuments.has(filename), `Obsolete or untracked generated PNG: ${filename}`);
+}
 
 for (const donation of donations) {
     assert(
@@ -182,6 +203,10 @@ for (const filename of pngFiles(path.join(root, 'documents'))) {
 assertForms('D017', ['form_1098c', 'form_8283_section_a']);
 assertForms('D018', ['form_1098c', 'form_8283_section_a']);
 assertForms('D019', ['form_1098c', 'form_8283_section_b', 'appraisal']);
+assertForms('D024', ['form_8283_section_b', 'appraisal', 'acknowledgment_letter']);
+for (const id of ['D025', 'D026', 'D027', 'D028']) {
+    assertForms(id, ['form_8283_section_b', 'appraisal', 'acknowledgment_letter']);
+}
 
 for (const id of ['D017', 'D018']) {
     const donation = fixture(id);
@@ -190,20 +215,117 @@ for (const id of ['D017', 'D018']) {
         !donation.forms.includes('form_8283_section_b') && !donation.forms.includes('appraisal'),
         `${id} must stay on the gross-proceeds/Section A path`
     );
+    const document = manifestDocuments.get(`form_1098c/form_1098c_${id}.png`);
+    assert(
+        document?.expectedFields?.disposition_type === 'arms_length_sale' &&
+            document.expectedFields.box_4a_arms_length_sale === true &&
+            document.expectedFields.box_4b_sale_date === donation.saleInfo.saleDate &&
+            document.expectedFields.box_4c_gross_proceeds === donation.saleInfo.grossProceeds &&
+            document.expectedFields.box_5a_significant_use_or_improvement === false &&
+            document.expectedFields.box_5b_needy_transfer === false &&
+            document.expectedFields.deduction_basis === 'gross_proceeds',
+        `${id} Form 1098-C must preserve the box 4 sale date and gross-proceeds path`
+    );
 }
 
 const d019 = fixture('D019');
 assert(d019.saleInfo?.transferredToNeedy, 'D019 must remain an FMV-basis needy transfer');
 assert(d019.amount > 5000, 'D019 must remain above the $5,000 appraisal threshold');
 assert(d019.appraisal, 'D019 must include qualified-appraisal metadata');
-
-const contributionDate = new Date(`${d019.contributionDate}T00:00:00Z`);
-const appraisalDate = new Date(`${d019.appraisal.appraisalDate}T00:00:00Z`);
-const appraisalAgeDays = (contributionDate - appraisalDate) / 86_400_000;
+const d019Document = manifestDocuments.get('form_1098c/form_1098c_D019.png');
 assert(
-    appraisalAgeDays >= 0 && appraisalAgeDays <= 60,
-    `D019 appraisal must be dated no more than 60 days before contribution; got ${appraisalAgeDays}`
+    d019Document?.expectedFields?.disposition_type === 'needy_transfer' &&
+        d019Document.expectedFields.box_4a_arms_length_sale === false &&
+        d019Document.expectedFields.box_4b_sale_date === null &&
+        d019Document.expectedFields.box_4c_gross_proceeds === null &&
+        d019Document.expectedFields.box_5a_significant_use_or_improvement === false &&
+        d019Document.expectedFields.box_5b_needy_transfer === true &&
+        d019Document.expectedFields.deduction_basis === 'fair_market_value' &&
+        d019Document.expectedFields.amount === d019.amount,
+    'D019 Form 1098-C must preserve the box 5b needy-transfer/FMV path without gross proceeds'
 );
+
+const sectionBIds = ['D013', 'D014', 'D019', 'D024', 'D025', 'D026', 'D027', 'D028'];
+const dm599Generators = {
+    acknowledgment_letter: generateAcknowledgmentLetter,
+    appraisal: generateAppraisal,
+    form_8283_section_b: generateForm8283B,
+    form_1098c: generateForm1098C
+};
+
+for (const id of sectionBIds) {
+    const donation = fixture(id);
+    assert(donation.amount > 5000, `${id} Section B fixture must remain over $5,000`);
+    assert(donation.appraisal, `${id} Section B fixture must have a separate qualified appraisal`);
+    assert(donation.forms.includes('appraisal'), `${id} must link its qualified-appraisal image`);
+    if (donation.assetType !== 'vehicle') {
+        assert(
+            donation.forms.includes('acknowledgment_letter'),
+            `${id} must link a separate contemporaneous written acknowledgment`
+        );
+    }
+
+    const contributionDate = new Date(`${donation.contributionDate}T00:00:00Z`);
+    const appraisalDate = new Date(`${donation.appraisal.appraisalDate}T00:00:00Z`);
+    const appraisalAgeDays = (contributionDate - appraisalDate) / 86_400_000;
+    assert(
+        appraisalAgeDays >= 0 && appraisalAgeDays <= 60,
+        `${id} appraisal must be signed no more than 60 days before contribution; got ${appraisalAgeDays}`
+    );
+
+    const appraiserTaxId = syntheticAppraiserTaxId(donation.appraisal);
+    assert(
+        /^000-00-\d{4}$/.test(appraiserTaxId) &&
+            appraiserTaxId === syntheticAppraiserTaxId(donation.appraisal),
+        `${id} appraiser TIN must be full-format, non-sensitive, and deterministic`
+    );
+    const formDocument = manifestDocuments.get(
+        `form_8283_section_b/form_8283_section_b_${id}.png`
+    );
+    const signer = syntheticDoneeSigner(donation.donee);
+    assert(
+        formDocument?.expectedFields?.appraiser_name === donation.appraisal.appraiserName &&
+            formDocument.expectedFields.appraiser_tin === appraiserTaxId &&
+            formDocument.expectedFields.appraisal_date === donation.appraisal.appraisalDate &&
+            formDocument.expectedFields.appraiser_signed === true &&
+            formDocument.expectedFields.donee_signer === signer.name &&
+            formDocument.expectedFields.donee_signer_title === signer.title &&
+            formDocument.expectedFields.donee_signed_date === donation.contributionDate,
+        `${id} Form 8283-B manifest must retain completed appraiser and donee declarations`
+    );
+}
+
+assert(
+    fixture('D024').boundary !== true && fixture('D025').boundary !== true,
+    'D024/D025 must not encode the obsolete $10,000 qualified-appraisal threshold'
+);
+
+for (const id of ['D017', 'D018', 'D019', ...sectionBIds]) {
+    const donation = fixture(id);
+    for (const [formType, generator] of Object.entries(dm599Generators)) {
+        if (!donation.forms.includes(formType)) continue;
+        const rendered = applyFixtureRevision(generator(donation));
+        assert(
+            rendered.equals(applyFixtureRevision(generator(donation))),
+            `${id} ${formType} generation must be deterministic`
+        );
+        const tracked = fs.readFileSync(
+            path.join(root, 'documents', formType, `${formType}_${id}.png`)
+        );
+        assert(
+            tracked.equals(rendered),
+            `${id} tracked ${formType} must match the canonical generator`
+        );
+    }
+}
+
+for (const documentationFile of ['README.md', 'IRS_FORMS_README.md']) {
+    const documentation = fs.readFileSync(path.join(root, documentationFile), 'utf8');
+    assert(
+        !/\$5,001\s*[-–]\s*\$10,000[^\n]*without (?:a )?qualified appraisal/i.test(documentation),
+        `${documentationFile} must not retain the obsolete $10,000 appraisal exception`
+    );
+}
 
 const d015 = fixture('D015');
 assert(

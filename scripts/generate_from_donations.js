@@ -18,6 +18,7 @@ if (fs.existsSync(fontPath)) {
 
 const DONATIONS_PATH = path.join(__dirname, '..', 'donations.json');
 const OUTPUT_DIR = path.join(__dirname, '..', 'documents');
+const MANIFEST_GENERATED_AT = '2026-07-31T00:00:00.000Z';
 
 // Load donations
 const donationsData = JSON.parse(fs.readFileSync(DONATIONS_PATH, 'utf8'));
@@ -108,6 +109,30 @@ function maskedTaxpayerId(donation) {
     return `XXX-XX-${suffix}`;
 }
 
+function syntheticAppraiserTaxId(appraisal) {
+    const digest = createHash('sha256')
+        .update([appraisal.appraiserName, appraisal.appraiserAddress].join('|'))
+        .digest();
+    const suffix = (digest.readUInt32BE(0) % 10000).toString().padStart(4, '0');
+    return `000-00-${suffix}`;
+}
+
+function syntheticDoneeSigner(donee) {
+    const names = [
+        'Avery Morgan',
+        'Casey Taylor',
+        'Jordan Ellis',
+        'Morgan Reed',
+        'Riley Parker',
+        'Taylor Brooks'
+    ];
+    const digest = createHash('sha256').update(`${donee.name}|${donee.ein}`).digest();
+    return {
+        name: names[digest[0] % names.length],
+        title: 'Authorized Financial Officer'
+    };
+}
+
 function getForm8283FmvMethod(donation) {
     if (donation.valuationMethod) {
         return donation.valuationMethod;
@@ -145,6 +170,41 @@ function getForm8283PropertyDescription(donation) {
         `${vehicle.mileage.toLocaleString('en-US')} miles`,
         `VIN ${vehicle.vin}`
     ].join(', ');
+}
+
+function getDetailedPropertyDescription(donation) {
+    if (donation.assetType === 'vehicle') {
+        return getForm8283PropertyDescription(donation);
+    }
+    if (donation.security) {
+        return `${donation.security.shares} shares of ${donation.security.name}; ${donation.security.companyDescription}`;
+    }
+    if (donation.property) {
+        return [
+            donation.property.description,
+            donation.property.address,
+            `Legal description: ${donation.property.legalDescription}`,
+            `Parcel: ${donation.property.parcelNumber}`
+        ].join('; ');
+    }
+    return donation.assetDescription || donation.description;
+}
+
+function getForm8283PropertyCategory(donation) {
+    if (donation.assetType === 'stock_closelyheld') return 'f  Securities (nonpublicly traded)';
+    if (donation.assetType === 'real_estate') return 'h  Other real estate';
+    if (donation.assetType === 'vehicle') return 'i  Vehicles';
+    if (/rug|textile|painting|sculpture|art/i.test(donation.assetDescription || '')) {
+        return 'a  Art';
+    }
+    return 'j  Other property';
+}
+
+function getAppraisalRestrictionStatement(donation) {
+    if (donation.saleInfo?.transferredToNeedy) {
+        return 'Donee intends a gratuitous or significantly below-FMV transfer to a qualified needy individual.';
+    }
+    return 'No agreements, restrictions, or understandings affecting use, sale, or disposition were disclosed.';
 }
 
 function formatAddress(donor) {
@@ -416,13 +476,17 @@ function generateAcknowledgmentLetter(donation) {
     
     y += 30;
     
+    const isSectionBAcknowledgment = donation.forms.includes('form_8283_section_b');
+
     // Body
     let bodyText;
     if (donation.assetType === 'cash') {
         bodyText = `Thank you for your generous cash contribution of ${formatMoney(donation.amount)} to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
+    } else if (isSectionBAcknowledgment) {
+        bodyText = `Thank you for your generous donation of ${getDetailedPropertyDescription(donation)} to ${donation.donee.name} on ${formatDate(donation.contributionDate)}. No value was assigned by the donee; the donor is responsible for determining fair market value.`;
     } else if (donation.assetType === 'vehicle') {
-        const v = donation.vehicle;
-        bodyText = `Thank you for your generous donation of a ${v.year} ${v.make} ${v.model} (VIN: ${v.vin}, estimated fair market value: ${formatMoney(donation.amount)}) to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
+        const vehicle = donation.vehicle;
+        bodyText = `Thank you for your generous donation of a ${vehicle.year} ${vehicle.make} ${vehicle.model} (VIN: ${vehicle.vin}, estimated fair market value: ${formatMoney(donation.amount)}) to ${donation.donee.name} on ${formatDate(donation.contributionDate)}.`;
     } else if (donation.assetType.startsWith('stock')) {
         bodyText = `Thank you for your generous donation of ${donation.assetDescription || 'securities'} to ${donation.donee.name} on ${formatDate(donation.contributionDate)}. No value was assigned by the donee; the donor is responsible for determining fair market value.`;
     } else {
@@ -444,7 +508,9 @@ function generateAcknowledgmentLetter(donation) {
     y += 18;
     
     ctx.font = 'italic 10px Inter';
-    const disclosure = 'No goods or services were provided in exchange for this contribution. The entire amount of your donation is tax-deductible to the extent allowed by law. This letter serves as your written acknowledgment required for contributions of $250 or more.';
+    const disclosure = isSectionBAcknowledgment
+        ? 'No goods or services were provided in exchange for this contribution. This letter describes the donated property without assigning a value and is the contemporaneous written acknowledgment required by IRC section 170(f)(8).'
+        : 'No goods or services were provided in exchange for this contribution. The entire amount of your donation is tax-deductible to the extent allowed by law. This letter serves as your written acknowledgment required for contributions of $250 or more.';
     const disclosureLines = wrapText(ctx, disclosure, width - 100);
     for (const line of disclosureLines) {
         ctx.fillText(line, 50, y);
@@ -458,10 +524,20 @@ function generateAcknowledgmentLetter(donation) {
     ctx.font = '11px Inter';
     ctx.fillText('With gratitude,', 50, y);
     y += 40;
-    ctx.font = 'italic 12px Inter';
-    ctx.fillText('Executive Director', 50, y);
-    y += 15;
-    ctx.font = '11px Inter';
+    if (isSectionBAcknowledgment) {
+        const signer = syntheticDoneeSigner(donation.donee);
+        ctx.font = 'italic 12px Inter';
+        ctx.fillText(`/s/ ${signer.name}`, 50, y);
+        y += 15;
+        ctx.font = '11px Inter';
+        ctx.fillText(`${signer.name}, ${signer.title}`, 50, y);
+        y += 15;
+    } else {
+        ctx.font = 'italic 12px Inter';
+        ctx.fillText('Executive Director', 50, y);
+        y += 15;
+        ctx.font = '11px Inter';
+    }
     ctx.fillText(donation.donee.name, 50, y);
     
     // Footer
@@ -1039,383 +1115,377 @@ function generateForm8283A(donation) {
 }
 
 function generateForm8283B(donation) {
+    if (!donation.appraisal) {
+        throw new Error(`Section B requires qualified-appraisal metadata: ${donation.id}`);
+    }
+
     const width = 612, height = 792;
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext('2d');
-    
+    const appraisal = donation.appraisal;
+    const signer = syntheticDoneeSigner(donation.donee);
+    const propertyDescription = getDetailedPropertyDescription(donation);
+    const condition = donation.assetType === 'stock_closelyheld'
+        ? 'Not applicable—intangible nonpublicly traded security'
+        : donation.assetCondition || donation.vehicle?.condition || donation.property?.description || 'Good';
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
-    
-    let y = 30;
-    
-    // Form header (same as 8283A)
-    ctx.font = 'bold 14px Inter';
     ctx.fillStyle = '#000000';
-    ctx.fillText('Form 8283', 30, y);
-    ctx.font = '9px Inter';
-    ctx.fillText('(Rev. December 2023)', 30, y + 12);
-    
-    ctx.font = 'bold 16px Inter';
+    ctx.strokeStyle = '#000000';
+    ctx.lineWidth = 0.6;
+
+    let y = 25;
+    ctx.font = 'bold 15px Inter';
+    ctx.fillText('Form 8283', 25, y);
+    ctx.font = '8px Inter';
+    ctx.fillText('(Rev. December 2025)', 25, y + 12);
+    ctx.font = 'bold 15px Inter';
     ctx.textAlign = 'center';
-    ctx.fillText('Noncash Charitable Contributions', width / 2, y + 15);
-    ctx.font = '10px Inter';
-    ctx.fillText('Attach to your tax return if you claimed a total deduction', width / 2, y + 30);
-    ctx.fillText('of over $500 for all contributed property.', width / 2, y + 42);
-    
+    ctx.fillText('Noncash Charitable Contributions', width / 2, y + 7);
+    ctx.font = '8px Inter';
+    ctx.fillText('Section B—Donated Property Over $5,000 (Except Publicly Traded Securities)', width / 2, y + 21);
     ctx.textAlign = 'right';
-    ctx.font = '9px Inter';
-    ctx.fillText('OMB No. 1545-0908', width - 30, y);
-    
-    y += 60;
+    ctx.fillText('OMB No. 1545-0908', width - 25, y);
     ctx.textAlign = 'left';
-    
-    // Taxpayer info
-    ctx.strokeRect(30, y, width - 200, 40);
-    ctx.font = '8px Inter';
-    ctx.fillText('Name(s) shown on your income tax return', 35, y + 12);
-    ctx.font = '11px Inter';
-    ctx.fillText(donation.donor.name, 35, y + 30);
-    
-    ctx.strokeRect(width - 165, y, 135, 40);
-    ctx.font = '8px Inter';
-    ctx.fillText('Identifying number', width - 160, y + 12);
-    ctx.font = '11px Inter';
-    ctx.fillText(maskedTaxpayerId(donation), width - 160, y + 30);
-    
-    y += 55;
-    
-    // Section B header
-    ctx.fillStyle = '#e0e0e0';
-    ctx.fillRect(30, y, width - 60, 25);
-    ctx.font = 'bold 10px Inter';
+
+    y += 42;
+    ctx.strokeRect(25, y, 405, 34);
+    ctx.strokeRect(430, y, 157, 34);
+    ctx.font = '7px Inter';
+    ctx.fillText('Name(s) shown on income tax return', 29, y + 9);
+    ctx.fillText('Identifying number', 434, y + 9);
+    ctx.font = '10px Inter';
+    ctx.fillText(donation.donor.name, 29, y + 25);
+    ctx.fillText(maskedTaxpayerId(donation), 434, y + 25);
+
+    y += 44;
+    ctx.fillStyle = '#dedede';
+    ctx.fillRect(25, y, 562, 18);
     ctx.fillStyle = '#000000';
-    ctx.fillText('Section B. Donated Property Over $5,000 (Except Publicly Traded Securities)', 35, y + 17);
-    
-    y += 35;
-    
-    // Part I - Information on Donated Property
     ctx.font = 'bold 9px Inter';
-    ctx.fillText('Part I    Information on Donated Property', 30, y);
-    y += 20;
-    
-    ctx.font = '9px Inter';
-    ctx.fillText('1  Description of donated property:', 30, y);
-    y += 15;
-    ctx.fillText(`   ${donation.assetDescription}`, 30, y);
-    
-    y += 25;
-    ctx.fillText(`2  Donee organization: ${donation.donee.name}`, 30, y);
-    y += 15;
-    ctx.fillText(`   Address: ${donation.donee.address}`, 30, y);
-    y += 15;
-    ctx.fillText(`   EIN: ${donation.donee.ein}`, 30, y);
-    
-    y += 25;
-    ctx.fillText(`3  Date of contribution: ${formatDate(donation.contributionDate)}`, 30, y);
-    y += 15;
-    ctx.fillText(`4  Date acquired by donor: ${donation.dateAcquired ? formatDate(donation.dateAcquired) : 'Various'}`, 30, y);
-    y += 15;
-    ctx.fillText(`5  How acquired: ${donation.howAcquired || 'Purchase'}`, 30, y);
-    y += 15;
-    ctx.fillText(`6  Donor's cost or adjusted basis: ${donation.costBasis ? formatMoney(donation.costBasis) : 'See attached'}`, 30, y);
-    y += 15;
-    ctx.font = 'bold 10px Inter';
-    ctx.fillText(`7  Fair market value: ${formatMoney(donation.amount)}`, 30, y);
-    ctx.font = '9px Inter';
-    y += 15;
-    ctx.fillText(`8  Method used to determine FMV: ${donation.appraisal?.valuationMethod || 'Qualified Appraisal'}`, 30, y);
-    
+    ctx.fillText('Part I   Information on Donated Property—A separate written qualified appraisal is required.', 30, y + 13);
+
     y += 30;
-    
-    // Part II - Taxpayer Statement
-    ctx.font = 'bold 9px Inter';
-    ctx.fillText('Part II   Taxpayer (Donor) Statement', 30, y);
-    y += 15;
     ctx.font = '8px Inter';
-    ctx.fillText('I declare that the following information is true, correct, and complete to the best of my knowledge.', 30, y);
-    
+    ctx.fillText(`2  Property type: [X] ${getForm8283PropertyCategory(donation)}`, 25, y);
+    y += 14;
+    ctx.fillText('3(a) Detailed description:', 25, y);
+    ctx.strokeRect(25, y + 5, 562, 40);
+    ctx.font = '8px Inter';
+    drawWrappedText(ctx, propertyDescription, 31, y + 18, 550, 3, 10, 'Form 8283-B property description');
+    y += 56;
+    ctx.font = '8px Inter';
+    ctx.fillText(`3(b) Physical condition: ${condition}`, 25, y);
+    y += 15;
+    ctx.fillText(`3(c) Appraised FMV: ${formatMoney(donation.amount)}`, 25, y);
+    ctx.fillText(`3(d) Date acquired: ${formatDateShort(donation.dateAcquired)}`, 220, y);
+    ctx.fillText(`3(e) How acquired: ${donation.howAcquired}`, 405, y);
+    y += 15;
+    ctx.fillText(`3(f) Cost or adjusted basis: ${formatMoney(donation.costBasis)}`, 25, y);
+    ctx.fillText(`Date contributed: ${formatDateShort(donation.contributionDate)}`, 220, y);
+    y += 15;
+    ctx.fillText(`Qualified-appraisal valuation method: ${appraisal.valuationMethod}`, 25, y);
+
+    y += 24;
+    ctx.font = 'bold 9px Inter';
+    ctx.fillText('Part II   Partial Interests and Restricted Use Property', 25, y);
+    ctx.font = '8px Inter';
+    ctx.fillText('Not applicable—entire interest donated and no restricted-use conditions.', 275, y);
+
+    y += 24;
+    ctx.font = 'bold 9px Inter';
+    ctx.fillText('Part III   Taxpayer (Donor) Statement', 25, y);
+    ctx.font = '8px Inter';
+    ctx.fillText('Not applicable—no item in this appraisal group has an appraised value of $500 or less.', 215, y);
+
+    y += 26;
+    ctx.fillStyle = '#dedede';
+    ctx.fillRect(25, y, 562, 18);
+    ctx.fillStyle = '#000000';
+    ctx.font = 'bold 9px Inter';
+    ctx.fillText('Part IV   Declaration of Appraiser', 30, y + 13);
     y += 30;
-    ctx.beginPath();
-    ctx.moveTo(30, y);
-    ctx.lineTo(250, y);
-    ctx.stroke();
-    ctx.fillText('Donor signature', 30, y + 12);
-    
-    ctx.beginPath();
-    ctx.moveTo(300, y);
-    ctx.lineTo(400, y);
-    ctx.stroke();
-    ctx.fillText('Date', 300, y + 12);
-    
-    y += 40;
-    
-    // Part III - Declaration of Appraiser
-    ctx.font = 'bold 9px Inter';
-    ctx.fillText('Part III  Declaration of Appraiser', 30, y);
-    y += 15;
+    ctx.font = '7px Inter';
+    const declaration = 'I declare that I am a qualified appraiser; I am not the donor, donee, or a party to this transaction; and the appraisal fee was not based on the appraised value. I understand the penalties for a substantial or gross valuation misstatement.';
+    drawWrappedText(ctx, declaration, 25, y, 562, 3, 10, 'Form 8283-B appraiser declaration');
+    y += 36;
     ctx.font = '8px Inter';
-    if (donation.appraisal) {
-        ctx.fillText(`Appraiser: ${donation.appraisal.appraiserName}`, 30, y);
-        y += 12;
-        ctx.fillText(`Address: ${donation.appraisal.appraiserAddress}`, 30, y);
-        y += 12;
-        ctx.fillText(`Qualifications: ${donation.appraisal.appraiserQualifications.substring(0, 70)}`, 30, y);
-    }
-    
+    ctx.fillText(`Appraiser name: ${appraisal.appraiserName}`, 25, y);
+    ctx.fillText(`Identifying number: ${syntheticAppraiserTaxId(appraisal)}`, 380, y);
+    y += 14;
+    ctx.fillText(`Business address: ${appraisal.appraiserAddress}`, 25, y);
+    y += 14;
+    ctx.fillText('Qualifications:', 25, y);
+    drawWrappedText(ctx, appraisal.appraiserQualifications, 100, y, 480, 2, 10, 'Form 8283-B appraiser qualifications');
+    y += 24;
+    ctx.font = 'italic 9px Inter';
+    ctx.fillText(`Appraiser signature: /s/ ${appraisal.appraiserName}`, 25, y);
+    ctx.font = '8px Inter';
+    ctx.fillText(`Date signed: ${formatDateShort(appraisal.appraisalDate)}`, 410, y);
+
+    y += 28;
+    ctx.fillStyle = '#dedede';
+    ctx.fillRect(25, y, 562, 18);
+    ctx.fillStyle = '#000000';
+    ctx.font = 'bold 9px Inter';
+    ctx.fillText('Part V   Donee Acknowledgment', 30, y + 13);
+    y += 30;
+    ctx.font = '7px Inter';
+    const acknowledgment = 'The charitable organization acknowledges receipt of the property described in Part I and represents that it is an organization qualified under section 170(c). This acknowledgment does not represent agreement with the appraised fair market value.';
+    drawWrappedText(ctx, acknowledgment, 25, y, 562, 3, 10, 'Form 8283-B donee acknowledgment');
+    y += 36;
+    ctx.font = '8px Inter';
+    ctx.fillText(`Donee: ${donation.donee.name}`, 25, y);
+    ctx.fillText(`EIN: ${donation.donee.ein}`, 425, y);
+    y += 14;
+    ctx.fillText(`Address: ${donation.donee.address}`, 25, y);
+    y += 14;
+    ctx.fillText(`Property received: ${formatDateShort(donation.contributionDate)}`, 25, y);
+    ctx.fillText('Intended unrelated use: [ ] Yes   [X] No', 250, y);
+    y += 16;
+    ctx.fillText(`Authorized official: ${signer.name}`, 25, y);
+    ctx.fillText(`Title: ${signer.title}`, 310, y);
+    y += 16;
+    ctx.font = 'italic 9px Inter';
+    ctx.fillText(`Donee signature: /s/ ${signer.name}`, 25, y);
+    ctx.font = '8px Inter';
+    ctx.fillText(`Date signed: ${formatDateShort(donation.contributionDate)}`, 410, y);
+
+    ctx.font = '7px Inter';
+    ctx.fillText('Synthetic Copy B fixture—SAMPLE FOR TESTING ONLY', 25, height - 24);
+    ctx.textAlign = 'right';
+    ctx.fillText('Form 8283 (Rev. 12-2025)', width - 25, height - 24);
+    ctx.textAlign = 'left';
     addWatermark(ctx, width, height);
-    
     return canvas.toBuffer('image/png');
 }
 
 function generateForm1098C(donation) {
-    const width = 612, height = 400;
+    if (!donation.vehicle || !donation.saleInfo) {
+        throw new Error(`Form 1098-C requires vehicle and disposition data: ${donation.id}`);
+    }
+
+    const soldAtArmsLength = donation.saleInfo.soldAtAuction === true;
+    const transferredToNeedy = donation.saleInfo.transferredToNeedy === true;
+    if (soldAtArmsLength === transferredToNeedy) {
+        throw new Error(`Form 1098-C requires exactly one disposition path: ${donation.id}`);
+    }
+    if (soldAtArmsLength && (!donation.saleInfo.saleDate || donation.saleInfo.grossProceeds == null)) {
+        throw new Error(`Arm's-length sale requires date and gross proceeds: ${donation.id}`);
+    }
+
+    const width = 612, height = 650;
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext('2d');
-    
+    const vehicle = donation.vehicle;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
-    
-    let y = 30;
-    
-    // Form header
-    ctx.font = 'bold 12px Inter';
     ctx.fillStyle = '#000000';
-    ctx.fillText('Form 1098-C', 30, y);
+    ctx.strokeStyle = '#000000';
+    ctx.lineWidth = 0.6;
+
+    let y = 24;
+    ctx.font = 'bold 13px Inter';
+    ctx.fillText('Form 1098-C', 25, y);
     ctx.font = '8px Inter';
-    ctx.fillText('(Rev. January 2024)', 30, y + 12);
-    
+    ctx.fillText('(Rev. January 2025)', 25, y + 12);
     ctx.font = 'bold 14px Inter';
     ctx.textAlign = 'center';
-    ctx.fillText('Contributions of Motor Vehicles, Boats, and Airplanes', width / 2, y + 10);
-    
+    ctx.fillText('Contributions of Motor Vehicles, Boats, and Airplanes', width / 2, y + 7);
     ctx.textAlign = 'right';
     ctx.font = '8px Inter';
-    ctx.fillText('OMB No. 1545-1959', width - 30, y);
-    ctx.fillText(`Copy B - For Donor`, width - 30, y + 12);
-    
-    y += 45;
+    ctx.fillText('OMB No. 1545-1959', width - 25, y);
+    ctx.fillText('Copy B—For Donor', width - 25, y + 12);
     ctx.textAlign = 'left';
-    
-    // Two-column layout
-    const col1 = 30, col2 = 320;
-    
-    // Donee info (left)
-    ctx.strokeRect(col1, y, 280, 70);
+
+    y += 42;
+    ctx.strokeRect(25, y, 275, 92);
+    ctx.strokeRect(300, y, 287, 92);
     ctx.font = '7px Inter';
-    ctx.fillText("DONEE'S name, street address, city, state, ZIP code, and telephone no.", col1 + 5, y + 10);
+    ctx.fillText("DONEE'S name, address, ZIP code, and telephone number", 30, y + 10);
     ctx.font = '9px Inter';
-    ctx.fillText(donation.donee.name, col1 + 5, y + 25);
-    ctx.fillText(donation.donee.address, col1 + 5, y + 38);
+    ctx.fillText(donation.donee.name, 30, y + 27);
     ctx.font = '8px Inter';
-    ctx.fillText(`EIN: ${donation.donee.ein}`, col1 + 5, y + 55);
-    
-    // Donor info (right)
-    ctx.strokeRect(col2, y, 260, 70);
+    drawWrappedText(ctx, donation.donee.address, 30, y + 42, 260, 2, 10, 'Form 1098-C donee address');
+    ctx.fillText('Telephone: (555) 010-8283', 30, y + 68);
+    ctx.fillText(`DONEE'S TIN: ${donation.donee.ein}`, 30, y + 82);
+
     ctx.font = '7px Inter';
-    ctx.fillText("DONOR'S name, street address, city, state, and ZIP code", col2 + 5, y + 10);
+    ctx.fillText("DONOR'S name, address, ZIP code, and TIN", 305, y + 10);
     ctx.font = '9px Inter';
-    ctx.fillText(donation.donor.name, col2 + 5, y + 25);
-    ctx.fillText(formatAddress(donation.donor), col2 + 5, y + 38);
-    
-    y += 85;
-    
-    // Vehicle info
-    const v = donation.vehicle;
-    ctx.strokeRect(col1, y, 550, 80);
+    ctx.fillText(donation.donor.name, 305, y + 27);
+    ctx.font = '8px Inter';
+    drawWrappedText(ctx, formatAddress(donation.donor), 305, y + 42, 272, 2, 10, 'Form 1098-C donor address');
+    ctx.fillText(`DONOR'S TIN: ${maskedTaxpayerId(donation)}`, 305, y + 82);
+
+    y += 104;
+    ctx.strokeRect(25, y, 562, 72);
+    ctx.font = '8px Inter';
+    ctx.fillText(`1  Date of contribution: ${formatDateShort(donation.contributionDate)}`, 31, y + 16);
+    ctx.fillText(`2a  Odometer mileage: ${vehicle.mileage.toLocaleString('en-US')}`, 205, y + 16);
+    ctx.fillText(`2b  Year: ${vehicle.year}`, 390, y + 16);
+    ctx.fillText(`2c  Make: ${vehicle.make}`, 485, y + 16);
+    ctx.fillText(`2d  Model: ${vehicle.model}`, 31, y + 38);
+    ctx.font = 'bold 8px Inter';
+    ctx.fillText(`3  Vehicle identification number: ${vehicle.vin}`, 205, y + 38);
     ctx.font = '7px Inter';
-    ctx.fillText('Vehicle description:', col1 + 5, y + 12);
-    
-    ctx.font = '10px Inter';
-    ctx.fillText(`Year: ${v.year}`, col1 + 10, y + 30);
-    ctx.fillText(`Make: ${v.make}`, col1 + 100, y + 30);
-    ctx.fillText(`Model: ${v.model}`, col1 + 220, y + 30);
-    
-    ctx.fillText(`VIN: ${v.vin}`, col1 + 10, y + 48);
-    ctx.fillText(`Odometer: ${v.mileage.toLocaleString()} miles`, col1 + 250, y + 48);
-    
-    ctx.font = '9px Inter';
-    ctx.fillText(`Date of contribution: ${formatDate(donation.contributionDate)}`, col1 + 10, y + 68);
-    
-    y += 95;
-    
-    // Sale info / Certifications
-    ctx.strokeRect(col1, y, 550, 70);
-    
-    if (donation.saleInfo?.soldAtAuction) {
-        ctx.font = '9px Inter';
-        ctx.fillText('☑ Vehicle was sold at arm\'s length to unrelated party', col1 + 10, y + 18);
-        ctx.font = 'bold 11px Inter';
-        ctx.fillText(`Gross proceeds from sale: ${formatMoney(donation.saleInfo.grossProceeds)}`, col1 + 10, y + 38);
-        ctx.font = '9px Inter';
-        ctx.fillText(`Date of sale: ${formatDate(donation.saleInfo.saleDate)}`, col1 + 10, y + 55);
-    } else if (donation.saleInfo?.transferredToNeedy) {
-        ctx.font = '9px Inter';
-        ctx.fillText('☑ Vehicle was transferred to needy individual for significantly below FMV', col1 + 10, y + 18);
-        ctx.font = 'bold 11px Inter';
-        ctx.fillText(`Claimed value: ${formatMoney(donation.amount)}`, col1 + 10, y + 38);
-    } else {
-        ctx.font = '9px Inter';
-        ctx.fillText('☑ Vehicle will be used or materially improved by organization', col1 + 10, y + 18);
-        ctx.font = 'bold 11px Inter';
-        ctx.fillText(`Claimed value: ${formatMoney(donation.amount)}`, col1 + 10, y + 38);
+    ctx.fillText('Vehicle identity fields are complete and internally consistent with the linked donation.', 31, y + 61);
+
+    y += 84;
+    ctx.strokeRect(25, y, 562, 88);
+    ctx.font = 'bold 8px Inter';
+    ctx.fillText(`4a  [${soldAtArmsLength ? 'X' : ' '}] Vehicle sold in arm's-length transaction to an unrelated party`, 31, y + 16);
+    ctx.font = '8px Inter';
+    ctx.fillText(`4b  Date of sale: ${soldAtArmsLength ? formatDateShort(donation.saleInfo.saleDate) : ''}`, 31, y + 38);
+    ctx.fillText(`4c  Gross proceeds: ${soldAtArmsLength ? formatMoney(donation.saleInfo.grossProceeds) : ''}`, 300, y + 38);
+    ctx.font = '7px Inter';
+    ctx.fillText(soldAtArmsLength
+        ? 'Donor deduction is limited to the certified gross proceeds shown in box 4c.'
+        : 'Boxes 4b and 4c are intentionally blank because box 4a is not checked.', 31, y + 65);
+
+    y += 100;
+    ctx.strokeRect(25, y, 562, 104);
+    ctx.font = 'bold 8px Inter';
+    ctx.fillText('5a  [ ] Vehicle will not be transferred before material improvements or significant intervening use', 31, y + 16);
+    ctx.fillText(`5b  [${transferredToNeedy ? 'X' : ' '}] Vehicle transferred to a needy individual for significantly below FMV`, 31, y + 39);
+    ctx.font = '8px Inter';
+    ctx.fillText('5c  Description of material improvements or significant intervening use:', 31, y + 62);
+    ctx.font = '7px Inter';
+    ctx.fillText(transferredToNeedy
+        ? `Not applicable—box 5b transfer in direct furtherance of charitable purpose (${donation.saleInfo.recipientDescription}).`
+        : '', 31, y + 82);
+    if (transferredToNeedy) {
+        ctx.fillText(`FMV substantiation amount: ${formatMoney(donation.amount)} (qualified appraisal and Form 8283-B attached).`, 31, y + 96);
     }
-    
+
+    y += 116;
+    ctx.strokeRect(25, y, 562, 70);
+    ctx.font = 'bold 8px Inter';
+    ctx.fillText('6a  Did the donee provide goods or services in exchange for the vehicle?  [ ] Yes   [X] No', 31, y + 16);
+    ctx.font = '8px Inter';
+    ctx.fillText('6b  Value of goods or services:', 31, y + 38);
+    ctx.fillText('6c  Description:', 300, y + 38);
+    ctx.fillText('7  [ ] Claimed value is $500 or less, or donor did not provide a TIN', 31, y + 59);
+
+    ctx.font = '7px Inter';
+    ctx.fillText('This synthetic Copy B is a contemporaneous written acknowledgment for the described vehicle contribution.', 25, height - 30);
+    ctx.textAlign = 'right';
+    ctx.fillText('Form 1098-C (Rev. 1-2025)', width - 25, height - 30);
+    ctx.textAlign = 'left';
     addWatermark(ctx, width, height);
-    
     return canvas.toBuffer('image/png');
 }
 
 function generateAppraisal(donation) {
+    if (!donation.appraisal) {
+        throw new Error(`Qualified appraisal metadata is required: ${donation.id}`);
+    }
+
     const width = 612, height = 792;
     const canvas = createCanvas(width, height);
     const ctx = canvas.getContext('2d');
-    
+    const appraisal = donation.appraisal;
+    const propertyDescription = getDetailedPropertyDescription(donation);
+    const condition = donation.assetType === 'stock_closelyheld'
+        ? 'Intangible nonpublicly traded security; physical condition is not applicable.'
+        : donation.assetCondition || donation.vehicle?.condition || donation.property?.description || 'Good';
+    const valuationRationale = donation.security
+        ? `The ${appraisal.valuationMethod} considered the entity's financial position, earning capacity, market evidence, and the donated ownership interest.`
+        : donation.property
+            ? `The ${appraisal.valuationMethod} considered comparable properties, location, condition, and relevant income characteristics.`
+            : donation.vehicle
+                ? `The ${appraisal.valuationMethod} considered year, make, model, VIN, mileage, condition, and comparable vehicle market data.`
+                : `The ${appraisal.valuationMethod} considered condition, provenance, and recent sales of comparable property.`;
+
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
-    
-    if (!donation.appraisal) {
-        ctx.fillText('No appraisal data', 50, 50);
-        return canvas.toBuffer('image/png');
-    }
-    
-    const appr = donation.appraisal;
-    let y = 50;
-    
-    // Header
+    ctx.fillStyle = '#222222';
+    ctx.strokeStyle = '#444444';
+    ctx.lineWidth = 0.7;
+
+    let y = 38;
     ctx.font = 'bold 18px Inter';
-    ctx.fillStyle = '#1a1a1a';
     ctx.textAlign = 'center';
     ctx.fillText('QUALIFIED APPRAISAL', width / 2, y);
-    ctx.font = '10px Inter';
-    ctx.fillStyle = '#666666';
-    y += 18;
-    ctx.fillText('For Charitable Contribution Purposes', width / 2, y);
-    ctx.fillText('Per IRS Reg. §1.170A-17', width / 2, y + 14);
-    
-    y += 50;
+    ctx.font = '9px Inter';
+    ctx.fillText('Federal income tax charitable-contribution purpose • Regulations §1.170A-17', width / 2, y + 17);
     ctx.textAlign = 'left';
-    
-    // Appraisal info box
-    ctx.strokeStyle = '#333333';
-    ctx.strokeRect(50, y, width - 100, 100);
+
+    y += 48;
+    ctx.strokeRect(40, y, 532, 88);
     ctx.font = 'bold 10px Inter';
-    ctx.fillStyle = '#333333';
-    ctx.fillText('APPRAISAL DETAILS', 60, y + 18);
-    
-    ctx.font = '10px Inter';
-    ctx.fillText(`Date of Appraisal: ${formatDate(appr.appraisalDate)}`, 60, y + 38);
-    ctx.fillText(`Date of Contribution: ${formatDate(donation.contributionDate)}`, 60, y + 54);
-    ctx.fillText(`Valuation Method: ${appr.valuationMethod}`, 60, y + 70);
-    ctx.font = 'bold 12px Inter';
-    ctx.fillStyle = '#2e7d32';
-    ctx.fillText(`Appraised Fair Market Value: ${formatMoney(donation.amount)}`, 60, y + 90);
-    
-    y += 120;
-    
-    // Property description
-    ctx.fillStyle = '#333333';
-    ctx.font = 'bold 11px Inter';
-    ctx.fillText('PROPERTY DESCRIPTION', 50, y);
-    y += 20;
-    
-    ctx.font = '10px Inter';
-    if (donation.assetType === 'real_estate' && donation.property) {
-        ctx.fillText(`Property: ${donation.property.description}`, 50, y);
-        y += 16;
-        ctx.fillText(`Address: ${donation.property.address}`, 50, y);
-        y += 16;
-        ctx.fillText(`Legal Description: ${donation.property.legalDescription}`, 50, y);
-        y += 16;
-        ctx.fillText(`Parcel Number: ${donation.property.parcelNumber}`, 50, y);
-    } else if (donation.assetType === 'vehicle' && donation.vehicle) {
-        const vehicle = donation.vehicle;
-        ctx.fillText(`Vehicle: ${vehicle.year} ${vehicle.make} ${vehicle.model}`, 50, y);
-        y += 16;
-        ctx.fillText(`VIN: ${vehicle.vin}`, 50, y);
-        y += 16;
-        ctx.fillText(`Odometer: ${vehicle.mileage.toLocaleString()} miles`, 50, y);
-        y += 16;
-        ctx.fillText(`Condition: ${vehicle.condition || donation.assetCondition || 'Good'}`, 50, y);
-    } else if (donation.security) {
-        ctx.fillText(`Security: ${donation.security.name}`, 50, y);
-        y += 16;
-        ctx.fillText(`Shares: ${donation.security.shares}`, 50, y);
-        y += 16;
-        ctx.fillText(`Description: ${donation.security.companyDescription || 'Closely-held securities'}`, 50, y);
-    } else {
-        ctx.fillText(`Item: ${donation.assetDescription}`, 50, y);
-        y += 16;
-        ctx.fillText(`Condition: ${donation.assetCondition || 'Good'}`, 50, y);
-    }
-    
-    y += 35;
-    
-    // Donor info
-    ctx.font = 'bold 11px Inter';
-    ctx.fillText('DONOR INFORMATION', 50, y);
-    y += 20;
-    ctx.font = '10px Inter';
-    ctx.fillText(`Name: ${donation.donor.name}`, 50, y);
-    y += 16;
-    ctx.fillText(`Address: ${formatAddress(donation.donor)}`, 50, y);
-    
-    y += 35;
-    
-    // Donee info
-    ctx.font = 'bold 11px Inter';
-    ctx.fillText('DONEE ORGANIZATION', 50, y);
-    y += 20;
-    ctx.font = '10px Inter';
-    ctx.fillText(`Name: ${donation.donee.name}`, 50, y);
-    y += 16;
-    ctx.fillText(`EIN: ${donation.donee.ein}`, 50, y);
-    y += 16;
-    ctx.fillText(`Address: ${donation.donee.address}`, 50, y);
-    
-    y += 40;
-    
-    // Appraiser declaration
-    ctx.fillStyle = '#f5f5f5';
-    ctx.fillRect(50, y, width - 100, 130);
-    ctx.strokeStyle = '#cccccc';
-    ctx.strokeRect(50, y, width - 100, 130);
-    
-    ctx.font = 'bold 10px Inter';
-    ctx.fillStyle = '#333333';
-    ctx.fillText('APPRAISER DECLARATION', 60, y + 20);
-    
+    ctx.fillText('REPORT DETAILS', 50, y + 17);
     ctx.font = '9px Inter';
-    const declaration = 'I declare that I am not the donor, the donee, or an employee of either. I hold myself out to the public as an appraiser and perform appraisals on a regular basis. I am qualified to appraise the type of property being valued. I understand that a substantial or gross valuation misstatement may result in penalties.';
-    const lines = wrapText(ctx, declaration, width - 140);
-    let dy = y + 40;
-    for (const line of lines) {
-        ctx.fillText(line, 60, dy);
-        dy += 14;
-    }
-    
-    ctx.font = '10px Inter';
-    ctx.fillText(`Appraiser: ${appr.appraiserName}`, 60, y + 95);
-    ctx.fillText(`Qualifications: ${appr.appraiserQualifications.substring(0, 60)}`, 60, y + 110);
-    ctx.fillText(`Address: ${appr.appraiserAddress}`, 60, y + 125);
-    
+    ctx.fillText(`Appraisal completed and signed: ${formatDateShort(appraisal.appraisalDate)}`, 50, y + 36);
+    ctx.fillText(`Valuation effective date: ${formatDateShort(appraisal.appraisalDate)}`, 310, y + 36);
+    ctx.fillText(`Contribution date: ${formatDateShort(donation.contributionDate)}`, 50, y + 53);
+    ctx.fillText(`Valuation method: ${appraisal.valuationMethod}`, 310, y + 53);
+    ctx.font = 'bold 11px Inter';
+    ctx.fillText(`Appraised fair market value: ${formatMoney(donation.amount)}`, 50, y + 74);
+
+    y += 108;
+    ctx.font = 'bold 10px Inter';
+    ctx.fillText('PROPERTY IDENTIFICATION AND CONDITION', 40, y);
+    ctx.font = '8px Inter';
+    drawWrappedText(ctx, propertyDescription, 40, y + 17, 532, 4, 11, 'Qualified appraisal property description');
+    y += 66;
+    ctx.fillText(`Condition: ${condition}`, 40, y);
+    y += 15;
+    ctx.fillText(`Acquired: ${formatDateShort(donation.dateAcquired)} by ${donation.howAcquired}; donor basis: ${formatMoney(donation.costBasis)}`, 40, y);
+
+    y += 30;
+    ctx.font = 'bold 10px Inter';
+    ctx.fillText('PARTIES TO THE CONTRIBUTION', 40, y);
+    ctx.font = '8px Inter';
+    ctx.fillText(`Donor: ${donation.donor.name} • ${formatAddress(donation.donor)}`, 40, y + 17);
+    ctx.fillText(`Donee: ${donation.donee.name} • EIN ${donation.donee.ein}`, 40, y + 32);
+    ctx.fillText(`Donee address: ${donation.donee.address}`, 40, y + 47);
+
+    y += 72;
+    ctx.fillStyle = '#f2f2f2';
+    ctx.fillRect(40, y, 532, 128);
+    ctx.strokeRect(40, y, 532, 128);
+    ctx.fillStyle = '#222222';
+    ctx.font = 'bold 10px Inter';
+    ctx.fillText('VALUATION ANALYSIS AND TERMS', 50, y + 18);
+    ctx.font = '8px Inter';
+    ctx.fillText(`Method and basis: ${appraisal.valuationMethod}`, 50, y + 36);
+    drawWrappedText(ctx, valuationRationale, 50, y + 52, 512, 3, 11, 'Qualified appraisal valuation rationale');
+    ctx.fillText('Agreements/restrictions:', 50, y + 88);
+    drawWrappedText(ctx, getAppraisalRestrictionStatement(donation), 160, y + 88, 402, 2, 11, 'Qualified appraisal restrictions');
+    ctx.fillText('Appraiser compensation: Fixed fee; not contingent on appraised value or deduction outcome.', 50, y + 116);
+
+    y += 148;
+    ctx.font = 'bold 10px Inter';
+    ctx.fillText('QUALIFIED APPRAISER AND DECLARATION', 40, y);
+    ctx.font = '8px Inter';
+    ctx.fillText(`Name: ${appraisal.appraiserName}`, 40, y + 18);
+    ctx.fillText(`Taxpayer identifying number: ${syntheticAppraiserTaxId(appraisal)}`, 340, y + 18);
+    ctx.fillText(`Business address: ${appraisal.appraiserAddress}`, 40, y + 34);
+    ctx.fillText('Qualifications:', 40, y + 50);
+    drawWrappedText(ctx, appraisal.appraiserQualifications, 110, y + 50, 460, 2, 11, 'Qualified appraisal qualifications');
+    const declaration = 'I hold myself out to the public as an appraiser, regularly perform appraisals, and am qualified by education and experience to value this property. I am not the donor, donee, acquisition counterparty, or otherwise prohibited from acting as qualified appraiser. I prepared this appraisal for federal income tax purposes and understand the applicable valuation-misstatement penalties.';
+    drawWrappedText(ctx, declaration, 40, y + 82, 532, 5, 11, 'Qualified appraisal declaration');
+
     y += 150;
-    
-    // Signature
     ctx.beginPath();
-    ctx.moveTo(50, y);
-    ctx.lineTo(300, y);
+    ctx.moveTo(40, y);
+    ctx.lineTo(380, y);
+    ctx.moveTo(410, y);
+    ctx.lineTo(572, y);
     ctx.stroke();
-    ctx.font = '9px Inter';
-    ctx.fillText('Appraiser Signature', 50, y + 15);
-    
-    ctx.beginPath();
-    ctx.moveTo(350, y);
-    ctx.lineTo(500, y);
-    ctx.stroke();
-    ctx.fillText('Date', 350, y + 15);
-    
+    ctx.font = 'italic 10px Inter';
+    ctx.fillText(`/s/ ${appraisal.appraiserName}`, 45, y - 5);
+    ctx.font = '8px Inter';
+    ctx.fillText('Qualified appraiser signature', 40, y + 13);
+    ctx.fillText(formatDateShort(appraisal.appraisalDate), 420, y - 5);
+    ctx.fillText('Date signed', 410, y + 13);
+
+    ctx.font = '7px Inter';
+    ctx.fillText(`Synthetic appraisal fixture ${donation.id}—SAMPLE FOR TESTING ONLY`, 40, height - 25);
     addWatermark(ctx, width, height);
-    
     return canvas.toBuffer('image/png');
 }
 
@@ -1625,13 +1695,29 @@ async function main() {
             fs.mkdirSync(dirPath, { recursive: true });
         }
     }
+
+    const expectedFilenames = new Set(
+        donationsData.donations.flatMap(donation =>
+            donation.forms.map(formType => `${formType}/${formType}_${donation.id}.png`)
+        )
+    );
+    for (const dir of formDirs) {
+        const dirPath = path.join(OUTPUT_DIR, dir);
+        for (const filename of fs.readdirSync(dirPath)) {
+            if (!filename.toLowerCase().endsWith('.png')) continue;
+            const relativeFilename = `${dir}/${filename}`;
+            if (expectedFilenames.has(relativeFilename)) continue;
+            fs.unlinkSync(path.join(dirPath, filename));
+            console.log(`Removed obsolete ${relativeFilename}`);
+        }
+    }
     
     // Generate manifest
     const manifest = {
         version: '2.0.0',
         description: 'IRS-compliant OCR test fixtures with linked forms per donation',
-        generatedAt: new Date().toISOString(),
-        irsReference: 'IRS Publication 526 (2025)',
+        generatedAt: MANIFEST_GENERATED_AT,
+        irsReference: '2025 Form 8283 instructions; 2025 Form 1098-C instructions; IRS Publication 561',
         namingConvention: '<form_type>_<donation_id>.png',
         totalDonations: donationsData.donations.length,
         totalForms: 0,
@@ -1639,6 +1725,8 @@ async function main() {
         documents: []
     };
     
+    const generationErrors = [];
+
     // Process each donation
     for (const donation of donationsData.donations) {
         console.log(`Processing ${donation.id}: ${donation.description}`);
@@ -1646,7 +1734,7 @@ async function main() {
         for (const formType of donation.forms) {
             const generator = generators[formType];
             if (!generator) {
-                console.warn(`  Warning: No generator for form type '${formType}'`);
+                generationErrors.push(`${donation.id}: no generator for '${formType}'`);
                 continue;
             }
             
@@ -1674,7 +1762,57 @@ async function main() {
                         : {}),
                     amount: donation.amount,
                     asset_type: donation.assetType,
-                    asset_description: donation.assetDescription || null
+                    asset_description: donation.assetDescription || null,
+                    ...(formType === 'form_1098c'
+                        ? {
+                            donor_tin: maskedTaxpayerId(donation),
+                            vehicle_year: donation.vehicle.year,
+                            vehicle_make: donation.vehicle.make,
+                            vehicle_model: donation.vehicle.model,
+                            vehicle_vin: donation.vehicle.vin,
+                            vehicle_mileage: donation.vehicle.mileage,
+                            disposition_type: donation.saleInfo.soldAtAuction
+                                ? 'arms_length_sale'
+                                : 'needy_transfer',
+                            box_4a_arms_length_sale: donation.saleInfo.soldAtAuction === true,
+                            box_4b_sale_date: donation.saleInfo.soldAtAuction
+                                ? donation.saleInfo.saleDate
+                                : null,
+                            box_4c_gross_proceeds: donation.saleInfo.soldAtAuction
+                                ? donation.saleInfo.grossProceeds
+                                : null,
+                            box_5a_significant_use_or_improvement: false,
+                            box_5b_needy_transfer: donation.saleInfo.transferredToNeedy === true,
+                            box_6a_goods_or_services: false,
+                            box_7_low_value_or_missing_tin: false,
+                            deduction_basis: donation.saleInfo.soldAtAuction
+                                ? 'gross_proceeds'
+                                : 'fair_market_value'
+                        }
+                        : {}),
+                    ...(['form_8283_section_b', 'appraisal'].includes(formType)
+                        ? {
+                            appraiser_name: donation.appraisal.appraiserName,
+                            appraiser_tin: syntheticAppraiserTaxId(donation.appraisal),
+                            appraisal_date: donation.appraisal.appraisalDate,
+                            appraiser_signed: true
+                        }
+                        : {}),
+                    ...(formType === 'form_8283_section_b'
+                        ? {
+                            donee_signer: syntheticDoneeSigner(donation.donee).name,
+                            donee_signer_title: syntheticDoneeSigner(donation.donee).title,
+                            donee_signed_date: donation.contributionDate
+                        }
+                        : {}),
+                    ...(formType === 'acknowledgment_letter' &&
+                        donation.forms.includes('form_8283_section_b')
+                        ? {
+                            donee_signer: syntheticDoneeSigner(donation.donee).name,
+                            donee_signer_title: syntheticDoneeSigner(donation.donee).title,
+                            goods_or_services_provided: false
+                        }
+                        : {})
                 }
             };
 
@@ -1695,8 +1833,18 @@ async function main() {
                 manifest.totalForms++;
             } catch (err) {
                 console.error(`  ✗ Error generating ${formType}: ${err.message}`);
+                generationErrors.push(`${donation.id}/${formType}: ${err.message}`);
             }
         }
+    }
+
+    for (const filename of expectedFilenames) {
+        if (!fs.existsSync(path.join(OUTPUT_DIR, filename))) {
+            generationErrors.push(`missing generated document ${filename}`);
+        }
+    }
+    if (generationErrors.length > 0) {
+        throw new Error(`Fixture generation failed:\n${generationErrors.join('\n')}`);
     }
     
     // Write manifest
@@ -1711,17 +1859,27 @@ async function main() {
 }
 
 if (require.main === module) {
-    main().catch(console.error);
+    main().catch(error => {
+        console.error(error);
+        process.exitCode = 1;
+    });
 }
 
 module.exports = {
     formatDate,
     formatDateShort,
     formatMoney,
+    generateAcknowledgmentLetter,
+    generateAppraisal,
     generateForm8283A,
+    generateForm8283B,
+    generateForm1098C,
     getGoFundMeReceiptAmounts,
     getForm8283FmvMethod,
     getForm8283PropertyDescription,
+    main,
     maskedTaxpayerId,
+    syntheticDoneeSigner,
+    syntheticAppraiserTaxId,
     wrapText
 };

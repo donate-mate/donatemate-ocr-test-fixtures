@@ -10,11 +10,11 @@ This repository contains programmatically generated donation-related documents f
 
 | Form Type | Count | Description |
 |-----------|-------|-------------|
-| acknowledgment_letter | 20 | Written acknowledgments for cash ≥$250 and non-cash donations |
-| appraisal | 7 | Qualified appraisals for FMV-basis donations >$5,000 |
+| acknowledgment_letter | 25 | Written acknowledgments for cash and non-cash donations, including Section B gifts |
+| appraisal | 8 | Signed qualified appraisals for FMV-basis donations >$5,000 |
 | bank_statement | 1 | Bank records for cash donations <$250 |
 | cancelled_check | 1 | Cancelled checks for cash donations <$250 |
-| form_1098c | 13 | Vehicle donations >$500 |
+| form_1098c | 3 | Vehicle donations >$500 with explicit sale or needy-transfer disposition |
 | form_8283_section_a | 6 | Non-cash donations $501-$5,000 and gross-proceeds vehicle donations |
 | form_8283_section_b | 8 | FMV-basis non-cash donations >$5,000, including vehicles, closely-held stock, and real estate |
 | receipt | 4 | Non-cash donation receipts <$500 |
@@ -138,15 +138,15 @@ The `donations.json` file defines 37 test donations covering all IRS thresholds:
 | ID | Amount | Forms | Notes |
 |----|--------|-------|-------|
 | D023 | $5,000 | form_8283_section_a, acknowledgment_letter | Complete, non-overlapping Section A; active 501(c)(3) donee; EIN-bearing acknowledgment supplies the donee EIN |
-| D024 | **$10,000** | form_8283_section_b | **No-appraisal boundary** |
-| D025 | **$10,001** | form_8283_section_b, appraisal | **Boundary** |
-| D026 | $50,000 | form_8283_section_b, appraisal | |
+| D024 | $10,000 | form_8283_section_b, appraisal, acknowledgment_letter | Regression case proving the current >$5,000 appraisal rule |
+| D025 | $10,001 | form_8283_section_b, appraisal, acknowledgment_letter | Regression case proving the current >$5,000 appraisal rule |
+| D026 | $50,000 | form_8283_section_b, appraisal, acknowledgment_letter | |
 
 ### Real Estate
 | ID | Amount | Forms | Notes |
 |----|--------|-------|-------|
-| D027 | $100,000 | form_8283_section_b, appraisal | |
-| D028 | $500,000 | form_8283_section_b, appraisal | |
+| D027 | $100,000 | form_8283_section_b, appraisal, acknowledgment_letter | |
+| D028 | $500,000 | form_8283_section_b, appraisal, acknowledgment_letter | |
 
 ### Non-Deductible Crowdfunding
 | ID | Amount | Forms | Notes |
@@ -212,13 +212,12 @@ ONLY_FORMS=form_8283_section_a node scripts/generate_from_donations.js
 # Regenerate the D023 acknowledgment
 ONLY_DONATIONS=D023 ONLY_FORMS=acknowledgment_letter node scripts/generate_from_donations.js
 
-# Regenerate the corrected D024 Section B and remove superseded outputs
-ONLY_DONATIONS=D024 node scripts/generate_from_donations_v2.js
+# Regenerate the complete canonical fixture set, remove obsolete PNGs, and
+# rebuild the deterministic manifest.
+node scripts/generate_from_donations.js
 
-# Regenerate the DM-599 vehicle fixtures and manifest. The second command
-# replaces only the non-Section-A IRS forms with their specialized renderings.
-ONLY_DONATIONS=D017,D018,D019 node scripts/generate_from_donations.js
-ONLY_DONATIONS=D017,D018,D019 ONLY_FORMS=form_1098c,form_8283_section_b,appraisal node scripts/generate_from_donations_v2.js
+# Regenerate only DM-599 renderings while still rebuilding the full manifest.
+ONLY_DONATIONS=D013,D014,D017,D018,D019,D024,D025,D026,D027,D028 node scripts/generate_from_donations.js
 
 # Reapply the current byte revision to every PNG (safe to run repeatedly)
 npm run revision:apply
@@ -246,9 +245,8 @@ Quick reference:
 | Vehicle | $501-$5,000, FMV-basis exception | Form 1098-C + Form 8283-A |
 | Vehicle | >$5,000, FMV-basis exception | Form 1098-C + Form 8283-B + qualified appraisal |
 | Public stock | Any | Brokerage confirmation |
-| Closely-held | $501-$5,000 | Form 8283-A |
-| Closely-held | $5,001-$10,000 | Form 8283-B without appraisal |
-| Closely-held | >$10,000 | Form 8283-B + appraisal |
+| Closely-held | $501-$5,000 | Form 8283-A + acknowledgment when required |
+| Closely-held | >$5,000 | Form 8283-B + qualified appraisal + acknowledgment |
 | Real estate | >$5,000 | Form 8283-B + appraisal |
 
 ## Important Notes
