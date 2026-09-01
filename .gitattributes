@@ -1,0 +1,14 @@
+# Fixture documents are byte-compared by validate_fixtures.js. Never let a
+# checkout transform them.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.ttf binary
+
+# Generator and validator output must be byte-stable across platforms, so keep
+# line endings normalised in the repo regardless of core.autocrlf.
+*.js text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
