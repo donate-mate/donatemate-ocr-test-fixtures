@@ -69,6 +69,25 @@ jobs:
             git diff --stat -- documents manifest_v2.json | tail -20
           fi
 
+      - name: Capture regenerated output and compare
+        run: |
+          mkdir -p /tmp/regen
+          cp -r documents /tmp/regen/
+          cp manifest_v2.json /tmp/regen/ || true
+          echo "--- dimension + size comparison, tracked vs regenerated ---"
+          for f in $(git diff --name-only -- documents | head -6); do
+            git show HEAD:"$f" > /tmp/tracked.png 2>/dev/null || continue
+            node -e "
+              const fs=require('fs');
+              const d=p=>{const b=fs.readFileSync(p);return {w:b.readUInt32BE(16),h:b.readUInt32BE(20),bytes:b.length};};
+              const t=d('/tmp/tracked.png'), r=d('$f');
+              console.log('$f'.padEnd(58),
+                'tracked', t.w+'x'+t.h, t.bytes+'B',
+                '| regen', r.w+'x'+r.h, r.bytes+'B',
+                (t.w===r.w&&t.h===r.h)?'[same dims]':'[DIMS DIFFER]');
+            "
+          done
+
       - name: Restore tracked bytes before validating
         run: git checkout -- documents manifest_v2.json
 
@@ -81,7 +100,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: generated-documents
-          path: |
-            documents/
-            manifest_v2.json
+          path: /tmp/regen/
           retention-days: 14
