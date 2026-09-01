@@ -103,7 +103,14 @@ assert(
 );
 
 const actualDocumentNames = pngFiles(path.join(root, 'documents'))
-    .map(filename => path.relative(path.join(root, 'documents'), filename))
+    // expectedDocuments keys are built with a literal '/', so normalise the
+    // platform separator or every file reads as untracked on Windows.
+    .map(filename =>
+        path
+            .relative(path.join(root, 'documents'), filename)
+            .split(path.sep)
+            .join('/')
+    )
     .sort();
 assert(
     actualDocumentNames.length === expectedDocuments.size,
