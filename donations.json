@@ -123,6 +123,10 @@
       "deductible": true,
       "assetDescription": "Men's winter coat and dress shoes",
       "assetCondition": "Good",
+      "items": [
+        { "description": "Winter coat, wool", "quantity": 1, "condition": "Good", "fmv": 85 },
+        { "description": "Dress shoes, leather", "quantity": 1, "condition": "Good", "fmv": 65 }
+      ],
       "donor": {
         "name": "Jennifer L. Miller",
         "address": "147 Birch Way",
@@ -194,6 +198,10 @@
       "boundary": true,
       "assetDescription": "Complete dining set (table + 4 chairs)",
       "assetCondition": "Good",
+      "items": [
+        { "description": "Dining table, solid oak", "quantity": 1, "condition": "Good", "fmv": 260 },
+        { "description": "Dining chairs, upholstered", "quantity": 4, "condition": "Good", "fmv": 240 }
+      ],
       "donor": {
         "name": "John A. Smith",
         "address": "123 Main Street",
@@ -1168,6 +1176,11 @@
       "deductible": true,
       "assetDescription": "Household furniture: sofa, dining chairs, and a dresser",
       "assetCondition": "Good",
+      "items": [
+        { "description": "Sofa, three seat", "quantity": 1, "condition": "Good", "fmv": 340 },
+        { "description": "Dining chairs", "quantity": 4, "condition": "Good", "fmv": 200 },
+        { "description": "Dresser, six drawer", "quantity": 1, "condition": "Fair", "fmv": 135 }
+      ],
       "valuationMethod": "Thrift shop value",
       "dateAcquired": "2019-04-10",
       "howAcquired": "Purchase",
@@ -1185,7 +1198,7 @@
         "address": "15810 Indianola Drive, Rockville, MD 20855"
       },
       "contributionDate": "2025-06-08",
-      "forms": ["form_8283_section_a", "acknowledgment_letter"]
+      "forms": ["receipt", "form_8283_section_a", "acknowledgment_letter"]
     }
   ]
 }
