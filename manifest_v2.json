@@ -4,13 +4,13 @@
   "generatedAt": "2026-07-31T00:00:00.000Z",
   "irsReference": "2025 Form 8283 instructions; 2025 Form 1098-C instructions; IRS Publication 561",
   "namingConvention": "<form_type>_<donation_id>.png",
-  "totalDonations": 40,
-  "totalForms": 68,
+  "totalDonations": 43,
+  "totalForms": 72,
   "formCounts": {
     "bank_statement": 1,
     "cancelled_check": 1,
-    "acknowledgment_letter": 27,
-    "receipt": 7,
+    "acknowledgment_letter": 28,
+    "receipt": 10,
     "form_8283_section_a": 7,
     "form_8283_section_b": 8,
     "appraisal": 8,
@@ -1293,6 +1293,119 @@
         "amount": 675,
         "asset_type": "clothing_household",
         "asset_description": "Household furniture: sofa, dining chairs, and a dresser"
+      }
+    },
+    {
+      "filename": "receipt/receipt_D041.png",
+      "formType": "receipt",
+      "donationId": "D041",
+      "boundary": false,
+      "handwriting": "entries",
+      "ocrExpectation": {
+        "outcome": "REQUIRES_REVIEW",
+        "extractable": [
+          "donee_name",
+          "donee_ein",
+          "donor_name",
+          "contribution_date"
+        ],
+        "unextractable": [
+          "amount",
+          "asset_description",
+          "items"
+        ],
+        "reason": "Printed letterhead and donor block extract normally; the attendant's handwritten lots and values do not. This is the common Goodwill case and should land on REQUIRES_REVIEW with the charity and date prefilled."
+      },
+      "expectedFields": {
+        "donor_name": "Dana K. Whitfield",
+        "donor_address": "904 Ridgeview Lane, Akron, OH 44301",
+        "donee_name": "Goodwill Industries International",
+        "donee_ein": "53-0196517",
+        "contribution_date": "2025-05-09",
+        "amount": 220,
+        "asset_type": "clothing_household",
+        "asset_description": "Two bags of children's clothing and shoes"
+      }
+    },
+    {
+      "filename": "receipt/receipt_D042.png",
+      "formType": "receipt",
+      "donationId": "D042",
+      "boundary": false,
+      "handwriting": "most",
+      "ocrExpectation": {
+        "outcome": "REQUIRES_REVIEW",
+        "extractable": [
+          "donee_name",
+          "donee_ein"
+        ],
+        "unextractable": [
+          "donor_name",
+          "donor_address",
+          "contribution_date",
+          "amount",
+          "asset_description",
+          "items"
+        ],
+        "reason": "Only the pre-printed letterhead survives extraction. Everything the attendant wrote - donor, date, lots and values - is handwritten, so the donor completes the whole form."
+      },
+      "expectedFields": {
+        "donor_name": "Rosa M. Alvarez",
+        "donor_address": "27 Coldwater Street, Trenton, NJ 08608",
+        "donee_name": "The Salvation Army",
+        "donee_ein": "13-5562351",
+        "contribution_date": "2025-05-23",
+        "amount": 310,
+        "asset_type": "clothing_household",
+        "asset_description": "Kitchen table, chairs and bed linens"
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D042.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D042",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Rosa M. Alvarez",
+        "donor_address": "27 Coldwater Street, Trenton, NJ 08608",
+        "donee_name": "The Salvation Army",
+        "donee_ein": "13-5562351",
+        "contribution_date": "2025-05-23",
+        "amount": 310,
+        "asset_type": "clothing_household",
+        "asset_description": "Kitchen table, chairs and bed linens"
+      }
+    },
+    {
+      "filename": "receipt/receipt_D043.png",
+      "formType": "receipt",
+      "donationId": "D043",
+      "boundary": false,
+      "handwriting": "all",
+      "ocrExpectation": {
+        "outcome": "REQUIRES_REVIEW",
+        "extractable": [],
+        "unextractable": [
+          "donee_name",
+          "donee_ein",
+          "donor_name",
+          "donor_address",
+          "contribution_date",
+          "amount",
+          "asset_description",
+          "items"
+        ],
+        "reason": "Generic receipt pad with no letterhead, filled in by hand end to end. Nothing is extractable, including the charity name, so the donor supplies every field. This is the worst realistic case and the one that must not be mistaken for a scan failure."
+      },
+      "expectedFields": {
+        "donor_name": "Peter H. Nakamura",
+        "donor_address": "58 Willow Bend Road, Eugene, OR 97401",
+        "donee_name": "Goodwill Industries International",
+        "donee_ein": "53-0196517",
+        "contribution_date": "2025-06-14",
+        "amount": 95,
+        "asset_type": "clothing_household",
+        "asset_description": "Books, kitchen utensils and a table lamp"
       }
     }
   ]
