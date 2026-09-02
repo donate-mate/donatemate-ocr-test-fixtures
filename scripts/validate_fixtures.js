@@ -641,6 +641,44 @@ assert(
     'fonts/Caveat.ttf is missing, so the handwritten fixtures would render as printed text'
 );
 
+// --- QA donation map ------------------------------------------------------
+// donation-map.csv is the reference a manual QA pass reads while working
+// through the fixtures. It is generated, never hand-edited, and pinned here
+// because a map that has drifted from donations.json is worse than no map: it
+// sends the tester hunting for a defect in the app that is really in the map.
+const { buildDonationMap } = require('./generate_donation_map');
+
+const mapPath = path.join(root, 'donation-map.csv');
+assert(fs.existsSync(mapPath), 'donation-map.csv is missing; run node scripts/generate_donation_map.js');
+
+const expectedMap = buildDonationMap(donations);
+const actualMap = fs.readFileSync(mapPath, 'utf8');
+assert(
+    actualMap === expectedMap,
+    'donation-map.csv is out of date with donations.json; regenerate it with node scripts/generate_donation_map.js'
+);
+
+const mapRows = actualMap.trim().split(/\r?\n/).slice(1);
+assert(
+    mapRows.length === donations.length,
+    `donation-map.csv lists ${mapRows.length} donations but there are ${donations.length}`
+);
+
+// The deductible column drives which figures a donation is expected to appear
+// in, so a stale flag here would send QA to the wrong expected value.
+const mapDeductible = new Map(
+    mapRows.map(row => {
+        const id = row.slice(0, row.indexOf(','));
+        return [id, row.endsWith(',Deductible')];
+    })
+);
+for (const donation of donations) {
+    assert(
+        mapDeductible.get(donation.id) === donation.deductible,
+        `donation-map.csv disagrees with ${donation.id} on deductibility`
+    );
+}
+
 console.log(
     `Validated ${manifest.totalDonations} donations and ${manifest.totalForms} linked fixture documents.`
 );
