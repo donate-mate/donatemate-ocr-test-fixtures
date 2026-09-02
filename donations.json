@@ -117,12 +117,16 @@
     },
     {
       "id": "D006",
-      "description": "Non-cash goods $150 - requires receipt only",
-      "assetType": "noncash_goods",
+      "description": "Clothing $150 - requires receipt only",
+      "assetType": "clothing_household",
       "amount": 150.00,
       "deductible": true,
       "assetDescription": "Men's winter coat and dress shoes",
       "assetCondition": "Good",
+      "items": [
+        { "description": "Winter coat, wool", "quantity": 1, "condition": "Good", "fmv": 85 },
+        { "description": "Dress shoes, leather", "quantity": 1, "condition": "Good", "fmv": 65 }
+      ],
       "donor": {
         "name": "Jennifer L. Miller",
         "address": "147 Birch Way",
@@ -187,13 +191,17 @@
     },
     {
       "id": "D009",
-      "description": "Non-cash goods $500 (boundary) - requires receipt + acknowledgment",
-      "assetType": "noncash_goods",
+      "description": "Household furniture $500 (boundary) - requires receipt + acknowledgment",
+      "assetType": "clothing_household",
       "amount": 500.00,
       "deductible": true,
       "boundary": true,
       "assetDescription": "Complete dining set (table + 4 chairs)",
       "assetCondition": "Good",
+      "items": [
+        { "description": "Dining table, solid oak", "quantity": 1, "condition": "Good", "fmv": 260 },
+        { "description": "Dining chairs, upholstered", "quantity": 4, "condition": "Good", "fmv": 240 }
+      ],
       "donor": {
         "name": "John A. Smith",
         "address": "123 Main Street",
@@ -1101,6 +1109,96 @@
       "transactionId": "GFM-9D5C0F12B",
       "contributionDate": "2026-01-19",
       "forms": ["gofundme_receipt"]
+    },
+    {
+      "id": "D038",
+      "description": "Clothing/household $185 - itemised thrift-store drop-off, receipt only (under $250)",
+      "assetType": "clothing_household",
+      "amount": 185,
+      "deductible": true,
+      "assetDescription": "Three bags of used clothing and shoes",
+      "assetCondition": "Good",
+      "items": [
+        { "description": "Men's shirts", "quantity": 12, "condition": "Good", "fmv": 60 },
+        { "description": "Women's dresses", "quantity": 4, "condition": "Good", "fmv": 48 },
+        { "description": "Winter coats", "quantity": 2, "condition": "Good", "fmv": 50 },
+        { "description": "Shoes, assorted pairs", "quantity": 5, "condition": "Fair", "fmv": 27 }
+      ],
+      "donor": {
+        "name": "Alicia R. Bennett",
+        "address": "312 Larkspur Drive",
+        "city": "Columbus",
+        "state": "OH",
+        "zip": "43215"
+      },
+      "donee": {
+        "name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "address": "15810 Indianola Drive, Rockville, MD 20855"
+      },
+      "contributionDate": "2025-04-12",
+      "forms": ["receipt"]
+    },
+    {
+      "id": "D039",
+      "description": "Clothing/household $340 - itemised household goods, receipt + acknowledgment ($250-$500)",
+      "assetType": "clothing_household",
+      "amount": 340,
+      "deductible": true,
+      "assetDescription": "Household goods: kitchenware, table lamps, and a bookshelf",
+      "assetCondition": "Good",
+      "items": [
+        { "description": "Kitchenware, boxed set", "quantity": 1, "condition": "Good", "fmv": 95 },
+        { "description": "Table lamps", "quantity": 2, "condition": "Good", "fmv": 70 },
+        { "description": "Bookshelf, five shelf", "quantity": 1, "condition": "Good", "fmv": 120 },
+        { "description": "Bed linens, sets", "quantity": 3, "condition": "Good", "fmv": 55 }
+      ],
+      "donor": {
+        "name": "Marcus T. Delgado",
+        "address": "88 Cedar Hollow Road",
+        "city": "Raleigh",
+        "state": "NC",
+        "zip": "27601"
+      },
+      "donee": {
+        "name": "The Salvation Army",
+        "ein": "13-5562351",
+        "address": "615 Slaters Lane, Alexandria, VA 22314"
+      },
+      "contributionDate": "2025-05-20",
+      "forms": ["receipt", "acknowledgment_letter"]
+    },
+    {
+      "id": "D040",
+      "description": "Clothing/household $675 - furniture load over $500, requires Form 8283-A + acknowledgment",
+      "assetType": "clothing_household",
+      "amount": 675,
+      "deductible": true,
+      "assetDescription": "Household furniture: sofa, dining chairs, and a dresser",
+      "assetCondition": "Good",
+      "items": [
+        { "description": "Sofa, three seat", "quantity": 1, "condition": "Good", "fmv": 340 },
+        { "description": "Dining chairs", "quantity": 4, "condition": "Good", "fmv": 200 },
+        { "description": "Dresser, six drawer", "quantity": 1, "condition": "Fair", "fmv": 135 }
+      ],
+      "valuationMethod": "Thrift shop value",
+      "dateAcquired": "2019-04-10",
+      "howAcquired": "Purchase",
+      "costBasis": 2400,
+      "donor": {
+        "name": "Priya N. Raghavan",
+        "address": "1470 Sycamore Court",
+        "city": "Madison",
+        "state": "WI",
+        "zip": "53703"
+      },
+      "donee": {
+        "name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "address": "15810 Indianola Drive, Rockville, MD 20855"
+      },
+      "contributionDate": "2025-06-08",
+      "forms": ["receipt", "form_8283_section_a", "acknowledgment_letter"]
     }
   ]
 }

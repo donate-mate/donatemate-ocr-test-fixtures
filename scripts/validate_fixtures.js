@@ -103,7 +103,14 @@ assert(
 );
 
 const actualDocumentNames = pngFiles(path.join(root, 'documents'))
-    .map(filename => path.relative(path.join(root, 'documents'), filename))
+    // expectedDocuments keys are built with a literal '/', so normalise the
+    // platform separator or every file reads as untracked on Windows.
+    .map(filename =>
+        path
+            .relative(path.join(root, 'documents'), filename)
+            .split(path.sep)
+            .join('/')
+    )
     .sort();
 assert(
     actualDocumentNames.length === expectedDocuments.size,
@@ -111,6 +118,35 @@ assert(
 );
 for (const filename of actualDocumentNames) {
     assert(expectedDocuments.has(filename), `Obsolete or untracked generated PNG: ${filename}`);
+}
+
+// Itemised fixtures render one receipt line per lot. The per-line values are
+// what a donor actually writes on a thrift-store receipt, so they must add up
+// to the donation amount or the rendered document contradicts itself.
+for (const donation of donations.filter(item => item.items)) {
+    assert(
+        Array.isArray(donation.items) && donation.items.length > 0,
+        `${donation.id} items must be a non-empty array when present`
+    );
+    assert(
+        donation.forms.includes('receipt'),
+        `${donation.id} declares items but has no receipt to render them on`
+    );
+    for (const item of donation.items) {
+        assert(
+            typeof item.description === 'string' && item.description.length > 0,
+            `${donation.id} every item needs a description`
+        );
+        assert(
+            typeof item.fmv === 'number' && item.fmv > 0,
+            `${donation.id} every item needs a positive fmv`
+        );
+    }
+    const itemTotal = donation.items.reduce((sum, item) => sum + item.fmv, 0);
+    assert(
+        Math.abs(itemTotal - donation.amount) < 0.005,
+        `${donation.id} item values total ${itemTotal} but the donation amount is ${donation.amount}`
+    );
 }
 
 for (const donation of donations) {
@@ -357,7 +393,7 @@ function assertWrappedFieldFits(text, font, width, maxLines, label) {
 const sectionADonations = donations.filter(donation =>
     donation.forms.includes('form_8283_section_a')
 );
-assert(sectionADonations.length === 6, 'Expected six Form 8283-A fixture variants');
+assert(sectionADonations.length === 7, 'Expected seven Form 8283-A fixture variants');
 
 for (const donation of sectionADonations) {
     const description = getForm8283PropertyDescription(donation);

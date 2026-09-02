@@ -4,14 +4,14 @@
   "generatedAt": "2026-07-31T00:00:00.000Z",
   "irsReference": "2025 Form 8283 instructions; 2025 Form 1098-C instructions; IRS Publication 561",
   "namingConvention": "<form_type>_<donation_id>.png",
-  "totalDonations": 37,
-  "totalForms": 62,
+  "totalDonations": 40,
+  "totalForms": 68,
   "formCounts": {
     "bank_statement": 1,
     "cancelled_check": 1,
-    "acknowledgment_letter": 25,
-    "receipt": 4,
-    "form_8283_section_a": 6,
+    "acknowledgment_letter": 27,
+    "receipt": 7,
+    "form_8283_section_a": 7,
     "form_8283_section_b": 8,
     "appraisal": 8,
     "form_1098c": 3,
@@ -112,7 +112,7 @@
         "donee_ein": "53-0196517",
         "contribution_date": "2025-01-20",
         "amount": 150,
-        "asset_type": "noncash_goods",
+        "asset_type": "clothing_household",
         "asset_description": "Men's winter coat and dress shoes"
       }
     },
@@ -192,7 +192,7 @@
         "donee_ein": "53-0196605",
         "contribution_date": "2025-04-01",
         "amount": 500,
-        "asset_type": "noncash_goods",
+        "asset_type": "clothing_household",
         "asset_description": "Complete dining set (table + 4 chairs)"
       }
     },
@@ -208,7 +208,7 @@
         "donee_ein": "53-0196605",
         "contribution_date": "2025-04-01",
         "amount": 500,
-        "asset_type": "noncash_goods",
+        "asset_type": "clothing_household",
         "asset_description": "Complete dining set (table + 4 chairs)"
       }
     },
@@ -1196,6 +1196,103 @@
         "amount": 25,
         "asset_type": "cash",
         "asset_description": null
+      }
+    },
+    {
+      "filename": "receipt/receipt_D038.png",
+      "formType": "receipt",
+      "donationId": "D038",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Alicia R. Bennett",
+        "donor_address": "312 Larkspur Drive, Columbus, OH 43215",
+        "donee_name": "Goodwill Industries International",
+        "donee_ein": "53-0196517",
+        "contribution_date": "2025-04-12",
+        "amount": 185,
+        "asset_type": "clothing_household",
+        "asset_description": "Three bags of used clothing and shoes"
+      }
+    },
+    {
+      "filename": "receipt/receipt_D039.png",
+      "formType": "receipt",
+      "donationId": "D039",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Marcus T. Delgado",
+        "donor_address": "88 Cedar Hollow Road, Raleigh, NC 27601",
+        "donee_name": "The Salvation Army",
+        "donee_ein": "13-5562351",
+        "contribution_date": "2025-05-20",
+        "amount": 340,
+        "asset_type": "clothing_household",
+        "asset_description": "Household goods: kitchenware, table lamps, and a bookshelf"
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D039.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D039",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Marcus T. Delgado",
+        "donor_address": "88 Cedar Hollow Road, Raleigh, NC 27601",
+        "donee_name": "The Salvation Army",
+        "donee_ein": "13-5562351",
+        "contribution_date": "2025-05-20",
+        "amount": 340,
+        "asset_type": "clothing_household",
+        "asset_description": "Household goods: kitchenware, table lamps, and a bookshelf"
+      }
+    },
+    {
+      "filename": "receipt/receipt_D040.png",
+      "formType": "receipt",
+      "donationId": "D040",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Priya N. Raghavan",
+        "donor_address": "1470 Sycamore Court, Madison, WI 53703",
+        "donee_name": "Goodwill Industries International",
+        "donee_ein": "53-0196517",
+        "contribution_date": "2025-06-08",
+        "amount": 675,
+        "asset_type": "clothing_household",
+        "asset_description": "Household furniture: sofa, dining chairs, and a dresser"
+      }
+    },
+    {
+      "filename": "form_8283_section_a/form_8283_section_a_D040.png",
+      "formType": "form_8283_section_a",
+      "donationId": "D040",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Priya N. Raghavan",
+        "donor_address": "1470 Sycamore Court, Madison, WI 53703",
+        "donee_name": "Goodwill Industries International",
+        "donee_ein": "53-0196517",
+        "contribution_date": "2025-06-08",
+        "date_acquired": "2019-04-10",
+        "amount": 675,
+        "asset_type": "clothing_household",
+        "asset_description": "Household furniture: sofa, dining chairs, and a dresser"
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D040.png",
+      "formType": "acknowledgment_letter",
+      "donationId": "D040",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Priya N. Raghavan",
+        "donor_address": "1470 Sycamore Court, Madison, WI 53703",
+        "donee_name": "Goodwill Industries International",
+        "donee_ein": "53-0196517",
+        "contribution_date": "2025-06-08",
+        "amount": 675,
+        "asset_type": "clothing_household",
+        "asset_description": "Household furniture: sofa, dining chairs, and a dresser"
       }
     }
   ]

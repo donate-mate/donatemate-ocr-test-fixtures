@@ -648,12 +648,49 @@ function generateReceipt(donation) {
     y += 30;
     
     ctx.font = '10px Inter';
-    const descLines = wrapText(ctx, donation.assetDescription, 280);
-    ctx.fillText(descLines[0], 60, y + 12);
-    ctx.fillText(donation.assetCondition || 'Good', 350, y + 12);
-    ctx.font = 'bold 11px Inter';
-    ctx.fillStyle = '#2e7d32';
-    ctx.fillText(formatMoney(donation.amount), 480, y + 12);
+    if (Array.isArray(donation.items) && donation.items.length > 0) {
+        // Itemised drop-off. A real thrift-store receipt lists each lot on its
+        // own line with its own condition and donor-assigned value, because
+        // section 170(f)(16) substantiation is per-item and the charity never
+        // assigns the value. Single-line assetDescription cannot express that.
+        // Summary line first, then the lots beneath it. Keeping the summary on
+        // the receipt matters beyond layout: the donation category is derived
+        // from the text OCR reads back, and the per-lot labels are naturally
+        // written in the plural ("shoes", "shirts") which the category
+        // vocabulary does not match.
+        ctx.font = 'bold 10px Inter';
+        ctx.fillText(wrapText(ctx, donation.assetDescription, 280)[0], 60, y + 12);
+        ctx.font = '10px Inter';
+        ctx.fillText(donation.assetCondition || 'Good', 350, y + 12);
+        y += 17;
+        for (const item of donation.items) {
+            const label = item.quantity
+                ? `${item.description} (${item.quantity})`
+                : item.description;
+            ctx.fillText(wrapText(ctx, `   ${label}`, 280)[0], 60, y + 12);
+            ctx.fillText(item.condition || donation.assetCondition || 'Good', 350, y + 12);
+            ctx.fillText(formatMoney(item.fmv), 480, y + 12);
+            y += 17;
+        }
+        ctx.strokeStyle = '#dddddd';
+        ctx.beginPath();
+        ctx.moveTo(60, y + 3);
+        ctx.lineTo(width - 60, y + 3);
+        ctx.stroke();
+        y += 8;
+        ctx.font = 'bold 10px Inter';
+        ctx.fillText('TOTAL DONOR-ESTIMATED VALUE', 60, y + 12);
+        ctx.font = 'bold 11px Inter';
+        ctx.fillStyle = '#2e7d32';
+        ctx.fillText(formatMoney(donation.amount), 480, y + 12);
+    } else {
+        const descLines = wrapText(ctx, donation.assetDescription, 280);
+        ctx.fillText(descLines[0], 60, y + 12);
+        ctx.fillText(donation.assetCondition || 'Good', 350, y + 12);
+        ctx.font = 'bold 11px Inter';
+        ctx.fillStyle = '#2e7d32';
+        ctx.fillText(formatMoney(donation.amount), 480, y + 12);
+    }
     
     y += 50;
     
