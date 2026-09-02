@@ -1272,7 +1272,7 @@
     },
     {
       "id": "D043",
-      "description": "Clothing/household $95 - blank carbon-copy slip, nothing pre-printed, entirely handwritten (under $250)",
+      "description": "Clothing/household $95 - generic receipt pad, no pre-printed charity details, filled in by hand end to end (under $250)",
       "assetType": "clothing_household",
       "amount": 95,
       "deductible": true,
