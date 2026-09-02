@@ -5,12 +5,12 @@
   "irsReference": "2025 Form 8283 instructions; 2025 Form 1098-C instructions; IRS Publication 561",
   "namingConvention": "<form_type>_<donation_id>.png",
   "totalDonations": 40,
-  "totalForms": 67,
+  "totalForms": 68,
   "formCounts": {
     "bank_statement": 1,
     "cancelled_check": 1,
     "acknowledgment_letter": 27,
-    "receipt": 6,
+    "receipt": 7,
     "form_8283_section_a": 7,
     "form_8283_section_b": 8,
     "appraisal": 8,
@@ -1244,6 +1244,22 @@
         "amount": 340,
         "asset_type": "clothing_household",
         "asset_description": "Household goods: kitchenware, table lamps, and a bookshelf"
+      }
+    },
+    {
+      "filename": "receipt/receipt_D040.png",
+      "formType": "receipt",
+      "donationId": "D040",
+      "boundary": false,
+      "expectedFields": {
+        "donor_name": "Priya N. Raghavan",
+        "donor_address": "1470 Sycamore Court, Madison, WI 53703",
+        "donee_name": "Goodwill Industries International",
+        "donee_ein": "53-0196517",
+        "contribution_date": "2025-06-08",
+        "amount": 675,
+        "asset_type": "clothing_household",
+        "asset_description": "Household furniture: sofa, dining chairs, and a dresser"
       }
     },
     {
