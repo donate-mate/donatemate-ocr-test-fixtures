@@ -16,6 +16,15 @@ if (fs.existsSync(fontPath)) {
     registerFont(fontPath, { family: 'Inter' });
 }
 
+// Handwriting face for the thrift-store slip fixtures. Registered separately
+// from Inter because a silent fallback here is worse than a crash: a receipt
+// that is supposed to be illegible would render in the printed face, OCR would
+// read it perfectly, and the fixture would assert the opposite of its purpose.
+const handwritingFontPath = path.join(__dirname, '..', 'fonts', 'Caveat.ttf');
+if (fs.existsSync(handwritingFontPath)) {
+    registerFont(handwritingFontPath, { family: 'Caveat' });
+}
+
 const DONATIONS_PATH = path.join(__dirname, '..', 'donations.json');
 const OUTPUT_DIR = path.join(__dirname, '..', 'documents');
 const MANIFEST_GENERATED_AT = '2026-07-31T00:00:00.000Z';
@@ -551,6 +560,45 @@ function generateAcknowledgmentLetter(donation) {
     return canvas.toBuffer('image/png');
 }
 
+// Which runs of text the attendant filled in by hand, per fixture.
+//   entries - printed form, only the lots and values are handwritten
+//   most    - printed letterhead, everything the attendant entered is handwritten
+//   all     - blank receipt pad, nothing pre-printed at all
+// 'chrome' is the printed furniture (tinted boxes, table header shading). A
+// blank pad has none of it, so 'all' draws a plain ruled line instead.
+function handwrittenParts(donation) {
+    switch (donation.handwriting) {
+        case 'entries': return { letterhead: false, meta: false, donor: false, entries: true, chrome: true };
+        case 'most':    return { letterhead: false, meta: true,  donor: true,  entries: true, chrome: true };
+        case 'all':     return { letterhead: true,  meta: true,  donor: true,  entries: true, chrome: false };
+        default:        return null;
+    }
+}
+
+// Handwriting that sits perfectly on the baseline reads as a font, not as
+// handwriting. Math.random() would give the wobble but would also break the
+// byte-exact reproducibility the whole suite is built on, so the offsets are
+// derived from the text itself: the same string always lands in the same place.
+function penSeed(text, salt) {
+    const digest = createHash('sha256').update(salt + ':' + text).digest('hex');
+    return parseInt(digest.slice(0, 8), 16) / 0xffffffff;
+}
+
+// Caveat has a much smaller x-height than Inter, so callers pass a larger size
+// to match the optical weight of the printed text around it.
+function drawHandwritten(ctx, text, x, y, size, salt) {
+    const previousFont = ctx.font;
+    ctx.font = size + 'px Caveat';
+    const drift = (penSeed(text, 'drift' + salt) - 0.5) * 1.7;
+    const tilt = (penSeed(text, 'tilt' + salt) - 0.5) * 0.02;
+    ctx.save();
+    ctx.translate(x, y + drift);
+    ctx.rotate(tilt);
+    ctx.fillText(text, 0, 0);
+    ctx.restore();
+    ctx.font = previousFont;
+}
+
 function generateReceipt(donation) {
     const width = 612, height = 792;
     const canvas = createCanvas(width, height);
@@ -558,21 +606,40 @@ function generateReceipt(donation) {
     
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height);
-    
+
     let y = 50;
-    
+
+    // parts is null for every printed receipt, and then put() is a straight
+    // pass-through to fillText, so the existing fixtures render byte-identically.
+    const parts = handwrittenParts(donation);
+    const put = (value, x, at, options = {}) => {
+        if (parts && options.hand && parts[options.hand]) {
+            drawHandwritten(ctx, value, x, at, options.size || 15, options.salt || (donation.id + ':' + at));
+        } else {
+            ctx.fillText(value, x, at);
+        }
+    };
+
     // Header
     ctx.font = 'bold 20px Inter';
     ctx.fillStyle = '#1a1a1a';
     ctx.textAlign = 'center';
-    ctx.fillText(donation.donee.name, width / 2, y);
+    put(donation.donee.name, width / 2, y, { hand: 'letterhead', size: 28, salt: 'donee' });
     y += 20;
     
     ctx.font = '10px Inter';
     ctx.fillStyle = '#444444';
-    ctx.fillText(donation.donee.address, width / 2, y);
+    put(donation.donee.address, width / 2, y, { hand: 'letterhead', size: 15, salt: 'doneeaddr' });
     y += 14;
-    ctx.fillText(`Federal Tax ID (EIN): ${donation.donee.ein} | 501(c)(3) Tax-Exempt Organization`, width / 2, y);
+    // The EIN is written onto the pad by hand for 'all'. Keeping it on the page
+    // matters: expectedFields claims the EIN as ground truth, so a fixture that
+    // omitted it would be testing absence rather than illegibility.
+    put(
+        `Federal Tax ID (EIN): ${donation.donee.ein} | 501(c)(3) Tax-Exempt Organization`,
+        width / 2,
+        y,
+        { hand: 'letterhead', size: 15, salt: 'ein' }
+    );
     
     y += 35;
     
@@ -596,10 +663,12 @@ function generateReceipt(donation) {
     ctx.textAlign = 'left';
     
     // Receipt info box
-    ctx.fillStyle = '#f8f8f8';
-    ctx.fillRect(50, y, width - 100, 50);
-    ctx.strokeStyle = '#dddddd';
-    ctx.strokeRect(50, y, width - 100, 50);
+    if (!parts || parts.chrome) {
+        ctx.fillStyle = '#f8f8f8';
+        ctx.fillRect(50, y, width - 100, 50);
+        ctx.strokeStyle = '#dddddd';
+        ctx.strokeRect(50, y, width - 100, 50);
+    }
     
     ctx.font = '10px Inter';
     ctx.fillStyle = '#666666';
@@ -609,9 +678,9 @@ function generateReceipt(donation) {
     
     ctx.font = '11px Inter';
     ctx.fillStyle = '#333333';
-    ctx.fillText(`RCP-${donation.id}-${getFixtureYear(donation.contributionDate)}`, 155, y + 18);
-    ctx.fillText(formatDate(donation.contributionDate), 140, y + 36);
-    ctx.fillText(formatDate(donation.contributionDate), 415, y + 18);
+    put(`RCP-${donation.id}-${getFixtureYear(donation.contributionDate)}`, 155, y + 18, { hand: 'meta', size: 16, salt: 'rcpno' });
+    put(formatDate(donation.contributionDate), 140, y + 36, { hand: 'meta', size: 16, salt: 'issued' });
+    put(formatDate(donation.contributionDate), 415, y + 18, { hand: 'meta', size: 16, salt: 'contrib' });
     
     y += 70;
     
@@ -623,11 +692,11 @@ function generateReceipt(donation) {
     
     ctx.font = '11px Inter';
     ctx.fillStyle = '#333333';
-    ctx.fillText(`Name: ${donation.donor.name}`, 50, y);
+    put(`Name: ${donation.donor.name}`, 50, y, { hand: 'donor', size: 16, salt: 'dname' });
     y += 16;
-    ctx.fillText(`Address: ${donation.donor.address}`, 50, y);
+    put(`Address: ${donation.donor.address}`, 50, y, { hand: 'donor', size: 16, salt: 'daddr' });
     y += 16;
-    ctx.fillText(`         ${donation.donor.city}, ${donation.donor.state} ${donation.donor.zip}`, 50, y);
+    put(`         ${donation.donor.city}, ${donation.donor.state} ${donation.donor.zip}`, 50, y, { hand: 'donor', size: 16, salt: 'dcity' });
     
     y += 30;
     
@@ -638,8 +707,16 @@ function generateReceipt(donation) {
     y += 25;
     
     // Items table
-    ctx.fillStyle = '#f0f0f0';
-    ctx.fillRect(50, y, width - 100, 25);
+    if (!parts || parts.chrome) {
+        ctx.fillStyle = '#f0f0f0';
+        ctx.fillRect(50, y, width - 100, 25);
+    } else {
+        ctx.strokeStyle = '#bbbbbb';
+        ctx.beginPath();
+        ctx.moveTo(50, y + 24);
+        ctx.lineTo(width - 50, y + 24);
+        ctx.stroke();
+    }
     ctx.font = 'bold 10px Inter';
     ctx.fillStyle = '#333333';
     ctx.fillText('Description', 60, y + 17);
@@ -667,9 +744,9 @@ function generateReceipt(donation) {
             const label = item.quantity
                 ? `${item.description} (${item.quantity})`
                 : item.description;
-            ctx.fillText(wrapText(ctx, `   ${label}`, 280)[0], 60, y + 12);
-            ctx.fillText(item.condition || donation.assetCondition || 'Good', 350, y + 12);
-            ctx.fillText(formatMoney(item.fmv), 480, y + 12);
+            put(wrapText(ctx, `   ${label}`, 280)[0], 60, y + 12, { hand: 'entries', size: 15, salt: 'lot' + label });
+            put(item.condition || donation.assetCondition || 'Good', 350, y + 12, { hand: 'entries', size: 15, salt: 'cond' + label });
+            put(formatMoney(item.fmv), 480, y + 12, { hand: 'entries', size: 15, salt: 'fmv' + label });
             y += 17;
         }
         ctx.strokeStyle = '#dddddd';
@@ -682,7 +759,7 @@ function generateReceipt(donation) {
         ctx.fillText('TOTAL DONOR-ESTIMATED VALUE', 60, y + 12);
         ctx.font = 'bold 11px Inter';
         ctx.fillStyle = '#2e7d32';
-        ctx.fillText(formatMoney(donation.amount), 480, y + 12);
+        put(formatMoney(donation.amount), 480, y + 12, { hand: 'entries', size: 16, salt: 'total' });
     } else {
         const descLines = wrapText(ctx, donation.assetDescription, 280);
         ctx.fillText(descLines[0], 60, y + 12);
@@ -1783,6 +1860,15 @@ async function main() {
                 formType: formType,
                 donationId: donation.id,
                 boundary: donation.boundary || false,
+                // Only the receipt is handwritten; an acknowledgment letter from
+                // the same donation is still typed, so the expectation would be
+                // wrong if it were copied onto every form.
+                ...(donation.handwriting && formType === 'receipt'
+                    ? {
+                        handwriting: donation.handwriting,
+                        ocrExpectation: donation.ocrExpectation
+                    }
+                    : {}),
                 expectedFields: {
                     donor_name: donation.donor.name,
                     donor_address: formatAddress(donation.donor),

@@ -535,6 +535,112 @@ for (const [id, expected] of Object.entries(goFundMeExpectations)) {
     );
 }
 
+// --- Handwritten thrift-store slips ---------------------------------------
+// These fixtures exist to be partly or wholly unreadable, which makes them the
+// one group where a failed extraction is the pass condition. Each therefore has
+// to declare what it expects to lose; without that, QA cannot tell an intended
+// handwriting failure from a genuine OCR regression, and the fixture is worse
+// than useless because it looks like a bug every time it works.
+const HANDWRITING_LEVELS = new Set(['entries', 'most', 'all']);
+const handwrittenFixtures = donations.filter(donation => donation.handwriting);
+
+assert(
+    handwrittenFixtures.length > 0,
+    'the handwritten slip fixtures have gone missing from donations.json'
+);
+
+for (const donation of handwrittenFixtures) {
+    const id = donation.id;
+
+    assert(
+        HANDWRITING_LEVELS.has(donation.handwriting),
+        `${id} has an unknown handwriting level '${donation.handwriting}'`
+    );
+    assert(
+        donation.forms.includes('receipt'),
+        `${id} is handwritten but has no receipt to write on`
+    );
+
+    const expectation = donation.ocrExpectation;
+    assert(expectation, `${id} must declare an ocrExpectation`);
+    assert(
+        expectation.outcome === 'REQUIRES_REVIEW',
+        `${id} handwriting is not a scan failure, so it must terminate on REQUIRES_REVIEW, not '${expectation.outcome}'`
+    );
+    assert(
+        typeof expectation.reason === 'string' && expectation.reason.trim().length > 0,
+        `${id} must explain what it expects OCR to lose, and why`
+    );
+    assert(
+        Array.isArray(expectation.extractable) && Array.isArray(expectation.unextractable),
+        `${id} extractable and unextractable must both be arrays`
+    );
+
+    const overlap = expectation.extractable.filter(field =>
+        expectation.unextractable.includes(field)
+    );
+    assert(
+        overlap.length === 0,
+        `${id} cannot expect ${overlap.join(', ')} to be both readable and unreadable`
+    );
+    assert(
+        expectation.unextractable.length > 0,
+        `${id} is handwritten but expects to lose nothing`
+    );
+
+    // The lots and the money are written by hand at every level, so a fixture
+    // expecting to read them back is not testing handwriting at all.
+    for (const field of ['amount', 'items']) {
+        assert(
+            expectation.unextractable.includes(field),
+            `${id} must expect ${field} to be unreadable; the values are handwritten at every level`
+        );
+    }
+
+    if (donation.handwriting === 'all') {
+        // A blank pad has no pre-printed letterhead, so nothing survives.
+        assert(
+            expectation.extractable.length === 0,
+            `${id} is a blank pad with nothing pre-printed, so it cannot expect to extract ${expectation.extractable.join(', ')}`
+        );
+    } else {
+        assert(
+            expectation.extractable.includes('donee_name'),
+            `${id} keeps a printed letterhead, so the charity name must stay extractable`
+        );
+    }
+
+    // Only the receipt is filled in by hand. An acknowledgment letter from the
+    // same donation is typed on the charity's own stationery and reads fine.
+    for (const formType of donation.forms) {
+        const document = manifestDocuments.get(`${formType}/${formType}_${id}.png`);
+        assert(document, `${id} is missing its ${formType} manifest entry`);
+
+        if (formType === 'receipt') {
+            assert(
+                document.handwriting === donation.handwriting,
+                `${id} receipt manifest must record the handwriting level`
+            );
+            assert(
+                document.ocrExpectation && document.ocrExpectation.outcome === 'REQUIRES_REVIEW',
+                `${id} receipt manifest must carry the OCR expectation`
+            );
+        } else {
+            assert(
+                !document.ocrExpectation,
+                `${id} ${formType} is typed, so it must not inherit the receipt's handwriting expectation`
+            );
+        }
+    }
+}
+
+// If this font is absent, registerFont silently does nothing, the slips render
+// in the printed face, and every handwritten fixture quietly becomes legible.
+assert(
+    fs.existsSync(path.join(root, 'fonts', 'Caveat.ttf')),
+    'fonts/Caveat.ttf is missing, so the handwritten fixtures would render as printed text'
+);
+
 console.log(
     `Validated ${manifest.totalDonations} donations and ${manifest.totalForms} linked fixture documents.`
 );

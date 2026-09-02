@@ -1199,6 +1199,111 @@
       },
       "contributionDate": "2025-06-08",
       "forms": ["receipt", "form_8283_section_a", "acknowledgment_letter"]
+    },
+    {
+      "id": "D041",
+      "description": "Clothing/household $220 - Goodwill drop-off on a printed form, entries filled in by hand (under $250)",
+      "assetType": "clothing_household",
+      "amount": 220,
+      "deductible": true,
+      "assetDescription": "Two bags of children's clothing and shoes",
+      "assetCondition": "Good",
+      "handwriting": "entries",
+      "ocrExpectation": {
+        "outcome": "REQUIRES_REVIEW",
+        "extractable": ["donee_name", "donee_ein", "donor_name", "contribution_date"],
+        "unextractable": ["amount", "asset_description", "items"],
+        "reason": "Printed letterhead and donor block extract normally; the attendant's handwritten lots and values do not. This is the common Goodwill case and should land on REQUIRES_REVIEW with the charity and date prefilled."
+      },
+      "items": [
+        { "description": "Boys' jeans", "quantity": 6, "condition": "Good", "fmv": 72 },
+        { "description": "Toddler tops", "quantity": 9, "condition": "Good", "fmv": 63 },
+        { "description": "Sneakers, pairs", "quantity": 5, "condition": "Fair", "fmv": 85 }
+      ],
+      "donor": {
+        "name": "Dana K. Whitfield",
+        "address": "904 Ridgeview Lane",
+        "city": "Akron",
+        "state": "OH",
+        "zip": "44301"
+      },
+      "donee": {
+        "name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "address": "15810 Indianola Drive, Rockville, MD 20855"
+      },
+      "contributionDate": "2025-05-09",
+      "forms": ["receipt"]
+    },
+    {
+      "id": "D042",
+      "description": "Clothing/household $310 - Salvation Army slip, only the letterhead is printed ($250-$500)",
+      "assetType": "clothing_household",
+      "amount": 310,
+      "deductible": true,
+      "assetDescription": "Kitchen table, chairs and bed linens",
+      "assetCondition": "Good",
+      "handwriting": "most",
+      "ocrExpectation": {
+        "outcome": "REQUIRES_REVIEW",
+        "extractable": ["donee_name", "donee_ein"],
+        "unextractable": ["donor_name", "donor_address", "contribution_date", "amount", "asset_description", "items"],
+        "reason": "Only the pre-printed letterhead survives extraction. Everything the attendant wrote - donor, date, lots and values - is handwritten, so the donor completes the whole form."
+      },
+      "items": [
+        { "description": "Kitchen table", "quantity": 1, "condition": "Good", "fmv": 140 },
+        { "description": "Dining chairs", "quantity": 4, "condition": "Fair", "fmv": 90 },
+        { "description": "Bed linens, sets", "quantity": 3, "condition": "Good", "fmv": 80 }
+      ],
+      "donor": {
+        "name": "Rosa M. Alvarez",
+        "address": "27 Coldwater Street",
+        "city": "Trenton",
+        "state": "NJ",
+        "zip": "08608"
+      },
+      "donee": {
+        "name": "The Salvation Army",
+        "ein": "13-5562351",
+        "address": "615 Slaters Lane, Alexandria, VA 22314"
+      },
+      "contributionDate": "2025-05-23",
+      "forms": ["receipt", "acknowledgment_letter"]
+    },
+    {
+      "id": "D043",
+      "description": "Clothing/household $95 - blank carbon-copy slip, nothing pre-printed, entirely handwritten (under $250)",
+      "assetType": "clothing_household",
+      "amount": 95,
+      "deductible": true,
+      "assetDescription": "Books, kitchen utensils and a table lamp",
+      "assetCondition": "Good",
+      "handwriting": "all",
+      "ocrExpectation": {
+        "outcome": "REQUIRES_REVIEW",
+        "extractable": [],
+        "unextractable": ["donee_name", "donee_ein", "donor_name", "donor_address", "contribution_date", "amount", "asset_description", "items"],
+        "reason": "Generic receipt pad with no letterhead, filled in by hand end to end. Nothing is extractable, including the charity name, so the donor supplies every field. This is the worst realistic case and the one that must not be mistaken for a scan failure."
+      },
+      "items": [
+        { "description": "Books, boxed", "quantity": 2, "condition": "Good", "fmv": 40 },
+        { "description": "Kitchen utensils", "quantity": 1, "condition": "Fair", "fmv": 25 },
+        { "description": "Table lamp", "quantity": 1, "condition": "Good", "fmv": 30 }
+      ],
+      "donor": {
+        "name": "Peter H. Nakamura",
+        "address": "58 Willow Bend Road",
+        "city": "Eugene",
+        "state": "OR",
+        "zip": "97401"
+      },
+      "donee": {
+        "name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "address": "15810 Indianola Drive, Rockville, MD 20855"
+      },
+      "contributionDate": "2025-06-14",
+      "forms": ["receipt"]
     }
   ]
 }
