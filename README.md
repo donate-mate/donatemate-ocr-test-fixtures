@@ -6,6 +6,23 @@ Synthetic test documents for OCR validation testing with AWS Textract and Google
 
 This repository contains programmatically generated donation-related documents for testing OCR extraction accuracy. All documents are **synthetic** and marked with "SAMPLE - FOR TESTING ONLY" watermarks.
 
+## Running a manual QA pass
+
+`donation-map.csv` at the repository root lists every donation with its
+asset type, charity, value, tax year and deductibility - one row per
+donation, ordered by tax year. It is the reference to work from when
+reconciling figures on screen against the fixtures by hand.
+
+It is **generated, never hand-edited**:
+
+```
+node scripts/generate_donation_map.js
+```
+
+`npm test` asserts the committed file matches that output. A QA reference
+that has drifted from `donations.json` is worse than none at all, because it
+sends the tester hunting for a defect in the app that is really in the map.
+
 ## Document Inventory
 
 | Form Type | Count | Description |

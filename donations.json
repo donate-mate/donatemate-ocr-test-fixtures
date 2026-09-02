@@ -48,7 +48,7 @@
         "status": "VALID",
         "reason": "The uniquely resolvable donee is backed by an active, deductible 501(c)(3) IRS BMF record after organization enrichment."
       },
-      "contributionDate": "2025-02-20",
+      "contributionDate": "2026-02-20",
       "forms": ["cancelled_check"]
     },
     {
@@ -91,7 +91,7 @@
         "ein": "13-5562351",
         "address": "615 Slaters Lane, Alexandria, VA 22314"
       },
-      "contributionDate": "2025-03-15",
+      "contributionDate": "2026-03-15",
       "forms": ["acknowledgment_letter"]
     },
     {
@@ -186,7 +186,7 @@
         "ein": "91-1914868",
         "address": "322 W. Lamar Street, Americus, GA 31709"
       },
-      "contributionDate": "2025-03-05",
+      "contributionDate": "2026-03-05",
       "forms": ["receipt", "acknowledgment_letter"]
     },
     {
@@ -282,7 +282,7 @@
       "assetDescription": "Professional camera equipment (body + 3 lenses)",
       "assetCondition": "Excellent",
       "valuationMethod": "Comparable Sales",
-      "dateAcquired": "2020-03-10",
+      "dateAcquired": "2021-03-10",
       "howAcquired": "Purchase",
       "costBasis": 3200.00,
       "donor": {
@@ -301,7 +301,7 @@
         "status": "VALID",
         "reason": "The charitable boundary fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
-      "contributionDate": "2025-06-15",
+      "contributionDate": "2026-06-15",
       "forms": ["form_8283_section_a", "acknowledgment_letter"]
     },
     {
@@ -313,7 +313,7 @@
       "boundary": true,
       "assetDescription": "Grand piano - Baldwin Model R",
       "assetCondition": "Excellent",
-      "dateAcquired": "2010-08-20",
+      "dateAcquired": "2011-08-20",
       "howAcquired": "Purchase",
       "costBasis": 8000.00,
       "donor": {
@@ -328,12 +328,12 @@
         "ein": "84-0511458",
         "address": "1245 Champa Street, Denver, CO 80204"
       },
-      "contributionDate": "2025-07-01",
+      "contributionDate": "2026-07-01",
       "appraisal": {
         "appraiserName": "Thomas E. Richardson",
         "appraiserAddress": "500 Appraisal Lane, Denver, CO 80203",
         "appraiserQualifications": "Certified Personal Property Appraiser, 15 years experience in musical instruments",
-        "appraisalDate": "2025-06-25",
+        "appraisalDate": "2026-06-25",
         "valuationMethod": "Comparable Sales"
       },
       "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
@@ -435,7 +435,7 @@
         "status": "VALID",
         "reason": "The vehicle boundary fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
-      "contributionDate": "2025-03-20",
+      "contributionDate": "2026-03-20",
       "forms": ["acknowledgment_letter"]
     },
     {
@@ -447,7 +447,7 @@
       "boundary": true,
       "assetDescription": "2010 Ford Focus, VIN 1FAHP3F29CL345678",
       "assetCondition": "Fair",
-      "dateAcquired": "2016-05-10",
+      "dateAcquired": "2017-05-10",
       "howAcquired": "Purchase",
       "costBasis": 6500.00,
       "vehicle": {
@@ -461,7 +461,7 @@
       "saleInfo": {
         "soldAtAuction": true,
         "grossProceeds": 501.00,
-        "saleDate": "2025-04-15"
+        "saleDate": "2026-04-15"
       },
       "donor": {
         "name": "John A. Smith",
@@ -479,7 +479,7 @@
         "status": "VALID",
         "reason": "The vehicle boundary fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
-      "contributionDate": "2025-04-01",
+      "contributionDate": "2026-04-01",
       "forms": ["form_1098c", "form_8283_section_a"]
     },
     {
@@ -625,7 +625,7 @@
         "ein": "53-0196605",
         "address": "431 18th Street NW, Washington, DC 20006"
       },
-      "contributionDate": "2025-04-25",
+      "contributionDate": "2026-04-25",
       "forms": ["stock_confirmation"]
     },
     {
@@ -709,7 +709,7 @@
         "pricePerShare": 50.00,
         "companyDescription": "Private real estate investment company"
       },
-      "dateAcquired": "2012-06-15",
+      "dateAcquired": "2013-06-15",
       "howAcquired": "Purchase",
       "costBasis": 4000.00,
       "donor": {
@@ -724,12 +724,12 @@
         "ein": "58-1344646",
         "address": "191 Peachtree Street NE, Atlanta, GA 30303"
       },
-      "contributionDate": "2025-07-15",
+      "contributionDate": "2026-07-15",
       "appraisal": {
         "appraiserName": "Eleanor J. Watkins, ASA",
         "appraiserAddress": "275 Peachtree Center Avenue, Atlanta, GA 30303",
         "appraiserQualifications": "Accredited Senior Appraiser, Business Valuation, 12 years of closely-held securities experience",
-        "appraisalDate": "2025-07-08",
+        "appraisalDate": "2026-07-08",
         "valuationMethod": "Income and Market Approaches"
       },
       "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
@@ -747,7 +747,7 @@
         "pricePerShare": 200.02,
         "companyDescription": "Private manufacturing company"
       },
-      "dateAcquired": "2010-03-01",
+      "dateAcquired": "2011-03-01",
       "howAcquired": "Gift from parent",
       "costBasis": 2500.00,
       "donor": {
@@ -762,12 +762,12 @@
         "ein": "86-0348306",
         "address": "2201 E. Camelback Road, Phoenix, AZ 85016"
       },
-      "contributionDate": "2025-08-01",
+      "contributionDate": "2026-08-01",
       "appraisal": {
         "appraiserName": "James P. Thornton, CFA, ASA",
         "appraiserAddress": "100 Financial Plaza, Phoenix, AZ 85012",
         "appraiserQualifications": "Accredited Senior Appraiser, Business Valuation, CFA Charterholder",
-        "appraisalDate": "2025-07-25",
+        "appraisalDate": "2026-07-25",
         "valuationMethod": "Discounted Cash Flow / Market Approach"
       },
       "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
@@ -865,7 +865,7 @@
         "legalDescription": "Lot 12, Block 7, Evergreen Heights Addition",
         "parcelNumber": "98-7654-321"
       },
-      "dateAcquired": "2010-08-15",
+      "dateAcquired": "2011-02-12",
       "howAcquired": "Purchase",
       "costBasis": 280000.00,
       "donor": {
@@ -884,12 +884,12 @@
         "status": "VALID",
         "reason": "The real-estate fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
-      "contributionDate": "2025-11-15",
+      "contributionDate": "2026-05-15",
       "appraisal": {
         "appraiserName": "Margaret C. Hayes, SRA, AI-RRS",
         "appraiserAddress": "800 Valuation Way, Seattle, WA 98104",
         "appraiserQualifications": "Senior Residential Appraiser, AI Residential Review Specialist",
-        "appraisalDate": "2025-11-01",
+        "appraisalDate": "2026-05-01",
         "valuationMethod": "Sales Comparison and Income Approach"
       },
       "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
@@ -996,7 +996,7 @@
         "ein": "31-1728910",
         "address": "1619 D Street SE, Building 5421, Virginia Beach, VA 23459"
       },
-      "contributionDate": "2025-02-03",
+      "contributionDate": "2026-02-03",
       "forms": ["acknowledgment_letter"]
     },
     {

@@ -1,0 +1,44 @@
+Donation,Asset Type,Charity,Value,Year,Deductible
+D001,Cash,American Red Cross,100,2025,Deductible
+D003,Cash,United Way Worldwide,250,2025,Deductible
+D005,Cash,Goodwill Industries International,5000,2025,Deductible
+D030,Cash,Grassroot Soccer,84.25,2025,Deductible
+D034,Cash,Gonzaga College High School,425000,2025,Deductible
+D035,Cash,GoFundMe (Maria Rivera's fundraiser),50,2025,Non-deductible
+D036,Cash,GoFundMe (Allison Carter's fundraiser),150,2025,Non-deductible
+D006,Clothing & Household,Goodwill Industries International,150,2025,Deductible
+D009,Clothing & Household,American Red Cross,500,2025,Deductible
+D038,Clothing & Household,Goodwill Industries International,185,2025,Deductible
+D039,Clothing & Household,The Salvation Army,340,2025,Deductible
+D040,Clothing & Household,Goodwill Industries International,675,2025,Deductible
+D041,Clothing & Household,Goodwill Industries International,220,2025,Deductible
+D042,Clothing & Household,The Salvation Army,310,2025,Deductible
+D043,Clothing & Household,Goodwill Industries International,95,2025,Deductible
+D007,Other Non-Cash Goods,The Salvation Army,250,2025,Deductible
+D010,Other Non-Cash Goods,Goodwill Industries International,501,2025,Deductible
+D011,Other Non-Cash Goods,United Way Worldwide,3500,2025,Deductible
+D014,Other Non-Cash Goods,Metropolitan Museum Foundation,15000,2025,Deductible
+D015,Vehicle,Goodwill Industries International,400,2025,Deductible
+D018,Vehicle,American Red Cross,12000,2025,Deductible
+D019,Vehicle,American Red Cross,35000,2025,Deductible
+D020,Stock - Publicly Traded,United Way Worldwide,500,2025,Deductible
+D022,Stock - Publicly Traded,Community Foundation of Northern Colorado,25000,2025,Deductible
+D023,Stock - Closely Held,Community Foundation of Northern Colorado,5000,2025,Deductible
+D026,Stock - Closely Held,Community Foundation of Northern Colorado,50000,2025,Deductible
+D027,Real Estate,Habitat for Humanity International,100000,2025,Deductible
+D002,Cash,Community Foundation of Northern Colorado,200,2026,Deductible
+D004,Cash,The Salvation Army,1500,2026,Deductible
+D029,Cash,Friends of Dartmouth-Hitchcock Health,63.5,2026,Deductible
+D031,Cash,International Institute of Minnesota,97.4,2026,Deductible
+D032,Cash,Friends of Dartmouth-Hitchcock Health,58.75,2026,Deductible
+D033,Cash,Navy SEAL Foundation,487.65,2026,Deductible
+D037,Cash,GoFundMe (Tyler Brooks's fundraiser),25,2026,Non-deductible
+D008,Other Non-Cash Goods,Habitat for Humanity International,400,2026,Deductible
+D012,Other Non-Cash Goods,Community Foundation of Northern Colorado,5000,2026,Deductible
+D013,Other Non-Cash Goods,Colorado Symphony Association,5001,2026,Deductible
+D016,Vehicle,The Salvation Army,500,2026,Deductible
+D017,Vehicle,Habitat for Humanity International,501,2026,Deductible
+D021,Stock - Publicly Traded,American Red Cross,5000,2026,Deductible
+D024,Stock - Closely Held,Community Foundation of Greater Atlanta,10000,2026,Deductible
+D025,Stock - Closely Held,Arizona Community Foundation,10001,2026,Deductible
+D028,Real Estate,Community Foundation of Northern Colorado,500000,2026,Deductible
