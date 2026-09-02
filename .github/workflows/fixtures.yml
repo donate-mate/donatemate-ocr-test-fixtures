@@ -71,11 +71,15 @@ jobs:
 
       - name: Compare against tracked bytes
         run: |
-          if git config --global --add safe.directory "$PWD" && git diff --quiet -- documents manifest_v2.json; then
+          git config --global --add safe.directory "$PWD"
+          # --porcelain catches untracked files too; a plain `git diff` would
+          # silently ignore newly generated documents.
+          CHANGED=$(git status --porcelain -- documents manifest_v2.json)
+          if [ -z "$CHANGED" ]; then
             echo "REPRODUCIBLE: regeneration is byte-identical to tracked fixtures"
           else
-            echo "DIVERGENCE: $(git diff --name-only -- documents manifest_v2.json | wc -l) file(s) differ from tracked bytes"
-            git diff --name-only -- documents manifest_v2.json
+            echo "DIVERGENCE: $(echo "$CHANGED" | wc -l) file(s) differ from or are missing in the tracked set"
+            echo "$CHANGED"
             echo ""
             echo "If this is the first run after adopting this container, download the"
             echo "regenerated-documents artifact and commit it once. After that, any"
