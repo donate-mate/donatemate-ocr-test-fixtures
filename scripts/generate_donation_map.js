@@ -50,6 +50,10 @@ function buildDonationMap(donations) {
         return /[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
     };
 
+    // LF, not CRLF. .gitattributes normalises *.csv to LF on commit, so a
+    // CRLF payload would be byte-identical here on Windows and byte-different
+    // on Linux CI, failing the drift assertion for a reason that has nothing
+    // to do with the fixtures. Excel and Numbers both read LF fine.
     return (
         ['Donation,Asset Type,Charity,Value,Year,Deductible']
             .concat(
@@ -57,7 +61,7 @@ function buildDonationMap(donations) {
                     [r.donation, r.assetType, r.charity, r.value, r.year, r.deductible].map(escape).join(',')
                 )
             )
-            .join('\r\n') + '\r\n'
+            .join('\n') + '\n'
     );
 }
 

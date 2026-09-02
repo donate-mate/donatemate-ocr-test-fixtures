@@ -9,6 +9,7 @@
 # Generator and validator output must be byte-stable across platforms, so keep
 # line endings normalised in the repo regardless of core.autocrlf.
 *.js text eol=lf
+*.csv text eol=lf
 *.json text eol=lf
 *.yml text eol=lf
 *.md text eol=lf
