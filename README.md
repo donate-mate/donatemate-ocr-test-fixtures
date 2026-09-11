@@ -62,9 +62,22 @@ donatemate-ocr-test-fixtures/
 │   ├── receipt/                   # receipt_D006.png, ...
 │   ├── stock_confirmation/        # stock_confirmation_D020.png, ...
 │   └── gofundme_receipt/          # gofundme_receipt_D035.png, ...
+├── real-world/                    # Authentic photographed documents (not generated)
+│   └── patrick_handwritten_donation.jpg
 └── scripts/
     └── generate_from_donations.js # Generator script
 ```
+
+## Real-World Fixtures
+
+Everything under `documents/` is synthetic and generated. `real-world/` is the
+exception: authentic paper documents photographed on a phone, kept outside the
+generated tree so `npm test` keeps asserting exact manifest parity. They are not
+in `donations.json` or `manifest_v2.json` — point OCR at them directly.
+
+They cover what the synthetic set structurally cannot: perspective skew, fold
+creases, uneven lighting, mixed inks and a non-white background. See
+`real-world/README.md` for per-document expected fields.
 
 ## Naming Convention
 
