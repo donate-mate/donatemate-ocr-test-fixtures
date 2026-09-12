@@ -57,6 +57,19 @@ function shouldGenerateImage(donation, formType) {
         (!onlyFormTypes || onlyFormTypes.has(formType));
 }
 
+// Almost every fixture is drawn by this script. A photographed fixture is the
+// exception: real paper captured on a phone, where the committed file *is* the
+// fixture. There is nothing to render, so this script only describes it in the
+// manifest - it must never write over it, and the obsolete-file sweep below
+// must never mistake it for a stale rendering.
+function isPhotograph(donation) {
+    return donation.source && donation.source.kind === 'photograph';
+}
+
+function documentExtension(donation) {
+    return isPhotograph(donation) ? donation.source.extension : 'png';
+}
+
 function parseFixtureDate(dateStr) {
     const match = typeof dateStr === 'string' && dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
     if (match) {
@@ -1698,13 +1711,16 @@ async function main() {
 
     const expectedFilenames = new Set(
         donationsData.donations.flatMap(donation =>
-            donation.forms.map(formType => `${formType}/${formType}_${donation.id}.png`)
+            donation.forms.map(
+                formType =>
+                    `${formType}/${formType}_${donation.id}.${documentExtension(donation)}`
+            )
         )
     );
     for (const dir of formDirs) {
         const dirPath = path.join(OUTPUT_DIR, dir);
         for (const filename of fs.readdirSync(dirPath)) {
-            if (!filename.toLowerCase().endsWith('.png')) continue;
+            if (!/\.(png|jpe?g)$/i.test(filename)) continue;
             const relativeFilename = `${dir}/${filename}`;
             if (expectedFilenames.has(relativeFilename)) continue;
             fs.unlinkSync(path.join(dirPath, filename));
@@ -1718,7 +1734,7 @@ async function main() {
         description: 'IRS-compliant OCR test fixtures with linked forms per donation',
         generatedAt: MANIFEST_GENERATED_AT,
         irsReference: '2025 Form 8283 instructions; 2025 Form 1098-C instructions; IRS Publication 561',
-        namingConvention: '<form_type>_<donation_id>.png',
+        namingConvention: '<form_type>_<donation_id>.<png for rendered fixtures, source extension for photographed ones>',
         totalDonations: donationsData.donations.length,
         totalForms: 0,
         formCounts: {},
@@ -1733,12 +1749,12 @@ async function main() {
         
         for (const formType of donation.forms) {
             const generator = generators[formType];
-            if (!generator) {
+            if (!generator && !isPhotograph(donation)) {
                 generationErrors.push(`${donation.id}: no generator for '${formType}'`);
                 continue;
             }
-            
-            const filename = `${formType}_${donation.id}.png`;
+
+            const filename = `${formType}_${donation.id}.${documentExtension(donation)}`;
             const filepath = path.join(OUTPUT_DIR, formType, filename);
             
             const manifestDocument = {
@@ -1746,6 +1762,9 @@ async function main() {
                 formType: formType,
                 donationId: donation.id,
                 boundary: donation.boundary || false,
+                // Consumers need to know whether a miss is a pipeline defect or
+                // the expected cost of reading real paper, so say which this is.
+                source: isPhotograph(donation) ? 'photograph' : 'rendered',
                 expectedFields: {
                     donor_name: donation.donor.name,
                     donor_address: formatAddress(donation.donor),
@@ -1816,6 +1835,23 @@ async function main() {
                 }
             };
 
+            if (isPhotograph(donation)) {
+                // The photograph is committed, not produced here. Record it and
+                // leave the bytes alone; only complain if it has gone missing.
+                if (!fs.existsSync(filepath)) {
+                    generationErrors.push(
+                        `${donation.id}/${formType}: photographed fixture ${formType}/${filename} is missing and cannot be regenerated`
+                    );
+                    continue;
+                }
+                console.log(`  · Kept photographed ${formType}/${filename}`);
+
+                manifest.documents.push(manifestDocument);
+                manifest.formCounts[formType] = (manifest.formCounts[formType] || 0) + 1;
+                manifest.totalForms++;
+                continue;
+            }
+
             if (hasGenerationFilter && !shouldGenerateImage(donation, formType)) {
                 manifest.documents.push(manifestDocument);
                 manifest.formCounts[formType] = (manifest.formCounts[formType] || 0) + 1;
@@ -1866,6 +1902,7 @@ if (require.main === module) {
 }
 
 module.exports = {
+    documentExtension,
     formatDate,
     formatDateShort,
     formatMoney,
@@ -1877,6 +1914,7 @@ module.exports = {
     getGoFundMeReceiptAmounts,
     getForm8283FmvMethod,
     getForm8283PropertyDescription,
+    isPhotograph,
     main,
     maskedTaxpayerId,
     syntheticDoneeSigner,

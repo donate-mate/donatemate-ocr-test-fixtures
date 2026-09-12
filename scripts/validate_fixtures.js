@@ -15,6 +15,8 @@ const {
     getGoFundMeReceiptAmounts,
     getForm8283FmvMethod,
     getForm8283PropertyDescription,
+    documentExtension,
+    isPhotograph,
     maskedTaxpayerId,
     syntheticAppraiserTaxId,
     syntheticDoneeSigner,
@@ -40,11 +42,12 @@ function assert(condition, message) {
     }
 }
 
-function pngFiles(directory) {
+function fixtureFiles(directory) {
     return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
         const absolutePath = path.join(directory, entry.name);
-        if (entry.isDirectory()) return pngFiles(absolutePath);
-        return entry.isFile() && entry.name.toLowerCase().endsWith('.png') ? [absolutePath] : [];
+        if (entry.isDirectory()) return fixtureFiles(absolutePath);
+        // Rendered fixtures are PNG; photographed ones keep their camera format.
+        return entry.isFile() && /\.(png|jpe?g)$/i.test(entry.name) ? [absolutePath] : [];
     });
 }
 
@@ -66,7 +69,7 @@ function assertForms(id, expectedForms) {
 const expectedDocuments = new Map();
 for (const donation of donations) {
     for (const formType of donation.forms) {
-        const filename = `${formType}/${formType}_${donation.id}.png`;
+        const filename = `${formType}/${formType}_${donation.id}.${documentExtension(donation)}`;
         assert(!expectedDocuments.has(filename), `Duplicate fixture filename ${filename}`);
         expectedDocuments.set(filename, { donation, formType });
         assert(
@@ -102,15 +105,101 @@ assert(
     'Manifest generation timestamp must be deterministic'
 );
 
-const actualDocumentNames = pngFiles(path.join(root, 'documents'))
-    .map(filename => path.relative(path.join(root, 'documents'), filename))
+const actualDocumentNames = fixtureFiles(path.join(root, 'documents'))
+    // expectedDocuments keys are built with a literal '/', so normalise the
+    // platform separator or every file reads as untracked on Windows.
+    .map(filename =>
+        path
+            .relative(path.join(root, 'documents'), filename)
+            .split(path.sep)
+            .join('/')
+    )
     .sort();
 assert(
     actualDocumentNames.length === expectedDocuments.size,
-    `Generated PNG count mismatch: expected ${expectedDocuments.size}, got ${actualDocumentNames.length}`
+    `Fixture document count mismatch: expected ${expectedDocuments.size}, got ${actualDocumentNames.length}`
 );
 for (const filename of actualDocumentNames) {
-    assert(expectedDocuments.has(filename), `Obsolete or untracked generated PNG: ${filename}`);
+    assert(expectedDocuments.has(filename), `Obsolete or untracked fixture document: ${filename}`);
+}
+
+// --- Photographed fixtures -------------------------------------------------
+// These are real paper, so no generator can reproduce them: if one is deleted
+// it is gone for good. Every check here exists to make that loss loud rather
+// than silent, and to keep the provenance attached to the bytes.
+const MAGIC_BYTES = {
+    jpg: [0xff, 0xd8, 0xff],
+    jpeg: [0xff, 0xd8, 0xff],
+    png: [0x89, 0x50, 0x4e, 0x47]
+};
+
+const photographedFixtures = donations.filter(isPhotograph);
+assert(
+    photographedFixtures.length > 0,
+    'the photographed fixtures have gone missing from donations.json'
+);
+
+for (const donation of photographedFixtures) {
+    const { id, source } = donation;
+
+    const extension = String(source.extension || '').toLowerCase();
+    assert(
+        Object.prototype.hasOwnProperty.call(MAGIC_BYTES, extension),
+        `${id} must declare a supported photograph extension, got '${source.extension}'`
+    );
+    assert(
+        /^\d{4}-\d{2}-\d{2}$/.test(source.capturedOn || ''),
+        `${id} must record when the photograph was taken as YYYY-MM-DD`
+    );
+    // Real paper describes a real person. Losing the provenance or the consent
+    // note is how a fixture nobody can account for ends up in a public repo.
+    assert(
+        typeof source.provenance === 'string' && source.provenance.trim().length > 0,
+        `${id} must record where the photographed document came from`
+    );
+    assert(
+        typeof source.consent === 'string' && source.consent.trim().length > 0,
+        `${id} must record the subject's consent to publishing the document`
+    );
+
+    assert(
+        donation.forms.length === 1,
+        `${id} photographs a single document, so it must declare exactly one form`
+    );
+
+    for (const formType of donation.forms) {
+        const relativePath = `${formType}/${formType}_${id}.${extension}`;
+        const absolutePath = path.join(root, 'documents', relativePath);
+        assert(
+            fs.existsSync(absolutePath),
+            `${id} photograph documents/${relativePath} is missing and cannot be regenerated`
+        );
+
+        // An empty or truncated file still satisfies existsSync, and a fixture
+        // that is not the format it claims would fail only inside the OCR run.
+        const bytes = fs.readFileSync(absolutePath);
+        assert(
+            bytes.length > 1024,
+            `${id} photograph documents/${relativePath} is too small to be a real capture`
+        );
+        assert(
+            MAGIC_BYTES[extension].every((byte, index) => bytes[index] === byte),
+            `${id} photograph documents/${relativePath} is not really a ${extension.toUpperCase()}`
+        );
+
+        const document = manifestDocuments.get(relativePath);
+        assert(
+            document?.source === 'photograph',
+            `${id} manifest entry must mark ${relativePath} as photographed, not rendered`
+        );
+    }
+}
+
+for (const document of manifest.documents) {
+    assert(
+        document.source === 'photograph' || document.source === 'rendered',
+        `${document.filename} must declare whether it was photographed or rendered`
+    );
 }
 
 for (const donation of donations) {
@@ -188,7 +277,13 @@ for (const [filename, expected] of expectedDocuments) {
     );
 }
 
-for (const filename of pngFiles(path.join(root, 'documents'))) {
+// The revision is stamped into a PNG tEXt chunk, so it covers rendered fixtures
+// only - a photographed JPEG has nowhere to carry it. See README for what that
+// means for duplicate-image checks.
+const renderedFixtureFiles = fixtureFiles(path.join(root, 'documents')).filter(name =>
+    name.toLowerCase().endsWith('.png')
+);
+for (const filename of renderedFixtureFiles) {
     const document = fs.readFileSync(filename);
     assert(
         fixtureRevision(document) === FIXTURE_REVISION,
