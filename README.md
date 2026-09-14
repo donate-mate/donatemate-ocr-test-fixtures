@@ -1,10 +1,12 @@
 # DonateMate OCR Test Fixtures
 
-Synthetic test documents for OCR validation testing with AWS Textract and Google Vision.
+Test documents for OCR validation testing with AWS Textract and Google Vision.
 
 ## Overview
 
-This repository contains programmatically generated donation-related documents for testing OCR extraction accuracy. All documents are **synthetic** and marked with "SAMPLE - FOR TESTING ONLY" watermarks.
+This repository contains donation-related documents for testing OCR extraction accuracy. Almost all are programmatically generated: **synthetic**, and marked with "SAMPLE - FOR TESTING ONLY" watermarks.
+
+The exception is a small number of [photographed fixtures](#photographed-fixtures) — real paper captured on a phone, which exist to test what a clean render cannot: skew, creases, shadow and real handwriting. They are currently D038.
 
 ## Document Inventory
 
@@ -17,7 +19,7 @@ This repository contains programmatically generated donation-related documents f
 | form_1098c | 3 | Vehicle donations >$500 with explicit sale or needy-transfer disposition |
 | form_8283_section_a | 6 | Non-cash donations $501-$5,000 and gross-proceeds vehicle donations |
 | form_8283_section_b | 8 | FMV-basis non-cash donations >$5,000, including vehicles, closely-held stock, and real estate |
-| receipt | 4 | Non-cash donation receipts <$500 |
+| receipt | 5 | Non-cash donation receipts <$500, including one photographed real slip |
 | stock_confirmation | 3 | Publicly traded securities transfers |
 | gofundme_receipt | 3 | **Non-deductible** crowdfunding (GoFundMe personal fundraiser) payment confirmations |
 
@@ -30,8 +32,9 @@ contribution is **not tax deductible** — useful for testing OCR/classification
 distinguish deductible charitable receipts from non-deductible payment confirmations.
 
 Every donation declares an explicit boolean `deductible` expectation. Omission is invalid
-and never defaults to `true`. The charitable fixtures D001–D034 are deductible and use
-qualifying organizations; only the personal GoFundMe fixtures D035–D037 are non-deductible.
+and never defaults to `true`. The charitable fixtures D001–D034 and D038 are deductible and
+use qualifying organizations; only the personal GoFundMe fixtures D035–D037 are
+non-deductible.
 Fixtures that exercise terminal organization enrichment also declare a `VALID`
 `einValidationExpectation` with the evidence rationale. Negative EIN outcomes belong in
 the focused EIN-validation test suite rather than changing the meaning of these charitable
@@ -49,7 +52,7 @@ account from contaminating duplicate-image fraud checks.
 donatemate-ocr-test-fixtures/
 ├── README.md
 ├── IRS_FORMS_README.md           # IRS documentation requirements reference
-├── donations.json                 # Master donation definitions (37 test cases)
+├── donations.json                 # Master donation definitions (38 test cases)
 ├── manifest_v2.json               # Generated document manifest with expected fields
 ├── documents/
 │   ├── acknowledgment_letter/     # acknowledgment_letter_D001.png, ...
@@ -59,23 +62,100 @@ donatemate-ocr-test-fixtures/
 │   ├── form_1098c/                # form_1098c_D017.png, ...
 │   ├── form_8283_section_a/       # form_8283_section_a_D010.png, ...
 │   ├── form_8283_section_b/       # form_8283_section_b_D013.png, ...
-│   ├── receipt/                   # receipt_D006.png, ...
+│   ├── receipt/                   # receipt_D006.png, ..., receipt_D038.jpg
 │   ├── stock_confirmation/        # stock_confirmation_D020.png, ...
 │   └── gofundme_receipt/          # gofundme_receipt_D035.png, ...
 └── scripts/
     └── generate_from_donations.js # Generator script
 ```
 
+## Photographed Fixtures
+
+Almost every fixture is drawn by `generate_from_donations.js`: a clean white
+page, a known angle, a known font. A **photographed** fixture is the exception —
+real paper captured on a phone, where the committed file *is* the fixture.
+
+They are ordinary fixtures in every other respect: declared in `donations.json`,
+listed in `manifest_v2.json`, sitting in the right `documents/<form_type>/`
+directory, and covered by `npm test`. A donation opts in by declaring a `source`
+block:
+
+```json
+"source": {
+  "kind": "photograph",
+  "extension": "jpg",
+  "capturedOn": "2026-09-11",
+  "provenance": "Where the document came from",
+  "consent": "Why it is publishable here"
+}
+```
+
+The generator then **describes** the document instead of drawing it — it never
+writes over the bytes, and the obsolete-file sweep leaves it alone. Every
+manifest entry carries `"source": "photograph"` or `"source": "rendered"`, so a
+consumer can tell whether a miss is a pipeline defect or the expected cost of
+reading real paper.
+
+Two consequences worth knowing:
+
+- **They cannot be regenerated.** Delete one and it is gone. `validate_fixtures.js`
+  checks each is present, large enough to be a real capture, and actually the
+  format it claims.
+- **They carry no fixture revision.** `DonateMateFixtureRevision` lives in a PNG
+  `tEXt` chunk, and a JPEG has nowhere to put it, so photographed fixtures are
+  excluded from that check. Duplicate-image fraud tests that rely on the revision
+  should skip them.
+
+Because they depict real people, `provenance` and `consent` are required and
+enforced. Only add a document you are the subject of.
+
+### D038 — `receipt/receipt_D038.jpg`
+
+A genuine Salvation Army Adult Rehabilitation Center gift-in-kind slip, donated
+and photographed 2026-09-11. Three tuxedo items, self-valued by the donor at
+$110.00 — a non-cash gift under $250, so a receipt alone substantiates it.
+
+What it exercises that no rendered fixture can:
+
+- **A photograph, not a scan.** Perspective skew and a wood-grain table filling
+  the margins, so the page must be detected before it can be read.
+- **Uneven lighting.** A shadow gradient runs down the page; the lower half is
+  measurably darker than the header.
+- **Physical damage.** Two hard fold creases across the article table, plus
+  discoloration on thin newsprint-weight stock.
+- **Mixed media.** Pre-printed black form, blue ballpoint handwriting, a red
+  stamped reference number, and a cursive signature.
+- **Handwriting over ruled lines**, with values written outside the column
+  borders rather than inside them.
+- **An ambiguous glyph.** The handwritten total reads as either `$110.00` or
+  `$170.00` depending on how the leading digit is resolved. It is $110.00 — the
+  line items sum to it. A pipeline that cross-foots `lineItems` against the
+  stated total recovers the right answer; one that reads the glyph in isolation
+  has a coin flip. `lineItems` is in `donations.json` for exactly this.
+- **Dense low-contrast legal small print** in the footer that must not be
+  mistaken for donation data.
+- **A short-form date** (`9/11/26`) needing normalisation to `2026-09-11`.
+- **No EIN anywhere**, so donee identification depends on name enrichment.
+
+Expected outcome is `REQUIRES_REVIEW`: the pre-printed charity block should
+extract cleanly while the handwritten donor, date, lots and values should not be
+trusted without confirmation. Unlike a rendered fixture, the photographic
+conditions put the *printed* face at risk too.
+
 ## Naming Convention
 
 ```
-<form_type>_<donation_id>.png
+<form_type>_<donation_id>.<ext>
 ```
+
+`ext` is `png` for rendered fixtures and the source extension for photographed
+ones.
 
 Examples:
 - `acknowledgment_letter_D003.png`
 - `form_8283_section_a_D010.png`
 - `appraisal_D013.png`
+- `receipt_D038.jpg` (photographed)
 
 ## Linked Forms
 
@@ -88,7 +168,7 @@ For donations requiring multiple forms, **all forms share consistent data**:
 
 ## Test Cases
 
-The `donations.json` file defines 37 test donations covering all IRS thresholds:
+The `donations.json` file defines 38 test donations covering all IRS thresholds:
 
 ### Cash Donations
 | ID | Amount | Forms | Notes |
@@ -117,6 +197,7 @@ The `donations.json` file defines 37 test donations covering all IRS thresholds:
 | D012 | **$5,000** | form_8283_section_a, acknowledgment_letter | **Boundary** |
 | D013 | **$5,001** | form_8283_section_b, appraisal, acknowledgment_letter | **Boundary** |
 | D014 | $15,000 | form_8283_section_b, appraisal, acknowledgment_letter | |
+| D038 | $110 | receipt | **Photographed real slip**, below $250, handwritten, no EIN |
 
 ### Vehicles
 | ID | Amount | Forms | Notes |
@@ -251,12 +332,13 @@ Quick reference:
 
 ## Important Notes
 
-1. **All documents are SYNTHETIC** - do not use as real tax documents
-2. All documents contain "SAMPLE - FOR TESTING ONLY" watermarks
-3. Donor information uses placeholder values
-4. Charitable fixtures use EINs for qualifying organizations; personal fundraisers have no EIN
+1. **Every document is SYNTHETIC except D038** - do not use any of them as real tax documents
+2. Synthetic documents contain "SAMPLE - FOR TESTING ONLY" watermarks; the photographed D038 does not, because it is a real slip
+3. Donor information uses placeholder values, except D038 which names its real donor with their consent
+4. Charitable fixtures use EINs for qualifying organizations; personal fundraisers have no EIN, and D038 has none because the real slip does not print one
 5. Forms for the same donation have **matching** donor, donee, date, and amount data
-6. Only D035–D037 are non-deductible; D001–D034 must remain deductible charitable fixtures
+6. Only D035–D037 are non-deductible; D001–D034 and D038 must remain deductible charitable fixtures
+7. D038 is the one **real** document here — photographed, not generated, and not reproducible if deleted. See [Photographed Fixtures](#photographed-fixtures).
 
 ## License
 

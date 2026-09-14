@@ -3,14 +3,14 @@
   "description": "IRS-compliant OCR test fixtures with linked forms per donation",
   "generatedAt": "2026-07-31T00:00:00.000Z",
   "irsReference": "2025 Form 8283 instructions; 2025 Form 1098-C instructions; IRS Publication 561",
-  "namingConvention": "<form_type>_<donation_id>.png",
-  "totalDonations": 37,
-  "totalForms": 62,
+  "namingConvention": "<form_type>_<donation_id>.<png for rendered fixtures, source extension for photographed ones>",
+  "totalDonations": 38,
+  "totalForms": 63,
   "formCounts": {
     "bank_statement": 1,
     "cancelled_check": 1,
     "acknowledgment_letter": 25,
-    "receipt": 4,
+    "receipt": 5,
     "form_8283_section_a": 6,
     "form_8283_section_b": 8,
     "appraisal": 8,
@@ -24,6 +24,7 @@
       "formType": "bank_statement",
       "donationId": "D001",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "John A. Smith",
         "donor_address": "123 Main Street, Springfield, IL 62701",
@@ -40,6 +41,7 @@
       "formType": "cancelled_check",
       "donationId": "D002",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Emily R. Davis",
         "donor_address": "789 Elm Drive, Austin, TX 78701",
@@ -57,6 +59,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D003",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Michael T. Williams",
         "donor_address": "456 Oak Avenue, Portland, OR 97201",
@@ -73,6 +76,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D004",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Sarah M. Johnson",
         "donor_address": "654 Maple Lane, Seattle, WA 98101",
@@ -89,6 +93,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D005",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Robert J. Anderson",
         "donor_address": "321 Pine Road, Denver, CO 80202",
@@ -105,6 +110,7 @@
       "formType": "receipt",
       "donationId": "D006",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Jennifer L. Miller",
         "donor_address": "147 Birch Way, Phoenix, AZ 85001",
@@ -121,6 +127,7 @@
       "formType": "receipt",
       "donationId": "D007",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "David K. Wilson",
         "donor_address": "258 Willow Street, Atlanta, GA 30301",
@@ -137,6 +144,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D007",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "David K. Wilson",
         "donor_address": "258 Willow Street, Atlanta, GA 30301",
@@ -153,6 +161,7 @@
       "formType": "receipt",
       "donationId": "D008",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Lisa A. Brown",
         "donor_address": "963 Cedar Court, Boston, MA 02101",
@@ -169,6 +178,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D008",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Lisa A. Brown",
         "donor_address": "963 Cedar Court, Boston, MA 02101",
@@ -185,6 +195,7 @@
       "formType": "receipt",
       "donationId": "D009",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "John A. Smith",
         "donor_address": "123 Main Street, Springfield, IL 62701",
@@ -201,6 +212,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D009",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "John A. Smith",
         "donor_address": "123 Main Street, Springfield, IL 62701",
@@ -217,6 +229,7 @@
       "formType": "form_8283_section_a",
       "donationId": "D010",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Sarah M. Johnson",
         "donor_address": "654 Maple Lane, Seattle, WA 98101",
@@ -234,6 +247,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D010",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Sarah M. Johnson",
         "donor_address": "654 Maple Lane, Seattle, WA 98101",
@@ -250,6 +264,7 @@
       "formType": "form_8283_section_a",
       "donationId": "D011",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Emily R. Davis",
         "donor_address": "789 Elm Drive, Austin, TX 78701",
@@ -267,6 +282,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D011",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Emily R. Davis",
         "donor_address": "789 Elm Drive, Austin, TX 78701",
@@ -283,6 +299,7 @@
       "formType": "form_8283_section_a",
       "donationId": "D012",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Michael T. Williams",
         "donor_address": "456 Oak Avenue, Portland, OR 97201",
@@ -301,6 +318,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D012",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Michael T. Williams",
         "donor_address": "456 Oak Avenue, Portland, OR 97201",
@@ -318,6 +336,7 @@
       "formType": "form_8283_section_b",
       "donationId": "D013",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Robert J. Anderson",
         "donor_address": "321 Pine Road, Denver, CO 80202",
@@ -342,6 +361,7 @@
       "formType": "appraisal",
       "donationId": "D013",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Robert J. Anderson",
         "donor_address": "321 Pine Road, Denver, CO 80202",
@@ -362,6 +382,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D013",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Robert J. Anderson",
         "donor_address": "321 Pine Road, Denver, CO 80202",
@@ -381,6 +402,7 @@
       "formType": "form_8283_section_b",
       "donationId": "D014",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Jennifer L. Miller",
         "donor_address": "147 Birch Way, Phoenix, AZ 85001",
@@ -405,6 +427,7 @@
       "formType": "appraisal",
       "donationId": "D014",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Jennifer L. Miller",
         "donor_address": "147 Birch Way, Phoenix, AZ 85001",
@@ -425,6 +448,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D014",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Jennifer L. Miller",
         "donor_address": "147 Birch Way, Phoenix, AZ 85001",
@@ -444,6 +468,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D015",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "David K. Wilson",
         "donor_address": "258 Willow Street, Atlanta, GA 30301",
@@ -461,6 +486,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D016",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Lisa A. Brown",
         "donor_address": "963 Cedar Court, Boston, MA 02101",
@@ -478,6 +504,7 @@
       "formType": "form_1098c",
       "donationId": "D017",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "John A. Smith",
         "donor_address": "123 Main Street, Springfield, IL 62701",
@@ -510,6 +537,7 @@
       "formType": "form_8283_section_a",
       "donationId": "D017",
       "boundary": true,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "John A. Smith",
         "donor_address": "123 Main Street, Springfield, IL 62701",
@@ -528,6 +556,7 @@
       "formType": "form_1098c",
       "donationId": "D018",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Sarah M. Johnson",
         "donor_address": "654 Maple Lane, Seattle, WA 98101",
@@ -559,6 +588,7 @@
       "formType": "form_8283_section_a",
       "donationId": "D018",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Sarah M. Johnson",
         "donor_address": "654 Maple Lane, Seattle, WA 98101",
@@ -576,6 +606,7 @@
       "formType": "form_1098c",
       "donationId": "D019",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Robert J. Anderson",
         "donor_address": "321 Pine Road, Denver, CO 80202",
@@ -608,6 +639,7 @@
       "formType": "form_8283_section_b",
       "donationId": "D019",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Robert J. Anderson",
         "donor_address": "321 Pine Road, Denver, CO 80202",
@@ -633,6 +665,7 @@
       "formType": "appraisal",
       "donationId": "D019",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Robert J. Anderson",
         "donor_address": "321 Pine Road, Denver, CO 80202",
@@ -654,6 +687,7 @@
       "formType": "stock_confirmation",
       "donationId": "D020",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Emily R. Davis",
         "donor_address": "789 Elm Drive, Austin, TX 78701",
@@ -670,6 +704,7 @@
       "formType": "stock_confirmation",
       "donationId": "D021",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Michael T. Williams",
         "donor_address": "456 Oak Avenue, Portland, OR 97201",
@@ -686,6 +721,7 @@
       "formType": "stock_confirmation",
       "donationId": "D022",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Jennifer L. Miller",
         "donor_address": "147 Birch Way, Phoenix, AZ 85001",
@@ -703,6 +739,7 @@
       "formType": "form_8283_section_a",
       "donationId": "D023",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Robert J. Anderson",
         "donor_address": "321 Pine Road, Denver, CO 80202",
@@ -721,6 +758,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D023",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Robert J. Anderson",
         "donor_address": "321 Pine Road, Denver, CO 80202",
@@ -738,6 +776,7 @@
       "formType": "form_8283_section_b",
       "donationId": "D024",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "David K. Wilson",
         "donor_address": "258 Willow Street, Atlanta, GA 30301",
@@ -762,6 +801,7 @@
       "formType": "appraisal",
       "donationId": "D024",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "David K. Wilson",
         "donor_address": "258 Willow Street, Atlanta, GA 30301",
@@ -782,6 +822,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D024",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "David K. Wilson",
         "donor_address": "258 Willow Street, Atlanta, GA 30301",
@@ -801,6 +842,7 @@
       "formType": "form_8283_section_b",
       "donationId": "D025",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Jennifer L. Miller",
         "donor_address": "147 Birch Way, Phoenix, AZ 85001",
@@ -825,6 +867,7 @@
       "formType": "appraisal",
       "donationId": "D025",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Jennifer L. Miller",
         "donor_address": "147 Birch Way, Phoenix, AZ 85001",
@@ -845,6 +888,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D025",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Jennifer L. Miller",
         "donor_address": "147 Birch Way, Phoenix, AZ 85001",
@@ -864,6 +908,7 @@
       "formType": "form_8283_section_b",
       "donationId": "D026",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "John A. Smith",
         "donor_address": "123 Main Street, Springfield, IL 62701",
@@ -889,6 +934,7 @@
       "formType": "appraisal",
       "donationId": "D026",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "John A. Smith",
         "donor_address": "123 Main Street, Springfield, IL 62701",
@@ -910,6 +956,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D026",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "John A. Smith",
         "donor_address": "123 Main Street, Springfield, IL 62701",
@@ -930,6 +977,7 @@
       "formType": "form_8283_section_b",
       "donationId": "D027",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Emily R. Davis",
         "donor_address": "789 Elm Drive, Austin, TX 78701",
@@ -954,6 +1002,7 @@
       "formType": "appraisal",
       "donationId": "D027",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Emily R. Davis",
         "donor_address": "789 Elm Drive, Austin, TX 78701",
@@ -974,6 +1023,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D027",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Emily R. Davis",
         "donor_address": "789 Elm Drive, Austin, TX 78701",
@@ -993,6 +1043,7 @@
       "formType": "form_8283_section_b",
       "donationId": "D028",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Sarah M. Johnson",
         "donor_address": "654 Maple Lane, Seattle, WA 98101",
@@ -1018,6 +1069,7 @@
       "formType": "appraisal",
       "donationId": "D028",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Sarah M. Johnson",
         "donor_address": "654 Maple Lane, Seattle, WA 98101",
@@ -1039,6 +1091,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D028",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Sarah M. Johnson",
         "donor_address": "654 Maple Lane, Seattle, WA 98101",
@@ -1059,6 +1112,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D029",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Daniel K. Foster",
         "donor_address": "118 Birch Hollow Road, Hanover, NH 03755",
@@ -1075,6 +1129,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D030",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Marcus T. Reyes",
         "donor_address": "47 Larkspur Court, Boulder, CO 80302",
@@ -1091,6 +1146,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D031",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Laura B. Whitfield",
         "donor_address": "812 Cedar Ridge Drive, Saint Paul, MN 55104",
@@ -1107,6 +1163,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D032",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Gregory P. Lawson",
         "donor_address": "905 Sycamore Lane, Concord, NH 03301",
@@ -1123,6 +1180,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D033",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Stephen R. Caldwell",
         "donor_address": "1420 Harborview Drive, Annapolis, MD 21401",
@@ -1139,6 +1197,7 @@
       "formType": "acknowledgment_letter",
       "donationId": "D034",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Walter J. Ashford",
         "donor_address": "2611 Foxhall Road NW, Washington, DC 20007",
@@ -1155,6 +1214,7 @@
       "formType": "gofundme_receipt",
       "donationId": "D035",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Jonathan J. Webb",
         "donor_address": "284 Hillcrest Avenue, Sacramento, CA 95818",
@@ -1171,6 +1231,7 @@
       "formType": "gofundme_receipt",
       "donationId": "D036",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Priya N. Raman",
         "donor_address": "1107 Magnolia Street, Raleigh, NC 27601",
@@ -1187,6 +1248,7 @@
       "formType": "gofundme_receipt",
       "donationId": "D037",
       "boundary": false,
+      "source": "rendered",
       "expectedFields": {
         "donor_name": "Hannah L. Foster",
         "donor_address": "56 Larkspur Lane, Columbus, OH 43215",
@@ -1196,6 +1258,23 @@
         "amount": 25,
         "asset_type": "cash",
         "asset_description": null
+      }
+    },
+    {
+      "filename": "receipt/receipt_D038.jpg",
+      "formType": "receipt",
+      "donationId": "D038",
+      "boundary": false,
+      "source": "photograph",
+      "expectedFields": {
+        "donor_name": "Patrick Sheehy",
+        "donor_address": "208 8th Avenue, New York, NY 10011",
+        "donee_name": "The Salvation Army Adult Rehabilitation Center",
+        "donee_ein": null,
+        "contribution_date": "2026-09-11",
+        "amount": 110,
+        "asset_type": "noncash_goods",
+        "asset_description": "Tuxedo pants (used), tuxedo jacket, and tuxedo shirt"
       }
     }
   ]
