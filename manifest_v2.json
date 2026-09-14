@@ -4,13 +4,13 @@
   "generatedAt": "2026-07-31T00:00:00.000Z",
   "irsReference": "2025 Form 8283 instructions; 2025 Form 1098-C instructions; IRS Publication 561",
   "namingConvention": "<form_type>_<donation_id>.<png for rendered fixtures, source extension for photographed ones>",
-  "totalDonations": 38,
-  "totalForms": 63,
+  "totalDonations": 43,
+  "totalForms": 68,
   "formCounts": {
     "bank_statement": 1,
     "cancelled_check": 1,
     "acknowledgment_letter": 25,
-    "receipt": 5,
+    "receipt": 10,
     "form_8283_section_a": 6,
     "form_8283_section_b": 8,
     "appraisal": 8,
@@ -1261,11 +1261,12 @@
       }
     },
     {
-      "filename": "receipt/receipt_D038.jpg",
+      "filename": "receipt/handwritten/receipt_D038.jpg",
       "formType": "receipt",
       "donationId": "D038",
       "boundary": false,
       "source": "photograph",
+      "handwriting": "entries",
       "expectedFields": {
         "donor_name": "Patrick Sheehy",
         "donor_address": "208 8th Avenue, New York, NY 10011",
@@ -1274,7 +1275,265 @@
         "contribution_date": "2026-09-11",
         "amount": 110,
         "asset_type": "noncash_goods",
-        "asset_description": "Tuxedo pants (used), tuxedo jacket, and tuxedo shirt"
+        "asset_description": "Tuxedo pants (used), tuxedo jacket, and tuxedo shirt",
+        "line_items": [
+          {
+            "description": "Tuxedo pants - used",
+            "quantity": null,
+            "condition": "Good",
+            "value": 40
+          },
+          {
+            "description": "Tuxedo jacket",
+            "quantity": null,
+            "condition": "Good",
+            "value": 50
+          },
+          {
+            "description": "Tuxedo shirt",
+            "quantity": null,
+            "condition": "Good",
+            "value": 20
+          }
+        ]
+      }
+    },
+    {
+      "filename": "receipt/handwritten/receipt_D044.jpg",
+      "formType": "receipt",
+      "donationId": "D044",
+      "boundary": false,
+      "source": "simulated_photograph",
+      "handwriting": "entries",
+      "expectedFields": {
+        "donor_name": "Dana K. Whitfield",
+        "donor_address": "904 Ridgeview Lane, Akron, OH 44301",
+        "donee_name": "Goodwill Industries International",
+        "donee_ein": "53-0196517",
+        "contribution_date": "2026-08-22",
+        "amount": 77,
+        "asset_type": "noncash_goods",
+        "asset_description": "Men's jeans, women's sweaters, children's sneakers and a winter coat",
+        "line_items": [
+          {
+            "description": "Men's jeans",
+            "quantity": 4,
+            "condition": "Good",
+            "value": 24
+          },
+          {
+            "description": "Women's sweaters",
+            "quantity": 3,
+            "condition": "Good",
+            "value": 18
+          },
+          {
+            "description": "Children's sneakers, pairs",
+            "quantity": 2,
+            "condition": "Fair",
+            "value": 10
+          },
+          {
+            "description": "Winter coat",
+            "quantity": 1,
+            "condition": "Good",
+            "value": 25
+          }
+        ]
+      }
+    },
+    {
+      "filename": "receipt/handwritten/receipt_D045.jpg",
+      "formType": "receipt",
+      "donationId": "D045",
+      "boundary": false,
+      "source": "simulated_photograph",
+      "handwriting": "entries",
+      "expectedFields": {
+        "donor_name": "Marcus T. Bell",
+        "donor_address": null,
+        "donee_name": "Goodwill Industries International",
+        "donee_ein": "53-0196517",
+        "contribution_date": "2026-09-03",
+        "amount": null,
+        "asset_type": "noncash_goods",
+        "asset_description": "Three bags of clothing, a box of housewares and two lamps",
+        "line_items": [
+          {
+            "description": "Clothing, bags",
+            "quantity": 3,
+            "condition": "Used",
+            "value": null
+          },
+          {
+            "description": "Housewares, box",
+            "quantity": 1,
+            "condition": "Used",
+            "value": null
+          },
+          {
+            "description": "Lamps",
+            "quantity": 2,
+            "condition": "Good",
+            "value": null
+          }
+        ]
+      }
+    },
+    {
+      "filename": "receipt/handwritten/receipt_D046.jpg",
+      "formType": "receipt",
+      "donationId": "D046",
+      "boundary": false,
+      "source": "simulated_photograph",
+      "handwriting": "entries",
+      "expectedFields": {
+        "donor_name": "Rosa M. Alvarez",
+        "donor_address": "27 Coldwater Street, Trenton, NJ 08608",
+        "donee_name": "Habitat for Humanity ReStore",
+        "donee_ein": null,
+        "contribution_date": "2026-08-29",
+        "amount": 225,
+        "asset_type": "noncash_goods",
+        "asset_description": "Three-seat sofa, six-drawer dresser, coffee table and two nightstands",
+        "line_items": [
+          {
+            "description": "Sofa, three-seat",
+            "quantity": 1,
+            "condition": "Good",
+            "value": 110
+          },
+          {
+            "description": "Dresser, six-drawer",
+            "quantity": 1,
+            "condition": "Good",
+            "value": 60
+          },
+          {
+            "description": "Coffee table",
+            "quantity": 1,
+            "condition": "Fair",
+            "value": 25
+          },
+          {
+            "description": "Nightstands",
+            "quantity": 2,
+            "condition": "Good",
+            "value": 30
+          }
+        ]
+      }
+    },
+    {
+      "filename": "receipt/handwritten/receipt_D047.jpg",
+      "formType": "receipt",
+      "donationId": "D047",
+      "boundary": false,
+      "source": "simulated_photograph",
+      "handwriting": "entries",
+      "expectedFields": {
+        "donor_name": "Peter H. Nakamura",
+        "donor_address": "58 Willow Bend Road, Eugene, OR 97401",
+        "donee_name": "The Salvation Army",
+        "donee_ein": "13-5562351",
+        "contribution_date": "2026-09-06",
+        "amount": 71,
+        "asset_type": "noncash_goods",
+        "asset_description": "Kitchenware, small appliances, books, frames, a lamp, towels and board games",
+        "line_items": [
+          {
+            "description": "Coffee mugs",
+            "quantity": 8,
+            "condition": "Good",
+            "value": 4
+          },
+          {
+            "description": "Pots and pans set",
+            "quantity": 1,
+            "condition": "Used",
+            "value": 12
+          },
+          {
+            "description": "Toaster",
+            "quantity": 1,
+            "condition": "Good",
+            "value": 6
+          },
+          {
+            "description": "Paperback books",
+            "quantity": 14,
+            "condition": "Used",
+            "value": 14
+          },
+          {
+            "description": "Picture frames",
+            "quantity": 5,
+            "condition": "Good",
+            "value": 5
+          },
+          {
+            "description": "Table lamp",
+            "quantity": 1,
+            "condition": "Good",
+            "value": 8
+          },
+          {
+            "description": "Blender",
+            "quantity": 1,
+            "condition": "Fair",
+            "value": 7
+          },
+          {
+            "description": "Bath towels",
+            "quantity": 6,
+            "condition": "Good",
+            "value": 9
+          },
+          {
+            "description": "Board games",
+            "quantity": 3,
+            "condition": "Good",
+            "value": 6
+          }
+        ]
+      }
+    },
+    {
+      "filename": "receipt/handwritten/receipt_D048.jpg",
+      "formType": "receipt",
+      "donationId": "D048",
+      "boundary": false,
+      "source": "simulated_photograph",
+      "handwriting": "entries",
+      "expectedFields": {
+        "donor_name": "Joy Okafor",
+        "donor_address": null,
+        "donee_name": "St. Vincent de Paul Thrift Store",
+        "donee_ein": null,
+        "contribution_date": "2026-09-08",
+        "amount": 45,
+        "asset_type": "noncash_goods",
+        "asset_description": "A box of kitchenware, a bag of clothing and a small rug",
+        "line_items": [
+          {
+            "description": "Kitchenware, box",
+            "quantity": 1,
+            "condition": null,
+            "value": null
+          },
+          {
+            "description": "Clothing, bag",
+            "quantity": 1,
+            "condition": null,
+            "value": null
+          },
+          {
+            "description": "Rug, small",
+            "quantity": 1,
+            "condition": null,
+            "value": null
+          }
+        ]
       }
     }
   ]

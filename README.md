@@ -19,7 +19,7 @@ The exception is a small number of [photographed fixtures](#photographed-fixture
 | form_1098c | 3 | Vehicle donations >$500 with explicit sale or needy-transfer disposition |
 | form_8283_section_a | 6 | Non-cash donations $501-$5,000 and gross-proceeds vehicle donations |
 | form_8283_section_b | 8 | FMV-basis non-cash donations >$5,000, including vehicles, closely-held stock, and real estate |
-| receipt | 5 | Non-cash donation receipts <$500, including one photographed real slip |
+| receipt | 10 | Non-cash donation receipts <$500, including six handwritten slips in `receipt/handwritten/` |
 | stock_confirmation | 3 | Publicly traded securities transfers |
 | gofundme_receipt | 3 | **Non-deductible** crowdfunding (GoFundMe personal fundraiser) payment confirmations |
 
@@ -62,12 +62,54 @@ donatemate-ocr-test-fixtures/
 │   ├── form_1098c/                # form_1098c_D017.png, ...
 │   ├── form_8283_section_a/       # form_8283_section_a_D010.png, ...
 │   ├── form_8283_section_b/       # form_8283_section_b_D013.png, ...
-│   ├── receipt/                   # receipt_D006.png, ..., receipt_D038.jpg
+│   ├── receipt/                   # receipt_D006.png, ...
+│   │   └── handwritten/           # receipt_D038.jpg, receipt_D044.jpg … receipt_D048.jpg
 │   ├── stock_confirmation/        # stock_confirmation_D020.png, ...
 │   └── gofundme_receipt/          # gofundme_receipt_D035.png, ...
 └── scripts/
     └── generate_from_donations.js # Generator script
 ```
+
+## Handwritten Receipts
+
+Every handwritten slip lives in one folder, [`documents/receipt/handwritten/`](documents/receipt/handwritten/),
+so a QA pass can work from it as a set. They are the sample set for **DM-5782**
+(handwritten receipt OCR, camera capture).
+
+| ID | Slip | Covers | Source | Legibility |
+|----|------|--------|--------|------------|
+| D038 | Salvation Army ARC gift-in-kind slip, three tuxedo items, $110 | Real handwriting; ambiguous total ($110 vs $170) | **Real photograph** | Clear |
+| D044 | Goodwill donation receipt, yellow carbon copy, four clothing lines, $77 | Legible slip with quantities and condition noted | Simulated | Clear |
+| D045 | Goodwill donation receipt, items listed but **every value blank** | OCR must return no amount rather than invent one; no address, no year | Simulated | Average |
+| D046 | Habitat ReStore pick-up receipt, pink carbon, furniture, handwritten total $225 | Few high-value lines, steep angle, glare, clipboard, no EIN | Simulated | Average |
+| D047 | Salvation Army Family Store receipt, nine household lines, $71 | Many low-value lines, cramped writing, a value struck out and corrected (12 → 9) | Simulated | Average |
+| D048 | St. Vincent de Paul stub, faint pencil cursive, crumpled, dim light, $45 | The deliberately poor sample; surname illegible (out of scope) | Simulated | Poor |
+
+Each donation carries `lineItems` (which add up to its amount — the validator checks)
+and an `ocrExpectation` naming which fields are printed, which are legible
+handwriting and which are absent from the paper. The manifest blanks anything a
+slip leaves out (`documentOmits`), so D045's expected `amount` is `null`.
+
+**Simulated photographs.** D044–D048 are drawn by
+`scripts/generate_handwritten_receipts.js`: a pre-printed pad form, handwriting
+fonts with per-letter wobble, carbon or pencil grain, folds or crumpling, then a
+phone photo — a table underneath, keystone, uneven light, blur and sensor noise.
+They replace the earlier generated slips, which were flat and too clean to
+exercise the failure mode. Regenerate with:
+
+```
+node scripts/generate_handwritten_receipts.js
+ONLY_DONATIONS=D046 node scripts/generate_handwritten_receipts.js
+```
+
+It uses `@napi-rs/canvas` rather than `canvas`, because node-canvas cannot load
+registered fonts on Windows and silently falls back to Sans. Fonts are in
+`fonts/handwriting/` under their OFL or Apache licences.
+
+**For a camera-capture pass**, print a simulated slip and photograph the paper.
+Uploading the JPEG directly still tests OCR quality, but it does not exercise
+the capture path, so record it as an OCR observation rather than a capture
+sample (per DM-5782).
 
 ## Photographed Fixtures
 
@@ -109,7 +151,7 @@ Two consequences worth knowing:
 Because they depict real people, `provenance` and `consent` are required and
 enforced. Only add a document you are the subject of.
 
-### D038 — `receipt/receipt_D038.jpg`
+### D038 — `receipt/handwritten/receipt_D038.jpg`
 
 A genuine Salvation Army Adult Rehabilitation Center gift-in-kind slip, donated
 and photographed 2026-09-11. Three tuxedo items, self-valued by the donor at
@@ -155,7 +197,7 @@ Examples:
 - `acknowledgment_letter_D003.png`
 - `form_8283_section_a_D010.png`
 - `appraisal_D013.png`
-- `receipt_D038.jpg` (photographed)
+- `handwritten/receipt_D038.jpg` (photographed)
 
 ## Linked Forms
 

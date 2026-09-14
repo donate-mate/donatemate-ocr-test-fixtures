@@ -9,7 +9,7 @@
       "id": "D001",
       "description": "Cash donation $100 - requires bank record",
       "assetType": "cash",
-      "amount": 100.00,
+      "amount": 100,
       "deductible": true,
       "donor": {
         "name": "John A. Smith",
@@ -24,13 +24,15 @@
         "address": "431 18th Street NW, Washington, DC 20006"
       },
       "contributionDate": "2025-01-15",
-      "forms": ["bank_statement"]
+      "forms": [
+        "bank_statement"
+      ]
     },
     {
       "id": "D002",
       "description": "Cash donation $200 - requires cancelled check",
       "assetType": "cash",
-      "amount": 200.00,
+      "amount": 200,
       "deductible": true,
       "donor": {
         "name": "Emily R. Davis",
@@ -49,13 +51,15 @@
         "reason": "The uniquely resolvable donee is backed by an active, deductible 501(c)(3) IRS BMF record after organization enrichment."
       },
       "contributionDate": "2025-02-20",
-      "forms": ["cancelled_check"]
+      "forms": [
+        "cancelled_check"
+      ]
     },
     {
       "id": "D003",
       "description": "Cash donation $250 (boundary) - requires acknowledgment",
       "assetType": "cash",
-      "amount": 250.00,
+      "amount": 250,
       "deductible": true,
       "boundary": true,
       "donor": {
@@ -71,13 +75,15 @@
         "address": "701 N. Fairfax Street, Alexandria, VA 22314"
       },
       "contributionDate": "2025-03-01",
-      "forms": ["acknowledgment_letter"]
+      "forms": [
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D004",
       "description": "Cash donation $1,500 - requires acknowledgment",
       "assetType": "cash",
-      "amount": 1500.00,
+      "amount": 1500,
       "deductible": true,
       "donor": {
         "name": "Sarah M. Johnson",
@@ -92,13 +98,15 @@
         "address": "615 Slaters Lane, Alexandria, VA 22314"
       },
       "contributionDate": "2025-03-15",
-      "forms": ["acknowledgment_letter"]
+      "forms": [
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D005",
       "description": "Cash donation $5,000 - requires acknowledgment",
       "assetType": "cash",
-      "amount": 5000.00,
+      "amount": 5000,
       "deductible": true,
       "donor": {
         "name": "Robert J. Anderson",
@@ -113,13 +121,15 @@
         "address": "15810 Indianola Drive, Rockville, MD 20855"
       },
       "contributionDate": "2025-04-10",
-      "forms": ["acknowledgment_letter"]
+      "forms": [
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D006",
       "description": "Non-cash goods $150 - requires receipt only",
       "assetType": "noncash_goods",
-      "amount": 150.00,
+      "amount": 150,
       "deductible": true,
       "assetDescription": "Men's winter coat and dress shoes",
       "assetCondition": "Good",
@@ -136,13 +146,15 @@
         "address": "15810 Indianola Drive, Rockville, MD 20855"
       },
       "contributionDate": "2025-01-20",
-      "forms": ["receipt"]
+      "forms": [
+        "receipt"
+      ]
     },
     {
       "id": "D007",
       "description": "Non-cash goods $250 (boundary) - requires receipt + acknowledgment",
       "assetType": "noncash_goods",
-      "amount": 250.00,
+      "amount": 250,
       "deductible": true,
       "boundary": true,
       "assetDescription": "Vintage leather briefcase",
@@ -160,13 +172,16 @@
         "address": "615 Slaters Lane, Alexandria, VA 22314"
       },
       "contributionDate": "2025-02-14",
-      "forms": ["receipt", "acknowledgment_letter"]
+      "forms": [
+        "receipt",
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D008",
       "description": "Non-cash goods $400 - requires receipt + acknowledgment",
       "assetType": "noncash_goods",
-      "amount": 400.00,
+      "amount": 400,
       "deductible": true,
       "assetDescription": "Antique oak side table",
       "assetCondition": "Good",
@@ -183,13 +198,16 @@
         "address": "322 W. Lamar Street, Americus, GA 31709"
       },
       "contributionDate": "2025-03-05",
-      "forms": ["receipt", "acknowledgment_letter"]
+      "forms": [
+        "receipt",
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D009",
       "description": "Non-cash goods $500 (boundary) - requires receipt + acknowledgment",
       "assetType": "noncash_goods",
-      "amount": 500.00,
+      "amount": 500,
       "deductible": true,
       "boundary": true,
       "assetDescription": "Complete dining set (table + 4 chairs)",
@@ -207,13 +225,16 @@
         "address": "431 18th Street NW, Washington, DC 20006"
       },
       "contributionDate": "2025-04-01",
-      "forms": ["receipt", "acknowledgment_letter"]
+      "forms": [
+        "receipt",
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D010",
       "description": "Non-cash goods $501 (boundary) - requires Form 8283-A + acknowledgment",
       "assetType": "noncash_goods",
-      "amount": 501.00,
+      "amount": 501,
       "deductible": true,
       "boundary": true,
       "assetDescription": "Antique wooden desk",
@@ -221,7 +242,7 @@
       "valuationMethod": "Comparable Sales",
       "dateAcquired": "2018-06-15",
       "howAcquired": "Purchase",
-      "costBasis": 200.00,
+      "costBasis": 200,
       "donor": {
         "name": "Sarah M. Johnson",
         "address": "654 Maple Lane",
@@ -235,20 +256,23 @@
         "address": "15810 Indianola Drive, Rockville, MD 20855"
       },
       "contributionDate": "2025-03-15",
-      "forms": ["form_8283_section_a", "acknowledgment_letter"]
+      "forms": [
+        "form_8283_section_a",
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D011",
       "description": "Non-cash goods $3,500 - requires Form 8283-A + acknowledgment",
       "assetType": "noncash_goods",
-      "amount": 3500.00,
+      "amount": 3500,
       "deductible": true,
       "assetDescription": "Vintage jewelry collection (8 pieces)",
       "assetCondition": "Excellent",
       "valuationMethod": "Comparable Sales",
       "dateAcquired": "2015-12-25",
       "howAcquired": "Gift",
-      "costBasis": 1500.00,
+      "costBasis": 1500,
       "donor": {
         "name": "Emily R. Davis",
         "address": "789 Elm Drive",
@@ -262,13 +286,16 @@
         "address": "701 N. Fairfax Street, Alexandria, VA 22314"
       },
       "contributionDate": "2025-05-01",
-      "forms": ["form_8283_section_a", "acknowledgment_letter"]
+      "forms": [
+        "form_8283_section_a",
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D012",
       "description": "Non-cash goods $5,000 (boundary) - requires Form 8283-A + acknowledgment",
       "assetType": "noncash_goods",
-      "amount": 5000.00,
+      "amount": 5000,
       "deductible": true,
       "boundary": true,
       "assetDescription": "Professional camera equipment (body + 3 lenses)",
@@ -276,7 +303,7 @@
       "valuationMethod": "Comparable Sales",
       "dateAcquired": "2020-03-10",
       "howAcquired": "Purchase",
-      "costBasis": 3200.00,
+      "costBasis": 3200,
       "donor": {
         "name": "Michael T. Williams",
         "address": "456 Oak Avenue",
@@ -294,20 +321,23 @@
         "reason": "The charitable boundary fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-06-15",
-      "forms": ["form_8283_section_a", "acknowledgment_letter"]
+      "forms": [
+        "form_8283_section_a",
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D013",
       "description": "Non-cash goods $5,001 (boundary) - requires Form 8283-B + appraisal + acknowledgment",
       "assetType": "noncash_goods",
-      "amount": 5001.00,
+      "amount": 5001,
       "deductible": true,
       "boundary": true,
       "assetDescription": "Grand piano - Baldwin Model R",
       "assetCondition": "Excellent",
       "dateAcquired": "2010-08-20",
       "howAcquired": "Purchase",
-      "costBasis": 8000.00,
+      "costBasis": 8000,
       "donor": {
         "name": "Robert J. Anderson",
         "address": "321 Pine Road",
@@ -328,19 +358,23 @@
         "appraisalDate": "2025-06-25",
         "valuationMethod": "Comparable Sales"
       },
-      "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
+      "forms": [
+        "form_8283_section_b",
+        "appraisal",
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D014",
       "description": "Non-cash goods $15,000 - requires Form 8283-B + appraisal + acknowledgment",
       "assetType": "noncash_goods",
-      "amount": 15000.00,
+      "amount": 15000,
       "deductible": true,
       "assetDescription": "Antique Persian rug (9x12 Tabriz)",
       "assetCondition": "Excellent",
       "dateAcquired": "2005-04-15",
       "howAcquired": "Purchase",
-      "costBasis": 12000.00,
+      "costBasis": 12000,
       "donor": {
         "name": "Jennifer L. Miller",
         "address": "147 Birch Way",
@@ -361,13 +395,17 @@
         "appraisalDate": "2025-08-01",
         "valuationMethod": "Comparable Sales"
       },
-      "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
+      "forms": [
+        "form_8283_section_b",
+        "appraisal",
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D015",
       "description": "Vehicle $400 - requires acknowledgment only",
       "assetType": "vehicle",
-      "amount": 400.00,
+      "amount": 400,
       "deductible": true,
       "vehicle": {
         "year": 2008,
@@ -394,13 +432,15 @@
         "reason": "The vehicle fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-02-28",
-      "forms": ["acknowledgment_letter"]
+      "forms": [
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D016",
       "description": "Vehicle $500 (boundary) - requires acknowledgment only",
       "assetType": "vehicle",
-      "amount": 500.00,
+      "amount": 500,
       "deductible": true,
       "boundary": true,
       "vehicle": {
@@ -428,20 +468,22 @@
         "reason": "The vehicle boundary fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-03-20",
-      "forms": ["acknowledgment_letter"]
+      "forms": [
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D017",
       "description": "Vehicle $501 (boundary) sold at auction - requires Form 1098-C + Form 8283 Section A",
       "assetType": "vehicle",
-      "amount": 501.00,
+      "amount": 501,
       "deductible": true,
       "boundary": true,
       "assetDescription": "2010 Ford Focus, VIN 1FAHP3F29CL345678",
       "assetCondition": "Fair",
       "dateAcquired": "2016-05-10",
       "howAcquired": "Purchase",
-      "costBasis": 6500.00,
+      "costBasis": 6500,
       "vehicle": {
         "year": 2010,
         "make": "Ford",
@@ -452,7 +494,7 @@
       },
       "saleInfo": {
         "soldAtAuction": true,
-        "grossProceeds": 501.00,
+        "grossProceeds": 501,
         "saleDate": "2025-04-15"
       },
       "donor": {
@@ -472,19 +514,22 @@
         "reason": "The vehicle boundary fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-04-01",
-      "forms": ["form_1098c", "form_8283_section_a"]
+      "forms": [
+        "form_1098c",
+        "form_8283_section_a"
+      ]
     },
     {
       "id": "D018",
       "description": "Vehicle $12,000 sold at auction - requires Form 1098-C + Form 8283 Section A",
       "assetType": "vehicle",
-      "amount": 12000.00,
+      "amount": 12000,
       "deductible": true,
       "assetDescription": "2018 Honda CR-V, VIN 5J6RW2H85JL012345",
       "assetCondition": "Good",
       "dateAcquired": "2018-02-12",
       "howAcquired": "Purchase",
-      "costBasis": 28500.00,
+      "costBasis": 28500,
       "vehicle": {
         "year": 2018,
         "make": "Honda",
@@ -495,7 +540,7 @@
       },
       "saleInfo": {
         "soldAtAuction": true,
-        "grossProceeds": 12000.00,
+        "grossProceeds": 12000,
         "saleDate": "2025-06-01"
       },
       "donor": {
@@ -511,19 +556,22 @@
         "address": "431 18th Street NW, Washington, DC 20006"
       },
       "contributionDate": "2025-05-15",
-      "forms": ["form_1098c", "form_8283_section_a"]
+      "forms": [
+        "form_1098c",
+        "form_8283_section_a"
+      ]
     },
     {
       "id": "D019",
       "description": "Vehicle $35,000 transferred to a needy individual - requires Form 1098-C + Form 8283 Section B + qualified appraisal",
       "assetType": "vehicle",
-      "amount": 35000.00,
+      "amount": 35000,
       "deductible": true,
       "assetDescription": "2022 Tesla Model 3, VIN 5YJ3E1EA1NF567890",
       "assetCondition": "Excellent",
       "dateAcquired": "2022-03-15",
       "howAcquired": "Purchase",
-      "costBasis": 46990.00,
+      "costBasis": 46990,
       "vehicle": {
         "year": 2022,
         "make": "Tesla",
@@ -560,20 +608,24 @@
         "appraisalDate": "2025-07-10",
         "valuationMethod": "Comparable Sales / Vehicle Market Data"
       },
-      "forms": ["form_1098c", "form_8283_section_b", "appraisal"]
+      "forms": [
+        "form_1098c",
+        "form_8283_section_b",
+        "appraisal"
+      ]
     },
     {
       "id": "D020",
       "description": "Publicly traded stock $500",
       "assetType": "stock_public",
-      "amount": 500.00,
+      "amount": 500,
       "deductible": true,
       "security": {
         "name": "Apple Inc.",
         "ticker": "AAPL",
         "cusip": "037833100",
         "shares": 2.5,
-        "pricePerShare": 200.00,
+        "pricePerShare": 200,
         "broker": "Charles Schwab & Co."
       },
       "donor": {
@@ -589,13 +641,15 @@
         "address": "701 N. Fairfax Street, Alexandria, VA 22314"
       },
       "contributionDate": "2025-03-10",
-      "forms": ["stock_confirmation"]
+      "forms": [
+        "stock_confirmation"
+      ]
     },
     {
       "id": "D021",
       "description": "Publicly traded stock $5,000",
       "assetType": "stock_public",
-      "amount": 5000.00,
+      "amount": 5000,
       "deductible": true,
       "security": {
         "name": "Microsoft Corporation",
@@ -618,20 +672,22 @@
         "address": "431 18th Street NW, Washington, DC 20006"
       },
       "contributionDate": "2025-04-25",
-      "forms": ["stock_confirmation"]
+      "forms": [
+        "stock_confirmation"
+      ]
     },
     {
       "id": "D022",
       "description": "Publicly traded stock $25,000",
       "assetType": "stock_public",
-      "amount": 25000.00,
+      "amount": 25000,
       "deductible": true,
       "security": {
         "name": "Amazon.com Inc.",
         "ticker": "AMZN",
         "cusip": "023135106",
         "shares": 125,
-        "pricePerShare": 200.00,
+        "pricePerShare": 200,
         "broker": "E*TRADE Securities"
       },
       "donor": {
@@ -651,24 +707,26 @@
         "reason": "The securities fixture uses an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-05-30",
-      "forms": ["stock_confirmation"]
+      "forms": [
+        "stock_confirmation"
+      ]
     },
     {
       "id": "D023",
       "description": "Closely-held stock $5,000 - active 501(c)(3), requires Form 8283-A and acknowledgment",
       "assetType": "stock_closelyheld",
-      "amount": 5000.00,
+      "amount": 5000,
       "deductible": true,
       "assetDescription": "100 shares Anderson Family Holdings LLC",
       "security": {
         "name": "Anderson Family Holdings LLC",
         "shares": 100,
-        "pricePerShare": 50.00,
+        "pricePerShare": 50,
         "companyDescription": "Private investment holding company"
       },
       "dateAcquired": "2015-01-01",
       "howAcquired": "Founding member contribution",
-      "costBasis": 1000.00,
+      "costBasis": 1000,
       "donor": {
         "name": "Robert J. Anderson",
         "address": "321 Pine Road",
@@ -686,24 +744,27 @@
         "reason": "DM-3067 fixture backed by an active, deductible 501(c)(3) IRS BMF record."
       },
       "contributionDate": "2025-06-20",
-      "forms": ["form_8283_section_a", "acknowledgment_letter"]
+      "forms": [
+        "form_8283_section_a",
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D024",
       "description": "Closely-held stock $10,000 regression case - requires Form 8283-B + qualified appraisal + acknowledgment",
       "assetType": "stock_closelyheld",
-      "amount": 10000.00,
+      "amount": 10000,
       "deductible": true,
       "assetDescription": "200 shares Wilson Properties Inc.",
       "security": {
         "name": "Wilson Properties Inc.",
         "shares": 200,
-        "pricePerShare": 50.00,
+        "pricePerShare": 50,
         "companyDescription": "Private real estate investment company"
       },
       "dateAcquired": "2012-06-15",
       "howAcquired": "Purchase",
-      "costBasis": 4000.00,
+      "costBasis": 4000,
       "donor": {
         "name": "David K. Wilson",
         "address": "258 Willow Street",
@@ -724,13 +785,17 @@
         "appraisalDate": "2025-07-08",
         "valuationMethod": "Income and Market Approaches"
       },
-      "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
+      "forms": [
+        "form_8283_section_b",
+        "appraisal",
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D025",
       "description": "Closely-held stock $10,001 regression case - requires Form 8283-B + qualified appraisal + acknowledgment",
       "assetType": "stock_closelyheld",
-      "amount": 10001.00,
+      "amount": 10001,
       "deductible": true,
       "assetDescription": "50 shares Miller Family Enterprises LLC",
       "security": {
@@ -741,7 +806,7 @@
       },
       "dateAcquired": "2010-03-01",
       "howAcquired": "Gift from parent",
-      "costBasis": 2500.00,
+      "costBasis": 2500,
       "donor": {
         "name": "Jennifer L. Miller",
         "address": "147 Birch Way",
@@ -762,24 +827,28 @@
         "appraisalDate": "2025-07-25",
         "valuationMethod": "Discounted Cash Flow / Market Approach"
       },
-      "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
+      "forms": [
+        "form_8283_section_b",
+        "appraisal",
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D026",
       "description": "Closely-held stock $50,000 - requires Form 8283-B + appraisal",
       "assetType": "stock_closelyheld",
-      "amount": 50000.00,
+      "amount": 50000,
       "deductible": true,
       "assetDescription": "500 shares Smith Tech Ventures Inc.",
       "security": {
         "name": "Smith Tech Ventures Inc.",
         "shares": 500,
-        "pricePerShare": 100.00,
+        "pricePerShare": 100,
         "companyDescription": "Private technology investment company"
       },
       "dateAcquired": "2008-09-15",
       "howAcquired": "Founding member",
-      "costBasis": 5000.00,
+      "costBasis": 5000,
       "donor": {
         "name": "John A. Smith",
         "address": "123 Main Street",
@@ -804,13 +873,17 @@
         "appraisalDate": "2025-09-01",
         "valuationMethod": "Asset-Based / Income Approach"
       },
-      "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
+      "forms": [
+        "form_8283_section_b",
+        "appraisal",
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D027",
       "description": "Real estate $100,000 - requires Form 8283-B + appraisal",
       "assetType": "real_estate",
-      "amount": 100000.00,
+      "amount": 100000,
       "deductible": true,
       "assetDescription": "Vacant residential lot, 0.5 acres, 1500 Development Road, Austin, TX 78702",
       "property": {
@@ -821,7 +894,7 @@
       },
       "dateAcquired": "2015-05-20",
       "howAcquired": "Purchase",
-      "costBasis": 45000.00,
+      "costBasis": 45000,
       "donor": {
         "name": "Emily R. Davis",
         "address": "789 Elm Drive",
@@ -842,13 +915,17 @@
         "appraisalDate": "2025-09-20",
         "valuationMethod": "Sales Comparison Approach"
       },
-      "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
+      "forms": [
+        "form_8283_section_b",
+        "appraisal",
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D028",
       "description": "Real estate $500,000 - requires Form 8283-B + appraisal",
       "assetType": "real_estate",
-      "amount": 500000.00,
+      "amount": 500000,
       "deductible": true,
       "assetDescription": "Single-family rental property, 3BR/2BA, 1,850 sq ft, 742 Evergreen Terrace, Seattle, WA 98102",
       "property": {
@@ -859,7 +936,7 @@
       },
       "dateAcquired": "2010-08-15",
       "howAcquired": "Purchase",
-      "costBasis": 280000.00,
+      "costBasis": 280000,
       "donor": {
         "name": "Sarah M. Johnson",
         "address": "654 Maple Lane",
@@ -884,13 +961,17 @@
         "appraisalDate": "2025-11-01",
         "valuationMethod": "Sales Comparison and Income Approach"
       },
-      "forms": ["form_8283_section_b", "appraisal", "acknowledgment_letter"]
+      "forms": [
+        "form_8283_section_b",
+        "appraisal",
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D029",
       "description": "Cash donation $63.50 - small gift with written acknowledgment (email receipt)",
       "assetType": "cash",
-      "amount": 63.50,
+      "amount": 63.5,
       "deductible": true,
       "donor": {
         "name": "Daniel K. Foster",
@@ -905,7 +986,9 @@
         "address": "One Medical Center Drive, Lebanon, NH 03756"
       },
       "contributionDate": "2026-06-20",
-      "forms": ["acknowledgment_letter"]
+      "forms": [
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D030",
@@ -926,13 +1009,15 @@
         "address": "PO Box 354, Norwich, VT 05055"
       },
       "contributionDate": "2025-10-08",
-      "forms": ["acknowledgment_letter"]
+      "forms": [
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D031",
       "description": "Cash donation $97.40 - small gift with written acknowledgment (email receipt)",
       "assetType": "cash",
-      "amount": 97.40,
+      "amount": 97.4,
       "deductible": true,
       "donor": {
         "name": "Laura B. Whitfield",
@@ -947,7 +1032,9 @@
         "address": "1694 Como Avenue, Saint Paul, MN 55108"
       },
       "contributionDate": "2026-01-25",
-      "forms": ["acknowledgment_letter"]
+      "forms": [
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D032",
@@ -968,7 +1055,9 @@
         "address": "One Medical Center Drive, Lebanon, NH 03756"
       },
       "contributionDate": "2026-06-20",
-      "forms": ["acknowledgment_letter"]
+      "forms": [
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D033",
@@ -989,13 +1078,15 @@
         "address": "1619 D Street SE, Building 5421, Virginia Beach, VA 23459"
       },
       "contributionDate": "2025-02-03",
-      "forms": ["acknowledgment_letter"]
+      "forms": [
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D034",
       "description": "Cash donation $425,000 - major gift, requires written acknowledgment",
       "assetType": "cash",
-      "amount": 425000.00,
+      "amount": 425000,
       "deductible": true,
       "donor": {
         "name": "Walter J. Ashford",
@@ -1010,7 +1101,9 @@
         "address": "19 Eye Street NW, Washington, DC 20001"
       },
       "contributionDate": "2025-06-17",
-      "forms": ["acknowledgment_letter"]
+      "forms": [
+        "acknowledgment_letter"
+      ]
     },
     {
       "id": "D035",
@@ -1018,8 +1111,8 @@
       "assetType": "cash",
       "deductible": false,
       "platform": "GoFundMe",
-      "amount": 50.00,
-      "tip": 5.00,
+      "amount": 50,
+      "tip": 5,
       "campaign": {
         "title": "Help the Rivera Family Rebuild After the House Fire",
         "organizer": "Maria Rivera",
@@ -1040,7 +1133,9 @@
       "paymentMethod": "Visa ending in 4242",
       "transactionId": "GFM-7F3A9C21D",
       "contributionDate": "2025-08-12",
-      "forms": ["gofundme_receipt"]
+      "forms": [
+        "gofundme_receipt"
+      ]
     },
     {
       "id": "D036",
@@ -1048,8 +1143,8 @@
       "assetType": "cash",
       "deductible": false,
       "platform": "GoFundMe",
-      "amount": 150.00,
-      "tip": 0.00,
+      "amount": 150,
+      "tip": 0,
       "campaign": {
         "title": "In Loving Memory of David Carter - Funeral Costs",
         "organizer": "Allison Carter",
@@ -1070,7 +1165,9 @@
       "paymentMethod": "Mastercard ending in 5310",
       "transactionId": "GFM-2B81E47A0",
       "contributionDate": "2025-11-04",
-      "forms": ["gofundme_receipt"]
+      "forms": [
+        "gofundme_receipt"
+      ]
     },
     {
       "id": "D037",
@@ -1078,7 +1175,7 @@
       "assetType": "cash",
       "deductible": false,
       "platform": "GoFundMe",
-      "amount": 25.00,
+      "amount": 25,
       "tip": 3.75,
       "campaign": {
         "title": "Save Biscuit - Emergency Surgery for Our Dog",
@@ -1100,20 +1197,34 @@
       "paymentMethod": "PayPal",
       "transactionId": "GFM-9D5C0F12B",
       "contributionDate": "2026-01-19",
-      "forms": ["gofundme_receipt"]
+      "forms": [
+        "gofundme_receipt"
+      ]
     },
     {
       "id": "D038",
       "description": "Non-cash goods $110 - photographed handwritten thrift-store receipt, requires receipt only",
       "assetType": "noncash_goods",
-      "amount": 110.00,
+      "amount": 110,
       "deductible": true,
       "assetDescription": "Tuxedo pants (used), tuxedo jacket, and tuxedo shirt",
       "assetCondition": "Good",
       "lineItems": [
-        { "description": "Tuxedo pants - used", "condition": "Good", "value": 40.00 },
-        { "description": "Tuxedo jacket", "condition": "Good", "value": 50.00 },
-        { "description": "Tuxedo shirt", "condition": "Good", "value": 20.00 }
+        {
+          "description": "Tuxedo pants - used",
+          "condition": "Good",
+          "value": 40
+        },
+        {
+          "description": "Tuxedo jacket",
+          "condition": "Good",
+          "value": 50
+        },
+        {
+          "description": "Tuxedo shirt",
+          "condition": "Good",
+          "value": 20
+        }
       ],
       "donor": {
         "name": "Patrick Sheehy",
@@ -1134,9 +1245,423 @@
         "extension": "jpg",
         "capturedOn": "2026-09-11",
         "provenance": "Genuine Salvation Army Adult Rehabilitation Center gift-in-kind slip, donated and photographed by the donor on a phone. Not generated by scripts/generate_from_donations.js and not reproducible if deleted.",
-        "consent": "The donor is the repository owner and consented to publishing their own name and address in this public repository. Do not add documents describing anyone else."
+        "consent": "The donor is the repository owner and consented to publishing their own name and address in this public repository. Do not add documents describing anyone else.",
+        "directory": "handwritten"
       },
-      "forms": ["receipt"]
+      "forms": [
+        "receipt"
+      ],
+      "handwriting": "entries",
+      "legibility": "clear"
+    },
+    {
+      "id": "D044",
+      "description": "Non-cash goods $77 - simulated photo of a legible handwritten Goodwill clothing slip, quantities and condition noted",
+      "assetType": "noncash_goods",
+      "amount": 77,
+      "deductible": true,
+      "assetDescription": "Men's jeans, women's sweaters, children's sneakers and a winter coat",
+      "assetCondition": "Good",
+      "handwriting": "entries",
+      "legibility": "clear",
+      "lineItems": [
+        {
+          "description": "Men's jeans",
+          "quantity": 4,
+          "condition": "Good",
+          "value": 24
+        },
+        {
+          "description": "Women's sweaters",
+          "quantity": 3,
+          "condition": "Good",
+          "value": 18
+        },
+        {
+          "description": "Children's sneakers, pairs",
+          "quantity": 2,
+          "condition": "Fair",
+          "value": 10
+        },
+        {
+          "description": "Winter coat",
+          "quantity": 1,
+          "condition": "Good",
+          "value": 25
+        }
+      ],
+      "ocrExpectation": {
+        "outcome": "REQUIRES_REVIEW",
+        "printed": [
+          "donee_name",
+          "donee_ein"
+        ],
+        "handwrittenLegible": [
+          "donor_name",
+          "donor_address",
+          "contribution_date",
+          "line_items",
+          "amount"
+        ],
+        "handwrittenIllegible": [],
+        "reason": "Clear print on a yellow carbon copy. Most people could read every entry, so under the quality bar agreed on 2026-09-11 (DM-5782) the whole receipt should extract."
+      },
+      "donor": {
+        "name": "Dana K. Whitfield",
+        "address": "904 Ridgeview Lane",
+        "city": "Akron",
+        "state": "OH",
+        "zip": "44301"
+      },
+      "donee": {
+        "name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "address": "15810 Indianola Drive, Rockville, MD 20855"
+      },
+      "contributionDate": "2026-08-22",
+      "source": {
+        "kind": "simulated_photograph",
+        "extension": "jpg",
+        "directory": "handwritten",
+        "generator": "scripts/generate_handwritten_receipts.js",
+        "provenance": "Simulated phone photograph of a handwritten Goodwill donation receipt (yellow carbon copy), produced by scripts/generate_handwritten_receipts.js for DM-5782 samples 1 and 4. The donor is fictional and this is not a real document."
+      },
+      "forms": [
+        "receipt"
+      ]
+    },
+    {
+      "id": "D045",
+      "description": "Non-cash goods $65 - simulated photo of a Goodwill slip with the value left blank for the donor to fill in later",
+      "assetType": "noncash_goods",
+      "amount": 65,
+      "deductible": true,
+      "assetDescription": "Three bags of clothing, a box of housewares and two lamps",
+      "assetCondition": "Good",
+      "handwriting": "entries",
+      "legibility": "average",
+      "documentOmits": [
+        "donor_address",
+        "amount"
+      ],
+      "lineItems": [
+        {
+          "description": "Clothing, bags",
+          "quantity": 3,
+          "condition": "Used",
+          "value": 30
+        },
+        {
+          "description": "Housewares, box",
+          "quantity": 1,
+          "condition": "Used",
+          "value": 15
+        },
+        {
+          "description": "Lamps",
+          "quantity": 2,
+          "condition": "Good",
+          "value": 20
+        }
+      ],
+      "ocrExpectation": {
+        "outcome": "REQUIRES_REVIEW",
+        "printed": [
+          "donee_name",
+          "donee_ein"
+        ],
+        "handwrittenLegible": [
+          "donor_name",
+          "contribution_date",
+          "line_items"
+        ],
+        "handwrittenIllegible": [],
+        "absent": [
+          "donor_address",
+          "amount"
+        ],
+        "reason": "The attendant listed the items but left every value and the total blank, which is normal - the donor sets the value later. OCR must return no amount rather than inventing one. The handwritten date has no year."
+      },
+      "donor": {
+        "name": "Marcus T. Bell",
+        "address": "1180 Maple Grove Avenue",
+        "city": "Columbus",
+        "state": "OH",
+        "zip": "43215"
+      },
+      "donee": {
+        "name": "Goodwill Industries International",
+        "ein": "53-0196517",
+        "address": "15810 Indianola Drive, Rockville, MD 20855"
+      },
+      "contributionDate": "2026-09-03",
+      "source": {
+        "kind": "simulated_photograph",
+        "extension": "jpg",
+        "directory": "handwritten",
+        "generator": "scripts/generate_handwritten_receipts.js",
+        "provenance": "Simulated phone photograph of a handwritten Goodwill donation receipt with the value left blank, produced by scripts/generate_handwritten_receipts.js for DM-5782 sample 2. The donor is fictional and this is not a real document."
+      },
+      "forms": [
+        "receipt"
+      ]
+    },
+    {
+      "id": "D046",
+      "description": "Non-cash goods $225 - simulated photo of a handwritten Habitat ReStore furniture pick-up receipt with a handwritten total",
+      "assetType": "noncash_goods",
+      "amount": 225,
+      "deductible": true,
+      "assetDescription": "Three-seat sofa, six-drawer dresser, coffee table and two nightstands",
+      "assetCondition": "Good",
+      "handwriting": "entries",
+      "legibility": "average",
+      "referenceNumber": "018274",
+      "lineItems": [
+        {
+          "description": "Sofa, three-seat",
+          "quantity": 1,
+          "condition": "Good",
+          "value": 110
+        },
+        {
+          "description": "Dresser, six-drawer",
+          "quantity": 1,
+          "condition": "Good",
+          "value": 60
+        },
+        {
+          "description": "Coffee table",
+          "quantity": 1,
+          "condition": "Fair",
+          "value": 25
+        },
+        {
+          "description": "Nightstands",
+          "quantity": 2,
+          "condition": "Good",
+          "value": 30
+        }
+      ],
+      "ocrExpectation": {
+        "outcome": "REQUIRES_REVIEW",
+        "printed": [
+          "donee_name"
+        ],
+        "handwrittenLegible": [
+          "donor_name",
+          "donor_address",
+          "contribution_date",
+          "line_items",
+          "amount"
+        ],
+        "handwrittenIllegible": [],
+        "reason": "A driver's quick scrawl on a pink carbon copy, photographed at a steep angle on a clipboard with glare. Most people could read it, so it should extract in full. The slip carries no EIN."
+      },
+      "donor": {
+        "name": "Rosa M. Alvarez",
+        "address": "27 Coldwater Street",
+        "city": "Trenton",
+        "state": "NJ",
+        "zip": "08608"
+      },
+      "donee": {
+        "name": "Habitat for Humanity ReStore",
+        "ein": null,
+        "address": "322 West Lamar Street, Americus, GA 31709"
+      },
+      "contributionDate": "2026-08-29",
+      "source": {
+        "kind": "simulated_photograph",
+        "extension": "jpg",
+        "directory": "handwritten",
+        "generator": "scripts/generate_handwritten_receipts.js",
+        "provenance": "Simulated phone photograph of a handwritten Habitat for Humanity ReStore pick-up receipt (pink carbon copy), produced by scripts/generate_handwritten_receipts.js for DM-5782 sample 3. The donor is fictional and this is not a real document."
+      },
+      "forms": [
+        "receipt"
+      ]
+    },
+    {
+      "id": "D047",
+      "description": "Non-cash goods $71 - simulated photo of a cramped handwritten Salvation Army household-goods slip, nine low-value lines and a correction",
+      "assetType": "noncash_goods",
+      "amount": 71,
+      "deductible": true,
+      "assetDescription": "Kitchenware, small appliances, books, frames, a lamp, towels and board games",
+      "assetCondition": "Good",
+      "handwriting": "entries",
+      "legibility": "average",
+      "lineItems": [
+        {
+          "description": "Coffee mugs",
+          "quantity": 8,
+          "condition": "Good",
+          "value": 4
+        },
+        {
+          "description": "Pots and pans set",
+          "quantity": 1,
+          "condition": "Used",
+          "value": 12
+        },
+        {
+          "description": "Toaster",
+          "quantity": 1,
+          "condition": "Good",
+          "value": 6
+        },
+        {
+          "description": "Paperback books",
+          "quantity": 14,
+          "condition": "Used",
+          "value": 14
+        },
+        {
+          "description": "Picture frames",
+          "quantity": 5,
+          "condition": "Good",
+          "value": 5
+        },
+        {
+          "description": "Table lamp",
+          "quantity": 1,
+          "condition": "Good",
+          "value": 8
+        },
+        {
+          "description": "Blender",
+          "quantity": 1,
+          "condition": "Fair",
+          "value": 7
+        },
+        {
+          "description": "Bath towels",
+          "quantity": 6,
+          "condition": "Good",
+          "value": 9
+        },
+        {
+          "description": "Board games",
+          "quantity": 3,
+          "condition": "Good",
+          "value": 6
+        }
+      ],
+      "ocrExpectation": {
+        "outcome": "REQUIRES_REVIEW",
+        "printed": [
+          "donee_name",
+          "donee_ein"
+        ],
+        "handwrittenLegible": [
+          "donor_name",
+          "donor_address",
+          "contribution_date",
+          "line_items",
+          "amount"
+        ],
+        "handwrittenIllegible": [],
+        "reason": "Nine low-value household lines in small cramped writing. The towels value is written as 12, struck through and corrected to 9 - OCR must take 9, and the lines only add up to the $71 total if it does."
+      },
+      "donor": {
+        "name": "Peter H. Nakamura",
+        "address": "58 Willow Bend Road",
+        "city": "Eugene",
+        "state": "OR",
+        "zip": "97401"
+      },
+      "donee": {
+        "name": "The Salvation Army",
+        "ein": "13-5562351",
+        "address": "615 Slaters Lane, Alexandria, VA 22314"
+      },
+      "contributionDate": "2026-09-06",
+      "source": {
+        "kind": "simulated_photograph",
+        "extension": "jpg",
+        "directory": "handwritten",
+        "generator": "scripts/generate_handwritten_receipts.js",
+        "provenance": "Simulated phone photograph of a handwritten Salvation Army Family Store donation receipt, produced by scripts/generate_handwritten_receipts.js for the DM-5782 household-items amendment of 2026-09-01. The donor is fictional and this is not a real document."
+      },
+      "forms": [
+        "receipt"
+      ]
+    },
+    {
+      "id": "D048",
+      "description": "Non-cash goods $45 - simulated photo of a crumpled St. Vincent de Paul stub in faint pencil cursive, deliberately poor",
+      "assetType": "noncash_goods",
+      "amount": 45,
+      "deductible": true,
+      "assetDescription": "A box of kitchenware, a bag of clothing and a small rug",
+      "assetCondition": "Good",
+      "handwriting": "entries",
+      "legibility": "poor",
+      "documentOmits": [
+        "donor_address"
+      ],
+      "lineItems": [
+        {
+          "description": "Kitchenware, box",
+          "quantity": 1,
+          "condition": null,
+          "value": null
+        },
+        {
+          "description": "Clothing, bag",
+          "quantity": 1,
+          "condition": null,
+          "value": null
+        },
+        {
+          "description": "Rug, small",
+          "quantity": 1,
+          "condition": null,
+          "value": null
+        }
+      ],
+      "ocrExpectation": {
+        "outcome": "REQUIRES_REVIEW",
+        "printed": [
+          "donee_name"
+        ],
+        "handwrittenLegible": [
+          "contribution_date",
+          "amount",
+          "line_items"
+        ],
+        "handwrittenIllegible": [
+          "donor_name"
+        ],
+        "absent": [
+          "donor_address"
+        ],
+        "reason": "Faint pencil cursive on a crumpled stub in dim light. The date, total and items are readable with effort; the surname is genuinely hard to read, which the agreed quality bar puts out of scope, so do not log it as a defect."
+      },
+      "donor": {
+        "name": "Joy Okafor",
+        "address": "3321 Hazel Court",
+        "city": "St. Louis",
+        "state": "MO",
+        "zip": "63116"
+      },
+      "donee": {
+        "name": "St. Vincent de Paul Thrift Store",
+        "ein": null,
+        "address": "58 Progress Parkway, Maryland Heights, MO 63043"
+      },
+      "contributionDate": "2026-09-08",
+      "source": {
+        "kind": "simulated_photograph",
+        "extension": "jpg",
+        "directory": "handwritten",
+        "generator": "scripts/generate_handwritten_receipts.js",
+        "provenance": "Simulated phone photograph of a handwritten St. Vincent de Paul thrift store donation stub, produced by scripts/generate_handwritten_receipts.js for DM-5782 sample 5. The donor is fictional and this is not a real document."
+      },
+      "forms": [
+        "receipt"
+      ]
     }
   ]
 }
