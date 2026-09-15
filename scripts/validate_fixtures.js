@@ -16,7 +16,10 @@ const {
     getForm8283FmvMethod,
     getForm8283PropertyDescription,
     documentExtension,
+    documentPath,
     isPhotograph,
+    isRealPhotograph,
+    isSimulatedPhotograph,
     maskedTaxpayerId,
     syntheticAppraiserTaxId,
     syntheticDoneeSigner,
@@ -69,7 +72,7 @@ function assertForms(id, expectedForms) {
 const expectedDocuments = new Map();
 for (const donation of donations) {
     for (const formType of donation.forms) {
-        const filename = `${formType}/${formType}_${donation.id}.${documentExtension(donation)}`;
+        const filename = documentPath(donation, formType);
         assert(!expectedDocuments.has(filename), `Duplicate fixture filename ${filename}`);
         expectedDocuments.set(filename, { donation, formType });
         assert(
@@ -148,19 +151,32 @@ for (const donation of photographedFixtures) {
         `${id} must declare a supported photograph extension, got '${source.extension}'`
     );
     assert(
-        /^\d{4}-\d{2}-\d{2}$/.test(source.capturedOn || ''),
-        `${id} must record when the photograph was taken as YYYY-MM-DD`
-    );
-    // Real paper describes a real person. Losing the provenance or the consent
-    // note is how a fixture nobody can account for ends up in a public repo.
-    assert(
         typeof source.provenance === 'string' && source.provenance.trim().length > 0,
         `${id} must record where the photographed document came from`
     );
-    assert(
-        typeof source.consent === 'string' && source.consent.trim().length > 0,
-        `${id} must record the subject's consent to publishing the document`
-    );
+    if (isRealPhotograph(donation)) {
+        assert(
+            /^\d{4}-\d{2}-\d{2}$/.test(source.capturedOn || ''),
+            `${id} must record when the photograph was taken as YYYY-MM-DD`
+        );
+        // Real paper describes a real person. Losing the consent note is how a
+        // fixture nobody can account for ends up in a public repo.
+        assert(
+            typeof source.consent === 'string' && source.consent.trim().length > 0,
+            `${id} must record the subject's consent to publishing the document`
+        );
+    } else {
+        assert(
+            isSimulatedPhotograph(donation),
+            `${id} has an unknown photograph kind '${source.kind}'`
+        );
+        // A simulated photograph can be rebuilt, but only if the script that
+        // draws it is still there to rebuild it.
+        assert(
+            typeof source.generator === 'string' && fs.existsSync(path.join(root, source.generator)),
+            `${id} must name the script that simulates it, and that script must exist`
+        );
+    }
 
     assert(
         donation.forms.length === 1,
@@ -168,11 +184,13 @@ for (const donation of photographedFixtures) {
     );
 
     for (const formType of donation.forms) {
-        const relativePath = `${formType}/${formType}_${id}.${extension}`;
+        const relativePath = documentPath(donation, formType);
         const absolutePath = path.join(root, 'documents', relativePath);
         assert(
             fs.existsSync(absolutePath),
-            `${id} photograph documents/${relativePath} is missing and cannot be regenerated`
+            isSimulatedPhotograph(donation)
+                ? `${id} simulated photograph documents/${relativePath} is missing - run node ${source.generator}`
+                : `${id} photograph documents/${relativePath} is missing and cannot be regenerated`
         );
 
         // An empty or truncated file still satisfies existsSync, and a fixture
@@ -189,17 +207,49 @@ for (const donation of photographedFixtures) {
 
         const document = manifestDocuments.get(relativePath);
         assert(
-            document?.source === 'photograph',
-            `${id} manifest entry must mark ${relativePath} as photographed, not rendered`
+            document?.source === source.kind,
+            `${id} manifest entry must mark ${relativePath} as ${source.kind}, not ${document?.source}`
         );
     }
 }
 
+const MANIFEST_SOURCES = new Set(['rendered', 'photograph', 'simulated_photograph']);
 for (const document of manifest.documents) {
     assert(
-        document.source === 'photograph' || document.source === 'rendered',
-        `${document.filename} must declare whether it was photographed or rendered`
+        MANIFEST_SOURCES.has(document.source),
+        `${document.filename} must declare whether it was rendered, photographed or simulated`
     );
+}
+
+// --- Handwritten receipts -----------------------------------------------------
+// QA works from one folder, documents/receipt/handwritten/, so a handwritten slip
+// filed anywhere else is effectively invisible to the pass it exists for.
+const handwrittenFixtures = donations.filter(donation => donation.handwriting);
+assert(handwrittenFixtures.length > 0, 'the handwritten receipt fixtures have gone missing');
+const OMITTABLE_FIELDS = new Set(['donor_address', 'amount']);
+for (const donation of handwrittenFixtures) {
+    const { id } = donation;
+    assert(
+        isPhotograph(donation) && donation.source.directory === 'handwritten',
+        `${id} is handwritten, so it must be a photographed receipt in documents/receipt/handwritten/`
+    );
+    assert(
+        JSON.stringify(donation.forms) === JSON.stringify(['receipt']),
+        `${id} is handwritten, and a handwritten document can only be a receipt`
+    );
+    for (const field of donation.documentOmits || []) {
+        assert(OMITTABLE_FIELDS.has(field), `${id} omits '${field}', which the manifest cannot blank`);
+    }
+    // A slip's lines and its total are read separately, and a total that
+    // disagrees with its own lines is how a mis-read digit hides (D038, D047).
+    const values = (donation.lineItems || []).map(item => item.value);
+    if (values.length && values.every(value => typeof value === 'number')) {
+        const sum = values.reduce((total, value) => total + value, 0);
+        assert(
+            Math.abs(sum - donation.amount) < 0.005,
+            `${id} line items add up to ${sum}, but the amount is ${donation.amount}`
+        );
+    }
 }
 
 for (const donation of donations) {

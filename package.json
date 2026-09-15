@@ -22,5 +22,8 @@
   "homepage": "https://github.com/donate-mate/donatemate-ocr-test-fixtures#readme",
   "dependencies": {
     "canvas": "^3.2.1"
+  },
+  "devDependencies": {
+    "@napi-rs/canvas": "^1.0.9"
   }
 }

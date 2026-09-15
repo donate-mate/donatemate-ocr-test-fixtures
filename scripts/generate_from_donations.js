@@ -58,16 +58,40 @@ function shouldGenerateImage(donation, formType) {
 }
 
 // Almost every fixture is drawn by this script. A photographed fixture is the
-// exception: real paper captured on a phone, where the committed file *is* the
-// fixture. There is nothing to render, so this script only describes it in the
-// manifest - it must never write over it, and the obsolete-file sweep below
-// must never mistake it for a stale rendering.
+// exception, where the committed file *is* the fixture: either real paper
+// captured on a phone ("photograph"), or a simulated phone photograph produced
+// by scripts/generate_handwritten_receipts.js ("simulated_photograph"). Either
+// way there is nothing for this script to render, so it only describes the
+// file in the manifest - it must never write over it, and the obsolete-file
+// sweep below must never mistake it for a stale rendering.
+const PHOTOGRAPH_KINDS = new Set(['photograph', 'simulated_photograph']);
+
 function isPhotograph(donation) {
-    return donation.source && donation.source.kind === 'photograph';
+    return Boolean(donation.source && PHOTOGRAPH_KINDS.has(donation.source.kind));
+}
+
+function isRealPhotograph(donation) {
+    return Boolean(donation.source && donation.source.kind === 'photograph');
+}
+
+function isSimulatedPhotograph(donation) {
+    return Boolean(donation.source && donation.source.kind === 'simulated_photograph');
 }
 
 function documentExtension(donation) {
     return isPhotograph(donation) ? donation.source.extension : 'png';
+}
+
+// Handwritten slips share documents/receipt/handwritten/ so they can be found
+// as a set; everything else sits directly under its form type.
+function documentPath(donation, formType) {
+    const directory = isPhotograph(donation) && donation.source.directory;
+    const folder = directory ? `${formType}/${directory}` : formType;
+    return `${folder}/${formType}_${donation.id}.${documentExtension(donation)}`;
+}
+
+function documentSource(donation) {
+    return isPhotograph(donation) ? donation.source.kind : 'rendered';
 }
 
 function parseFixtureDate(dateStr) {
@@ -1711,10 +1735,7 @@ async function main() {
 
     const expectedFilenames = new Set(
         donationsData.donations.flatMap(donation =>
-            donation.forms.map(
-                formType =>
-                    `${formType}/${formType}_${donation.id}.${documentExtension(donation)}`
-            )
+            donation.forms.map(formType => documentPath(donation, formType))
         )
     );
     for (const dir of formDirs) {
@@ -1754,20 +1775,26 @@ async function main() {
                 continue;
             }
 
-            const filename = `${formType}_${donation.id}.${documentExtension(donation)}`;
-            const filepath = path.join(OUTPUT_DIR, formType, filename);
-            
+            const relativePath = documentPath(donation, formType);
+            const filename = path.basename(relativePath);
+            const filepath = path.join(OUTPUT_DIR, relativePath);
+            // A handwritten slip often leaves a field blank (no address, no value);
+            // the expectation for those is that OCR returns nothing, not the value
+            // the donor later supplies.
+            const omitted = new Set(donation.documentOmits || []);
+
             const manifestDocument = {
-                filename: `${formType}/${filename}`,
+                filename: relativePath,
                 formType: formType,
                 donationId: donation.id,
                 boundary: donation.boundary || false,
                 // Consumers need to know whether a miss is a pipeline defect or
-                // the expected cost of reading real paper, so say which this is.
-                source: isPhotograph(donation) ? 'photograph' : 'rendered',
+                // the expected cost of reading real or simulated paper.
+                source: documentSource(donation),
+                ...(donation.handwriting ? { handwriting: donation.handwriting } : {}),
                 expectedFields: {
                     donor_name: donation.donor.name,
-                    donor_address: formatAddress(donation.donor),
+                    donor_address: omitted.has('donor_address') ? null : formatAddress(donation.donor),
                     donee_name: donation.donee.name,
                     donee_ein: donation.donee.ein,
                     ...(donation.einValidationExpectation
@@ -1779,9 +1806,19 @@ async function main() {
                     ...(formsWithAcquisitionDate.has(formType)
                         ? { date_acquired: donation.dateAcquired || null }
                         : {}),
-                    amount: donation.amount,
+                    amount: omitted.has('amount') ? null : donation.amount,
                     asset_type: donation.assetType,
                     asset_description: donation.assetDescription || null,
+                    ...(donation.lineItems
+                        ? {
+                            line_items: donation.lineItems.map(item => ({
+                                description: item.description,
+                                quantity: item.quantity ?? null,
+                                condition: item.condition ?? null,
+                                value: omitted.has('amount') ? null : item.value ?? null
+                            }))
+                        }
+                        : {}),
                     ...(formType === 'form_1098c'
                         ? {
                             donor_tin: maskedTaxpayerId(donation),
@@ -1840,11 +1877,11 @@ async function main() {
                 // leave the bytes alone; only complain if it has gone missing.
                 if (!fs.existsSync(filepath)) {
                     generationErrors.push(
-                        `${donation.id}/${formType}: photographed fixture ${formType}/${filename} is missing and cannot be regenerated`
+                        `${donation.id}/${formType}: photographed fixture ${relativePath} is missing` + (isSimulatedPhotograph(donation) ? ' - run node scripts/generate_handwritten_receipts.js' : ' and cannot be regenerated')
                     );
                     continue;
                 }
-                console.log(`  · Kept photographed ${formType}/${filename}`);
+                console.log(`  · Kept ${documentSource(donation)} ${relativePath}`);
 
                 manifest.documents.push(manifestDocument);
                 manifest.formCounts[formType] = (manifest.formCounts[formType] || 0) + 1;
@@ -1903,6 +1940,8 @@ if (require.main === module) {
 
 module.exports = {
     documentExtension,
+    documentPath,
+    documentSource,
     formatDate,
     formatDateShort,
     formatMoney,
@@ -1915,6 +1954,8 @@ module.exports = {
     getForm8283FmvMethod,
     getForm8283PropertyDescription,
     isPhotograph,
+    isRealPhotograph,
+    isSimulatedPhotograph,
     main,
     maskedTaxpayerId,
     syntheticDoneeSigner,
