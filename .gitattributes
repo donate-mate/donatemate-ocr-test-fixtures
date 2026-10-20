@@ -1,0 +1,6 @@
+# Fixture bytes are compared exactly (validator) and PDF xref tables hold byte
+# offsets, so no fixture may ever be line-ending converted.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary

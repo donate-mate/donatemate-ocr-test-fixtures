@@ -3,13 +3,13 @@
   "description": "IRS-compliant OCR test fixtures with linked forms per donation",
   "generatedAt": "2026-07-31T00:00:00.000Z",
   "irsReference": "2025 Form 8283 instructions; 2025 Form 1098-C instructions; IRS Publication 561",
-  "namingConvention": "<form_type>_<donation_id>.<png for rendered fixtures, source extension for photographed ones>",
-  "totalDonations": 43,
-  "totalForms": 68,
+  "namingConvention": "<form_type>_<donation_id>.<png for rendered fixtures, source extension for photographed and rendered-PDF ones>",
+  "totalDonations": 44,
+  "totalForms": 69,
   "formCounts": {
     "bank_statement": 1,
     "cancelled_check": 1,
-    "acknowledgment_letter": 25,
+    "acknowledgment_letter": 26,
     "receipt": 10,
     "form_8283_section_a": 6,
     "form_8283_section_b": 8,
@@ -1534,6 +1534,23 @@
             "value": null
           }
         ]
+      }
+    },
+    {
+      "filename": "acknowledgment_letter/acknowledgment_letter_D049.pdf",
+      "formType": "acknowledgment_letter",
+      "donationId": "D049",
+      "boundary": false,
+      "source": "rendered_pdf",
+      "expectedFields": {
+        "donor_name": "Dana R. Whitfield",
+        "donor_address": "218 Linden Court, Lancaster, PA 17601",
+        "donee_name": "United Way Worldwide",
+        "donee_ein": "13-1635294",
+        "contribution_date": "2025-10-19",
+        "amount": 68.78,
+        "asset_type": "cash",
+        "asset_description": null
       }
     }
   ]
