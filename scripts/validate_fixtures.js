@@ -32,9 +32,8 @@ const {
 } = require('./png_fixture_revision');
 
 const root = path.join(__dirname, '..');
-const donations = JSON.parse(
-    fs.readFileSync(path.join(root, 'donations.json'), 'utf8')
-).donations;
+const donationsData = JSON.parse(fs.readFileSync(path.join(root, 'donations.json'), 'utf8'));
+const donations = donationsData.donations;
 const manifest = JSON.parse(
     fs.readFileSync(path.join(root, 'manifest_v2.json'), 'utf8')
 );
@@ -49,8 +48,9 @@ function fixtureFiles(directory) {
     return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
         const absolutePath = path.join(directory, entry.name);
         if (entry.isDirectory()) return fixtureFiles(absolutePath);
-        // Rendered fixtures are PNG; photographed ones keep their camera format.
-        return entry.isFile() && /\.(png|jpe?g)$/i.test(entry.name) ? [absolutePath] : [];
+        // Rendered fixtures are PNG; photographed ones keep their camera format,
+        // and rendered-PDF ones (DM-8504) are PDFs.
+        return entry.isFile() && /\.(png|jpe?g|pdf)$/i.test(entry.name) ? [absolutePath] : [];
     });
 }
 
@@ -213,7 +213,81 @@ for (const donation of photographedFixtures) {
     }
 }
 
-const MANIFEST_SOURCES = new Set(['rendered', 'photograph', 'simulated_photograph']);
+// --- Rendered PDF fixtures (DM-8504) -------------------------------------------
+// A text PDF drawn by its own script and committed. Unlike a simulated photograph
+// it involves no rasterisation, so the committed bytes must equal a fresh render.
+// Each ID here is regression coverage for a defect; dropping it, or turning it
+// back into a PNG, must fail loudly rather than empty the loop below.
+const REQUIRED_RENDERED_PDF_IDS = ['D049'];
+const renderedPdfFixtures = donations.filter(donation => donation.source?.kind === 'rendered_pdf');
+for (const id of REQUIRED_RENDERED_PDF_IDS) {
+    assert(
+        renderedPdfFixtures.some(donation => donation.id === id),
+        `${id} must remain a rendered_pdf fixture (DM-8504 prose acknowledgment coverage)`
+    );
+}
+// Consumers derive fixture paths from either file, so the two conventions
+// must describe the same rule, including source-specific extensions.
+assert(
+    donationsData.namingConvention === manifest.namingConvention,
+    `donations.json namingConvention must match manifest_v2.json: '${donationsData.namingConvention}' vs '${manifest.namingConvention}'`
+);
+for (const donation of renderedPdfFixtures) {
+    const { id, source } = donation;
+    assert(source.extension === 'pdf', `${id} is a rendered PDF, so its extension must be 'pdf'`);
+    assert(
+        typeof source.provenance === 'string' && source.provenance.trim().length > 0,
+        `${id} must record what the rendered PDF models`
+    );
+    assert(
+        typeof source.generator === 'string' && fs.existsSync(path.join(root, source.generator)),
+        `${id} must name the script that renders it, and that script must exist`
+    );
+    const { renderProseAcknowledgmentPdf, isProseAcknowledgmentPdf } = require(path.join(
+        root,
+        source.generator
+    ));
+    assert(isProseAcknowledgmentPdf(donation), `${id} is not claimed by ${source.generator}`);
+
+    for (const formType of donation.forms) {
+        const relativePath = documentPath(donation, formType);
+        const absolutePath = path.join(root, 'documents', relativePath);
+        assert(
+            fs.existsSync(absolutePath),
+            `${id} rendered PDF documents/${relativePath} is missing - run node ${source.generator}`
+        );
+        const bytes = fs.readFileSync(absolutePath);
+        assert(bytes.subarray(0, 5).toString('latin1') === '%PDF-', `${id} ${relativePath} is not a PDF`);
+        const rendered = renderProseAcknowledgmentPdf(donation);
+        assert(
+            rendered.equals(renderProseAcknowledgmentPdf(donation)),
+            `${id} rendered PDF generation must be deterministic`
+        );
+        assert(
+            bytes.equals(rendered),
+            `${id} tracked ${relativePath} must match ${source.generator} - re-run it`
+        );
+        const document = manifestDocuments.get(relativePath);
+        assert(
+            document?.source === 'rendered_pdf',
+            `${id} manifest entry must mark ${relativePath} as rendered_pdf, not ${document?.source}`
+        );
+
+        // The point of the fixture: the amount is stated only inside the
+        // thank-you sentence, never beside an "Amount" label.
+        const text = [...bytes.toString('latin1').matchAll(/\(((?:\\.|[^\\)])*)\) Tj/g)]
+            .map(match => match[1].replace(/\\(.)/g, '$1'))
+            .join('');
+        const money = formatMoney(donation.amount);
+        assert(
+            text.includes(`your contribution to ${donation.donee.name} of ${money} on `),
+            `${id} must state ${money} inside the "contribution to <charity> of" sentence`
+        );
+        assert(!/\bAmount\b/i.test(text), `${id} must not carry a labelled amount`);
+    }
+}
+
+const MANIFEST_SOURCES = new Set(['rendered', 'photograph', 'simulated_photograph', 'rendered_pdf']);
 for (const document of manifest.documents) {
     assert(
         MANIFEST_SOURCES.has(document.source),

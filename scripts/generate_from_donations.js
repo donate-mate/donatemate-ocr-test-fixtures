@@ -65,9 +65,20 @@ function shouldGenerateImage(donation, formType) {
 // file in the manifest - it must never write over it, and the obsolete-file
 // sweep below must never mistake it for a stale rendering.
 const PHOTOGRAPH_KINDS = new Set(['photograph', 'simulated_photograph']);
+// DM-8504: a text PDF drawn by its own script ("rendered_pdf") is committed the
+// same way - this script never renders it, only describes it.
+const COMMITTED_FILE_KINDS = new Set([...PHOTOGRAPH_KINDS, 'rendered_pdf']);
 
 function isPhotograph(donation) {
     return Boolean(donation.source && PHOTOGRAPH_KINDS.has(donation.source.kind));
+}
+
+function isCommittedFile(donation) {
+    return Boolean(donation.source && COMMITTED_FILE_KINDS.has(donation.source.kind));
+}
+
+function isRenderedPdf(donation) {
+    return Boolean(donation.source && donation.source.kind === 'rendered_pdf');
 }
 
 function isRealPhotograph(donation) {
@@ -79,19 +90,19 @@ function isSimulatedPhotograph(donation) {
 }
 
 function documentExtension(donation) {
-    return isPhotograph(donation) ? donation.source.extension : 'png';
+    return isCommittedFile(donation) ? donation.source.extension : 'png';
 }
 
 // Handwritten slips share documents/receipt/handwritten/ so they can be found
 // as a set; everything else sits directly under its form type.
 function documentPath(donation, formType) {
-    const directory = isPhotograph(donation) && donation.source.directory;
+    const directory = isCommittedFile(donation) && donation.source.directory;
     const folder = directory ? `${formType}/${directory}` : formType;
     return `${folder}/${formType}_${donation.id}.${documentExtension(donation)}`;
 }
 
 function documentSource(donation) {
-    return isPhotograph(donation) ? donation.source.kind : 'rendered';
+    return isCommittedFile(donation) ? donation.source.kind : 'rendered';
 }
 
 function parseFixtureDate(dateStr) {
@@ -1741,7 +1752,7 @@ async function main() {
     for (const dir of formDirs) {
         const dirPath = path.join(OUTPUT_DIR, dir);
         for (const filename of fs.readdirSync(dirPath)) {
-            if (!/\.(png|jpe?g)$/i.test(filename)) continue;
+            if (!/\.(png|jpe?g|pdf)$/i.test(filename)) continue;
             const relativeFilename = `${dir}/${filename}`;
             if (expectedFilenames.has(relativeFilename)) continue;
             fs.unlinkSync(path.join(dirPath, filename));
@@ -1755,7 +1766,7 @@ async function main() {
         description: 'IRS-compliant OCR test fixtures with linked forms per donation',
         generatedAt: MANIFEST_GENERATED_AT,
         irsReference: '2025 Form 8283 instructions; 2025 Form 1098-C instructions; IRS Publication 561',
-        namingConvention: '<form_type>_<donation_id>.<png for rendered fixtures, source extension for photographed ones>',
+        namingConvention: '<form_type>_<donation_id>.<png for rendered fixtures, source extension for photographed and rendered-PDF ones>',
         totalDonations: donationsData.donations.length,
         totalForms: 0,
         formCounts: {},
@@ -1770,7 +1781,7 @@ async function main() {
         
         for (const formType of donation.forms) {
             const generator = generators[formType];
-            if (!generator && !isPhotograph(donation)) {
+            if (!generator && !isCommittedFile(donation)) {
                 generationErrors.push(`${donation.id}: no generator for '${formType}'`);
                 continue;
             }
@@ -1872,12 +1883,12 @@ async function main() {
                 }
             };
 
-            if (isPhotograph(donation)) {
-                // The photograph is committed, not produced here. Record it and
+            if (isCommittedFile(donation)) {
+                // The file is committed, not produced here. Record it and
                 // leave the bytes alone; only complain if it has gone missing.
                 if (!fs.existsSync(filepath)) {
                     generationErrors.push(
-                        `${donation.id}/${formType}: photographed fixture ${relativePath} is missing` + (isSimulatedPhotograph(donation) ? ' - run node scripts/generate_handwritten_receipts.js' : ' and cannot be regenerated')
+                        `${donation.id}/${formType}: committed fixture ${relativePath} is missing` + (donation.source.generator ? ` - run node ${donation.source.generator}` : ' and cannot be regenerated')
                     );
                     continue;
                 }
@@ -1953,8 +1964,10 @@ module.exports = {
     getGoFundMeReceiptAmounts,
     getForm8283FmvMethod,
     getForm8283PropertyDescription,
+    isCommittedFile,
     isPhotograph,
     isRealPhotograph,
+    isRenderedPdf,
     isSimulatedPhotograph,
     main,
     maskedTaxpayerId,

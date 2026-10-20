@@ -12,7 +12,7 @@ The exception is a small number of [photographed fixtures](#photographed-fixture
 
 | Form Type | Count | Description |
 |-----------|-------|-------------|
-| acknowledgment_letter | 25 | Written acknowledgments for cash and non-cash donations, including Section B gifts |
+| acknowledgment_letter | 26 | Written acknowledgments for cash and non-cash donations, including Section B gifts, and one [rendered PDF](#rendered-pdf-fixtures) thank-you letter (D049) |
 | appraisal | 8 | Signed qualified appraisals for FMV-basis donations >$5,000 |
 | bank_statement | 1 | Bank records for cash donations <$250 |
 | cancelled_check | 1 | Cancelled checks for cash donations <$250 |
@@ -32,7 +32,7 @@ contribution is **not tax deductible** — useful for testing OCR/classification
 distinguish deductible charitable receipts from non-deductible payment confirmations.
 
 Every donation declares an explicit boolean `deductible` expectation. Omission is invalid
-and never defaults to `true`. The charitable fixtures D001–D034 and D038 are deductible and
+and never defaults to `true`. The charitable fixtures D001–D034, D038 and D044–D049 are deductible and
 use qualifying organizations; only the personal GoFundMe fixtures D035–D037 are
 non-deductible.
 Fixtures that exercise terminal organization enrichment also declare a `VALID`
@@ -55,7 +55,7 @@ donatemate-ocr-test-fixtures/
 ├── donations.json                 # Master donation definitions (38 test cases)
 ├── manifest_v2.json               # Generated document manifest with expected fields
 ├── documents/
-│   ├── acknowledgment_letter/     # acknowledgment_letter_D001.png, ...
+│   ├── acknowledgment_letter/     # acknowledgment_letter_D001.png, ..., acknowledgment_letter_D049.pdf
 │   ├── appraisal/                 # appraisal_D013.png, ...
 │   ├── bank_statement/            # bank_statement_D001.png
 │   ├── cancelled_check/           # cancelled_check_D002.png
@@ -69,6 +69,34 @@ donatemate-ocr-test-fixtures/
 └── scripts/
     └── generate_from_donations.js # Generator script
 ```
+
+## Rendered PDF Fixtures
+
+Online giving platforms (Click&Pledge and similar) email a thank-you letter that
+states the gift only inside a sentence, with no "Amount:" label, and donors
+forward or upload that email as a PDF. Every rendered PNG letter carries a
+labelled amount, so none of them exercises that path. **D049** does
+(DM-8504):
+
+| ID | File | Covers |
+|----|------|--------|
+| D049 | `acknowledgment_letter/acknowledgment_letter_D049.pdf` | Cash $68.78 to United Way Worldwide, stated only as "Thank you so much for your contribution to United Way Worldwide of **$68.78** on 2025-10-19 2:56:50 PM", next to impact prose that quotes a count ("more than 300,000 children") and the IRS footer |
+
+It is a real text PDF (standard Helvetica, a text layer, no embedded fonts),
+written by [`scripts/generate_prose_acknowledgment_pdfs.js`](scripts/generate_prose_acknowledgment_pdfs.js)
+with no timestamps, so the bytes depend only on `donations.json`. Its donation
+record carries `source.kind: "rendered_pdf"`; `generate_from_donations.js`
+lists it in the manifest but never renders it, and `npm test` re-renders it and
+requires the committed bytes to match exactly, and checks that the amount
+appears inside the sentence and nowhere beside a label. `.gitattributes` marks
+`*.pdf` binary, because the cross-reference table holds byte offsets.
+
+```bash
+node scripts/generate_prose_acknowledgment_pdfs.js   # rewrite D049 after editing its record
+```
+
+Unlike a PNG, a PDF has no text chunk for the `DonateMateFixtureRevision`
+stamp, so a consumer that needs owner-unique bytes must add its own seed.
 
 ## Handwritten Receipts
 
@@ -379,7 +407,7 @@ Quick reference:
 3. Donor information uses placeholder values, except D038 which names its real donor with their consent
 4. Charitable fixtures use EINs for qualifying organizations; personal fundraisers have no EIN, and D038 has none because the real slip does not print one
 5. Forms for the same donation have **matching** donor, donee, date, and amount data
-6. Only D035–D037 are non-deductible; D001–D034 and D038 must remain deductible charitable fixtures
+6. Only D035–D037 are non-deductible; D001–D034, D038 and D044–D049 must remain deductible charitable fixtures
 7. D038 is the one **real** document here — photographed, not generated, and not reproducible if deleted. See [Photographed Fixtures](#photographed-fixtures).
 
 ## License

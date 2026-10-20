@@ -3,7 +3,7 @@
   "description": "IRS-compliant donation test fixtures with linked forms per Publication 526",
   "generatedAt": null,
   "irsReference": "IRS Publication 526 (2025) - Charitable Contributions",
-  "namingConvention": "<form_type>_<donation_id>.png",
+  "namingConvention": "<form_type>_<donation_id>.<png for rendered fixtures, source extension for photographed and rendered-PDF ones>",
   "donations": [
     {
       "id": "D001",
@@ -1661,6 +1661,36 @@
       },
       "forms": [
         "receipt"
+      ]
+    },
+    {
+      "id": "D049",
+      "description": "Cash $68.78 - online-giving thank-you letter (PDF) that states the gift only inside a sentence (DM-8504)",
+      "assetType": "cash",
+      "amount": 68.78,
+      "deductible": true,
+      "donor": {
+        "name": "Dana R. Whitfield",
+        "address": "218 Linden Court",
+        "city": "Lancaster",
+        "state": "PA",
+        "zip": "17601"
+      },
+      "donee": {
+        "name": "United Way Worldwide",
+        "ein": "13-1635294",
+        "address": "701 N. Fairfax Street, Alexandria, VA 22314"
+      },
+      "contributionDate": "2025-10-19",
+      "source": {
+        "kind": "rendered_pdf",
+        "extension": "pdf",
+        "generator": "scripts/generate_prose_acknowledgment_pdfs.js",
+        "transactionTime": "2:56:50 PM",
+        "provenance": "Text PDF modelled on a Click&Pledge thank-you email forwarded as a PDF (DM-8504): the amount appears only in the sentence 'Thank you so much for your contribution to <charity> of $68.78 on <date>', next to impact prose that quotes a count. Produced by scripts/generate_prose_acknowledgment_pdfs.js; the donor is fictional and this is not a real document."
+      },
+      "forms": [
+        "acknowledgment_letter"
       ]
     }
   ]
