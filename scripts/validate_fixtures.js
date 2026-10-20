@@ -32,9 +32,8 @@ const {
 } = require('./png_fixture_revision');
 
 const root = path.join(__dirname, '..');
-const donations = JSON.parse(
-    fs.readFileSync(path.join(root, 'donations.json'), 'utf8')
-).donations;
+const donationsData = JSON.parse(fs.readFileSync(path.join(root, 'donations.json'), 'utf8'));
+const donations = donationsData.donations;
 const manifest = JSON.parse(
     fs.readFileSync(path.join(root, 'manifest_v2.json'), 'utf8')
 );
@@ -217,7 +216,22 @@ for (const donation of photographedFixtures) {
 // --- Rendered PDF fixtures (DM-8504) -------------------------------------------
 // A text PDF drawn by its own script and committed. Unlike a simulated photograph
 // it involves no rasterisation, so the committed bytes must equal a fresh render.
+// Each ID here is regression coverage for a defect; dropping it, or turning it
+// back into a PNG, must fail loudly rather than empty the loop below.
+const REQUIRED_RENDERED_PDF_IDS = ['D049'];
 const renderedPdfFixtures = donations.filter(donation => donation.source?.kind === 'rendered_pdf');
+for (const id of REQUIRED_RENDERED_PDF_IDS) {
+    assert(
+        renderedPdfFixtures.some(donation => donation.id === id),
+        `${id} must remain a rendered_pdf fixture (DM-8504 prose acknowledgment coverage)`
+    );
+}
+// Consumers derive fixture paths from either file, so the two conventions
+// must describe the same rule, including source-specific extensions.
+assert(
+    donationsData.namingConvention === manifest.namingConvention,
+    `donations.json namingConvention must match manifest_v2.json: '${donationsData.namingConvention}' vs '${manifest.namingConvention}'`
+);
 for (const donation of renderedPdfFixtures) {
     const { id, source } = donation;
     assert(source.extension === 'pdf', `${id} is a rendered PDF, so its extension must be 'pdf'`);

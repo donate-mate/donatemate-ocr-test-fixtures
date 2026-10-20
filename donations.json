@@ -3,7 +3,7 @@
   "description": "IRS-compliant donation test fixtures with linked forms per Publication 526",
   "generatedAt": null,
   "irsReference": "IRS Publication 526 (2025) - Charitable Contributions",
-  "namingConvention": "<form_type>_<donation_id>.png",
+  "namingConvention": "<form_type>_<donation_id>.<png for rendered fixtures, source extension for photographed and rendered-PDF ones>",
   "donations": [
     {
       "id": "D001",
